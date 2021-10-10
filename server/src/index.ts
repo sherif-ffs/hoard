@@ -1,6 +1,6 @@
+require('dotenv').config();
 import express = require('express');
 import mongoose, { ConnectOptions } from 'mongoose';
-require('dotenv').config();
 
 const app = express();
 
@@ -22,5 +22,10 @@ db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function () {
   console.log('Connected successfully');
 });
+
+app.use(express.json());
+
+import testRouter from './testRoute';
+app.use('/test', testRouter);
 
 app.listen(5000, () => console.log('Server running'));
