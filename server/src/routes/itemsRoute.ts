@@ -1,5 +1,6 @@
 import express from 'express';
-import Item from '../../models/item';
+import { userInfo } from 'os';
+import Item from '../models/item';
 
 const router = express.Router();
 
@@ -8,15 +9,14 @@ router.get('/', async (req, res) => {
   try {
     const items = await Item.find();
     res.json(items);
-  } catch (err) {
-    console.log(err);
-    // res.status(500).json({ message: err.message });
+  } catch (err: any) {
+    res.status(500).json({ message: err.message });
   }
 });
 
-// get one
-// router.get('/:id', (req, res) => {
-//   res.send(req.params.id);
-// });
+// create item
+router.post('/', async (req, res) => {
+  const item = new Item({});
+});
 
 export default router;
