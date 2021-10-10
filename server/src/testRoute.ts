@@ -1,5 +1,4 @@
 import express from 'express';
-import { IGetTestInformation } from './definitionFile';
 
 const router = express.Router();
 

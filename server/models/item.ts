@@ -27,4 +27,4 @@ const itemSchema = new Schema<ItemInterface>({
   },
 });
 
-module.exports = model('Item', itemSchema);
+export default model('Item', itemSchema);

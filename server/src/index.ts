@@ -25,7 +25,8 @@ db.once('open', function () {
 
 app.use(express.json());
 
+import itemsRoute from './routes/itemsRoute';
 import testRouter from './testRoute';
-app.use('/test', testRouter);
+app.use('/items', itemsRoute);
 
 app.listen(5000, () => console.log('Server running'));
