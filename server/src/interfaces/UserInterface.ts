@@ -1,4 +1,6 @@
-export interface IUserInterface {
+import { CollectionInterface } from './CollectionInterface';
+
+export interface UserInterface {
   name: string;
   email: string;
   role: string;
@@ -7,5 +9,5 @@ export interface IUserInterface {
   github: string;
   joinedDate: Date;
   userId: number;
-  collections: Array;
+  collections: Array<CollectionInterface>;
 }

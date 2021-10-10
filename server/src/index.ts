@@ -1,6 +1,8 @@
 require('dotenv').config();
 import express = require('express');
 import mongoose, { ConnectOptions } from 'mongoose';
+import path from 'path';
+import bodyParser = require('body-parser');
 
 const app = express();
 
@@ -24,6 +26,13 @@ db.once('open', function () {
 });
 
 app.use(express.json());
+
+app.use('/', express.static(path.join(__dirname, 'static')));
+
+app.post('/api/register', async (req, res) => {
+  console.log('req.body: ', req.body);
+  res.json({ status: 'ok' });
+});
 
 import itemsRoute from './routes/itemsRoute';
 import testRouter from './testRoute';
