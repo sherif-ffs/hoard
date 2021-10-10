@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { UserInterface } from '../interfaces/UserInterface';
 
 const userSchema = new Schema<UserInterface>({
@@ -42,3 +42,5 @@ const userSchema = new Schema<UserInterface>({
     required: true,
   },
 });
+
+module.exports = model('User', userSchema);
