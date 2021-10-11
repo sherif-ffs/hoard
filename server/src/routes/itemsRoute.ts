@@ -1,5 +1,4 @@
 import express from 'express';
-import { userInfo } from 'os';
 import Item from '../models/item';
 
 const router = express.Router();
