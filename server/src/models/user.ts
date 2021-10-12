@@ -2,11 +2,6 @@ import { Schema, model } from 'mongoose';
 import { UserInterface } from '../interfaces/UserInterface';
 
 const userSchema = new Schema<UserInterface>({
-  userId: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
   name: {
     type: String,
     required: true,
@@ -24,23 +19,20 @@ const userSchema = new Schema<UserInterface>({
     type: String,
     required: false,
   },
-  github: {
+  portfolio: {
     type: String,
     required: false,
   },
-  joinedDate: {
-    type: Number,
-    required: true,
-    default: Date.now,
+  github: {
+    type: String,
+    required: false,
   },
   collections: {
     type: [],
     required: true,
   },
-  following: {
-    type: [],
-    required: true,
-  },
 });
 
-module.exports = model('User', userSchema);
+const user = model('User', userSchema);
+export default user;
+// module.exports = model('User', userSchema);

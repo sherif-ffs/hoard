@@ -5,6 +5,7 @@ import path from 'path';
 import bodyParser = require('body-parser');
 const cors = require('cors');
 import bcrypt from 'bcryptjs';
+import User from './models/user';
 
 const app = express();
 
@@ -33,9 +34,26 @@ app.use(cors());
 app.use('/', express.static(path.join(__dirname, 'static')));
 
 app.post('/api/register', async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password: plainTextPassword } = req.body;
 
-  console.log('password: ', await bcrypt.hash(password, 10));
+  const password = await bcrypt.hash(plainTextPassword, 10);
+
+  try {
+    const response = await User.create({
+      email: username,
+      password: password,
+      name: 'sherif',
+      role: '',
+      twitter: '',
+      github: '',
+      portfolio: '',
+      colections: [],
+    });
+    console.log('response: ', response);
+  } catch (error) {
+    console.log('error: ', error);
+    return res.json({ status: 'error ' });
+  }
   res.json({ status: 'ok' });
 });
 

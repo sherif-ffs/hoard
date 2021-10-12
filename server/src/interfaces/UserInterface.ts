@@ -7,7 +7,5 @@ export interface UserInterface {
   twitter: string;
   portfolio: string;
   github: string;
-  joinedDate: Date;
-  userId: number;
   collections: Array<CollectionInterface>;
 }
