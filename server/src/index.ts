@@ -3,6 +3,7 @@ import express = require('express');
 import mongoose, { ConnectOptions } from 'mongoose';
 import path from 'path';
 import bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 
@@ -26,6 +27,7 @@ db.once('open', function () {
 });
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/', express.static(path.join(__dirname, 'static')));
 
