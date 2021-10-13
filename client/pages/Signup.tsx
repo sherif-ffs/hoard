@@ -12,7 +12,7 @@ const Home: NextPage = () => {
     console.log('password: ', password)
     console.log('username: ', username)
 
-    const result = await fetch('http://localhost:5000/api/register', {
+    const result = fetch('http://localhost:5000/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -21,7 +21,11 @@ const Home: NextPage = () => {
         username,
         password
       })
-    }).then((res) => res.json())
+    });
+
+    result.then((res) => {
+      console.log('res: ', res)
+    })
   }
 
 

@@ -6,7 +6,9 @@ import bodyParser = require('body-parser');
 const cors = require('cors');
 import bcrypt from 'bcryptjs';
 import User from './models/user';
+import jwt from 'jsonwebtoken';
 
+const JWT_SECRET = 'asdfghjk123983425098312knaasdoihadsb';
 const app = express();
 
 const username = 'selmetwa';
@@ -33,6 +35,29 @@ app.use(cors());
 
 app.use('/', express.static(path.join(__dirname, 'static')));
 
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
+  console.log('req.body: ', req.body);
+  const user = await User.findOne({ username }).lean();
+
+  if (!user) {
+    return res.json({ status: 'error', error: 'Invalid username/password' });
+  }
+  console.log('user: ', user);
+  if (user) {
+    // success
+    const token = jwt.sign(
+      {
+        id: user._id,
+        username: user.email,
+      },
+      JWT_SECRET
+    );
+    return res.json({ status: 'ok', data: token });
+  }
+  return res.json({ status: 'error', error: 'Invalid username/password' });
+});
+
 app.post('/api/register', async (req, res) => {
   const { username, password: plainTextPassword } = req.body;
 
@@ -49,15 +74,21 @@ app.post('/api/register', async (req, res) => {
       portfolio: '',
       colections: [],
     });
+    res.json({ status: 'ok' });
     console.log('response: ', response);
-  } catch (error) {
-    console.log('error: ', error);
-    return res.json({ status: 'error ' });
+  } catch (error: any) {
+    if (error.code === 11000) {
+      // duplicate key
+      console.log('error: ', error);
+      res.json({ status: 'error', error: 'email already in use' });
+    } else {
+      throw error;
+    }
   }
-  res.json({ status: 'ok' });
 });
 
 import itemsRoute from './routes/itemsRoute';
+import user from './models/user';
 app.use('/items', itemsRoute);
 
 app.listen(5000, () => console.log('Server running'));
