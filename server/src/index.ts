@@ -36,35 +36,21 @@ app.use(cors());
 app.use('/', express.static(path.join(__dirname, 'static')));
 
 app.post('/api/login', async (req, res) => {
-  const { username, password } = req.body;
-  console.log('req.body: ', req.body);
+  const { username } = req.body;
   const user = await User.findOne({ username }).lean();
 
   if (!user) {
     return res.json({ status: 'error', error: 'Invalid username/password' });
   }
-  console.log('user: ', user);
-  console.log('JWT_SECRET: ', typeof JWT_SECRET);
+
   const token = jwt.sign(
     {
       id: user._id,
       username: user.email,
     },
-    process.env.JWT_SECRET as string
+    JWT_SECRET as string
   );
   return res.json({ status: 'ok', data: token });
-  // if (user) {
-  //   // success
-  //   const token = jwt.sign(
-  //     {
-  //       id: user._id,
-  //       username: user.email,
-  //     },
-  //     JWT
-  //   );
-  //   return res.json({ status: 'ok', data: token });
-  // }
-  return res.json({ status: 'error', error: 'Invalid username/password' });
 });
 
 app.post('/api/register', async (req, res) => {
@@ -83,12 +69,11 @@ app.post('/api/register', async (req, res) => {
       portfolio: '',
       colections: [],
     });
-    res.json({ status: 'ok' });
     console.log('response: ', response);
+    res.json({ status: 'ok' });
   } catch (error: any) {
     if (error.code === 11000) {
       // duplicate key
-      console.log('error: ', error);
       res.json({ status: 'error', error: 'email already in use' });
     } else {
       throw error;
@@ -97,8 +82,6 @@ app.post('/api/register', async (req, res) => {
 });
 
 import itemsRoute from './routes/itemsRoute';
-import user from './models/user';
-import { resolve } from 'dns';
-app.use('/items', itemsRoute);
 
+app.use('/items', itemsRoute);
 app.listen(5000, () => console.log('Server running'));
