@@ -3,18 +3,18 @@ import express = require('express');
 import mongoose, { ConnectOptions } from 'mongoose';
 import path from 'path';
 import bodyParser = require('body-parser');
-const cors = require('cors');
 import bcrypt from 'bcryptjs';
 import User from './models/user';
 import jwt from 'jsonwebtoken';
+const cors = require('cors');
 
-const JWT_SECRET = 'asdfghjk123983425098312knaasdoihadsb';
 const app = express();
 
 const username = 'selmetwa';
 const cluster = 'cluster0.eauvk';
 const dbname = 'myFirstDatabase';
 const password = process.env.PASSWORD;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 mongoose.connect(
   `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`,
@@ -44,17 +44,26 @@ app.post('/api/login', async (req, res) => {
     return res.json({ status: 'error', error: 'Invalid username/password' });
   }
   console.log('user: ', user);
-  if (user) {
-    // success
-    const token = jwt.sign(
-      {
-        id: user._id,
-        username: user.email,
-      },
-      JWT_SECRET
-    );
-    return res.json({ status: 'ok', data: token });
-  }
+  console.log('JWT_SECRET: ', typeof JWT_SECRET);
+  const token = jwt.sign(
+    {
+      id: user._id,
+      username: user.email,
+    },
+    process.env.JWT_SECRET as string
+  );
+  return res.json({ status: 'ok', data: token });
+  // if (user) {
+  //   // success
+  //   const token = jwt.sign(
+  //     {
+  //       id: user._id,
+  //       username: user.email,
+  //     },
+  //     JWT
+  //   );
+  //   return res.json({ status: 'ok', data: token });
+  // }
   return res.json({ status: 'error', error: 'Invalid username/password' });
 });
 
@@ -89,6 +98,7 @@ app.post('/api/register', async (req, res) => {
 
 import itemsRoute from './routes/itemsRoute';
 import user from './models/user';
+import { resolve } from 'dns';
 app.use('/items', itemsRoute);
 
 app.listen(5000, () => console.log('Server running'));
