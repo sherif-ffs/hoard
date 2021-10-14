@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import type { NextPage } from 'next'
 import {useAppContext} from './components/AppWrapper';
+import Router from 'next/router'
 
 const Login: NextPage = () => {
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const { user, setUser, token, setToken } = useAppContext();
 
   console.log('user: ', user)
@@ -13,7 +14,7 @@ const Login: NextPage = () => {
     e.preventDefault();
 
     console.log('password: ', password)
-    console.log('username: ', username)
+    console.log('email: ', email)
 
     const result = fetch('http://localhost:5000/api/login', {
       method: 'POST',
@@ -21,7 +22,7 @@ const Login: NextPage = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username,
+        email,
         password
       })
     });
@@ -32,6 +33,7 @@ const Login: NextPage = () => {
         if (user && token) {
           setUser(user)
           setToken(token)
+          Router.push('/TestAuth')
         }
       })
     })
@@ -41,7 +43,7 @@ const Login: NextPage = () => {
     <section>
       <h1>Login</h1>
       <form onSubmit={e => handleSubmit(e)}>
-        <input className="username" type="text" placeholder="email" onChange={e => setUsername(e.target.value)} />
+        <input className="username" type="text" placeholder="email" onChange={e => setEmail(e.target.value)} />
         <input className="password" type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
         <input type="submit" value="Submit Form" />
       </form>

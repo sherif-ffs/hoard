@@ -37,17 +37,18 @@ app.use(cors());
 app.use('/', express.static(path.join(__dirname, 'static')));
 
 app.post('/api/login', async (req, res) => {
-  const { username } = req.body;
-  const user = await User.findOne({ username }).lean();
-
+  const { email } = req.body;
+  const user = await User.findOne({ email }).lean();
+  console.log('email: ', email);
+  console.log('user: ', user);
   if (!user) {
-    return res.json({ status: 'error', error: 'Invalid username/password' });
+    return res.json({ status: 'error', error: 'Invalid email/password' });
   }
 
   const token = jwt.sign(
     {
       id: user._id,
-      username: user.email,
+      email: user.email,
     },
     JWT_SECRET as string
   );
@@ -60,15 +61,15 @@ app.post('/api/login', async (req, res) => {
 });
 
 app.post('/api/register', async (req, res) => {
-  const { username, password: plainTextPassword } = req.body;
+  const { email, password: plainTextPassword, name } = req.body;
 
   const password = await bcrypt.hash(plainTextPassword, 10);
 
   try {
     const response = await User.create({
-      email: username,
+      email: email,
       password: password,
-      name: 'sherif',
+      name: name,
       role: '',
       twitter: '',
       github: '',
