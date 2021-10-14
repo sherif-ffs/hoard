@@ -6,6 +6,7 @@ import bodyParser = require('body-parser');
 import bcrypt from 'bcryptjs';
 import User from './models/user';
 import jwt from 'jsonwebtoken';
+import chalk from 'chalk';
 const cors = require('cors');
 
 const app = express();
@@ -50,7 +51,12 @@ app.post('/api/login', async (req, res) => {
     },
     JWT_SECRET as string
   );
-  return res.json({ status: 'ok', data: token });
+
+  const responseData = {
+    token,
+    user,
+  };
+  return res.json({ status: 'ok', data: responseData });
 });
 
 app.post('/api/register', async (req, res) => {

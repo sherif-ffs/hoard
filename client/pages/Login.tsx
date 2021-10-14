@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import type { NextPage } from 'next'
+import {useAppContext} from './components/AppWrapper';
 
 const Login: NextPage = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const { user, setUser, token, setToken } = useAppContext();
 
+  console.log('user: ', user)
+  console.log('token: ', token)
   const handleSubmit = async (e:any) => {
     e.preventDefault();
 
@@ -23,9 +27,13 @@ const Login: NextPage = () => {
     });
 
     result.then((res) => {
-      console.log('res: ', res.json().then((d) => {
-        console.log('d: ', d)
-      }))
+      res.json().then(data => {
+        const { user, token } = data.data;
+        if (user && token) {
+          setUser(user)
+          setToken(token)
+        }
+      })
     })
   }
 
