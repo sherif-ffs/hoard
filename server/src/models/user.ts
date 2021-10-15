@@ -31,6 +31,10 @@ const userSchema = new Schema<UserInterface>({
     type: [],
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
 });
 
 const user = model('User', userSchema);
