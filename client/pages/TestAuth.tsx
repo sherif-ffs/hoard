@@ -6,6 +6,22 @@ import Router from 'next/router'
 const TestAuth: NextPage = () => {
   const { user, token } = useAppContext();
 
+  const checkAuth = async () => {
+    const result = await fetch('http://localhost:5000/api/checkAuth', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }); 
+    const data = await result.json()
+    console.log('data; ', data)
+  }
+
+  useEffect(() => {
+    checkAuth()
+  }, []);
+
   const handleLogout = async () => {
     const result = await fetch('http://localhost:5000/api/logout', {
       method: 'POST',

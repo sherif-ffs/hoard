@@ -1,11 +1,27 @@
 import type { NextPage } from 'next'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+
+  const checkAuth = async () => {
+    const result = await fetch('http://localhost:5000/api/checkAuth', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }); 
+    const data = await result.json()
+    console.log('data; ', data)
+  }
+
+  useEffect(() => {
+    checkAuth()
+  }, []);
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
@@ -15,6 +31,7 @@ const Home: NextPage = () => {
 
     const result = fetch('http://localhost:5000/api/register', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },

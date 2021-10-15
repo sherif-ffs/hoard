@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv').config();
 import express = require('express');
 import mongoose, { ConnectOptions } from 'mongoose';
@@ -10,7 +11,7 @@ import passport from 'passport';
 // const initializePassport = require('./passport-config');
 import flash from 'express-flash';
 import session from 'express-session';
-
+const ensureAuthenticated = require('./config/auth');
 const app = express();
 
 // Passport Config
@@ -38,13 +39,27 @@ db.once('open', function () {
 });
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
+// app.all('*', function (req, res) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'Content-Type,Content-Length, Authorization, Accept,X-Requested-With'
+//   );
+//   res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
+// });
+
 app.use(flash());
 app.use(
   session({
     secret: JWT_SECRET,
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
   })
 );
 
@@ -55,12 +70,19 @@ app.use(passport.session());
 app.use('/', express.static(path.join(__dirname, 'static')));
 
 app.post('/api/logout', (req, res) => {
-  //
   req.logout();
   res.json({ status: 'ok', data: 'you have been logged out' });
 });
 
-app.post('/api/login', function (req, res, next) {
+app.post('/api/checkAuth', (req, res, next) => {
+  console.log('checkAuth req.isAuthenticated(): ', req.isAuthenticated());
+  if (req.isAuthenticated()) {
+    res.json({ status: 'ok', data: 'authenticated' });
+  }
+  res.json({ status: 'error', data: 'not authenticated' });
+});
+
+app.post('/api/login', (req, res, next) => {
   passport.authenticate('local', function (err, user, info) {
     // Handle Error
     if (err)
@@ -68,51 +90,27 @@ app.post('/api/login', function (req, res, next) {
 
     if (!user) return res.json({ status: 'error', error: 'user not found' });
 
-    const token = jwt.sign(
-      {
-        id: user._id,
-        email: user.email,
-      },
-      JWT_SECRET as string
-    );
+    req.login(user, function (err) {
+      if (err)
+        return res.json({ status: 'error', error: 'something went wrong' });
 
-    const responseData = {
-      token,
-      user,
-    };
-    return res.json({ status: 'ok', data: responseData });
+      console.log('req.isAuthenticated(): ', req.isAuthenticated());
+      const token = jwt.sign(
+        {
+          id: user._id,
+          email: user.email,
+        },
+        JWT_SECRET as string
+      );
+
+      const responseData = {
+        token,
+        user,
+      };
+      return res.json({ status: 'ok', data: responseData });
+    });
   })(req, res, next);
 });
-// app.post(
-//   '/api/login',
-//   passport.authenticate('local', {
-//     successRedirect: '/',
-//     failureRedirect: '/login',
-//   })
-// );
-// app.post('/api/login', async (req, res) => {
-//   const { email } = req.body;
-//   const user = await User.findOne({ email }).lean();
-//   console.log('email: ', email);
-//   console.log('user: ', user);
-//   if (!user) {
-//     return res.json({ status: 'error', error: 'Invalid email/password' });
-//   }
-
-//   const token = jwt.sign(
-//     {
-//       id: user._id,
-//       email: user.email,
-//     },
-//     JWT_SECRET as string
-//   );
-
-//   const responseData = {
-//     token,
-//     user,
-//   };
-//   return res.json({ status: 'ok', data: responseData });
-// });
 
 app.post('/api/register', async (req, res) => {
   const { email, password: plainTextPassword, name } = req.body;

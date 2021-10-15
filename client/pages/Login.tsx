@@ -18,6 +18,7 @@ const Login: NextPage = () => {
 
     const result = fetch('http://localhost:5000/api/login', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },
