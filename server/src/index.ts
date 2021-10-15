@@ -45,14 +45,6 @@ app.use(
     credentials: true,
   })
 );
-// app.all('*', function (req, res) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Content-Type,Content-Length, Authorization, Accept,X-Requested-With'
-//   );
-//   res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
-// });
 
 app.use(flash());
 app.use(
@@ -77,9 +69,9 @@ app.post('/api/logout', (req, res) => {
 app.post('/api/checkAuth', (req, res, next) => {
   console.log('checkAuth req.isAuthenticated(): ', req.isAuthenticated());
   if (req.isAuthenticated()) {
-    res.json({ status: 'ok', data: 'authenticated' });
+    return res.json({ status: 'ok', data: 'authenticated' });
   }
-  res.json({ status: 'error', data: 'not authenticated' });
+  return res.json({ status: 'error', data: 'not authenticated' });
 });
 
 app.post('/api/login', (req, res, next) => {
@@ -140,16 +132,16 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-function checkAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
+// function checkAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     return next();
+//   }
 
-  res.redirect('/login');
-}
+//   res.redirect('/login');
+// }
 
-function checkNotAuthenticated(req, res, next) {
-  //
-}
+// function checkNotAuthenticated(req, res, next) {
+//   //
+// }
 
 app.listen(5000, () => console.log('Server running'));
