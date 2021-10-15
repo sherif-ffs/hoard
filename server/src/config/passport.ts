@@ -17,6 +17,7 @@ module.exports = function (passport) {
         email: email,
       }).then((user) => {
         if (!user) {
+          console.log('NO MATCH');
           return done(null, false, { message: 'That email is not registered' });
         }
 

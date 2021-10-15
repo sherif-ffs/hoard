@@ -54,10 +54,33 @@ app.use(passport.session());
 
 app.use('/', express.static(path.join(__dirname, 'static')));
 
-app.post('/api/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/',
+app.post('/api/logout', (req, res) => {
+  //
+  req.logout();
+  res.json({ status: 'ok', data: 'you have been logged out' });
+});
+
+app.post('/api/login', function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+    // Handle Error
+    if (err)
+      return res.json({ status: 'error', error: 'something went wrong' });
+
+    if (!user) return res.json({ status: 'error', error: 'user not found' });
+
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+      },
+      JWT_SECRET as string
+    );
+
+    const responseData = {
+      token,
+      user,
+    };
+    return res.json({ status: 'ok', data: responseData });
   })(req, res, next);
 });
 // app.post(

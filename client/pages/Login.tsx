@@ -29,11 +29,15 @@ const Login: NextPage = () => {
 
     result.then((res) => {
       res.json().then(data => {
-        const { user, token } = data.data;
-        if (user && token) {
-          setUser(user)
-          setToken(token)
-          Router.push('/TestAuth')
+        console.log('data: ', data)
+        if (data.status !== 'error') {
+          const { user, token } = data.data;
+          console.log('user: ', user)
+          if (user && token) {
+            setUser(user)
+            setToken(token)
+            Router.push('/TestAuth')
+          }
         }
       })
     })
