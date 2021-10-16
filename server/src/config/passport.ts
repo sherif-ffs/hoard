@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
-// Load User model
-// const User = require('../models/user');
 import User from '../models/user';
-// import User from '../models/user';
 
 module.exports = function (passport) {
   passport.use(

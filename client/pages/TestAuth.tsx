@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useAppContext} from './components/AppWrapper';
+import { useAppContext } from './components/AppWrapper';
 import type { NextPage } from 'next'
 import Router from 'next/router'
 
