@@ -7,4 +7,5 @@ export interface ItemInterface {
   url: string;
   image?: string | null;
   tags?: Array<TagInterface> | null;
+  likes: number;
 }

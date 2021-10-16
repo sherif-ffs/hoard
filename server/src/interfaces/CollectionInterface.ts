@@ -8,4 +8,5 @@ export interface CollectionInterface {
   title: string;
   tags?: Array<TagInterface> | null;
   items?: Array<ItemInterface> | null;
+  likes: number;
 }

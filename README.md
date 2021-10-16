@@ -1,9 +1,8 @@
 # Server/DB
 
-- [] signup
-- [] login
-- [] authentication
-- [] learn how mongodb works
-- [] clean up files
-- [] update schemas
-- [] get dummy data working
+- [x] signup
+- [x] login
+- [x] authentication
+- [x] logout
+- [x] clean up files
+- [x] update schemas

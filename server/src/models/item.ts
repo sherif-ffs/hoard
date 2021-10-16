@@ -25,6 +25,10 @@ const itemSchema = new Schema<ItemInterface>({
     type: [],
     required: false,
   },
+  likes: {
+    type: Number,
+    required: true,
+  },
 });
 
 export default model('Item', itemSchema);
