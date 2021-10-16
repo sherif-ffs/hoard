@@ -9,9 +9,11 @@
 
 # Client
 
-- [] set up eslint
+- [x] set up eslint
 - [] set up stylelint
-- [] organize files
+- [x] organize files
+- [] react query
+- [x] move apis to separate folder
 - [] persist global state
 - [] set up SCSS
 - [] make design?

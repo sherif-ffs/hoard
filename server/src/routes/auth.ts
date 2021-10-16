@@ -9,12 +9,16 @@ import jwt from 'jsonwebtoken';
 const JWT_SECRET = process.env.JWT_SECRET;
 
 router.post('/logout', (req: any, res) => {
-  req.logout();
-  req.session.destroy();
-  const responseData = {
-    authenticated: req.isAuthenticated(),
-  };
-  return res.send({ status: 'ok', data: responseData });
+  try {
+    req.logout();
+    req.session.destroy();
+    const responseData = {
+      authenticated: req.isAuthenticated(),
+    };
+    return res.send({ status: 'ok', data: responseData });
+  } catch (error: any) {
+    res.json({ status: 'error', error: error.message });
+  }
 });
 
 router.post('/checkAuth', (req, res) => {
@@ -83,7 +87,7 @@ router.post('/register', async (req, res) => {
       collections: [],
     });
     console.log('response: ', response);
-    res.json({ status: 'ok' });
+    res.json({ status: 'ok', data: 'user registered successfully' });
   } catch (error: any) {
     if (error.code === 11000) {
       // duplicate key
