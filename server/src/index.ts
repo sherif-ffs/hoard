@@ -11,9 +11,10 @@ import passport from 'passport';
 // const initializePassport = require('./passport-config');
 import flash from 'express-flash';
 import session from 'express-session';
-const ensureAuthenticated = require('./config/auth');
+import chalk from 'chalk';
+// const ensureAuthenticated = require('./config/auth');
 const app = express();
-
+const log = console.log;
 // Passport Config
 require('./config/passport')(passport);
 
@@ -61,17 +62,37 @@ app.use(passport.session());
 
 app.use('/', express.static(path.join(__dirname, 'static')));
 
-app.post('/api/logout', (req, res) => {
+app.post('/api/logout', (req: any, res) => {
   req.logout();
-  res.json({ status: 'ok', data: 'you have been logged out' });
+  req.session.destroy();
+  const responseData = {
+    authenticated: req.isAuthenticated(),
+  };
+  log(chalk.green('logout req.isAuthenticated(): ', req.isAuthenticated()));
+  return res.send({ status: 'ok', data: responseData });
 });
 
-app.post('/api/checkAuth', (req, res, next) => {
-  console.log('checkAuth req.isAuthenticated(): ', req.isAuthenticated());
+function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.json({ status: 'ok', data: 'authenticated' });
+    return res.json({
+      status: 'ok',
+      data: {
+        authenticated: true,
+      },
+    });
+    // return next();
+  } else {
+    return res.json({
+      status: 'error',
+      data: {
+        authenticated: false,
+      },
+    });
   }
-  return res.json({ status: 'error', data: 'not authenticated' });
+}
+
+app.post('/api/checkAuth', ensureAuthenticated, (req, res, next) => {
+  /* */
 });
 
 app.post('/api/login', (req, res, next) => {
@@ -96,11 +117,13 @@ app.post('/api/login', (req, res, next) => {
       );
 
       const responseData = {
-        token,
-        user,
+        token: token,
+        user: user,
+        authenticated: req.isAuthenticated(),
       };
       return res.json({ status: 'ok', data: responseData });
     });
+    console.log(chalk.green('login req.user: ', req.user));
   })(req, res, next);
 });
 
@@ -131,17 +154,5 @@ app.post('/api/register', async (req, res) => {
     }
   }
 });
-
-// function checkAuthenticated(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     return next();
-//   }
-
-//   res.redirect('/login');
-// }
-
-// function checkNotAuthenticated(req, res, next) {
-//   //
-// }
 
 app.listen(5000, () => console.log('Server running'));

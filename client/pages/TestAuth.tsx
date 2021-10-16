@@ -15,22 +15,23 @@ const TestAuth: NextPage = () => {
         'Content-Type': 'application/json',
       },
     }); 
-    const data = await result.json()
-    if (data.status === 'ok') {
+    const data = await result.json();
+    console.log('data.data.authenticated: ', data.data.authenticated);
+    if (data.data.authenticated === true) {
       setLoggedIn(true)
     } else {
       setLoggedIn(false)
     }
-    console.log('data; ', data)
   }
 
   useEffect(() => {
-    checkAuth()
+    checkAuth();
   }, []);
 
   const handleLogout = async () => {
     const result = await fetch('http://localhost:5000/api/logout', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       }
@@ -38,7 +39,11 @@ const TestAuth: NextPage = () => {
 
     const data = await result.json();
     console.log('data: ', data)
-    if (data.status === 'ok') Router.push('/Login')
+    if (data.status === 'ok' && !data.data.authenticated) {
+      setLoggedIn(false);
+      // checkAuth();
+    }
+    // if (data.status === 'ok') Router.push('/Login')
   }
 
   if (!loggedIn) {

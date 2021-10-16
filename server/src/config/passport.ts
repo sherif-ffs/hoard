@@ -10,8 +10,6 @@ import User from '../models/user';
 module.exports = function (passport) {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-      console.log('email: ', email);
-      console.log('password: ', password);
       // Match user
       User.findOne({
         email: email,
@@ -21,7 +19,6 @@ module.exports = function (passport) {
           return done(null, false, { message: 'That email is not registered' });
         }
 
-        console.log('user: ', user);
         // Match password
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) throw err;
@@ -44,6 +41,7 @@ module.exports = function (passport) {
   passport.deserializeUser(function (id, done) {
     console.log('deserializeUser called');
     User.findById(id, function (err, user) {
+      console.log('user: ', user);
       done(err, user);
     });
   });

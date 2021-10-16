@@ -8,8 +8,6 @@ const Login: NextPage = () => {
   const [email, setEmail] = useState('');
   const { user, setUser, token, setToken } = useAppContext();
 
-  console.log('user: ', user)
-  console.log('token: ', token)
   const handleSubmit = async (e:any) => {
     e.preventDefault();
 
@@ -30,10 +28,8 @@ const Login: NextPage = () => {
 
     result.then((res) => {
       res.json().then(data => {
-        console.log('data: ', data)
         if (data.status !== 'error') {
           const { user, token } = data.data;
-          console.log('user: ', user)
           if (user && token) {
             setUser(user)
             setToken(token)
