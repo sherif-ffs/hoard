@@ -7,10 +7,9 @@ import {
   logOutUser,
   getAllUsers,
 } from '../api/AuthApi';
-import { useQuery } from 'react-query';
 
 const TestAuth: NextPage = () => {
-  const { user, token } = useAppContext();
+  const { user, authenticated, token } = useAppContext();
   const [loggedIn, setLoggedIn] = useState(false);
 
   const checkAuth = async () => {
@@ -28,11 +27,6 @@ const TestAuth: NextPage = () => {
     const res = await getAllUsers();
     return await res.json();
   };
-
-  const { data, error, status } = useQuery('users', loadAllUsers);
-  console.log('data: ', data);
-  console.log('status: ', status);
-  console.log('error: ', error);
 
   useEffect(() => {
     checkAuth();
@@ -54,15 +48,19 @@ const TestAuth: NextPage = () => {
     }
   };
 
-  if (!loggedIn) {
-    return <p>you must login</p>;
-  } else {
+  console.log('user: ', user);
+  console.log('authenticated: ', authenticated);
+  if (authenticated && user) {
     return (
       <section>
         <p>you are authenticated</p>
+        {user.name}
+        {user.email}
         <button onClick={handleLogout}>logout</button>
       </section>
     );
+  } else {
+    return <p>you must login</p>;
   }
 };
 

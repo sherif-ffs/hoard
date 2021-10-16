@@ -19,6 +19,7 @@ const Login: NextPage = () => {
     const data = await result.json();
     const { user, token } = data.data;
 
+    console.log('user: ', user);
     if (user && token) {
       setUser(user);
       setToken(token);

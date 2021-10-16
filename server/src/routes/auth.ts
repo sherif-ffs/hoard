@@ -20,20 +20,26 @@ router.post('/logout', (req: any, res) => {
 });
 
 router.post('/checkAuth', (req, res) => {
-  if (req.isAuthenticated()) {
-    return res.json({
-      status: 'ok',
-      data: {
-        authenticated: true,
-      },
-    });
-  } else {
-    return res.json({
-      status: 'error',
-      data: {
-        authenticated: false,
-      },
-    });
+  try {
+    if (req.isAuthenticated()) {
+      return res.json({
+        status: 'ok',
+        data: {
+          user: req.user,
+          authenticated: true,
+        },
+      });
+    } else {
+      return res.json({
+        status: 'ok',
+        data: {
+          user: null,
+          authenticated: false,
+        },
+      });
+    }
+  } catch (error: any) {
+    res.json({ status: 'error', error: error.message });
   }
 });
 
