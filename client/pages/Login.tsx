@@ -14,7 +14,7 @@ const Login: NextPage = () => {
     console.log('password: ', password)
     console.log('email: ', email)
 
-    const result = fetch('http://localhost:5000/api/login', {
+    const result = fetch('http://localhost:5000/auth/login', {
       method: 'POST',
       credentials: 'include',
       headers: {

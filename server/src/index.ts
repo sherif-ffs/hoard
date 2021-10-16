@@ -8,16 +8,12 @@ import User from './models/user';
 import jwt from 'jsonwebtoken';
 const cors = require('cors');
 import passport from 'passport';
-// const initializePassport = require('./passport-config');
 import flash from 'express-flash';
 import session from 'express-session';
-import chalk from 'chalk';
-// const ensureAuthenticated = require('./config/auth');
 const app = express();
-const log = console.log;
-// Passport Config
 require('./config/passport')(passport);
 
+// DB info
 const username = 'selmetwa';
 const cluster = 'cluster0.eauvk';
 const dbname = 'myFirstDatabase';
@@ -60,99 +56,93 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', express.static(path.join(__dirname, 'static')));
+// Routes
+app.use('/auth', require('./routes/auth.ts'));
+// app.post('/api/logout', (req: any, res) => {
+//   req.logout();
+//   req.session.destroy();
+//   const responseData = {
+//     authenticated: req.isAuthenticated(),
+//   };
+//   return res.send({ status: 'ok', data: responseData });
+// });
 
-app.post('/api/logout', (req: any, res) => {
-  req.logout();
-  req.session.destroy();
-  const responseData = {
-    authenticated: req.isAuthenticated(),
-  };
-  log(chalk.green('logout req.isAuthenticated(): ', req.isAuthenticated()));
-  return res.send({ status: 'ok', data: responseData });
-});
+// app.post('/api/checkAuth', (req, res) => {
+//   if (req.isAuthenticated()) {
+//     return res.json({
+//       status: 'ok',
+//       data: {
+//         authenticated: true,
+//       },
+//     });
+//   } else {
+//     return res.json({
+//       status: 'error',
+//       data: {
+//         authenticated: false,
+//       },
+//     });
+//   }
+// });
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return res.json({
-      status: 'ok',
-      data: {
-        authenticated: true,
-      },
-    });
-    // return next();
-  } else {
-    return res.json({
-      status: 'error',
-      data: {
-        authenticated: false,
-      },
-    });
-  }
-}
+// app.post('/api/login', (req, res, next) => {
+//   passport.authenticate('local', function (err, user) {
+//     // Handle Error
+//     if (err)
+//       return res.json({ status: 'error', error: 'something went wrong' });
 
-app.post('/api/checkAuth', ensureAuthenticated, (req, res, next) => {
-  /* */
-});
+//     if (!user) return res.json({ status: 'error', error: 'user not found' });
 
-app.post('/api/login', (req, res, next) => {
-  passport.authenticate('local', function (err, user, info) {
-    // Handle Error
-    if (err)
-      return res.json({ status: 'error', error: 'something went wrong' });
+//     req.login(user, function (err) {
+//       if (err)
+//         return res.json({ status: 'error', error: 'something went wrong' });
 
-    if (!user) return res.json({ status: 'error', error: 'user not found' });
+//       console.log('req.isAuthenticated(): ', req.isAuthenticated());
+//       const token = jwt.sign(
+//         {
+//           id: user._id,
+//           email: user.email,
+//         },
+//         JWT_SECRET as string
+//       );
 
-    req.login(user, function (err) {
-      if (err)
-        return res.json({ status: 'error', error: 'something went wrong' });
+//       const responseData = {
+//         token: token,
+//         user: user,
+//         authenticated: req.isAuthenticated(),
+//       };
+//       return res.json({ status: 'ok', data: responseData });
+//     });
+//   })(req, res, next);
+// });
 
-      console.log('req.isAuthenticated(): ', req.isAuthenticated());
-      const token = jwt.sign(
-        {
-          id: user._id,
-          email: user.email,
-        },
-        JWT_SECRET as string
-      );
+// app.post('/api/register', async (req, res) => {
+//   const { email, password: plainTextPassword, name } = req.body;
 
-      const responseData = {
-        token: token,
-        user: user,
-        authenticated: req.isAuthenticated(),
-      };
-      return res.json({ status: 'ok', data: responseData });
-    });
-    console.log(chalk.green('login req.user: ', req.user));
-  })(req, res, next);
-});
+//   const password = await bcrypt.hash(plainTextPassword, 10);
 
-app.post('/api/register', async (req, res) => {
-  const { email, password: plainTextPassword, name } = req.body;
-
-  const password = await bcrypt.hash(plainTextPassword, 10);
-
-  try {
-    const response = await User.create({
-      email: email,
-      password: password,
-      name: name,
-      role: '',
-      twitter: '',
-      github: '',
-      portfolio: '',
-      colections: [],
-    });
-    console.log('response: ', response);
-    res.json({ status: 'ok' });
-  } catch (error: any) {
-    if (error.code === 11000) {
-      // duplicate key
-      res.json({ status: 'error', error: 'email already in use' });
-    } else {
-      throw error;
-    }
-  }
-});
+//   try {
+//     const response = await User.create({
+//       email: email,
+//       password: password,
+//       name: name,
+//       role: '',
+//       twitter: '',
+//       github: '',
+//       portfolio: '',
+//       collections: [],
+//     });
+//     console.log('response: ', response);
+//     res.json({ status: 'ok' });
+//   } catch (error: any) {
+//     if (error.code === 11000) {
+//       // duplicate key
+//       res.json({ status: 'error', error: 'email already in use' });
+//     } else {
+//       res.json({ status: 'error', error: error.message });
+//       throw error;
+//     }
+//   }
+// });
 
 app.listen(5000, () => console.log('Server running'));

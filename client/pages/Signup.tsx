@@ -29,7 +29,7 @@ const Home: NextPage = () => {
     console.log('password: ', password)
     console.log('username: ', email)
 
-    const result = fetch('http://localhost:5000/api/register', {
+    const result = fetch('http://localhost:5000/auth/register', {
       method: 'POST',
       credentials: 'include',
       headers: {

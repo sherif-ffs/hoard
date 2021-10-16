@@ -8,7 +8,7 @@ const TestAuth: NextPage = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const checkAuth = async () => {
-    const result = await fetch('http://localhost:5000/api/checkAuth', {
+    const result = await fetch('http://localhost:5000/auth/checkAuth', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -29,7 +29,7 @@ const TestAuth: NextPage = () => {
   }, []);
 
   const handleLogout = async () => {
-    const result = await fetch('http://localhost:5000/api/logout', {
+    const result = await fetch('http://localhost:5000/auth/logout', {
       method: 'POST',
       credentials: 'include',
       headers: {
