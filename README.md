@@ -1,3 +1,6 @@
+# General 
+- [] resolve errors
+
 # Server/DB
 
 - [x] signup
@@ -14,6 +17,6 @@
 - [x] organize files
 - [x] move apis to separate folder
 - [x] react query
-- [] persist global state
-- [] set up SCSS
+- [x] persist global state
+- [x] set up SCSS
 - [] make design?

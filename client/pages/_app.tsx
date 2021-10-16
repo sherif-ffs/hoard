@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import styles from '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import { useEffect, createContext, useContext, useState } from 'react';
 import { AppWrapper } from './components/AppWrapper';
