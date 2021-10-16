@@ -9,6 +9,8 @@
 
 # Client
 
+- [] set up eslint
+- [] set up stylelint
 - [] organize files
 - [] persist global state
 - [] set up SCSS
