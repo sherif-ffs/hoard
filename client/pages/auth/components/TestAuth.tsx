@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useAppContext } from '../../components/AppWrapper';
 import type { NextPage } from 'next';
 import Router from 'next/router';
-import { checkUserAuthentication, logOutUser } from '../api/AuthApi';
+import {
+  checkUserAuthentication,
+  logOutUser,
+  getAllUsers,
+} from '../api/AuthApi';
+import { useQuery } from 'react-query';
 
 const TestAuth: NextPage = () => {
   const { user, token } = useAppContext();
@@ -19,8 +24,19 @@ const TestAuth: NextPage = () => {
     }
   };
 
+  const loadAllUsers = async () => {
+    const res = await getAllUsers();
+    return await res.json();
+  };
+
+  const { data, error, status } = useQuery('users', loadAllUsers);
+  console.log('data: ', data);
+  console.log('status: ', status);
+  console.log('error: ', error);
+
   useEffect(() => {
     checkAuth();
+    loadAllUsers();
   }, []);
 
   const handleLogout = async () => {

@@ -3,3 +3,6 @@ GET http://localhost:5000/items
 ### 
 
 GET http://localhost:5000/test/1
+
+###
+GET http://localhost:5000/users

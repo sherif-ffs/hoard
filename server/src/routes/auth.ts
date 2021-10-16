@@ -2,10 +2,8 @@ import express from 'express';
 const router = express.Router();
 import bcrypt from 'bcryptjs';
 import passport from 'passport';
-// Load User model
 import User from '../models/user';
 import jwt from 'jsonwebtoken';
-// require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 router.post('/logout', (req: any, res) => {
@@ -96,6 +94,18 @@ router.post('/register', async (req, res) => {
       res.json({ status: 'error', error: error.message });
       throw error;
     }
+  }
+});
+
+router.get('/users', async (req, res) => {
+  try {
+    const allUsers = await User.find();
+    if (!allUsers) {
+      return res.json({ status: 'error', error: 'no users found' });
+    }
+    res.json({ status: 'ok', data: allUsers });
+  } catch (error) {
+    return res.json({ status: 'error', error: error });
   }
 });
 

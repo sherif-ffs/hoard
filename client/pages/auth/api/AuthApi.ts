@@ -50,3 +50,14 @@ export function logOutUser() {
     },
   });
 }
+
+// FETCH ALL USERS
+export function getAllUsers() {
+  return fetch('http://localhost:5000/auth/users', {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
