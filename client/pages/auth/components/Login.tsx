@@ -23,7 +23,7 @@ const Login: NextPage = () => {
     if (user && token) {
       setUser(user);
       setToken(token);
-      Router.push('/auth/components/TestAuth');
+      Router.push('/auth/components/AuthCheck');
     }
   };
 

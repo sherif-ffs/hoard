@@ -7,6 +7,8 @@ import {
   getAllUsers,
 } from '../api/AuthApi';
 
+import styles from './AuthCheck.module.scss';
+
 const TestAuth: NextPage = () => {
   const { user, authenticated, token } = useAppContext();
   const [loggedIn, setLoggedIn] = useState(false);
@@ -51,7 +53,7 @@ const TestAuth: NextPage = () => {
   console.log('authenticated: ', authenticated);
   if (authenticated && user) {
     return (
-      <section>
+      <section className={styles.wrapper}>
         <p>you are authenticated</p>
         {user.name}
         {user.email}
