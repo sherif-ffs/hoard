@@ -9,6 +9,7 @@
 - [x] logout
 - [x] clean up files
 - [x] update schemas
+- [ ] create items 
 
 # Client
 
@@ -19,4 +20,5 @@
 - [x] react query
 - [x] persist global state
 - [x] set up SCSS
+- [ ] create items
 - [] make design?

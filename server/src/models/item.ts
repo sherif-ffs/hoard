@@ -2,19 +2,23 @@ import { Schema, model } from 'mongoose';
 import { ItemInterface } from '../interfaces/ItemInterface';
 
 const itemSchema = new Schema<ItemInterface>({
-  itemId: {
-    type: Number,
+  // itemId: {
+  //   type: Number,
+  //   required: true,
+  //   unique: true,
+  // },
+  author: {
+    type: String,
     required: true,
-    unique: true,
   },
   userId: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
   },
   collectionId: {
-    type: Number,
-    required: true,
+    type: String,
+    required: false,
     unique: true,
   },
   url: {
@@ -27,6 +31,10 @@ const itemSchema = new Schema<ItemInterface>({
   },
   likes: {
     type: Number,
+    required: true,
+  },
+  isPrivate: {
+    type: Boolean,
     required: true,
   },
 });

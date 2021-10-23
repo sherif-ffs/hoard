@@ -12,7 +12,7 @@ import styles from './AuthCheck.module.scss';
 const TestAuth: NextPage = () => {
   const { user, authenticated, token } = useAppContext();
   const [loggedIn, setLoggedIn] = useState(false);
-
+  console.log('user: ', user);
   const checkAuth = async () => {
     const response = await checkUserAuthentication();
 

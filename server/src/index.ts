@@ -53,6 +53,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+
+// Authentication routes
 app.use('/auth', require('./routes/auth.ts'));
+
+// Item routes
+app.use('/items', require('./routes/item.ts'));
 
 app.listen(5000, () => console.log('Server running'));
