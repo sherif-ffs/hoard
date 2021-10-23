@@ -1,58 +1,47 @@
 import express from 'express';
+import mongodb from 'mongodb';
 const router = express.Router();
 import Item from '../models/item';
+const objectId = require('mongodb').ObjectID;
+import mongoose, { ConnectOptions } from 'mongoose';
 
-/**
- *   const item = {
-    name: itemName,
-    author: email,
-    userId: _id,
-    description,
-    url,
-    tags: [{ name: 'typography' }],
-    likes: 0,
-    isPrivate: false,
-    collectionId: '',
-  };
- */
+// Create Item
 router.post('/create-item', async (req, res) => {
-  const {
-    name,
-    author,
-    userId,
-    description,
-    url,
-    tags,
-    isPrivate,
-    collectionId,
-    likes,
-  } = req.body;
   const { item } = req.body;
-  console.log('item: ', item);
-  console.log('req.body: ', req.body);
   try {
-    const response = await Item.create(item);
-    console.log('response: ', response);
+    Item.create(item);
     res.json({ status: 'ok', data: 'item created successfully' });
   } catch (error: any) {
     res.json({ status: 'error', error: error.message });
     throw error;
   }
+});
 
-  // const response = await Item.create({
-  //   userId: '6168f2afa637c24d925af746',
-  //   name: 'first item',
-  //   description: 'brief description',
-  //   author: 'steve',
-  //   collectionId: null,
-  //   url: 'https://fonts.ilovetypography.com/category/sans-serif',
-  //   image: null,
-  //   tags: [],
-  //   likes: 0,
-  //   uploadedAt: new Date(),
-  //   isPrivate: false,
-  // });
-  // console.log('response: ', response);
+// Delete Item
+router.post('/delete-item', async (req, res) => {
+  const id = req.body.id;
+  console.log('id: ', id);
+  try {
+    const result = await Item.deleteOne({ _id: new objectId(id) });
+    console.log('result: ', result);
+    res.json({ status: 'ok', data: 'item deleted successfully' });
+  } catch (error: any) {
+    res.json({ status: 'error', error: error.message });
+    throw error;
+  }
+});
+
+// Fetch all Items
+router.get('/items', async (req, res) => {
+  try {
+    const allUsers = await Item.find();
+    if (!allUsers) {
+      return res.json({ status: 'error', error: 'no items found' });
+    }
+    res.json({ status: 'ok', data: allUsers });
+  } catch (error) {
+    return res.json({ status: 'error', error: error });
+  }
 });
 
 module.exports = router;

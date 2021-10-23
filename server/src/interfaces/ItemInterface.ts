@@ -1,7 +1,7 @@
 import { TagInterface } from './TagInterface';
 
 export interface ItemInterface {
-  _id: number;
+  _id: string;
   author: string;
   name: string;
   description: string;

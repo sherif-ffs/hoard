@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import express from 'express';
 const router = express.Router();
 import bcrypt from 'bcryptjs';

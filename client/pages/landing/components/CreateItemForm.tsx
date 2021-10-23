@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { CollectionInterface } from '../../Interfaces/CollectionInterface';
 import { createItem } from '../api/ItemApi';
 
@@ -42,7 +42,14 @@ const CreateItemForm = (props: Props) => {
     const result = await createItem(item);
     console.log('result: ', result);
     const data = await result.json();
-    console.log('data: ', data);
+    const { status } = data;
+    if (status === 'ok') {
+      alert('Item Created Successfully');
+      return;
+    }
+
+    alert('Something went wrong');
+    return;
   };
   return (
     <form>
