@@ -15,6 +15,7 @@ export function AppWrapper({ children }) {
     const userIsAuthenticated = data && data.data && data.data.authenticated;
     console.log('userIsAuthenticated: ', userIsAuthenticated);
     const activeUser = data && data.data && data.data.user;
+    console.log('activeUser: ', activeUser);
     setUser(activeUser);
     setAuthenticated(userIsAuthenticated);
   };

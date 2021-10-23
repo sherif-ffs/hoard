@@ -2,24 +2,26 @@ import { Schema, model } from 'mongoose';
 import { ItemInterface } from '../interfaces/ItemInterface';
 
 const itemSchema = new Schema<ItemInterface>({
-  // itemId: {
-  //   type: Number,
-  //   required: true,
-  //   unique: true,
-  // },
   author: {
     type: String,
     required: true,
   },
+  name: {
+    type: String,
+    required: false,
+  },
+  description: {
+    type: String,
+    required: false,
+  },
   userId: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   collectionId: {
     type: String,
     required: false,
-    unique: true,
   },
   url: {
     type: String,
