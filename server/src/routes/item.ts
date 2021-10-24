@@ -3,21 +3,58 @@ import express from 'express';
 const router = express.Router();
 import Item from '../models/item';
 const objectId = require('mongodb').ObjectID;
+const puppeteer = require('puppeteer');
+const fs = require('fs');
 
-const scrapeUrl = async (url: string) => {
-  //
+// function to encode file data to base64 encoded string
+function base64_encode(file) {
+  // read binary data
+  var bitmap = fs.readFileSync(file);
+  // convert binary data to base64 encoded string
+  return new Buffer(bitmap).toString('base64');
+}
+
+const scrapeImageFromUrl = async (url: string) => {
+  // open the browser and prepare a page
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  // set the size of the viewport, so our screenshot will have the desired size
+  await page.setViewport({
+    width: 1280,
+    height: 800,
+  });
+
+  await page.goto(url);
+  await page.screenshot({
+    path: './thumbnail.png',
+  });
+  // close the browser
+  await browser.close();
 };
 
 // Create Item
 router.post('/create-item', async (req, res) => {
   const { item } = req.body;
-  try {
-    Item.create(item);
-    res.json({ status: 'ok', data: 'item created successfully' });
-  } catch (error: any) {
-    res.json({ status: 'error', error: error.message });
-    throw error;
-  }
+  let realItem;
+  scrapeImageFromUrl(item.url).then(() => {
+    const base64str = base64_encode('./thumbnail.png');
+    console.log('base64str: ', base64str);
+    realItem = {
+      ...item,
+      image: base64str,
+    };
+    try {
+      Item.create(realItem);
+      res.json({ status: 'ok', data: 'item created successfully' });
+    } catch (error: any) {
+      res.json({ status: 'error', error: error.message });
+      throw error;
+    }
+    console.log('realItem: ', realItem);
+  });
+
+  // const image = '../../thumbnail.png';
 });
 
 // Delete Item

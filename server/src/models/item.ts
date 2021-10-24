@@ -35,6 +35,10 @@ const itemSchema = new Schema<ItemInterface>({
     type: Number,
     required: true,
   },
+  image: {
+    type: String,
+    required: false,
+  },
   isPrivate: {
     type: Boolean,
     required: true,
