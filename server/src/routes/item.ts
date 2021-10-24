@@ -1,37 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import express from 'express';
 const router = express.Router();
 import Item from '../models/item';
 const objectId = require('mongodb').ObjectID;
-const puppeteer = require('puppeteer');
-const fs = require('fs');
-
-// function to encode file data to base64 encoded string
-function base64_encode(file) {
-  // read binary data
-  var bitmap = fs.readFileSync(file);
-  // convert binary data to base64 encoded string
-  return new Buffer(bitmap).toString('base64');
-}
-
-const scrapeImageFromUrl = async (url: string) => {
-  // open the browser and prepare a page
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-
-  // set the size of the viewport, so our screenshot will have the desired size
-  await page.setViewport({
-    width: 1280,
-    height: 800,
-  });
-
-  await page.goto(url);
-  await page.screenshot({
-    path: './thumbnail.png',
-  });
-  // close the browser
-  await browser.close();
-};
+import { base64_encode, scrapeImageFromUrl } from '../utils';
 
 // Create Item
 router.post('/create-item', async (req, res) => {
@@ -39,7 +12,6 @@ router.post('/create-item', async (req, res) => {
   let realItem;
   scrapeImageFromUrl(item.url).then(() => {
     const base64str = base64_encode('./thumbnail.png');
-    console.log('base64str: ', base64str);
     realItem = {
       ...item,
       image: base64str,
@@ -53,8 +25,6 @@ router.post('/create-item', async (req, res) => {
     }
     console.log('realItem: ', realItem);
   });
-
-  // const image = '../../thumbnail.png';
 });
 
 // Delete Item
