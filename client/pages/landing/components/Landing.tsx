@@ -54,8 +54,7 @@ const Landing: NextPage = () => {
         data.data.map((item: any) => {
           const isMyItem = user._id === item.userId;
           const isPublic = !item.isPrivate;
-          console.log('user.id: ', user.id);
-          console.log('item.userId: ', item.userId);
+
           if (isPublic || isMyItem) {
             return (
               <Item
@@ -70,6 +69,7 @@ const Landing: NextPage = () => {
                 likes={item.likes}
                 tags={item.tags}
                 url={item.url}
+                imageString={item.image}
               />
             );
           }

@@ -13,6 +13,7 @@ type Props = {
   tags: Array<TagInterface>;
   url: string;
   isMyItem: boolean;
+  imageString: string;
 };
 
 const Item = (props: Props) => {
@@ -26,11 +27,10 @@ const Item = (props: Props) => {
     tags,
     url,
     isMyItem,
+    imageString,
   } = props;
-  console.log('props: ', props);
 
   const handleDeleteItem = async () => {
-    console.log('_id: ', _id);
     const res = await deleteItem(_id);
     const response = await res.json();
     const { status, data } = response;
@@ -40,7 +40,6 @@ const Item = (props: Props) => {
     }
     alert(data);
   };
-  console.log('tags: ', tags);
   return (
     <figure
       style={{
@@ -53,6 +52,7 @@ const Item = (props: Props) => {
       <p>{collectionId}</p>
       <p>{isPrivate}</p>
       <p>{likes}</p>
+      {imageString && <img src={`data:image/jpeg;base64,${imageString}`}></img>}
       {tags &&
         !!tags.length &&
         tags.map((tag, idx) => <li key={idx}>{tag}</li>)}

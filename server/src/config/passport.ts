@@ -11,7 +11,6 @@ module.exports = function (passport) {
         email: email,
       }).then((user) => {
         if (!user) {
-          console.log('NO MATCH');
           return done(null, false, { message: 'That email is not registered' });
         }
 
@@ -19,7 +18,6 @@ module.exports = function (passport) {
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
-            console.log('MATCH');
             return done(null, user);
           } else {
             return done(null, false, { message: 'Password incorrect' });
@@ -30,14 +28,11 @@ module.exports = function (passport) {
   );
 
   passport.serializeUser(function (user, done) {
-    console.log('serializeUser called');
     done(null, user.id);
   });
 
   passport.deserializeUser(function (id, done) {
-    console.log('deserializeUser called');
     User.findById(id, function (err, user) {
-      console.log('user: ', user);
       done(err, user);
     });
   });

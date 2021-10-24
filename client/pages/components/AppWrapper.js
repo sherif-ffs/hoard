@@ -12,7 +12,6 @@ export function AppWrapper({ children }) {
     const response = await checkUserAuthentication();
     const data = await response.json();
     const userIsAuthenticated = data && data.data && data.data.authenticated;
-    console.log('userIsAuthenticated: ', userIsAuthenticated);
     const activeUser = data && data.data && data.data.user;
     setUser(activeUser);
     setAuthenticated(userIsAuthenticated);

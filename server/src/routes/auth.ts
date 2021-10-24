@@ -56,7 +56,6 @@ router.post('/login', (req, res, next) => {
       if (err)
         return res.json({ status: 'error', error: 'something went wrong' });
 
-      console.log('req.isAuthenticated(): ', req.isAuthenticated());
       const token = jwt.sign(
         {
           id: user._id,
@@ -91,7 +90,6 @@ router.post('/register', async (req, res) => {
       portfolio: '',
       collections: [],
     });
-    console.log('response: ', response);
     res.json({ status: 'ok', data: 'user registered successfully' });
   } catch (error: any) {
     if (error.code === 11000) {

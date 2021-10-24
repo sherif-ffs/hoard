@@ -12,7 +12,8 @@
 - [x] create items 
 - [x] load all items
 - [x] delete item
-- [ ] scrape image based on url
+- [x] add tags
+- [x] scrape image based on url
 # Client
 
 - [x] set up eslint
@@ -28,4 +29,6 @@
 - [x] delete item
 - [x] fix auth
 - [x] start user flow
+- [x] add tags
+- [x] render images
 - [] make design?

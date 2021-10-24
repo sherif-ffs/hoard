@@ -30,7 +30,6 @@ router.post('/create-item', async (req, res) => {
 // Delete Item
 router.post('/delete-item', async (req, res) => {
   const id = req.body.id;
-  console.log('id: ', id);
   try {
     const result = await Item.deleteOne({ _id: new objectId(id) });
     console.log('result: ', result);

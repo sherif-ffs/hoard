@@ -15,10 +15,7 @@ const Login: NextPage = () => {
     const result = await loginUser(email, password);
     const data = await result.json();
     const { user, token, authenticated } = data.data;
-    console.log('data: ', data);
     if (user && token && authenticated) {
-      console.log('user: ', user);
-      console.log('authenticated: ', authenticated);
       setUser(user);
       setAuthenticated(authenticated);
       setToken(token);

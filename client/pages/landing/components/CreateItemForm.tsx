@@ -19,12 +19,9 @@ const CreateItemForm = (props: Props) => {
   const [visibility, setVisibility] = useState('public');
   const [tags, setTags] = useState<String[]>([]);
 
-  console.log('visibility: ', visibility);
-
   const handleMultiSelectChange = (items: Array<TagOption>) => {
     const itemValues = items.map((item) => item.value);
     setTags(itemValues);
-    console.log('itemValues: ', itemValues);
   };
 
   const resetForm = () => {
@@ -48,10 +45,8 @@ const CreateItemForm = (props: Props) => {
       likes: 0,
       collectionId: '',
     };
-    console.log('item: ', item);
 
     const result = await createItem(item);
-    console.log('result: ', result);
     const data = await result.json();
     const { status } = data;
     if (status === 'ok') {
