@@ -1,5 +1,3 @@
-import { TagInterface } from './TagInterface';
-
 export interface ItemInterface {
   author: string;
   userId: string;
@@ -8,7 +6,7 @@ export interface ItemInterface {
   collectionId: string | null;
   url: string;
   image?: string | null;
-  tags?: Array<TagInterface> | null;
+  tags?: Array<String> | null;
   likes: number | null;
   isPrivate: boolean;
 }

@@ -1,10 +1,10 @@
 export interface TagOption {
-  readonly value: string;
-  readonly label: string;
-  readonly icon: string | null;
+  value: string;
+  label: string;
+  icon: string | null;
 }
 
-export const TagOptions: readonly TagOption[] = [
+export const TagOptions: TagOption[] = [
   { value: 'design', label: 'design', icon: null },
   { value: 'typography', label: 'typography', icon: null },
   { value: 'css', label: 'css', icon: null },

@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 import { CollectionInterface } from '../../Interfaces/CollectionInterface';
 import { createItem } from '../api/ItemApi';
-import { TagOption } from '../../constants/Tags';
-import CreateableMultiSelect from '../../components/ui/CreateableMultiSelect';
-/**
- * name
- * url
- * description
- * tags ( make dropdown, multiselect)
- * add to collection (make dropdown)
- */
+import { TagOption, TagOptions } from '../../constants/Tags';
+import MultiSelect from '../../components/ui/MultiSelect';
 
 type Props = {
   collections: Array<CollectionInterface> | [];
@@ -24,15 +17,22 @@ const CreateItemForm = (props: Props) => {
   const [url, setUrl] = useState('');
   const [description, setDescription] = useState('');
   const [visibility, setVisibility] = useState('public');
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState<String[]>([]);
 
   console.log('visibility: ', visibility);
 
   const handleMultiSelectChange = (items: Array<TagOption>) => {
-    const itemValues =
-      items && !!items.length && items.map((item) => item.value);
+    const itemValues = items.map((item) => item.value);
     setTags(itemValues);
     console.log('itemValues: ', itemValues);
+  };
+
+  const resetForm = () => {
+    setItemName('');
+    setUrl('');
+    setDescription('');
+    setTags([]);
+    setVisibility('public');
   };
 
   const handleSubmit = async (e: any) => {
@@ -56,6 +56,7 @@ const CreateItemForm = (props: Props) => {
     const { status } = data;
     if (status === 'ok') {
       alert('Item Created Successfully');
+      resetForm();
       return;
     }
 
@@ -68,18 +69,21 @@ const CreateItemForm = (props: Props) => {
         className="name"
         type="text"
         placeholder="name"
+        value={itemName}
         onChange={(e) => setItemName(e.target.value)}
       />
       <input
         className="url"
         type="text"
         placeholder="url"
+        value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
       <input
         className="description"
         type="text"
         placeholder="description"
+        value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
       <input
@@ -96,7 +100,7 @@ const CreateItemForm = (props: Props) => {
         checked={visibility === 'private'}
       />{' '}
       Private
-      <CreateableMultiSelect {...{ handleMultiSelectChange }} />
+      <MultiSelect {...{ handleMultiSelectChange }} options={TagOptions} />
       <button onClick={(e) => handleSubmit(e)}>Create Item</button>
     </form>
   );

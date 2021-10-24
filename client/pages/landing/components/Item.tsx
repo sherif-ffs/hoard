@@ -53,7 +53,9 @@ const Item = (props: Props) => {
       <p>{collectionId}</p>
       <p>{isPrivate}</p>
       <p>{likes}</p>
-      {tags && !!tags.length && tags.map((tag) => <li>{tag}</li>)}
+      {tags &&
+        !!tags.length &&
+        tags.map((tag, idx) => <li key={idx}>{tag}</li>)}
       <a href={url} target="_blank">
         {url}{' '}
       </a>
