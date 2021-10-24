@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { CollectionInterface } from '../../Interfaces/CollectionInterface';
 import { createItem } from '../api/ItemApi';
-
+import { TagOption } from '../../constants/Tags';
+import CreateableMultiSelect from '../../components/ui/CreateableMultiSelect';
 /**
  * name
  * url
@@ -27,6 +28,13 @@ const CreateItemForm = (props: Props) => {
 
   console.log('visibility: ', visibility);
 
+  const handleMultiSelectChange = (items: Array<TagOption>) => {
+    const itemValues =
+      items && !!items.length && items.map((item) => item.value);
+    setTags(itemValues);
+    console.log('itemValues: ', itemValues);
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const item = {
@@ -35,7 +43,7 @@ const CreateItemForm = (props: Props) => {
       userId: _id,
       description,
       url,
-      tags: [{ name: 'typography' }],
+      tags: tags,
       isPrivate: visibility === 'private',
       likes: 0,
       collectionId: '',
@@ -88,6 +96,7 @@ const CreateItemForm = (props: Props) => {
         checked={visibility === 'private'}
       />{' '}
       Private
+      <CreateableMultiSelect {...{ handleMultiSelectChange }} />
       <button onClick={(e) => handleSubmit(e)}>Create Item</button>
     </form>
   );

@@ -40,7 +40,7 @@ const Item = (props: Props) => {
     }
     alert(data);
   };
-
+  console.log('tags: ', tags);
   return (
     <figure
       style={{
@@ -53,7 +53,7 @@ const Item = (props: Props) => {
       <p>{collectionId}</p>
       <p>{isPrivate}</p>
       <p>{likes}</p>
-      <p>{tags[0].name}</p>
+      {tags && !!tags.length && tags.map((tag) => <li>{tag}</li>)}
       <a href={url} target="_blank">
         {url}{' '}
       </a>

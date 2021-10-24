@@ -45,6 +45,7 @@ const Landing: NextPage = () => {
   return (
     <section>
       <p>you are authenticated</p>
+      <p>{user.name}</p>
       <button onClick={handleLogout}>logout</button>
       <CreateItemForm {...{ collections, email, name, _id }} />
       {data &&
