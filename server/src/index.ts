@@ -60,4 +60,7 @@ app.use('/auth', require('./routes/auth.ts'));
 // Item routes
 app.use('/items', require('./routes/item.ts'));
 
+// Collection Routes
+app.use('/collections', require('./routes/collections.ts'));
+
 app.listen(5000, () => console.log('Server running'));

@@ -9,3 +9,6 @@ GET http://localhost:5000/users
 
 ###
 POST http://localhost:5000/items/create-item
+
+###
+POST http://localhost:5000/collections/create-collection
