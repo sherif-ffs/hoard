@@ -11,11 +11,9 @@ export function AppWrapper({ children }) {
   const checkAuth = async() => {
     const response = await checkUserAuthentication();
     const data = await response.json();
-    console.log('data: ', data);
     const userIsAuthenticated = data && data.data && data.data.authenticated;
     console.log('userIsAuthenticated: ', userIsAuthenticated);
     const activeUser = data && data.data && data.data.user;
-    console.log('activeUser: ', activeUser);
     setUser(activeUser);
     setAuthenticated(userIsAuthenticated);
   };
@@ -26,7 +24,7 @@ export function AppWrapper({ children }) {
 
   return ( <
     AppContext.Provider value = {
-      { user, setUser, token, setToken, authenticated }
+      { user, setUser, token, setToken, authenticated, setAuthenticated }
     } > { children } <
     /AppContext.Provider>
   );

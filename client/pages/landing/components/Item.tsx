@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { CollectionInterface } from '../../Interfaces/CollectionInterface';
+import React from 'react';
 import { TagInterface } from '../../Interfaces/TagInterface';
 import { deleteItem } from '../api/ItemApi';
 
@@ -13,6 +12,7 @@ type Props = {
   likes: number;
   tags: Array<TagInterface>;
   url: string;
+  isMyItem: boolean;
 };
 
 const Item = (props: Props) => {
@@ -20,12 +20,12 @@ const Item = (props: Props) => {
     author,
     name,
     _id,
-    userId,
     collectionId,
     isPrivate,
     likes,
     tags,
     url,
+    isMyItem,
   } = props;
   console.log('props: ', props);
 
@@ -33,7 +33,12 @@ const Item = (props: Props) => {
     console.log('_id: ', _id);
     const res = await deleteItem(_id);
     const response = await res.json();
-    console.log('response: ', response);
+    const { status, data } = response;
+    if (status === 'ok') {
+      alert('Item deleted successfully');
+      return;
+    }
+    alert(data);
   };
 
   return (
@@ -52,7 +57,7 @@ const Item = (props: Props) => {
       <a href={url} target="_blank">
         {url}{' '}
       </a>
-      <button onClick={handleDeleteItem}>delete</button>
+      {isMyItem && <button onClick={handleDeleteItem}>delete</button>}
     </figure>
   );
 };

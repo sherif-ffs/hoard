@@ -22,7 +22,10 @@ const CreateItemForm = (props: Props) => {
   const [itemName, setItemName] = useState('');
   const [url, setUrl] = useState('');
   const [description, setDescription] = useState('');
+  const [visibility, setVisibility] = useState('public');
   const [tags, setTags] = useState([]);
+
+  console.log('visibility: ', visibility);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -33,7 +36,7 @@ const CreateItemForm = (props: Props) => {
       description,
       url,
       tags: [{ name: 'typography' }],
-      isPrivate: false,
+      isPrivate: visibility === 'private',
       likes: 0,
       collectionId: '',
     };
@@ -71,6 +74,20 @@ const CreateItemForm = (props: Props) => {
         placeholder="description"
         onChange={(e) => setDescription(e.target.value)}
       />
+      <input
+        type="radio"
+        onChange={() => setVisibility('public')}
+        name="public"
+        checked={visibility === 'public'}
+      />{' '}
+      Public
+      <input
+        type="radio"
+        onChange={() => setVisibility('private')}
+        name="private"
+        checked={visibility === 'private'}
+      />{' '}
+      Private
       <button onClick={(e) => handleSubmit(e)}>Create Item</button>
     </form>
   );

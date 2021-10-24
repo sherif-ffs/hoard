@@ -7,23 +7,22 @@ import { loginUser } from '../api/AuthApi';
 const Login: NextPage = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const { user, setUser, token, setToken } = useAppContext();
+  const { user, setUser, token, setToken, setAuthenticated } = useAppContext();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    console.log('password: ', password);
-    console.log('email: ', email);
-
     const result = await loginUser(email, password);
     const data = await result.json();
-    const { user, token } = data.data;
-
-    console.log('user: ', user);
-    if (user && token) {
+    const { user, token, authenticated } = data.data;
+    console.log('data: ', data);
+    if (user && token && authenticated) {
+      console.log('user: ', user);
+      console.log('authenticated: ', authenticated);
       setUser(user);
+      setAuthenticated(authenticated);
       setToken(token);
-      Router.push('/auth/components/AuthCheck');
+      Router.push('/landing/components/Landing');
     }
   };
 

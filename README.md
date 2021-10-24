@@ -10,9 +10,9 @@
 - [x] clean up files
 - [x] update schemas
 - [x] create items 
-- [ ] load all items
-- [ ] delete item
-
+- [x] load all items
+- [x] delete item
+- [ ] scrape image based on url
 # Client
 
 - [x] set up eslint
@@ -23,7 +23,9 @@
 - [x] persist global state
 - [x] set up SCSS
 - [x] create items
-- [ ] load all items
-- [ ] make item component
-- [ ] delete item
+- [x] load all items
+- [x] make item component
+- [x] delete item
+- [x] fix auth
+- [x] start user flow
 - [] make design?
