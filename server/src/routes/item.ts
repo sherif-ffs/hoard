@@ -37,11 +37,11 @@ router.post('/delete-item', async (req, res) => {
 // Fetch all Items
 router.get('/items', async (req, res) => {
   try {
-    const allUsers = await Item.find();
-    if (!allUsers) {
+    const allItems = await Item.find();
+    if (!allItems) {
       return res.json({ status: 'error', error: 'no items found' });
     }
-    res.json({ status: 'ok', data: allUsers });
+    res.json({ status: 'ok', data: allItems });
   } catch (error) {
     return res.json({ status: 'error', error: error });
   }
