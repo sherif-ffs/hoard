@@ -1,5 +1,5 @@
-const fs = require('fs');
-const puppeteer = require('puppeteer');
+import fs from 'fs';
+import puppeteer from 'puppeteer';
 
 export function base64_encode(file) {
   // read binary data

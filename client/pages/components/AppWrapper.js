@@ -3,6 +3,10 @@ import { checkUserAuthentication } from '../auth/api/AuthApi';
 
 const AppContext = createContext();
 
+export function useAppContext() {
+  return useContext(AppContext);
+};
+
 export function AppWrapper({ children }) {
   const [user, setUser] = useState();
   const [authenticated, setAuthenticated] = useState();
@@ -27,8 +31,4 @@ export function AppWrapper({ children }) {
     } > { children } <
     /AppContext.Provider>
   );
-};
-
-export function useAppContext() {
-  return useContext(AppContext);
 };
