@@ -12,3 +12,6 @@ POST http://localhost:5000/items/create-item
 
 ###
 POST http://localhost:5000/collections/create-collection
+
+### 
+GET http://localhost:5000/collections/collection?id=6168f2afa637c24d925af746

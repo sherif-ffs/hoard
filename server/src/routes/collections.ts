@@ -23,8 +23,16 @@ router.post('/create-collection', async (req, res) => {
   }
 });
 
-// fetch collections by user
-
+// fetch collections by userId
+router.get('/collection', async (req, res) => {
+  try {
+    const id = req.query.id as string;
+    const collections = await Collection.find({ userId: id });
+    res.send({ status: 'ok', data: collections });
+  } catch (err) {
+    res.send({ status: 'error', error: err });
+  }
+});
 // fetch all collections
 
 module.exports = router;
