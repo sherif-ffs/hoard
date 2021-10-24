@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import express from 'express';
-import mongodb from 'mongodb';
 const router = express.Router();
 import Item from '../models/item';
 const objectId = require('mongodb').ObjectID;
-import mongoose, { ConnectOptions } from 'mongoose';
+
+const scrapeUrl = async (url: string) => {
+  //
+};
 
 // Create Item
 router.post('/create-item', async (req, res) => {
