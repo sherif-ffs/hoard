@@ -7,7 +7,7 @@ type Props = {
   name: string;
   _id: string;
   userId: string;
-  collectionId: string;
+  collections: Array<{ title: string; value: string }>;
   isPrivate: string;
   likes: number;
   tags: Array<TagInterface>;
@@ -17,17 +17,18 @@ type Props = {
 };
 
 const Item = (props: Props) => {
+  console.log('item props: ', props);
   const {
     author,
     name,
     _id,
-    collectionId,
     isPrivate,
     likes,
     tags,
     url,
     isMyItem,
     imageString,
+    collections,
   } = props;
 
   const handleDeleteItem = async () => {
@@ -49,10 +50,14 @@ const Item = (props: Props) => {
       <p>{author}</p>
       <p>{name}</p>
       <p>{_id}</p>
-      <p>{collectionId}</p>
       <p>{isPrivate}</p>
       <p>{likes}</p>
       {imageString && <img src={`data:image/jpeg;base64,${imageString}`}></img>}
+      {collections &&
+        !!collections.length &&
+        collections.map((collection) => (
+          <li key={collection.id}>collection: {collection.title}</li>
+        ))}
       {tags &&
         !!tags.length &&
         tags.map((tag, idx) => <li key={idx}>{tag}</li>)}

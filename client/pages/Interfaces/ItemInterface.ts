@@ -3,7 +3,7 @@ export interface ItemInterface {
   userId: string;
   name: string;
   description: string;
-  collectionId: string | null;
+  collections: Array<{ title: string; value: string }>;
   url: string;
   image?: string | null;
   tags?: Array<String> | null;

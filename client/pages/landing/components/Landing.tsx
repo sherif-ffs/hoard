@@ -1,17 +1,18 @@
 import Router from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import type { NextPage } from 'next';
 
 import { logOutUser } from '../../auth/api/AuthApi';
 import { useAppContext } from '../../components/AppWrapper';
+import { fetchCollectionsById } from '../../collections/api/CollectionsApi';
 import { fetchAllItems } from '../api/ItemApi';
 import CreateItemForm from './CreateItemForm';
 import Item from './Item';
 
 const Landing: NextPage = () => {
   const { user, authenticated, token } = useAppContext();
-  const { collections, email, name, _id } = !!user && user;
+  const { email, name, _id } = !!user && user;
 
   const handleLogout = async () => {
     const response = await logOutUser();
@@ -28,6 +29,17 @@ const Landing: NextPage = () => {
     }
   };
 
+  const loadMyCollections = async () => {
+    const res = await fetchCollectionsById(_id);
+    return await res.json();
+  };
+
+  const {
+    data: collections,
+    error: collectionsError,
+    status: collectionsStatus,
+  } = useQuery('collections', loadMyCollections);
+
   const loadAllItems = async () => {
     const res = await fetchAllItems();
     return await res.json();
@@ -41,17 +53,21 @@ const Landing: NextPage = () => {
       <p onClick={() => Router.push('/auth/components/Login')}>please login</p>
     );
   }
-
+  const itemsExist = data && data.data && !!data.data.length;
+  const collectionsExist =
+    !collectionsError && collections && !!collections.data.length;
   return (
     <section>
       <p>you are authenticated</p>
       <p>{user.name}</p>
       <button onClick={handleLogout}>logout</button>
-      <CreateItemForm {...{ collections, email, name, _id }} />
-      {data &&
-        data.data &&
-        !!data.data.length &&
+      <CreateItemForm
+        {...{ email, name, _id }}
+        collections={collectionsExist ? collections.data : []}
+      />
+      {itemsExist &&
         data.data.map((item: any) => {
+          console.log(item);
           const isMyItem = user._id === item.userId;
           const isPublic = !item.isPrivate;
 
@@ -64,7 +80,7 @@ const Landing: NextPage = () => {
                 name={item.name}
                 _id={item._id}
                 userId={item.userId}
-                collectionId={item.collectionId}
+                collections={item.collections}
                 isPrivate={item.isPrivate}
                 likes={item.likes}
                 tags={item.tags}

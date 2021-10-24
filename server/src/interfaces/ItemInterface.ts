@@ -6,9 +6,11 @@ export interface ItemInterface {
   name: string;
   description: string;
   userId: string;
-  collectionId: string | null;
+  collectionIds: Array<string> | null;
+  collectionTitles: Array<string> | null;
   url: string;
   image?: string | null;
+  collections: Array<{ title: string; id: string }> | null;
   tags?: Array<TagInterface> | null;
   likes: number;
   isPrivate: boolean;

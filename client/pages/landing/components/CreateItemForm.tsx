@@ -1,28 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CollectionInterface } from '../../Interfaces/CollectionInterface';
 import { createItem } from '../api/ItemApi';
 import { TagOption, TagOptions } from '../../constants/Tags';
 import MultiSelect from '../../components/ui/MultiSelect';
+import { useQuery } from 'react-query';
+import { fetchCollectionsById } from '../../collections/api/CollectionsApi';
 
 type Props = {
-  collections: Array<CollectionInterface> | [];
   email: string;
   name: string;
   _id: string;
+  collections: any;
 };
 
 const CreateItemForm = (props: Props) => {
-  const { collections, email, name, _id } = props;
+  console.log('props: ', props);
+  const { email, name, _id, collections } = props;
   const [itemName, setItemName] = useState('');
   const [url, setUrl] = useState('');
   const [description, setDescription] = useState('');
   const [visibility, setVisibility] = useState('public');
   const [tags, setTags] = useState<String[]>([]);
-
-  const handleMultiSelectChange = (items: Array<TagOption>) => {
+  const [collectionOptions, setCollectionOptions] = useState([]);
+  const [collectionData, setCollectionData] = useState<Object[]>([]);
+  const handleCollectionChange = (
+    collections: Array<{ label: string; value: string }>
+  ) => {
+    const collectionData = collections.map((item) => ({
+      title: item.label,
+      id: item.value,
+    }));
+    setCollectionData(collectionData);
+  };
+  const handleSelectTags = (items: Array<TagOption>) => {
     const itemValues = items.map((item) => item.value);
     setTags(itemValues);
   };
+
+  useEffect(() => {
+    if (collections && !!collections.length) {
+      const options = collections.map((collection: any) => ({
+        label: collection.title,
+        value: collection._id,
+      }));
+      setCollectionOptions(options);
+    }
+  }, [collections]);
 
   const resetForm = () => {
     setItemName('');
@@ -43,7 +66,9 @@ const CreateItemForm = (props: Props) => {
       tags: tags,
       isPrivate: visibility === 'private',
       likes: 0,
-      collectionId: '',
+      collections: collectionData,
+      // collectionIds: collectionIds,
+      // collectionTitles: collectionTitles,
     };
 
     const result = await createItem(item);
@@ -95,7 +120,11 @@ const CreateItemForm = (props: Props) => {
         checked={visibility === 'private'}
       />{' '}
       Private
-      <MultiSelect {...{ handleMultiSelectChange }} options={TagOptions} />
+      <MultiSelect
+        handleChange={handleCollectionChange}
+        options={collectionOptions}
+      />
+      <MultiSelect handleChange={handleSelectTags} options={TagOptions} />
       <button onClick={(e) => handleSubmit(e)}>Create Item</button>
     </form>
   );

@@ -19,8 +19,8 @@ const itemSchema = new Schema<ItemInterface>({
     required: true,
     unique: false,
   },
-  collectionId: {
-    type: String,
+  collections: {
+    type: [],
     required: false,
   },
   url: {

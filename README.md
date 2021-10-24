@@ -14,6 +14,7 @@
 - [x] delete item
 - [x] add tags
 - [x] scrape image based on url
+- [ ] upload image issues
 - [ ] add collections
 # Client
 

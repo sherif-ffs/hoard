@@ -6,15 +6,15 @@ interface OptionType {
   icon: string | null;
 }
 interface Props {
-  handleMultiSelectChange: any;
+  handleChange: any;
   options: Array<OptionType> | [];
 }
-const MultiSelect = ({ handleMultiSelectChange, options }: Props) => (
+const MultiSelect = ({ handleChange, options }: Props) => (
   <Select
     isMulti
     name="colors"
     options={options}
-    onChange={(e: any) => handleMultiSelectChange(e)}
+    onChange={(e: any) => handleChange(e)}
     className="basic-multi-select"
     classNamePrefix="select"
   />

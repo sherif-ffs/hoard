@@ -17,6 +17,7 @@ export function AppWrapper({ children }) {
     const data = await response.json();
     const userIsAuthenticated = data && data.data && data.data.authenticated;
     const activeUser = data && data.data && data.data.user;
+    console.log('activeUser: ', activeUser)
     setUser(activeUser);
     setAuthenticated(userIsAuthenticated);
   };

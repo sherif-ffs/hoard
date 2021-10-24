@@ -9,6 +9,7 @@ export function base64_encode(file) {
 }
 
 export const scrapeImageFromUrl = async (url: string) => {
+  console.log(url);
   // open the browser and prepare a page
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -19,9 +20,11 @@ export const scrapeImageFromUrl = async (url: string) => {
     height: 800,
   });
 
-  await page.goto(url);
+  await page.goto(url, { waitUntil: 'load', timeout: 0 });
   await page.screenshot({
     path: './thumbnail.png',
+    type: 'jpeg',
+    quality: 100,
   });
   // close the browser
   await browser.close();
