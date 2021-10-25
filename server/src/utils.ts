@@ -1,5 +1,7 @@
 import fs from 'fs';
 import puppeteer from 'puppeteer';
+import Collection from './models/collection';
+const objectId = require('mongodb').ObjectID;
 
 export function base64_encode(file) {
   // read binary data
@@ -27,4 +29,20 @@ export const scrapeImageFromUrl = async (url: string) => {
   });
   // close the browser
   await browser.close();
+};
+
+// Add Item To Collection
+export const addItemToCollection = async (
+  collectionIds: Array<string>,
+  item: any
+) => {
+  collectionIds.forEach(async (collectionId) => {
+    const res = await Collection.updateOne(
+      {
+        _id: new objectId(collectionId),
+      },
+      { $push: { items: item } }
+    );
+    console.log('res: ', res);
+  });
 };

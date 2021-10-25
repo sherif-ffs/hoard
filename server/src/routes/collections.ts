@@ -34,14 +34,6 @@ router.get('/collection', async (req, res) => {
   }
 });
 
-// add item to collection
-router.post('/collection/add-item', async (req, res) => {
-  /**
-   * get item id
-   * get collection(s) id
-   * add to database
-   */
-});
 // fetch all collections
 
 module.exports = router;
