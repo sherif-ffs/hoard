@@ -9,7 +9,6 @@ export function base64_encode(file) {
 }
 
 export const scrapeImageFromUrl = async (url: string) => {
-  console.log(url);
   // open the browser and prepare a page
   const browser = await puppeteer.launch();
   const page = await browser.newPage();

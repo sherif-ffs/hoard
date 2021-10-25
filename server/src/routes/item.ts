@@ -3,6 +3,7 @@
 import express from 'express';
 const router = express.Router();
 import Item from '../models/item';
+import Collection from '../models/collection';
 const objectId = require('mongodb').ObjectID;
 import { base64_encode, scrapeImageFromUrl } from '../utils';
 
@@ -10,22 +11,43 @@ import { base64_encode, scrapeImageFromUrl } from '../utils';
 router.post('/create-item', async (req, res) => {
   const { item } = req.body;
   let realItem;
-  scrapeImageFromUrl(item.url).then(() => {
+  scrapeImageFromUrl(item.url).then(async () => {
     const base64str = base64_encode('./thumbnail.png');
     realItem = {
       ...item,
       image: base64str,
     };
     try {
-      Item.create(realItem);
+      const newItem = await Item.create(realItem);
+
+      const { _id, collections, userId } = newItem;
+      if (collections && !!collections.length) {
+        const collectionIds = collections.map((c) => c.id);
+        addItemToCollection(collectionIds, item);
+      }
+      console.log('collections: ', collections);
+      console.log('userId: ', userId);
+      console.log('_id: ', await _id.toString());
       res.json({ status: 'ok', data: 'item created successfully' });
     } catch (error: any) {
       res.json({ status: 'error', error: error.message });
       throw error;
     }
-    console.log('realItem: ', realItem);
   });
 });
+
+// Add Item To Collection
+const addItemToCollection = async (collectionIds: Array<string>, item: any) => {
+  collectionIds.forEach(async (collectionId) => {
+    const res = await Collection.updateOne(
+      {
+        _id: new objectId(collectionId),
+      },
+      { $push: { items: item } }
+    );
+    console.log('res; ', res);
+  });
+};
 
 // Delete Item
 router.post('/delete-item', async (req, res) => {

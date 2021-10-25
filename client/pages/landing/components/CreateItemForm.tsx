@@ -67,10 +67,7 @@ const CreateItemForm = (props: Props) => {
       isPrivate: visibility === 'private',
       likes: 0,
       collections: collectionData,
-      // collectionIds: collectionIds,
-      // collectionTitles: collectionTitles,
     };
-
     const result = await createItem(item);
     const data = await result.json();
     const { status } = data;

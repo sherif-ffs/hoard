@@ -9,8 +9,8 @@ router.post('/create-collection', async (req, res) => {
   try {
     const testCollection = {
       userId: '6168f2afa637c24d925af746',
-      title: 'Second Test Collection',
-      description: 'My Second Collection',
+      title: 'Third Test Collection',
+      description: 'My Third Collection',
       tags: null,
       items: [],
       likes: 0,
@@ -32,6 +32,15 @@ router.get('/collection', async (req, res) => {
   } catch (err) {
     res.send({ status: 'error', error: err });
   }
+});
+
+// add item to collection
+router.post('/collection/add-item', async (req, res) => {
+  /**
+   * get item id
+   * get collection(s) id
+   * add to database
+   */
 });
 // fetch all collections
 
