@@ -8,6 +8,7 @@ import {
   base64_encode,
   scrapeImageFromUrl,
   addItemToCollection,
+  removeItemFromCollection,
 } from '../utils';
 
 // Create Item
@@ -24,9 +25,10 @@ router.post('/create-item', async (req, res) => {
       const newItem = await Item.create(realItem);
 
       const { collections } = newItem;
+      console.log('newItem: ', newItem);
       if (collections && !!collections.length) {
         const collectionIds = collections.map((c) => c.id);
-        addItemToCollection(collectionIds, item);
+        addItemToCollection(collectionIds, newItem);
       }
       res.json({ status: 'ok', data: 'item created successfully' });
     } catch (error: any) {
@@ -40,7 +42,10 @@ router.post('/create-item', async (req, res) => {
 router.post('/delete-item', async (req, res) => {
   const id = req.body.id;
   try {
+    const itemToDelete = await Item.find({ _id: id });
+    removeItemFromCollection(itemToDelete, id);
     const result = await Item.deleteOne({ _id: new objectId(id) });
+    console.log('result: ', result);
     res.json({ status: 'ok', data: 'item deleted successfully' });
   } catch (error: any) {
     res.json({ status: 'error', error: error.message });

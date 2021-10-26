@@ -63,7 +63,7 @@ const Landing: NextPage = () => {
         data.data.map((item: any) => {
           const isMyItem = user._id === item.userId;
           const isPublic = !item.isPrivate;
-
+          console.log('item: ', item);
           if (isPublic || isMyItem) {
             return (
               <Item

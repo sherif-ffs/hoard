@@ -14,6 +14,7 @@
 - [x] delete item
 - [x] add tags
 - [x] scrape image based on url
+- [x] remove item from collection when deleting item
 - [ ] upload images to S3
 - [x] add collections
 # Client

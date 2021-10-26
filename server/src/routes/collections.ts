@@ -29,7 +29,6 @@ router.get('/collection', async (req, res) => {
     const id = req.query.id as string;
     console.log('id: ', id);
     const collections = await Collection.find({ userId: id });
-    console.log('collections: ', collections);
     res.send({ status: 'ok', data: collections });
   } catch (err) {
     res.send({ status: 'error', error: err });

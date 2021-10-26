@@ -46,3 +46,19 @@ export const addItemToCollection = async (
     console.log('res: ', res);
   });
 };
+
+export const removeItemFromCollection = async (itemToDelete: any, id: any) => {
+  const { collections } = itemToDelete[0];
+  if (collections && !!collections.length) {
+    const collectionIds = collections.map((c) => c.id.toString());
+    collectionIds.forEach(async (collectionId) => {
+      const res = await Collection.updateOne(
+        {
+          _id: new objectId(collectionId),
+        },
+        { $pull: { items: { _id: new objectId(id) } } }
+      );
+      console.log('res: ', res);
+    });
+  }
+};
