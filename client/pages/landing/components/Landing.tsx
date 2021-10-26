@@ -2,6 +2,7 @@ import Router from 'next/router';
 import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import type { NextPage } from 'next';
+import Link from 'next/link';
 
 import { logOutUser } from '../../auth/api/AuthApi';
 import { useAppContext } from '../../components/AppWrapper';
@@ -50,7 +51,9 @@ const Landing: NextPage = () => {
   return (
     <section>
       <p>you are authenticated</p>
-      <p>{user.name}</p>
+      <Link href={`/profile/${user._id}`}>
+        <p>{user.name}</p>
+      </Link>
       <button onClick={handleLogout}>logout</button>
       <CreateItemForm
         {...{ email, name, _id }}
