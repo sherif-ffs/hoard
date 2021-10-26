@@ -17,7 +17,6 @@ type Props = {
 };
 
 const Item = (props: Props) => {
-  console.log('item props: ', props);
   const {
     author,
     name,

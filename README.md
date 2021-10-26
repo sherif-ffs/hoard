@@ -14,8 +14,8 @@
 - [x] delete item
 - [x] add tags
 - [x] scrape image based on url
-- [ ] upload image issues
-- [ ] add collections
+- [ ] upload images to S3
+- [x] add collections
 # Client
 
 - [x] set up eslint
@@ -33,6 +33,7 @@
 - [x] start user flow
 - [x] add tags
 - [x] render images
-- [ ] add collections
-
+- [x] add collections
+- [x] cleanup fetches
+- [ ] collections not refetching on logout
 - [] make design?

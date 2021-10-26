@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { CollectionInterface } from '../../Interfaces/CollectionInterface';
 import { createItem } from '../api/ItemApi';
 import { TagOption, TagOptions } from '../../constants/Tags';
 import MultiSelect from '../../components/ui/MultiSelect';
-import { useQuery } from 'react-query';
-import { fetchCollectionsById } from '../../collections/api/CollectionsApi';
 
 type Props = {
   email: string;
@@ -14,7 +11,6 @@ type Props = {
 };
 
 const CreateItemForm = (props: Props) => {
-  console.log('props: ', props);
   const { email, name, _id, collections } = props;
   const [itemName, setItemName] = useState('');
   const [url, setUrl] = useState('');

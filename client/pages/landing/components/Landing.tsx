@@ -9,10 +9,17 @@ import { fetchCollectionsById } from '../../collections/api/CollectionsApi';
 import { fetchAllItems } from '../api/ItemApi';
 import CreateItemForm from './CreateItemForm';
 import Item from './Item';
+import useCollectionsById from '../../hooks/useCollectionsById';
+import useAllItems from '../../hooks/useAllItems';
 
 const Landing: NextPage = () => {
   const { user, authenticated, token } = useAppContext();
   const { email, name, _id } = !!user && user;
+  const {
+    data: collections,
+    error: collectionsError,
+    status: collectionsStatus,
+  } = useCollectionsById(_id);
 
   const handleLogout = async () => {
     const response = await logOutUser();
@@ -29,23 +36,7 @@ const Landing: NextPage = () => {
     }
   };
 
-  const loadMyCollections = async () => {
-    const res = await fetchCollectionsById(_id);
-    return await res.json();
-  };
-
-  const {
-    data: collections,
-    error: collectionsError,
-    status: collectionsStatus,
-  } = useQuery('collections', loadMyCollections);
-
-  const loadAllItems = async () => {
-    const res = await fetchAllItems();
-    return await res.json();
-  };
-
-  const { data, error, status } = useQuery('users', loadAllItems);
+  const { data, error, status } = useAllItems();
   if (error) alert('something went wrong loading items');
 
   if (!authenticated || !user) {
@@ -67,7 +58,6 @@ const Landing: NextPage = () => {
       />
       {itemsExist &&
         data.data.map((item: any) => {
-          console.log(item);
           const isMyItem = user._id === item.userId;
           const isPublic = !item.isPrivate;
 
