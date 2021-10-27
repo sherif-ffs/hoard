@@ -17,6 +17,7 @@ import CreateCollectionForm from '../../collections/CreateCollectionForm';
 
 const Landing: NextPage = () => {
   const { user, authenticated, token } = useAppContext();
+
   const { email, name, _id } = !!user && user;
   const {
     data: collections,
@@ -57,6 +58,7 @@ const Landing: NextPage = () => {
         <p>{user.name}</p>
       </Link>
       <button onClick={handleLogout}>logout</button>
+      <img src="https://rabbit-hole-pics.s3.amazonaws.com/screenshots/kv8vrbnh.png"></img>
       <CreateCollectionForm />
       <CreateItemForm
         {...{ email, name, _id }}

@@ -11,6 +11,11 @@ export function base64_encode(file) {
 }
 
 export const scrapeImageFromUrl = async (url: string) => {
+  // if screenshots directory is not exist then create one
+  if (!fs.existsSync('./screenshots')) {
+    fs.mkdirSync('./screenshots');
+  }
+
   // open the browser and prepare a page
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -21,14 +26,17 @@ export const scrapeImageFromUrl = async (url: string) => {
     height: 800,
   });
 
-  await page.goto(url, { waitUntil: 'load', timeout: 0 });
+  const ImageID = new Date().getTime().toString(36);
+  const loc = `./screenshots/${ImageID}.png`;
+  await page.goto(url);
   await page.screenshot({
-    path: './thumbnail.png',
-    type: 'jpeg',
-    quality: 100,
+    path: loc,
   });
+
   // close the browser
   await browser.close();
+  console.log(`✅ - (${url})`);
+  return ImageID;
 };
 
 // Add Item To Collection

@@ -3,7 +3,12 @@
 import express from 'express';
 const router = express.Router();
 import Item from '../models/item';
+const fs = require('fs');
+const utils = require('util');
 const objectId = require('mongodb').ObjectID;
+const { uploadFile } = require('../s3');
+
+const unlinkFile = utils.promisify(fs.unlink);
 import {
   base64_encode,
   scrapeImageFromUrl,
@@ -14,12 +19,17 @@ import {
 // Create Item
 router.post('/create-item', async (req, res) => {
   const { item } = req.body;
+  console.log('item: ', item);
   let realItem;
-  scrapeImageFromUrl(item.url).then(async () => {
-    const base64str = base64_encode('./thumbnail.png');
+  scrapeImageFromUrl(item.url).then(async (ImageID) => {
+    const base64str = base64_encode(`./screenshots/${ImageID}.png`);
+    const rezzy = await uploadFile(`./screenshots/${ImageID}.png`);
+    await unlinkFile(`./screenshots/${ImageID}.png`);
+    console.log('rezzy: ', rezzy);
     realItem = {
       ...item,
       image: base64str,
+      imageID: ImageID,
     };
     try {
       const newItem = await Item.create(realItem);
