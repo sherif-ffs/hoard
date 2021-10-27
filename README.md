@@ -17,6 +17,7 @@
 - [x] remove item from collection when deleting item
 - [ ] upload images to S3
 - [x] add collections
+- [x] create collections from browser
 # Client
 
 - [x] set up eslint
@@ -37,4 +38,5 @@
 - [x] add collections
 - [x] cleanup fetches
 - [ ] collections not refetching on logout
+- [x] create collections from browser
 - [] make design?

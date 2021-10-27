@@ -13,6 +13,8 @@ import Item from './Item';
 import useCollectionsById from '../../hooks/useCollectionsById';
 import useAllItems from '../../hooks/useAllItems';
 
+import CreateCollectionForm from '../../collections/CreateCollectionForm';
+
 const Landing: NextPage = () => {
   const { user, authenticated, token } = useAppContext();
   const { email, name, _id } = !!user && user;
@@ -55,6 +57,7 @@ const Landing: NextPage = () => {
         <p>{user.name}</p>
       </Link>
       <button onClick={handleLogout}>logout</button>
+      <CreateCollectionForm />
       <CreateItemForm
         {...{ email, name, _id }}
         collections={collectionsExist ? collections.data : []}
