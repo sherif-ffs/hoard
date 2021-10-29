@@ -1,7 +1,7 @@
 import React from 'react';
 import { TagInterface } from '../../Interfaces/TagInterface';
 import { deleteItem } from '../api/ItemApi';
-
+import { API_URL } from '../../constants/ApiEndpoint';
 type Props = {
   author: string;
   name: string;
@@ -41,6 +41,7 @@ const Item = (props: Props) => {
     }
     alert(data);
   };
+  console.log(API_URL);
   return (
     <figure
       style={{
@@ -53,9 +54,7 @@ const Item = (props: Props) => {
       <p>{isPrivate}</p>
       <p>{likes}</p>
 
-      {imageID && (
-        <img src={`http://localhost:5000/items/images/${imageID}`}></img>
-      )}
+      {imageID && <img src={`${API_URL}/items/images/${imageID}`}></img>}
       {collections &&
         !!collections.length &&
         collections.map((collection) => (
