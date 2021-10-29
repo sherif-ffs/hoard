@@ -41,7 +41,7 @@ const Landing: NextPage = () => {
   };
 
   const { data, error, status } = useAllItems();
-  if (error) alert('something went wrong loading items');
+  // if (error) alert('something went wrong loading items');
 
   if (!authenticated || !user) {
     return (
@@ -58,7 +58,7 @@ const Landing: NextPage = () => {
         <p>{user.name}</p>
       </Link>
       <button onClick={handleLogout}>logout</button>
-      <img src="https://rabbit-hole-pics.s3.amazonaws.com/screenshots/kv8vrbnh.png"></img>
+      {/* <img src="http://localhost:5000/items/images/kvbqluqr"></img> */}
       <CreateCollectionForm />
       <CreateItemForm
         {...{ email, name, _id }}
@@ -66,6 +66,7 @@ const Landing: NextPage = () => {
       />
       {itemsExist &&
         data.data.map((item: any) => {
+          console.log('data.data: ', data.data);
           const isMyItem = user._id === item.userId;
           const isPublic = !item.isPrivate;
           console.log('item: ', item);
@@ -84,6 +85,7 @@ const Landing: NextPage = () => {
                 tags={item.tags}
                 url={item.url}
                 imageString={item.image}
+                imageID={item.imageID}
               />
             );
           }

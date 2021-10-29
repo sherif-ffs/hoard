@@ -6,6 +6,7 @@ export interface ItemInterface {
   collections: Array<{ title: string; value: string }>;
   url: string;
   image?: string | null;
+  imageID: string | null;
   tags?: Array<String> | null;
   likes: number | null;
   isPrivate: boolean;

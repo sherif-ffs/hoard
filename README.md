@@ -15,9 +15,10 @@
 - [x] add tags
 - [x] scrape image based on url
 - [x] remove item from collection when deleting item
-- [ ] upload images to S3
 - [x] add collections
 - [x] create collections from browser
+- [x] upload images to S3
+- [x] read images from S3
 # Client
 
 - [x] set up eslint
@@ -39,4 +40,5 @@
 - [x] cleanup fetches
 - [ ] collections not refetching on logout
 - [x] create collections from browser
+- [x] read images from S3
 - [] make design?

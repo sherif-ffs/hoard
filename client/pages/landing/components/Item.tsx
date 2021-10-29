@@ -14,6 +14,7 @@ type Props = {
   url: string;
   isMyItem: boolean;
   imageString: string;
+  imageID: string;
 };
 
 const Item = (props: Props) => {
@@ -28,8 +29,10 @@ const Item = (props: Props) => {
     isMyItem,
     imageString,
     collections,
+    imageID,
   } = props;
 
+  console.log('imageID: ', imageID);
   const handleDeleteItem = async () => {
     const res = await deleteItem(_id);
     const response = await res.json();
@@ -51,7 +54,10 @@ const Item = (props: Props) => {
       <p>{_id}</p>
       <p>{isPrivate}</p>
       <p>{likes}</p>
-      {imageString && <img src={`data:image/jpeg;base64,${imageString}`}></img>}
+
+      {imageID && (
+        <img src={`http://localhost:5000/items/images/${imageID}`}></img>
+      )}
       {collections &&
         !!collections.length &&
         collections.map((collection) => (

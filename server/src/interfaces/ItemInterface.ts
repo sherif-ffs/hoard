@@ -10,6 +10,7 @@ export interface ItemInterface {
   collectionTitles: Array<string> | null;
   url: string;
   image?: string | null;
+  imageID: string | null;
   collections: Array<any> | null;
   tags?: Array<TagInterface> | null;
   likes: number;

@@ -6,9 +6,6 @@ const bucketName = process.env.AWS_BUCKET_NAME;
 const region = process.env.AWS_BUCKET_REGION;
 const accessKeyId = process.env.AWS_ACCESS_KEY;
 const secretAccessKey = process.env.AWS_SECRET_KEY
-  // AWS_BUCKET_REGION="us-east-1"
-  // AWS_ACCESS_KEY="AKIA5UN37WEG3H2EGG7V"
-  // AWE_SECRET_KEY="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"
 
 const s3 = new S3({
   region,
@@ -31,6 +28,19 @@ function uploadFile(file) {
   return s3.upload(uploadParams).promise();
 }
 
-exports.uploadFile = uploadFile;
-
 // download file from s3
+function getFileStream(ImageID) {
+  console.log('adsasd ImageID: ', ImageID);
+  const key = `./screenshots/${ImageID}.png`;
+  console.log('key: ', key);
+  console.log('bucketName: ', bucketName);
+  const downloadParams = {
+    Bucket: bucketName,
+    Key: key
+  }
+
+  return s3.getObject(downloadParams).createReadStream()
+}
+
+exports.uploadFile = uploadFile;
+exports.getFileStream = getFileStream;

@@ -28,7 +28,7 @@ export const scrapeImageFromUrl = async (url: string) => {
 
   const ImageID = new Date().getTime().toString(36);
   const loc = `./screenshots/${ImageID}.png`;
-  await page.goto(url);
+  await page.goto(url, { waitUntil: 'networkidle0' });
   await page.screenshot({
     path: loc,
   });
