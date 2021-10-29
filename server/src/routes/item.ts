@@ -10,7 +10,6 @@ const { uploadFile, getFileStream } = require('../s3');
 
 const unlinkFile = utils.promisify(fs.unlink);
 import {
-  base64_encode,
   scrapeImageFromUrl,
   addItemToCollection,
   removeItemFromCollection,
@@ -30,7 +29,6 @@ router.post('/create-item', async (req, res) => {
   console.log('item: ', item);
   let realItem;
   scrapeImageFromUrl(item.url).then(async (ImageID) => {
-    // const base64str = base64_encode(`./screenshots/${ImageID}.png`);
     const rezzy = await uploadFile(`./screenshots/${ImageID}.png`);
     await unlinkFile(`./screenshots/${ImageID}.png`);
     console.log('rezzy: ', rezzy);

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const S3 = require('aws-sdk/clients/s3');
 require('dotenv').config();
 const fs = require('fs');
@@ -15,9 +16,7 @@ const s3 = new S3({
 
 // upload file to s3
 function uploadFile(file) {
-  console.log('file: ', file);
   const fileStream = fs.createReadStream(file);
-  console.log('fileStream: ', fileStream);
 
   const uploadParams = {
     Bucket: bucketName,
@@ -30,10 +29,7 @@ function uploadFile(file) {
 
 // download file from s3
 function getFileStream(ImageID) {
-  console.log('adsasd ImageID: ', ImageID);
   const key = `./screenshots/${ImageID}.png`;
-  console.log('key: ', key);
-  console.log('bucketName: ', bucketName);
   const downloadParams = {
     Bucket: bucketName,
     Key: key

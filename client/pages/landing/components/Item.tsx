@@ -27,12 +27,10 @@ const Item = (props: Props) => {
     tags,
     url,
     isMyItem,
-    imageString,
     collections,
     imageID,
   } = props;
 
-  console.log('imageID: ', imageID);
   const handleDeleteItem = async () => {
     const res = await deleteItem(_id);
     const response = await res.json();

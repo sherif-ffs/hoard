@@ -1,14 +1,8 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import fs from 'fs';
 import puppeteer from 'puppeteer';
 import Collection from './models/collection';
 const objectId = require('mongodb').ObjectID;
-
-export function base64_encode(file) {
-  // read binary data
-  const bitmap = fs.readFileSync(file);
-  // convert binary data to base64 encoded string
-  return new Buffer(bitmap).toString('base64');
-}
 
 export const scrapeImageFromUrl = async (url: string) => {
   // if screenshots directory is not exist then create one

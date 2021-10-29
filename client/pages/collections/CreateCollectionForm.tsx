@@ -4,21 +4,8 @@ import { TagOption, TagOptions } from '../constants/Tags';
 import MultiSelect from '../components/ui/MultiSelect';
 import { useAppContext } from '../components/AppWrapper';
 
-/**
-  const testCollection = {
-    userId: '6168f2afa637c24d925af746',
-    title: 'Third Test Collection',
-    description: 'My Third Collection',
-    tags: null,
-    items: [],
-    likes: 0,
-    isPrivate: false,
-  };
- */
 const CreateCollectionForm = () => {
   const { user, authenticated, token } = useAppContext();
-  // const { email, name, _id } = !!user && user;
-  console.log('user: ', user);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [visibility, setVisibility] = useState('public');

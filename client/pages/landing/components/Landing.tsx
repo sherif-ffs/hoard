@@ -1,13 +1,10 @@
 import Router from 'next/router';
 import React, { useEffect } from 'react';
-import { useQuery } from 'react-query';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 
 import { logOutUser } from '../../auth/api/AuthApi';
 import { useAppContext } from '../../components/AppWrapper';
-import { fetchCollectionsById } from '../../collections/api/CollectionsApi';
-import { fetchAllItems } from '../api/ItemApi';
 import CreateItemForm from './CreateItemForm';
 import Item from './Item';
 import useCollectionsById from '../../hooks/useCollectionsById';
@@ -41,7 +38,7 @@ const Landing: NextPage = () => {
   };
 
   const { data, error, status } = useAllItems();
-  // if (error) alert('something went wrong loading items');
+  if (error) alert('something went wrong loading items');
 
   if (!authenticated || !user) {
     return (
@@ -58,7 +55,6 @@ const Landing: NextPage = () => {
         <p>{user.name}</p>
       </Link>
       <button onClick={handleLogout}>logout</button>
-      {/* <img src="http://localhost:5000/items/images/kvbqluqr"></img> */}
       <CreateCollectionForm />
       <CreateItemForm
         {...{ email, name, _id }}
