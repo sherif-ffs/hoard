@@ -31,7 +31,7 @@ const Signup: NextPage = () => {
     <section>
       <div className={styles.formWrapper}>
         <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
-          <h1>registration</h1>
+          <h1>Sign Up</h1>
           <div className={styles.inputWrapper}>
             <label>Name *</label>
             <input
