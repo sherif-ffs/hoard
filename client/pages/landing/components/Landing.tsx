@@ -9,7 +9,7 @@ import CreateItemForm from './CreateItemForm';
 import Item from './Item';
 import useCollectionsById from '../../hooks/useCollectionsById';
 import useAllItems from '../../hooks/useAllItems';
-
+import CreateModal from './CreateModal';
 import CreateCollectionForm from '../../collections/CreateCollectionForm';
 
 const Landing: NextPage = () => {
@@ -60,6 +60,7 @@ const Landing: NextPage = () => {
         {...{ email, name, _id }}
         collections={collectionsExist ? collections.data : []}
       />
+      <CreateModal isOpen={true} />
       {itemsExist &&
         data.data.map((item: any) => {
           console.log('data.data: ', data.data);
