@@ -1,7 +1,10 @@
 import type { NextPage } from 'next';
-import { useState } from 'react';
-import { registerUser } from '../api/AuthApi';
 import Router from 'next/router';
+import { useState } from 'react';
+
+import { registerUser } from '../api/AuthApi';
+
+import styles from './Signup.module.scss';
 
 const Signup: NextPage = () => {
   const [password, setPassword] = useState('');

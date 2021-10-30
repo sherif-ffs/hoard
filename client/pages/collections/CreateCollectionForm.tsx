@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { createCollection } from './api/CollectionsApi';
 import { TagOption, TagOptions } from '../constants/Tags';
 import MultiSelect from '../components/ui/MultiSelect';
 import { useAppContext } from '../components/AppWrapper';
 
 const CreateCollectionForm = () => {
-  const { user, authenticated, token } = useAppContext();
+  const { user } = useAppContext();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [visibility, setVisibility] = useState('public');

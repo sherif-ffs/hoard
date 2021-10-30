@@ -11,7 +11,7 @@ type Props = {
 };
 
 const CreateItemForm = (props: Props) => {
-  const { email, name, _id, collections } = props;
+  const { email, _id, collections } = props;
   const [itemName, setItemName] = useState('');
   const [url, setUrl] = useState('');
   const [description, setDescription] = useState('');
