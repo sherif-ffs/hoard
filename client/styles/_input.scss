@@ -1,12 +1,17 @@
 .input {
   padding: 1em;
   margin: 6px 0 6px;
-  border-radius: 4px;
+  border-radius: 2px;
   outline: none;
-  border: 1.5px solid #adadad;
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-color: #fafafa;
+  border: 2px solid #e8e8e8;
+  transition: border 400ms;
   &:focus {
-    border: 1.5px solid #1b8881;
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    border: 2px solid rgba(27, 136, 129, .8);
+    transition: border 400ms;
+  }
+  &:hover {
+    border: 2px solid rgba(27, 136, 129, .5);
+    transition: border 400ms;
   }
 }

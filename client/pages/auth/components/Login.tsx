@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import type { NextPage } from 'next';
-import { useAppContext } from '../../components/AppWrapper';
+import Link from 'next/link';
 import Router from 'next/router';
+
+import { useAppContext } from '../../components/AppWrapper';
 import { loginUser } from '../api/AuthApi';
+import Button from '../../components/ui/Button';
+
+import styles from './Form.module.scss';
 
 const Login: NextPage = () => {
   const [password, setPassword] = useState('');
@@ -25,22 +30,39 @@ const Login: NextPage = () => {
 
   return (
     <section>
-      <h1>Login</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          className="username"
-          type="text"
-          placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          className="password"
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input type="submit" value="Submit Form" />
-      </form>
+      <div className={styles.formWrapper}>
+        <form className={styles.form}>
+          <h1>Login</h1>
+          <div className={styles.inputWrapper}>
+            <label>Email *</label>
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className={styles.inputWrapper}>
+            <label>Password *</label>
+            <input
+              className={styles.input}
+              type="password"
+              placeholder="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <Button
+            onClick={handleSubmit}
+            buttonCopy={'Log In'}
+            version={'CTA'}
+          />
+          <hr />
+          <p>
+            Don't have an account?{' '}
+            <Link href="/auth/components/Signup">Sign Up</Link>
+          </p>
+        </form>
+      </div>
     </section>
   );
 };

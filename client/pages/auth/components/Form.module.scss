@@ -1,13 +1,12 @@
 @import "../../../styles/input.scss";
 @import "../../../styles/_variables.scss";
 @import "../../../styles//breakpoints.scss";
-.wrapper {
-  border: 1px solid red;
+.formWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-color: $background-color;
 }
 
@@ -20,6 +19,28 @@
   flex-direction: column;
   background-color: $foreground-color;
   box-shadow: $box-shadow;
+  .inputWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.75em;
+    label {
+      font-size: $heading-5;
+      color: $gray;
+      font-weight: $font-weight-light;
+    }
+  }
+  hr {
+    border: 1px solid $light-gray;
+    margin-top: 1em;
+    width: 100%;
+  }
+  p {
+    color: $gray;
+    a {
+      color: $brand;
+      font-weight: $font-weight-bold;
+    }
+  }
   @media all and (max-width: 480px) {
     width: 90%;
   }
