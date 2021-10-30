@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { useState } from 'react';
 
 import { registerUser } from '../api/AuthApi';
-
+import Button from '../../components/ui/Button';
 import styles from './Signup.module.scss';
 
 const Signup: NextPage = () => {
@@ -27,28 +27,31 @@ const Signup: NextPage = () => {
   };
 
   return (
-    <div>
-      <h1>registration</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
+    <div className={styles.wrapper}>
+      <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
+        <h1>registration</h1>
+        <label>Name*</label>
         <input
-          className="name"
+          className={styles.input}
           type="text"
           placeholder="name"
           onChange={(e) => setName(e.target.value)}
         />
+        <label>Email*</label>
         <input
-          className="username"
+          className={styles.input}
           type="text"
           placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
         />
+        <label>Password*</label>
         <input
-          className="password"
+          className={styles.input}
           type="password"
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input type="submit" value="Submit Form" />
+        <Button onClick={handleSubmit} buttonCopy={'Sign Up'} version={'CTA'} />
       </form>
     </div>
   );
