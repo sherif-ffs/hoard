@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { createItem } from '../api/ItemApi';
 import { TagOption, TagOptions } from '../../constants/Tags';
 import MultiSelect from '../../components/ui/MultiSelect';
+import Button from '../../components/ui/Button';
+import styles from './CreateContentForm.module.scss';
 
 type Props = {
   email: string;
@@ -77,48 +79,68 @@ const CreateItemForm = (props: Props) => {
     return;
   };
   return (
-    <form>
-      <input
-        className="name"
-        type="text"
-        placeholder="name"
-        value={itemName}
-        onChange={(e) => setItemName(e.target.value)}
+    <form className={styles.form}>
+      <div className={styles.inputWrapper}>
+        <label>Add to Collection</label>
+        <MultiSelect
+          placeholder="select collection"
+          handleChange={handleCollectionChange}
+          options={collectionOptions}
+        />
+      </div>
+      <div className={styles.inputWrapper}>
+        <label>Add to Collection</label>
+        <MultiSelect
+          placeholder="add tags..."
+          handleChange={handleSelectTags}
+          options={TagOptions}
+        />
+      </div>
+      <div className={styles.inputWrapper}>
+        <label>Item Name</label>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="name"
+          value={itemName}
+          onChange={(e) => setItemName(e.target.value)}
+        />
+      </div>
+      <div className={styles.inputWrapper}>
+        <label>Url *</label>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="url"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+        />
+      </div>
+      <div className={styles.radioWrapper}>
+        <input
+          type="radio"
+          className={styles.radio}
+          onChange={() => setVisibility('public')}
+          name="public"
+          checked={visibility === 'public'}
+        />
+        <label>Public</label>
+      </div>
+      <div className={styles.radioWrapper}>
+        <input
+          type="radio"
+          className={styles.radio}
+          onChange={() => setVisibility('private')}
+          name="private"
+          checked={visibility === 'private'}
+        />
+        <label>Private</label>
+      </div>
+
+      <Button
+        buttonCopy={'Create Item'}
+        onClick={(e: any) => handleSubmit(e)}
       />
-      <input
-        className="url"
-        type="text"
-        placeholder="url"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-      />
-      <input
-        className="description"
-        type="text"
-        placeholder="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <input
-        type="radio"
-        onChange={() => setVisibility('public')}
-        name="public"
-        checked={visibility === 'public'}
-      />{' '}
-      Public
-      <input
-        type="radio"
-        onChange={() => setVisibility('private')}
-        name="private"
-        checked={visibility === 'private'}
-      />{' '}
-      Private
-      <MultiSelect
-        handleChange={handleCollectionChange}
-        options={collectionOptions}
-      />
-      <MultiSelect handleChange={handleSelectTags} options={TagOptions} />
-      <button onClick={(e) => handleSubmit(e)}>Create Item</button>
     </form>
   );
 };

@@ -1,9 +1,11 @@
 @import "../../../styles/_variables.scss";
 .modal {
-  width: 30%;
-  height: 50%;
+  width: 35%;
+  height: min-content;
   font-size: 1rem;
+  padding-bottom: 2em;
   background: $background-color;
+  border-radius: 4px;
   margin: auto;
   position: absolute;
   top: 0;

@@ -56,11 +56,11 @@ const Landing: NextPage = () => {
       </Link>
       <button onClick={handleLogout}>logout</button>
       <CreateCollectionForm />
-      <CreateItemForm
+      <CreateModal
         {...{ email, name, _id }}
         collections={collectionsExist ? collections.data : []}
+        isOpen={true}
       />
-      <CreateModal isOpen={true} />
       {itemsExist &&
         data.data.map((item: any) => {
           console.log('data.data: ', data.data);

@@ -1,0 +1,25 @@
+@import "../../../styles/input.scss";
+@import "../../../styles/_variables.scss";
+@import "../../../styles/breakpoints.scss";
+@import "../../../styles/_radio.scss";
+.form {
+  display: flex;
+  width: 90%;
+  margin: 1em auto 0;
+  flex-direction: column;
+  .inputWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.75em;
+  }
+  .radioWrapper {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.75em;
+  }
+  label {
+    font-size: $heading-5;
+    color: $gray;
+    font-weight: $font-weight-light;
+  }
+}
