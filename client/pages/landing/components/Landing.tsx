@@ -24,17 +24,13 @@ const Landing: NextPage = () => {
   const { data, error, status } = useAllItems();
   if (error) alert('something went wrong loading items');
 
-  // if (!authenticated || !user) {
-  //   return (
-  //     <p onClick={() => Router.push('/auth/components/Login')}>please login</p>
-  //   );
-  // }
+  const openCreateModal = () => setModalIsOpen(true);
   const itemsExist = data && data.data && !!data.data.length;
   const collectionsExist =
     !collectionsError && collections && !!collections.data.length;
   return (
     <div>
-      <Navigation />
+      <Navigation {...{ openCreateModal }} />
       <CreateModal
         {...{ email, name, _id }}
         collections={collectionsExist ? collections.data : []}

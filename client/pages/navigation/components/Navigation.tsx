@@ -4,9 +4,14 @@ import Router from 'next/router';
 import { logOutUser } from '../../auth/api/AuthApi';
 import styles from './Navigation.module.scss';
 
-export const Navigation = () => {
+interface Props {
+  openCreateModal: () => void;
+}
+
+export const Navigation = (props: Props) => {
   const { user, authenticated, token } = useAppContext();
 
+  const { openCreateModal } = props;
   const handleLogout = async () => {
     const response = await logOutUser();
     const JSONResponse = await response.json();
@@ -18,11 +23,18 @@ export const Navigation = () => {
     }
 
     if (!error && status === 'ok' && !data.authenticated) {
-      Router.push('/auth/components/Login');
+      Router.push('/landing/components/Landing');
     }
   };
   return (
     <nav className={styles.navigation}>
+      <button
+        onClick={
+          authenticated ? () => openCreateModal() : () => alert('Log in')
+        }
+      >
+        create
+      </button>
       {user ? (
         <div>
           <Link href={`/profile/${user._id}`}>
