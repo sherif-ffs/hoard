@@ -6,6 +6,7 @@ interface Props {
 }
 const Modal = (props: Props) => {
   const { isOpen, children } = props;
+
   return isOpen ? <div className={styles.modal}>{children}</div> : null;
 };
 
