@@ -9,10 +9,11 @@ import Item from './Item';
 import useCollectionsById from '../../hooks/useCollectionsById';
 import useAllItems from '../../hooks/useAllItems';
 import CreateModal from './CreateModal';
+import { Navigation } from '../../navigation/components/Navigation';
 
 const Landing: NextPage = () => {
   const { user, authenticated, token } = useAppContext();
-  const [modalIsOpen, setModalIsOpen] = useState(true);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const { email, name, _id } = !!user && user;
   const {
     data: collections,
@@ -20,39 +21,20 @@ const Landing: NextPage = () => {
     status: collectionsStatus,
   } = useCollectionsById(_id);
 
-  const handleLogout = async () => {
-    const response = await logOutUser();
-    const JSONResponse = await response.json();
-    const { data, error, status } = JSONResponse;
-
-    if (error) {
-      alert(error);
-      return;
-    }
-
-    if (!error && status === 'ok' && !data.authenticated) {
-      Router.push('/auth/components/Login');
-    }
-  };
-
   const { data, error, status } = useAllItems();
   if (error) alert('something went wrong loading items');
 
-  if (!authenticated || !user) {
-    return (
-      <p onClick={() => Router.push('/auth/components/Login')}>please login</p>
-    );
-  }
+  // if (!authenticated || !user) {
+  //   return (
+  //     <p onClick={() => Router.push('/auth/components/Login')}>please login</p>
+  //   );
+  // }
   const itemsExist = data && data.data && !!data.data.length;
   const collectionsExist =
     !collectionsError && collections && !!collections.data.length;
   return (
-    <section>
-      <p>you are authenticated</p>
-      <Link href={`/profile/${user._id}`}>
-        <p>{user.name}</p>
-      </Link>
-      <button onClick={handleLogout}>logout</button>
+    <div>
+      <Navigation />
       <CreateModal
         {...{ email, name, _id }}
         collections={collectionsExist ? collections.data : []}
@@ -60,10 +42,8 @@ const Landing: NextPage = () => {
       />
       {itemsExist &&
         data.data.map((item: any) => {
-          console.log('data.data: ', data.data);
-          const isMyItem = user._id === item.userId;
+          const isMyItem = user && user._id === item.userId;
           const isPublic = !item.isPrivate;
-          console.log('item: ', item);
           if (isPublic || isMyItem) {
             return (
               <Item
@@ -84,7 +64,7 @@ const Landing: NextPage = () => {
             );
           }
         })}
-    </section>
+    </div>
   );
 };
 

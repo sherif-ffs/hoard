@@ -2,6 +2,8 @@ import React from 'react';
 import { TagInterface } from '../../Interfaces/TagInterface';
 import { deleteItem } from '../api/ItemApi';
 import { API_URL } from '../../constants/ApiEndpoint';
+import Link from 'next/link';
+
 type Props = {
   author: string;
   name: string;
@@ -29,6 +31,7 @@ const Item = (props: Props) => {
     isMyItem,
     collections,
     imageID,
+    userId,
   } = props;
 
   const handleDeleteItem = async () => {
@@ -48,7 +51,9 @@ const Item = (props: Props) => {
         border: '1px solid black',
       }}
     >
-      <p>{author}</p>
+      <Link href={`/profile/${userId}`}>
+        <p>{author}</p>
+      </Link>
       <p>{name}</p>
       <p>{_id}</p>
       <p>{isPrivate}</p>
