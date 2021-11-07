@@ -4,6 +4,7 @@ import { TagOption, TagOptions } from '../../constants/Tags';
 import MultiSelect from '../../components/ui/MultiSelect';
 import Button from '../../components/ui/Button';
 import styles from './CreateContentForm.module.scss';
+import { useAppContext } from '../../components/AppWrapper';
 
 type Props = {
   email: string;
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const CreateItemForm = (props: Props) => {
+  const { setCreateModalIsOpen } = useAppContext();
   const { email, _id, collections } = props;
   const [itemName, setItemName] = useState('');
   const [url, setUrl] = useState('');
@@ -137,10 +139,18 @@ const CreateItemForm = (props: Props) => {
         <label>Private</label>
       </div>
 
-      <Button
-        buttonCopy={'Create Item'}
-        onClick={(e: any) => handleSubmit(e)}
-      />
+      <div className={styles.buttonWrapper}>
+        <div
+          className={styles.closeButton}
+          onClick={() => setCreateModalIsOpen(false)}
+        >
+          <p className={styles.close}>Cancel</p>
+        </div>
+        <Button
+          buttonCopy={'Create Item'}
+          onClick={(e: any) => handleSubmit(e)}
+        />
+      </div>
     </form>
   );
 };

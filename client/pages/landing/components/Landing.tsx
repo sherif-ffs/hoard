@@ -12,8 +12,7 @@ import CreateModal from './CreateModal';
 import { Navigation } from '../../navigation/components/Navigation';
 
 const Landing: NextPage = () => {
-  const { user, authenticated, token } = useAppContext();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { user } = useAppContext();
   const { email, name, _id } = !!user && user;
   const {
     data: collections,
@@ -24,17 +23,15 @@ const Landing: NextPage = () => {
   const { data, error, status } = useAllItems();
   if (error) alert('something went wrong loading items');
 
-  const openCreateModal = () => setModalIsOpen(true);
   const itemsExist = data && data.data && !!data.data.length;
   const collectionsExist =
     !collectionsError && collections && !!collections.data.length;
   return (
     <div>
-      <Navigation {...{ openCreateModal }} />
+      <Navigation />
       <CreateModal
         {...{ email, name, _id }}
         collections={collectionsExist ? collections.data : []}
-        isOpen={modalIsOpen}
       />
       {itemsExist &&
         data.data.map((item: any) => {

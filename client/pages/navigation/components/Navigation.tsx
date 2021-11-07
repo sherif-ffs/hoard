@@ -4,14 +4,9 @@ import Router from 'next/router';
 import { logOutUser } from '../../auth/api/AuthApi';
 import styles from './Navigation.module.scss';
 
-interface Props {
-  openCreateModal: () => void;
-}
+export const Navigation = () => {
+  const { user, authenticated, token, setCreateModalIsOpen } = useAppContext();
 
-export const Navigation = (props: Props) => {
-  const { user, authenticated, token } = useAppContext();
-
-  const { openCreateModal } = props;
   const handleLogout = async () => {
     const response = await logOutUser();
     const JSONResponse = await response.json();
@@ -30,7 +25,9 @@ export const Navigation = (props: Props) => {
     <nav className={styles.navigation}>
       <button
         onClick={
-          authenticated ? () => openCreateModal() : () => alert('Log in')
+          authenticated
+            ? () => setCreateModalIsOpen(true)
+            : () => alert('Log in')
         }
       >
         create
