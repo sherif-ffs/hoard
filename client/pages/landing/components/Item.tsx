@@ -3,6 +3,7 @@ import { TagInterface } from '../../Interfaces/TagInterface';
 import { deleteItem } from '../api/ItemApi';
 import { API_URL } from '../../constants/ApiEndpoint';
 import Link from 'next/link';
+import styles from './Item.module.scss';
 
 type Props = {
   author: string;
@@ -46,21 +47,30 @@ const Item = (props: Props) => {
   };
   console.log(API_URL);
   return (
-    <figure
-      style={{
-        border: '1px solid black',
-      }}
-    >
-      <Link href={`/profile/${userId}`}>
+    <figure className={styles.wrapper}>
+      {/* <Link href={`/profile/${userId}`}>
         <p>{author}</p>
       </Link>
       <p>{name}</p>
       <p>{_id}</p>
       <p>{isPrivate}</p>
-      <p>{likes}</p>
+      <p>{likes}</p> */}
+      {/* <div className={styles.thumbnail}> */}
+      {imageID ? <img src={`${API_URL}/items/images/${imageID}`}></img> : null}
+      <div className={styles.content}>
+        <div className={styles.tags}>
+          {tags &&
+            !!tags.length &&
+            tags.map((tag, idx) => (
+              <li key={idx} className={styles.tag}>
+                {tag}
+              </li>
+            ))}
+        </div>
+      </div>
+      {/* </div> */}
 
-      {imageID && <img src={`${API_URL}/items/images/${imageID}`}></img>}
-      {collections &&
+      {/* {collections &&
         !!collections.length &&
         collections.map((collection) => (
           <li key={collection.id}>collection: {collection.title}</li>
@@ -71,7 +81,7 @@ const Item = (props: Props) => {
       <a href={url} target="_blank">
         {url}{' '}
       </a>
-      {isMyItem && <button onClick={handleDeleteItem}>delete</button>}
+      {isMyItem && <button onClick={handleDeleteItem}>delete</button>} */}
     </figure>
   );
 };

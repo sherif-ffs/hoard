@@ -1,0 +1,8 @@
+@import "../../../styles/input.scss";
+@import "../../../styles/_variables.scss";
+@import "../../../styles/breakpoints.scss";
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  border: 5px solid black;
+}

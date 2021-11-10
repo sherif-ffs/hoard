@@ -10,6 +10,7 @@ import useCollectionsById from '../../hooks/useCollectionsById';
 import useAllItems from '../../hooks/useAllItems';
 import CreateModal from './CreateModal';
 import { Navigation } from '../../navigation/components/Navigation';
+import styles from './Landing.module.scss';
 
 const Landing: NextPage = () => {
   const { user } = useAppContext();
@@ -33,30 +34,32 @@ const Landing: NextPage = () => {
         {...{ email, name, _id }}
         collections={collectionsExist ? collections.data : []}
       />
-      {itemsExist &&
-        data.data.map((item: any) => {
-          const isMyItem = user && user._id === item.userId;
-          const isPublic = !item.isPrivate;
-          if (isPublic || isMyItem) {
-            return (
-              <Item
-                {...{ isMyItem }}
-                key={item._id}
-                author={item.author}
-                name={item.name}
-                _id={item._id}
-                userId={item.userId}
-                collections={item.collections}
-                isPrivate={item.isPrivate}
-                likes={item.likes}
-                tags={item.tags}
-                url={item.url}
-                imageString={item.image}
-                imageID={item.imageID}
-              />
-            );
-          }
-        })}
+      <div className={styles.wrapper}>
+        {itemsExist &&
+          data.data.map((item: any) => {
+            const isMyItem = user && user._id === item.userId;
+            const isPublic = !item.isPrivate;
+            if (isPublic || isMyItem) {
+              return (
+                <Item
+                  {...{ isMyItem }}
+                  key={item._id}
+                  author={item.author}
+                  name={item.name}
+                  _id={item._id}
+                  userId={item.userId}
+                  collections={item.collections}
+                  isPrivate={item.isPrivate}
+                  likes={item.likes}
+                  tags={item.tags}
+                  url={item.url}
+                  imageString={item.image}
+                  imageID={item.imageID}
+                />
+              );
+            }
+          })}
+      </div>
     </div>
   );
 };
