@@ -45,9 +45,8 @@ const Item = (props: Props) => {
     }
     alert(data);
   };
-  console.log(API_URL);
   return (
-    <figure className={styles.wrapper}>
+    <div className={styles.wrapper}>
       {/* <Link href={`/profile/${userId}`}>
         <p>{author}</p>
       </Link>
@@ -57,8 +56,9 @@ const Item = (props: Props) => {
       <p>{likes}</p> */}
       {/* <div className={styles.thumbnail}> */}
       {imageID ? <img src={`${API_URL}/items/images/${imageID}`}></img> : null}
+      <p>{name}</p>
       <div className={styles.content}>
-        <div className={styles.tags}>
+        {/* <div className={styles.tags}>
           {tags &&
             !!tags.length &&
             tags.map((tag, idx) => (
@@ -66,7 +66,8 @@ const Item = (props: Props) => {
                 {tag}
               </li>
             ))}
-        </div>
+        </div> */}
+        {isMyItem && <button onClick={handleDeleteItem}>delete</button>}
       </div>
       {/* </div> */}
 
@@ -82,7 +83,7 @@ const Item = (props: Props) => {
         {url}{' '}
       </a>
       {isMyItem && <button onClick={handleDeleteItem}>delete</button>} */}
-    </figure>
+    </div>
   );
 };
 
