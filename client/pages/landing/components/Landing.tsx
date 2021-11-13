@@ -29,7 +29,6 @@ const Landing: NextPage = () => {
     !collectionsError && collections && !!collections.data.length;
   return (
     <div>
-      <Navigation />
       <CreateModal
         {...{ email, name, _id }}
         collections={collectionsExist ? collections.data : []}

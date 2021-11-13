@@ -1,0 +1,32 @@
+@import "../../styles/_variables.scss";
+.tabs {
+  display: flex;
+  flex-direction: row;
+  width: min-content;
+  gap: 1em;
+  margin: 3em auto;
+  .tab {
+    outline: none;
+    border: none;
+    padding: 0.75em 1em;
+    border-radius: 0.25em;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: $font-weight-normal;
+    color: $gray;
+    font-size: $heading-4;
+    transition: color background-color 400ms;
+    &.active {
+      color: $dark-gray;
+      font-weight: $font-weight-medium;
+      background-color: #e8e8e8;
+      transition: color background-color 400ms;
+    }
+    @media(hover: hover) {
+      &:hover {
+        color: $dark-gray;
+        transition: color 400ms;
+      }
+    }
+  }
+}

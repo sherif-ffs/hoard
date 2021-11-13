@@ -16,7 +16,6 @@ const Collections: NextPage = () => {
 
   return (
     <>
-      <Navigation />
       <section className={styles.collections}>
         {data &&
           data.data &&
