@@ -27,4 +27,16 @@ router.get('/collection', async (req, res) => {
   }
 });
 
+// fetch all collections
 module.exports = router;
+router.get('/collections', async (req, res) => {
+  try {
+    const collections = await Collection.find();
+    if (!collections) {
+      return res.json({ status: 'error', error: 'no collections found' });
+    }
+    res.json({ status: 'ok', data: collections });
+  } catch (error) {
+    return res.json({ status: 'error', error: error });
+  }
+});
