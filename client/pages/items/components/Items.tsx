@@ -25,23 +25,7 @@ const Landing: NextPage = () => {
             const isMyItem = user && user._id === item.userId;
             const isPublic = !item.isPrivate;
             if (isPublic || isMyItem) {
-              return (
-                <Item
-                  {...{ isMyItem }}
-                  key={item._id}
-                  author={item.author}
-                  name={item.name}
-                  _id={item._id}
-                  userId={item.userId}
-                  collections={item.collections}
-                  isPrivate={item.isPrivate}
-                  likes={item.likes}
-                  tags={item.tags}
-                  url={item.url}
-                  imageString={item.image}
-                  imageID={item.imageID}
-                />
-              );
+              return <Item {...{ isMyItem, item }} key={item._id} />;
             }
           })}
       </div>

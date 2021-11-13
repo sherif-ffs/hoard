@@ -4,20 +4,11 @@ import { deleteItem } from '../api/ItemApi';
 import { API_URL } from '../../constants/ApiEndpoint';
 import Link from 'next/link';
 import styles from './Item.module.scss';
+import { ItemInterface } from '../../Interfaces/ItemInterface';
 
 type Props = {
-  author: string;
-  name: string;
-  _id: string;
-  userId: string;
-  collections: Array<{ title: string; value: string }>;
-  isPrivate: string;
-  likes: number;
-  tags: Array<TagInterface>;
-  url: string;
+  item: ItemInterface;
   isMyItem: boolean;
-  imageString: string;
-  imageID: string;
 };
 
 const Item = (props: Props) => {
@@ -29,11 +20,10 @@ const Item = (props: Props) => {
     likes,
     tags,
     url,
-    isMyItem,
     collections,
     imageID,
     userId,
-  } = props;
+  } = props.item;
 
   const handleDeleteItem = async () => {
     const res = await deleteItem(_id);
@@ -67,7 +57,7 @@ const Item = (props: Props) => {
               </li>
             ))}
         </div> */}
-        {isMyItem && <button onClick={handleDeleteItem}>delete</button>}
+        {props.isMyItem && <button onClick={handleDeleteItem}>delete</button>}
       </div>
       {/* </div> */}
 
