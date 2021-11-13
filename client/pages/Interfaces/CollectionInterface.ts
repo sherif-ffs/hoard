@@ -1,4 +1,3 @@
-import { TagInterface } from './TagInterface';
 import { ItemInterface } from './ItemInterface';
 
 export interface CollectionInterface {

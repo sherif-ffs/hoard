@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import express from 'express';
-const router = express.Router();
 import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import User from '../models/user';
 import jwt from 'jsonwebtoken';
+
 const JWT_SECRET = process.env.JWT_SECRET;
+const router = express.Router();
 
 router.post('/logout', (req: any, res) => {
   try {

@@ -1,10 +1,8 @@
 import React from 'react';
-import { TagInterface } from '../../Interfaces/TagInterface';
 import { deleteItem } from '../api/ItemApi';
 import { API_URL } from '../../constants/ApiEndpoint';
-import Link from 'next/link';
-import styles from './Item.module.scss';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
+import styles from './Item.module.scss';
 
 type Props = {
   item: ItemInterface;

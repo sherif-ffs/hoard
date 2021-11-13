@@ -2,12 +2,13 @@
 require('dotenv').config();
 import express = require('express');
 import mongoose, { ConnectOptions } from 'mongoose';
-const cors = require('cors');
 import passport from 'passport';
 import flash from 'express-flash';
 import session from 'express-session';
-const app = express();
 require('./config/passport')(passport);
+
+const cors = require('cors');
+const app = express();
 
 // DB info
 const username = 'selmetwa';

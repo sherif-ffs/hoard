@@ -3,8 +3,9 @@ import Router from 'next/router';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { registerUser } from '../api/AuthApi';
 import Button from '../../components/ui/Button';
+import { registerUser } from '../api/AuthApi';
+
 import styles from './Form.module.scss';
 
 const Signup: NextPage = () => {

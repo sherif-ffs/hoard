@@ -2,11 +2,10 @@ import { useAppContext } from '../../components/AppWrapper';
 import Link from 'next/link';
 import Router from 'next/router';
 import { logOutUser } from '../../auth/api/AuthApi';
-import CreateModal from '../../items/components/CreateModal';
 import styles from './Navigation.module.scss';
 
 export const Navigation = () => {
-  const { user, authenticated, token, setCreateModalIsOpen } = useAppContext();
+  const { user, authenticated, setCreateModalIsOpen } = useAppContext();
 
   const handleLogout = async () => {
     const response = await logOutUser();

@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import express from 'express';
-const router = express.Router();
 import Collection from '../models/collection';
+
+const router = express.Router();
 
 // create collection
 router.post('/create-collection', async (req, res) => {

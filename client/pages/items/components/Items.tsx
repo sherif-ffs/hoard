@@ -2,8 +2,9 @@ import React from 'react';
 import type { NextPage } from 'next';
 
 import { useAppContext } from '../../components/AppWrapper';
-import Item from './Item';
 import useAllItems from '../../hooks/useAllItems';
+import Item from './Item';
+
 import styles from './Items.module.scss';
 
 const Landing: NextPage = () => {

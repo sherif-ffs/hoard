@@ -1,5 +1,4 @@
 import React from 'react';
-import type { NextPage } from 'next';
 
 import loadAllCollections from './hooks/loadAllCollections';
 import CollectionCard from './CollectionCard';

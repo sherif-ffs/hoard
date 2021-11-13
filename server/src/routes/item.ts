@@ -1,14 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import express from 'express';
-const router = express.Router();
+
 import Item from '../models/item';
+
+const router = express.Router();
 const fs = require('fs');
 const utils = require('util');
 const objectId = require('mongodb').ObjectID;
 const { uploadFile, getFileStream } = require('../s3');
 
 const unlinkFile = utils.promisify(fs.unlink);
+
 import {
   scrapeImageFromUrl,
   addItemToCollection,
