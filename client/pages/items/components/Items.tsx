@@ -1,16 +1,13 @@
-import Router from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import type { NextPage } from 'next';
-import Link from 'next/link';
 
-import { logOutUser } from '../../auth/api/AuthApi';
 import { useAppContext } from '../../components/AppWrapper';
 import Item from './Item';
 import useCollectionsById from '../../hooks/useCollectionsById';
+import loadMyCollections from '../../collections/hooks/loadCollectionById';
 import useAllItems from '../../hooks/useAllItems';
 import CreateModal from './CreateModal';
-import { Navigation } from '../../navigation/components/Navigation';
-import styles from './Landing.module.scss';
+import styles from './Items.module.scss';
 
 const Landing: NextPage = () => {
   const { user } = useAppContext();
@@ -19,10 +16,12 @@ const Landing: NextPage = () => {
     data: collections,
     error: collectionsError,
     status: collectionsStatus,
-  } = useCollectionsById(_id);
+  } = loadMyCollections(_id);
 
   const { data, error, status } = useAllItems();
-  if (error) alert('something went wrong loading items');
+  if (error) {
+    return <p>error</p>;
+  }
 
   const itemsExist = data && data.data && !!data.data.length;
   const collectionsExist =

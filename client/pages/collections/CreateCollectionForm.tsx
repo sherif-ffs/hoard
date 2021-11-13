@@ -4,7 +4,7 @@ import { TagOption, TagOptions } from '../constants/Tags';
 import MultiSelect from '../components/ui/MultiSelect';
 import { useAppContext } from '../components/AppWrapper';
 import Button from '../components/ui/Button';
-import styles from '../landing/components/CreateContentForm.module.scss';
+import styles from '../items/components/CreateContentForm.module.scss';
 const CreateCollectionForm = () => {
   const { user } = useAppContext();
   const [name, setName] = useState('');

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Navigation } from '../navigation/components/Navigation';
-import Landing from '../landing/components/Landing';
+import Landing from '../items/components/Items';
 import Collections from '../collections/Collections';
 
 import styles from './Discover.module.scss';

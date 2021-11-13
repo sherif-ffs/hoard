@@ -1,4 +1,4 @@
-import { fetchAllItems } from '../landing/api/ItemApi';
+import { fetchAllItems } from '../items/api/ItemApi';
 import { useQuery } from 'react-query';
 
 const loadAllItems = async () => {

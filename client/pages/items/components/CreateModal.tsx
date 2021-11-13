@@ -3,7 +3,7 @@ import { useAppContext } from '../../components/AppWrapper';
 import Modal from '../../components/ui/Modal';
 import Tabs from '../../components/ui/Tabs';
 import Mask from '../../components/ui/Mask';
-import CreateItemForm from '../components/CreateItemForm';
+import CreateItemForm from './CreateItemForm';
 import CreateCollectionForm from '../../collections/CreateCollectionForm';
 interface Props {
   email: string;

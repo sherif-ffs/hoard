@@ -24,7 +24,7 @@ const Login: NextPage = () => {
       setUser(user);
       setAuthenticated(authenticated);
       setToken(token);
-      Router.push('/landing/components/Landing');
+      Router.push('/discover/Discover');
     }
   };
 

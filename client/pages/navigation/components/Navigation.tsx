@@ -18,7 +18,7 @@ export const Navigation = () => {
     }
 
     if (!error && status === 'ok' && !data.authenticated) {
-      Router.push('/landing/components/Landing');
+      Router.push('/discover/Discover');
     }
   };
   return (
