@@ -5,17 +5,11 @@ import MultiSelect from '../../components/ui/MultiSelect';
 import Button from '../../components/ui/Button';
 import styles from './CreateContentForm.module.scss';
 import { useAppContext } from '../../components/AppWrapper';
+import loadMyCollections from '../../collections/hooks/loadCollectionById';
 
-type Props = {
-  email: string;
-  name: string;
-  _id: string;
-  collections: any;
-};
-
-const CreateItemForm = (props: Props) => {
-  const { setCreateModalIsOpen } = useAppContext();
-  const { email, _id, collections } = props;
+const CreateItemForm = () => {
+  const { setCreateModalIsOpen, user } = useAppContext();
+  const { email, name, _id } = !!user && user;
   const [itemName, setItemName] = useState('');
   const [url, setUrl] = useState('');
   const [description, setDescription] = useState('');
@@ -23,6 +17,13 @@ const CreateItemForm = (props: Props) => {
   const [tags, setTags] = useState<String[]>([]);
   const [collectionOptions, setCollectionOptions] = useState([]);
   const [collectionData, setCollectionData] = useState<Object[]>([]);
+
+  const {
+    data: collections,
+    error: collectionsError,
+    status: collectionsStatus,
+  } = loadMyCollections(_id);
+
   const handleCollectionChange = (
     collections: Array<{ label: string; value: string }>
   ) => {
@@ -38,14 +39,14 @@ const CreateItemForm = (props: Props) => {
   };
 
   useEffect(() => {
-    if (collections && !!collections.length) {
-      const options = collections.map((collection: any) => ({
+    if (collections && collections.data && !!collections.data.length) {
+      const options = collections.data.map((collection: any) => ({
         label: collection.title,
         value: collection._id,
       }));
       setCollectionOptions(options);
     }
-  }, [collections]);
+  }, [collections.data]);
 
   const resetForm = () => {
     setItemName('');
