@@ -23,3 +23,14 @@ export function fetchCollectionsById(userId: string) {
     },
   });
 }
+
+// Fetch all collections
+export function fetchAllCollections() {
+  return fetch('http://localhost:5000/collections/collections', {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
