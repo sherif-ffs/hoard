@@ -1,13 +1,12 @@
 import React from 'react';
-import type { NextPage } from 'next';
 
 import { useAppContext } from '../../components/AppWrapper';
 import useAllItems from '../../hooks/useAllItems';
-import Item from './Item';
+import ItemCard from './ItemCard';
 
 import styles from './Items.module.scss';
 
-const Landing: NextPage = () => {
+const Items = () => {
   const { user } = useAppContext();
 
   const { data, error, status } = useAllItems();
@@ -19,19 +18,17 @@ const Landing: NextPage = () => {
   }
 
   return (
-    <div>
-      <div className={styles.wrapper}>
-        {itemsExist &&
-          data.data.map((item: any) => {
-            const isMyItem = user && user._id === item.userId;
-            const isPublic = !item.isPrivate;
-            if (isPublic || isMyItem) {
-              return <Item {...{ isMyItem, item }} key={item._id} />;
-            }
-          })}
-      </div>
+    <div className={styles.wrapper}>
+      {itemsExist &&
+        data.data.map((item: any) => {
+          const isMyItem = user && user._id === item.userId;
+          const isPublic = !item.isPrivate;
+          if (isPublic || isMyItem) {
+            return <ItemCard {...{ isMyItem, item }} key={item._id} />;
+          }
+        })}
     </div>
   );
 };
 
-export default Landing;
+export default Items;

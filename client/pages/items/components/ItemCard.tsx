@@ -2,7 +2,7 @@ import React from 'react';
 import { deleteItem } from '../api/ItemApi';
 import { API_URL } from '../../constants/ApiEndpoint';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
-import styles from './Item.module.scss';
+import styles from './ItemCard.module.scss';
 
 type Props = {
   item: ItemInterface;
@@ -44,8 +44,8 @@ const Item = (props: Props) => {
       <p>{likes}</p> */}
       {/* <div className={styles.thumbnail}> */}
       {imageID ? <img src={`${API_URL}/items/images/${imageID}`}></img> : null}
-      <p>{name}</p>
       <div className={styles.content}>
+        <h1>{name}</h1>
         {/* <div className={styles.tags}>
           {tags &&
             !!tags.length &&

@@ -14,7 +14,7 @@ const Collections = () => {
 
   return (
     <>
-      <section className={styles.collections}>
+      <div className={styles.collections}>
         {data &&
           data.data &&
           !!data.data.length &&
@@ -23,7 +23,7 @@ const Collections = () => {
               <CollectionCard title={d.title} items={d.items} key={d._id} />
             );
           })}
-      </section>
+      </div>
     </>
   );
 };
