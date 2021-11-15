@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { deleteItem } from '../api/ItemApi';
 import { API_URL } from '../../constants/ApiEndpoint';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
+import CollectionsPanel from '../../collections/CollectionsPanel';
+
 import styles from './ItemCard.module.scss';
 
 type Props = {
   item: ItemInterface;
   isMyItem: boolean;
+  openCollectionsPanel: () => void;
 };
 
 const Item = (props: Props) => {
@@ -23,6 +26,12 @@ const Item = (props: Props) => {
     userId,
   } = props.item;
 
+  const [collectionsPanelIsOpen, setCollectionsPanelIsOpen] = useState(false);
+
+  const closeCollectionsPanel = () => {
+    setCollectionsPanelIsOpen(false);
+  };
+
   const handleDeleteItem = async () => {
     const res = await deleteItem(_id);
     const response = await res.json();
@@ -35,18 +44,13 @@ const Item = (props: Props) => {
   };
   return (
     <div className={styles.wrapper}>
-      {/* <Link href={`/profile/${userId}`}>
-        <p>{author}</p>
-      </Link>
-      <p>{name}</p>
-      <p>{_id}</p>
-      <p>{isPrivate}</p>
-      <p>{likes}</p> */}
-      {/* <div className={styles.thumbnail}> */}
-      {imageID ? <img src={`${API_URL}/items/images/${imageID}`}></img> : null}
+      {imageID ? (
+        <img src={`${API_URL}/items/images/${imageID}`} loading="lazy"></img>
+      ) : null}
       <div className={styles.content}>
         <h1>{name}</h1>
-        {/* <div className={styles.tags}>
+        <button onClick={() => setCollectionsPanelIsOpen(true)}>Save</button>
+        <div className={styles.tags}>
           {tags &&
             !!tags.length &&
             tags.map((tag, idx) => (
@@ -54,23 +58,14 @@ const Item = (props: Props) => {
                 {tag}
               </li>
             ))}
-        </div> */}
+        </div>
         {props.isMyItem && <button onClick={handleDeleteItem}>delete</button>}
       </div>
-      {/* </div> */}
-
-      {/* {collections &&
-        !!collections.length &&
-        collections.map((collection) => (
-          <li key={collection.id}>collection: {collection.title}</li>
-        ))}
-      {tags &&
-        !!tags.length &&
-        tags.map((tag, idx) => <li key={idx}>{tag}</li>)}
-      <a href={url} target="_blank">
-        {url}{' '}
-      </a>
-      {isMyItem && <button onClick={handleDeleteItem}>delete</button>} */}
+      <CollectionsPanel
+        isOpen={collectionsPanelIsOpen}
+        item={props.item}
+        {...{ closeCollectionsPanel }}
+      />
     </div>
   );
 };

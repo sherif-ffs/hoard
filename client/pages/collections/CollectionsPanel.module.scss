@@ -1,0 +1,26 @@
+.panel {
+  padding: 1em 0;
+  transform: translateY(100%);
+  width: 100%;
+  background-color: blue;
+  color: white;
+  overflow: visible;
+  display: inline-flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  transition: transform 400ms;
+  &.open {
+    transform: translateY(0);
+  }
+  .content {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    button {
+      padding: 0;
+    }
+  }
+}

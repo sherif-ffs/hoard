@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { checkUserAuthentication } from '../auth/api/AuthApi';
+import loadAllCollections from '../collections/hooks/loadAllCollections'
 
 const AppContext = createContext();
 
@@ -12,6 +13,9 @@ export function AppWrapper({ children }) {
   const [authenticated, setAuthenticated] = useState();
   const [token, setToken] = useState();
   const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
+  const [collections, setCollections] = useState([]);
+
+  const { data, status, error } = loadAllCollections();
 
   const checkAuth = async() => {
     const response = await checkUserAuthentication();
@@ -24,12 +28,23 @@ export function AppWrapper({ children }) {
   };
 
   useEffect(() => {
+    if (error) {
+      alert('something went wrong')
+    }
+
+    const collecionsExist = data && data.data && !!data.data.length;
+    if (collecionsExist) {
+      setCollections(data.data)
+    }
+  }, [data, status, error]);
+
+  useEffect(() => {
     checkAuth();
   }, []);
 
   return ( <
     AppContext.Provider value = {
-      { user, setUser, token, setToken, authenticated, setAuthenticated, createModalIsOpen, setCreateModalIsOpen }
+      { user, setUser, token, setToken, authenticated, setAuthenticated, createModalIsOpen, setCreateModalIsOpen, collections }
     } > { children } <
     /AppContext.Provider>
   );

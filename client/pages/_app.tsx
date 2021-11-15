@@ -4,11 +4,11 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import '../styles/global.css';
 const queryClient = new QueryClient();
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <AppWrapper>
-    <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <AppWrapper>
       <Component {...pageProps} />
-    </QueryClientProvider>
-  </AppWrapper>
+    </AppWrapper>
+  </QueryClientProvider>
 );
 
 export default MyApp;
