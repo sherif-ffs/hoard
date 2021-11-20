@@ -15,7 +15,7 @@ const unlinkFile = utils.promisify(fs.unlink);
 import {
   scrapeImageFromUrl,
   addItemToCollection,
-  removeItemFromCollection,
+  removeItemFromAllCollections,
 } from '../utils';
 
 router.get('/images/:id', (req, res: any) => {
@@ -62,7 +62,7 @@ router.post('/delete-item', async (req, res) => {
   const id = req.body.id;
   try {
     const itemToDelete = await Item.find({ _id: id });
-    removeItemFromCollection(itemToDelete, id);
+    removeItemFromAllCollections(itemToDelete, id);
     const result = await Item.deleteOne({ _id: new objectId(id) });
     console.log('result: ', result);
     res.json({ status: 'ok', data: 'item deleted successfully' });

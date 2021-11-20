@@ -49,11 +49,27 @@ export const addItemToCollection = async (
   });
 };
 
-export const removeItemFromCollection = async (itemToDelete: any, id: any) => {
+// remove item from single collection
+export const removeItemFromCollection = async (
+  itemId: string,
+  collectionId: string
+) => {
+  const res = await Collection.updateOne(
+    {
+      _id: new objectId(collectionId),
+    },
+    { $pull: { items: { _id: new objectId(itemId) } } }
+  );
+};
+// remove item for all collections
+export const removeItemFromAllCollections = async (
+  itemToDelete: any,
+  id: any
+) => {
   const { collections } = itemToDelete[0];
   if (collections && !!collections.length) {
     const collectionIds = collections.map((c) => c.id.toString());
-    collectionIds.forEach(async (collectionId) => {
+    collectionIds.forEach(async (collectionId: string) => {
       const res = await Collection.updateOne(
         {
           _id: new objectId(collectionId),
