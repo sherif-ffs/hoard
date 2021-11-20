@@ -16,7 +16,6 @@ const CollectionsPanel = (props: Props) => {
   const { collections } = useAppContext();
 
   const toggle = (collectionId: string, includes: boolean) => {
-    console.log('includes: ', includes);
     includes
       ? removeItemFromCollection(collectionId)
       : addItemToCollection(collectionId);
@@ -28,7 +27,7 @@ const CollectionsPanel = (props: Props) => {
     console.log('data: ', data);
     const { status } = data;
     if (status === 'ok') {
-      // were good
+      closeCollectionsPanel();
       return;
     } else {
       // handle error
@@ -36,20 +35,19 @@ const CollectionsPanel = (props: Props) => {
   };
 
   const removeItemFromCollection = async (collectionId: string) => {
-    const res = await remove(item._id, collectionId);
+    const res = await remove(item, collectionId);
     const data = await res.json();
     console.log('data: ', data);
     const { status } = data;
     if (status === 'ok') {
-      // were good
+      closeCollectionsPanel();
       return;
     } else {
       alert('something went wrong');
       // handle error
     }
   };
-  // console.log('collections: ', collections);
-  // console.log('item: ', item);
+
   return (
     <div className={classNames(styles.panel, { [styles.open]: isOpen })}>
       <div className={styles.content}>

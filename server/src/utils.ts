@@ -51,15 +51,16 @@ export const addItemToCollection = async (
 
 // remove item from single collection
 export const removeItemFromCollection = async (
-  itemId: string,
+  item: any,
   collectionId: string
 ) => {
   const res = await Collection.updateOne(
     {
       _id: new objectId(collectionId),
     },
-    { $pull: { items: { _id: new objectId(itemId) } } }
+    { $pull: { items: item } }
   );
+  console.log('res: ', res);
 };
 // remove item for all collections
 export const removeItemFromAllCollections = async (

@@ -53,7 +53,10 @@ export function addItemToCollection(id: string, item: ItemInterface) {
 }
 
 // remove item from collection
-export function removeItemFromCollection(itemId: string, collectionId: string) {
+export function removeItemFromCollection(
+  item: ItemInterface,
+  collectionId: string
+) {
   return fetch(
     'http://localhost:5000/collections/remove-item-from-collection',
     {
@@ -63,7 +66,7 @@ export function removeItemFromCollection(itemId: string, collectionId: string) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        itemId,
+        item,
         collectionId,
       }),
     }

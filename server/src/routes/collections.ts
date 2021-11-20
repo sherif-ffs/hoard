@@ -57,10 +57,10 @@ router.post('/add-item-to-collection', async (req, res) => {
 
 router.post('/remove-item-from-collection', async (req, res) => {
   const collectionId = req.body.collectionId;
-  const itemId = req.body.itemId;
+  const item = req.body.item;
 
   try {
-    removeItemFromCollection(itemId, collectionId);
+    removeItemFromCollection(item, collectionId);
     res.json({ status: 'ok', data: 'item removed' });
   } catch (error) {
     return res.json({ status: 'error', error: error });
