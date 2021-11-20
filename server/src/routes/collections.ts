@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import express from 'express';
 import Collection from '../models/collection';
+import { addItemToCollection, removeItemFromCollection } from '../utils';
+const objectId = require('mongodb').ObjectID;
 
 const router = express.Router();
 
@@ -29,7 +31,6 @@ router.get('/collection', async (req, res) => {
 });
 
 // fetch all collections
-module.exports = router;
 router.get('/collections', async (req, res) => {
   try {
     const collections = await Collection.find();
@@ -41,3 +42,17 @@ router.get('/collections', async (req, res) => {
     return res.json({ status: 'error', error: error });
   }
 });
+
+// add item to collection
+router.post('/add-item-to-collection', async (req, res) => {
+  const id = req.body.id;
+  const item = req.body.item;
+  try {
+    addItemToCollection([id], item);
+    res.json({ status: 'ok', data: item });
+  } catch (error) {
+    return res.json({ status: 'error', error: error });
+  }
+});
+
+module.exports = router;

@@ -1,4 +1,6 @@
 import { CollectionInterface } from '../../Interfaces/CollectionInterface';
+import { ItemInterface } from '../../Interfaces/ItemInterface';
+
 // Create collection
 export function createCollection(collection: CollectionInterface) {
   return fetch('http://localhost:5000/collections/create-collection', {
@@ -32,5 +34,20 @@ export function fetchAllCollections() {
     headers: {
       'Content-Type': 'application/json',
     },
+  });
+}
+
+// add item to collection
+export function addItemToCollection(id: string, item: ItemInterface) {
+  return fetch('http://localhost:5000/collections/add-item-to-collection', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+      item,
+    }),
   });
 }
