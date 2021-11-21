@@ -14,7 +14,6 @@ export function AppWrapper({ children }) {
   const [authenticated, setAuthenticated] = useState();
   const [token, setToken] = useState();
   const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
-  // const [myCollections, setMyCollections] = useState([]);
 
   const checkAuth = async() => {
     const response = await checkUserAuthentication();
@@ -29,29 +28,11 @@ export function AppWrapper({ children }) {
     checkAuth();
   }, []);
 
-  // my collections 
-  // if (user) {}
   const userId = user && user._id;
-  // console.log('userId: ', userId);
-  // if (userId) {
-  //   const myCollections = loadMyCollections(userId);
-  //   console.log('myCollections: ', myCollections);
-  // }
   const myCollections = loadMyCollections(userId);
   console.log('myCollections: ', myCollections);
-  // const myCollections = loadMyCollections(userId);
-
-  // useEffect(() => {
-  //   const myCollections = loadMyCollections(userId);
-  //   setMyCollections(myCollections);
-  // }, [userId]);
-
-  // console.log('myCollections: ', myCollections);
 
   const allCollections = loadAllCollections();
-  // console.log('allCollections: ', allCollections);
-
-
 
   return ( <
     AppContext.Provider value = {
