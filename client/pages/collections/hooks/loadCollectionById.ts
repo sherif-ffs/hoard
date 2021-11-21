@@ -17,7 +17,7 @@ export default function loadMyCollections(id: string) {
   );
 
   if (error) {
-    alert('something went wrong');
+    console.error('error: ', error);
     return error;
   }
 

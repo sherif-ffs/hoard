@@ -44,8 +44,7 @@ const CreateCollectionForm = () => {
       resetForm();
       return;
     }
-
-    alert('Something went wrong');
+    console.error('error');
     return;
   };
 

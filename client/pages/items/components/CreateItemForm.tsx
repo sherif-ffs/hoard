@@ -78,7 +78,8 @@ const CreateItemForm = () => {
       return;
     }
 
-    alert('Something went wrong');
+    // alert('Something went wrong');
+    console.error('error');
     return;
   };
   return (

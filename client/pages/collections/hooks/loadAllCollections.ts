@@ -12,7 +12,8 @@ export default function loadAllCollections() {
   );
 
   if (error) {
-    alert('something went wrong');
+    console.error('error', error);
+    // alert('something went wrong');
     return error;
   }
 
