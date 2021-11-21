@@ -20,7 +20,9 @@
 - [x] create collections from browser
 - [x] upload images to S3
 - [x] read images from S3
-- [ ] return all collections
+- [x] return all collections
+- [x] add item to collection from panel
+- [x] remove item from collection from panel
 
 # Client
 
@@ -44,5 +46,9 @@
 - [ ] collections not refetching on logout
 - [x] create collections from browser
 - [x] read images from S3
+- [x] render view for collections
+- [ ] fake like on panel
+- [ ] clean up data design for collections
+- [ ] style collections panel
+- [ ] restyle form
 - [ ] make design?
-- [ ] render view for collections

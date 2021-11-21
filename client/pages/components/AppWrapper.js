@@ -32,8 +32,8 @@ export function AppWrapper({ children }) {
       alert('something went wrong')
     }
 
-    const collecionsExist = data && data.data && !!data.data.length;
-    if (collecionsExist) {
+    const collectionsExist = data && data.data && !!data.data.length;
+    if (collectionsExist) {
       setCollections(data.data)
     }
   }, [data, status, error]);

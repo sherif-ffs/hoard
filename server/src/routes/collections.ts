@@ -3,7 +3,6 @@
 import express from 'express';
 import Collection from '../models/collection';
 import { addItemToCollection, removeItemFromCollection } from '../utils';
-const objectId = require('mongodb').ObjectID;
 
 const router = express.Router();
 

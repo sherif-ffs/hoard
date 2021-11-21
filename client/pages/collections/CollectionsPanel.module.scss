@@ -1,11 +1,12 @@
+@import "../../styles/variables";
 .panel {
   padding: 1em 0;
   transform: translateY(100%);
   width: 100%;
-  background-color: blue;
-  color: white;
+  background-color: $color-blue;
+  color: $color-white;
   overflow: visible;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   position: fixed;
   bottom: 0;
@@ -17,8 +18,33 @@
   }
   .content {
     display: flex;
+    margin: auto 0 auto 1em;
     flex-direction: row;
-    gap: 1em;
+    align-items: center;
+    overflow-x: scroll;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+    .pill {
+      margin: 0 0.5em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 0.75em 1em;
+      background: transparent;
+      color: $color-white;
+      white-space: nowrap;
+      font-weight: 600;
+      border: 1px solid rgba(#fff, 0.5);
+      border-radius: 2.5em;
+      &.selected {
+        background: $color-white;
+        color: $color-blue;
+        .check {
+          fill: $color-blue;
+          border: 1px solid red;
+        }
+      }
+    }
     button {
       padding: 0;
     }
