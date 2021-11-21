@@ -7,5 +7,21 @@ const fetchCollections = async () => {
 };
 
 export default function loadAllCollections() {
-  return useQuery('collections', () => fetchCollections());
+  const { data, status, error } = useQuery('allCollections', () =>
+    fetchCollections()
+  );
+
+  if (error) {
+    alert('something went wrong');
+    return error;
+  }
+
+  if (status === 'loading') {
+    return 'loading';
+  }
+
+  const collectionsExist = data && data.data && !!data.data.length;
+  if (collectionsExist) {
+    return data.data;
+  }
 }

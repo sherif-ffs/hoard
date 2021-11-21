@@ -15,8 +15,7 @@ interface Props {
 }
 const CollectionsPanel = (props: Props) => {
   const { isOpen, closeCollectionsPanel, item } = props;
-  const { collections } = useAppContext();
-
+  const { myCollections } = useAppContext();
   const toggle = (collectionId: string, includes: boolean) => {
     includes
       ? removeItemFromCollection(collectionId)
@@ -50,39 +49,47 @@ const CollectionsPanel = (props: Props) => {
     }
   };
 
+  console.log('myCollections: ', myCollections);
+
+  if (myCollections === 'loading') {
+    return <p>loading</p>;
+  }
+
   return (
     <div className={classNames(styles.panel, { [styles.open]: isOpen })}>
       <div className={styles.content}>
         <p>Save to:</p>
-        {collections.map((collection: any) => {
-          const itemId = item && item._id;
-          const collectionItemIds =
-            collection &&
-            collection.items &&
-            collection.items.map((c: any) => c._id);
+        {myCollections &&
+          !!myCollections.length &&
+          myCollections.map((collection: any) => {
+            const itemId = item && item._id;
+            const collectionItemIds =
+              collection &&
+              collection.items &&
+              collection.items.map((c: any) => c._id);
 
-          const includes =
-            collectionItemIds && collectionItemIds.includes(itemId);
-          return (
-            <button
-              className={classNames(styles.pill, {
-                [styles.selected]: includes,
-              })}
-              key={collection._id}
-              onClick={() => toggle(collection._id, includes)}
-            >
-              {includes && (
-                <Image
-                  src={checkIcon}
-                  height="20"
-                  width="20"
-                  className={styles.check}
-                />
-              )}
-              <span>{collection.title}</span>
-            </button>
-          );
-        })}
+            const includes =
+              collectionItemIds && collectionItemIds.includes(itemId);
+            return (
+              <button
+                className={classNames(styles.pill, {
+                  [styles.selected]: includes,
+                })}
+                key={collection._id}
+                onClick={() => toggle(collection._id, includes)}
+              >
+                {includes && (
+                  <Image
+                    src={checkIcon}
+                    height="20"
+                    width="20"
+                    className={styles.check}
+                  />
+                )}
+                <span>{collection.title}</span>
+              </button>
+            );
+          })}
         <button onClick={() => closeCollectionsPanel()}>close</button>
       </div>
     </div>

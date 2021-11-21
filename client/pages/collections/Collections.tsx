@@ -6,14 +6,21 @@ import CollectionCard from './CollectionCard';
 import styles from './Collections.module.scss';
 
 const Collections = () => {
-  const { collections } = useAppContext();
+  const { allCollections } = useAppContext();
+
+  if (allCollections === 'loading') {
+    return <p>loading</p>;
+  }
 
   return (
     <>
       <div className={styles.collections}>
-        {collections.map((d: any) => {
-          return <CollectionCard title={d.title} items={d.items} key={d._id} />;
-        })}
+        {allCollections &&
+          allCollections.map((d: any) => {
+            return (
+              <CollectionCard title={d.title} items={d.items} key={d._id} />
+            );
+          })}
       </div>
     </>
   );

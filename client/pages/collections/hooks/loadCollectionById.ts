@@ -7,5 +7,26 @@ const getCollectionsById = async (id: string) => {
 };
 
 export default function loadMyCollections(id: string) {
-  return useQuery('collections', () => getCollectionsById(id));
+  const { data, status, error } = useQuery(
+    'myCollections',
+    () => getCollectionsById(id),
+    {
+      refetchOnWindowFocus: false,
+      enabled: !!id,
+    }
+  );
+
+  if (error) {
+    alert('something went wrong');
+    return error;
+  }
+
+  if (status === 'loading') {
+    return 'loading';
+  }
+
+  const collectionsExist = data && data.data && !!data.data.length;
+  if (collectionsExist) {
+    return data.data;
+  }
 }
