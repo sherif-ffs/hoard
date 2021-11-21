@@ -4,8 +4,9 @@ import {
   addItemToCollection as add,
   removeItemFromCollection as remove,
 } from './api/CollectionsApi';
-import checkIcon from '../components/ui/icons/check.svg';
-import Image from 'next/image';
+
+import CheckSVG from '../components/ui/icons/CheckSVG';
+import CloseSVG from '../components/ui/icons/CloseSVG';
 import styles from './CollectionsPanel.module.scss';
 
 interface Props {
@@ -58,7 +59,7 @@ const CollectionsPanel = (props: Props) => {
   return (
     <div className={classNames(styles.panel, { [styles.open]: isOpen })}>
       <div className={styles.content}>
-        <p>Save to:</p>
+        <p className={styles.saveTo}>Save to:</p>
         {myCollections &&
           !!myCollections.length &&
           myCollections.map((collection: any) => {
@@ -79,18 +80,18 @@ const CollectionsPanel = (props: Props) => {
                 onClick={() => toggle(collection._id, includes)}
               >
                 {includes && (
-                  <Image
-                    src={checkIcon}
-                    height="20"
-                    width="20"
-                    className={styles.check}
-                  />
+                  <CheckSVG color="blue" height={'1.5em'} width={'1.5em'} />
                 )}
                 <span>{collection.title}</span>
               </button>
             );
           })}
-        <button onClick={() => closeCollectionsPanel()}>close</button>
+        <button
+          onClick={() => closeCollectionsPanel()}
+          className={styles.close}
+        >
+          <CloseSVG color="#f5f5f5" height={24} width={24} />
+        </button>
       </div>
     </div>
   );

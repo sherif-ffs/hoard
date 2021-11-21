@@ -11,7 +11,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 999;
+  z-index: 50;
   transition: transform 400ms;
   &.open {
     transform: translateY(0);
@@ -24,6 +24,17 @@
     overflow-x: scroll;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      background: transparent;
+      height: 0px;
+      /* Chrome/Safari/Webkit */
+      width: 0px;
+    }
+    .saveTo {
+      opacity: 0.7;
+      white-space: nowrap;
+      margin-right: 0.5em;
+    }
     .pill {
       margin: 0 0.5em;
       cursor: pointer;
@@ -39,14 +50,22 @@
       &.selected {
         background: $color-white;
         color: $color-blue;
-        .check {
-          fill: $color-blue;
-          border: 1px solid red;
-        }
       }
     }
     button {
       padding: 0;
+      border: none;
+    }
+    .close {
+      margin: 0 1em;
+      padding: 0.875em;
+      background: #2737c5;
+      cursor: pointer;
+      border-radius: 50%;
+      .closeIcon {
+        color: rgba($color-white, 0.7);
+        display: block;
+      }
     }
   }
 }
