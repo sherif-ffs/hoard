@@ -1,17 +1,13 @@
+@import "../styles/variables";
 .input {
   padding: 1em;
   margin: 6px 0 6px;
-  border-radius: 2px;
+  border-radius: 0.5em;
   outline: none;
-  background-color: #fafafa;
-  border: 2px solid #e8e8e8;
-  transition: border 400ms;
+  background-color: transparent;
+  border: 1px solid $light-gray;
+  transition: border 200ms;
   &:focus {
-    border: 2px solid rgba(27, 136, 129, .8);
-    transition: border 400ms;
-  }
-  &:hover {
-    border: 2px solid rgba(27, 136, 129, .5);
-    transition: border 400ms;
+    border: 1px solid $color-blue;
   }
 }

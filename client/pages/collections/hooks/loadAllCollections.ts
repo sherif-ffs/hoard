@@ -13,7 +13,6 @@ export default function loadAllCollections() {
 
   if (error) {
     console.error('error', error);
-    // alert('something went wrong');
     return error;
   }
 

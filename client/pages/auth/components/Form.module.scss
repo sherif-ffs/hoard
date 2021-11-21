@@ -18,6 +18,7 @@
   flex-direction: column;
   background-color: $foreground-color;
   box-shadow: $box-shadow;
+  font-family: $font-sans-serif;
   @media all and (max-width: 480px) {
     width: 90%;
   }
@@ -45,7 +46,7 @@
   p {
     color: $gray;
     a {
-      color: $brand;
+      color: $color-blue;
       font-weight: $font-weight-bold;
     }
   }
