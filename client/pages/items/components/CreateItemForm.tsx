@@ -8,7 +8,7 @@ import { useAppContext } from '../../components/AppWrapper';
 import loadMyCollections from '../../collections/hooks/loadCollectionById';
 
 const CreateItemForm = () => {
-  const { setCreateModalIsOpen, user } = useAppContext();
+  const { setCreateModalIsOpen, user, myCollections } = useAppContext();
   const { email, name, _id } = !!user && user;
   const [itemName, setItemName] = useState('');
   const [url, setUrl] = useState('');
@@ -39,14 +39,14 @@ const CreateItemForm = () => {
   };
 
   useEffect(() => {
-    if (collections && collections.data && !!collections.data.length) {
-      const options = collections.data.map((collection: any) => ({
+    if (myCollections && !!myCollections.length) {
+      const options = myCollections.map((collection: any) => ({
         label: collection.title,
         value: collection._id,
       }));
       setCollectionOptions(options);
     }
-  }, [collections.data]);
+  }, [myCollections]);
 
   const resetForm = () => {
     setItemName('');
