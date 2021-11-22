@@ -18,7 +18,12 @@ const Collections = () => {
         {allCollections &&
           allCollections.map((d: any) => {
             return (
-              <CollectionCard title={d.title} items={d.items} key={d._id} />
+              <CollectionCard
+                id={d._id}
+                title={d.title}
+                items={d.items}
+                key={d._id}
+              />
             );
           })}
       </div>

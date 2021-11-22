@@ -26,6 +26,20 @@ export function fetchCollectionsById(userId: string) {
   });
 }
 
+// fetch collection by collection ID
+export function fetchCollectionByCollectionID(id: string) {
+  return fetch(
+    `http://localhost:5000/collections/collection-by-collection-id?id=${id}`,
+    {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+}
+
 // Fetch all collections
 export function fetchAllCollections() {
   return fetch('http://localhost:5000/collections/collections', {
