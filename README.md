@@ -23,6 +23,7 @@
 - [x] return all collections
 - [x] add item to collection from panel
 - [x] remove item from collection from panel
+- [x] scrape title/details of URL
 
 # Client
 
@@ -47,8 +48,8 @@
 - [x] create collections from browser
 - [x] read images from S3
 - [x] render view for collections
-- [ ] fake like on panel
-- [ ] clean up data design for collections
-- [ ] style collections panel
-- [ ] restyle form
+- [x] fake like on panel
+- [x] clean up data design for collections
+- [x] style collections panel
+- [x] restyle form
 - [ ] make design?

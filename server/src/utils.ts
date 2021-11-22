@@ -27,10 +27,17 @@ export const scrapeImageFromUrl = async (url: string) => {
     path: loc,
   });
 
+  // get page title
+  const pageTitle = await page.title();
+  console.log('pageTitle: ', pageTitle);
   // close the browser
   await browser.close();
   console.log(`✅ - (${url})`);
-  return ImageID;
+  return {
+    ImageID: ImageID,
+    pageTitle: pageTitle,
+  };
+  // return ImageID;
 };
 
 // Add Item To Collection

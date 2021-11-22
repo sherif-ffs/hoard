@@ -20,7 +20,6 @@ import {
 
 router.get('/images/:id', (req, res: any) => {
   const ImageID = req.params.id;
-  console.log('imageId: ', ImageID);
   const readStream = getFileStream(ImageID);
 
   readStream.pipe(res);
@@ -29,22 +28,20 @@ router.get('/images/:id', (req, res: any) => {
 // Create Item
 router.post('/create-item', async (req, res) => {
   const { item } = req.body;
-  console.log('item: ', item);
   let realItem;
-  scrapeImageFromUrl(item.url).then(async (ImageID) => {
-    const rezzy = await uploadFile(`./screenshots/${ImageID}.png`);
+  scrapeImageFromUrl(item.url).then(async (response) => {
+    const { ImageID, pageTitle } = response;
+    await uploadFile(`./screenshots/${ImageID}.png`);
     await unlinkFile(`./screenshots/${ImageID}.png`);
-    console.log('rezzy: ', rezzy);
+    item.name = pageTitle;
     realItem = {
       ...item,
-      // image: base64str,
       imageID: ImageID,
     };
     try {
       const newItem = await Item.create(realItem);
 
       const { collections } = newItem;
-      console.log('newItem: ', newItem);
       if (collections && !!collections.length) {
         const collectionIds = collections.map((c) => c.id);
         addItemToCollection(collectionIds, newItem);
@@ -63,8 +60,7 @@ router.post('/delete-item', async (req, res) => {
   try {
     const itemToDelete = await Item.find({ _id: id });
     removeItemFromAllCollections(itemToDelete, id);
-    const result = await Item.deleteOne({ _id: new objectId(id) });
-    console.log('result: ', result);
+    await Item.deleteOne({ _id: new objectId(id) });
     res.json({ status: 'ok', data: 'item deleted successfully' });
   } catch (error: any) {
     res.json({ status: 'error', error: error.message });
@@ -74,12 +70,13 @@ router.post('/delete-item', async (req, res) => {
 
 // Fetch all Items
 router.get('/items', async (req, res) => {
+  const limit = Number(req.query.limit);
   try {
-    const allItems = await Item.find();
-    if (!allItems) {
+    const items = await Item.find().limit(limit);
+    if (!items) {
       return res.json({ status: 'error', error: 'no items found' });
     }
-    res.json({ status: 'ok', data: allItems });
+    res.json({ status: 'ok', data: items });
   } catch (error) {
     return res.json({ status: 'error', error: error });
   }
