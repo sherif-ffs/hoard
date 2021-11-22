@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { createItem } from '../api/ItemApi';
+
 import { TagOption, TagOptions } from '../../constants/Tags';
 import MultiSelect from '../../components/ui/MultiSelect';
 import Button from '../../components/ui/Button';
-import styles from './CreateContentForm.module.scss';
 import { useAppContext } from '../../components/AppWrapper';
-import loadMyCollections from '../../collections/hooks/loadCollectionById';
+import { createItem } from '../api/ItemApi';
+
+import styles from './CreateContentForm.module.scss';
 
 const CreateItemForm = () => {
   const { setCreateModalIsOpen, user, myCollections } = useAppContext();
   const { email, name, _id } = !!user && user;
-  const [itemName, setItemName] = useState('');
   const [url, setUrl] = useState('');
   const [description, setDescription] = useState('');
   const [visibility, setVisibility] = useState('public');
   const [tags, setTags] = useState<String[]>([]);
   const [collectionOptions, setCollectionOptions] = useState([]);
   const [collectionData, setCollectionData] = useState<Object[]>([]);
-
-  const {
-    data: collections,
-    error: collectionsError,
-    status: collectionsStatus,
-  } = loadMyCollections(_id);
 
   const handleCollectionChange = (
     collections: Array<{ label: string; value: string }>
@@ -49,7 +43,6 @@ const CreateItemForm = () => {
   }, [myCollections]);
 
   const resetForm = () => {
-    setItemName('');
     setUrl('');
     setDescription('');
     setTags([]);
@@ -59,7 +52,7 @@ const CreateItemForm = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const item = {
-      name: itemName,
+      name: '',
       author: email,
       userId: _id,
       description,
@@ -85,32 +78,6 @@ const CreateItemForm = () => {
   return (
     <form className={styles.form}>
       <div className={styles.inputWrapper}>
-        <label>Add to Collection</label>
-        <MultiSelect
-          placeholder="select collection"
-          handleChange={handleCollectionChange}
-          options={collectionOptions}
-        />
-      </div>
-      <div className={styles.inputWrapper}>
-        <label>Add to Collection</label>
-        <MultiSelect
-          placeholder="add tags..."
-          handleChange={handleSelectTags}
-          options={TagOptions}
-        />
-      </div>
-      <div className={styles.inputWrapper}>
-        <label>Item Name</label>
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="name"
-          value={itemName}
-          onChange={(e) => setItemName(e.target.value)}
-        />
-      </div>
-      <div className={styles.inputWrapper}>
         <label>Url *</label>
         <input
           className={styles.input}
@@ -120,6 +87,23 @@ const CreateItemForm = () => {
           onChange={(e) => setUrl(e.target.value)}
         />
       </div>
+      <div className={styles.inputWrapper}>
+        <label>Add to Collection</label>
+        <MultiSelect
+          placeholder="select collection"
+          handleChange={handleCollectionChange}
+          options={collectionOptions}
+        />
+      </div>
+      <div className={styles.inputWrapper}>
+        <label>Add Tags</label>
+        <MultiSelect
+          placeholder="add tags..."
+          handleChange={handleSelectTags}
+          options={TagOptions}
+        />
+      </div>
+
       <div className={styles.radioWrapper}>
         <input
           type="radio"

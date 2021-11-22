@@ -57,7 +57,7 @@ const Item = (props: Props) => {
             <SaveSVG height={27} width={27} color="#050505" />
           </button>
         </div>
-        <div className={styles.tags}>
+        {/* <div className={styles.tags}>
           {tags &&
             !!tags.length &&
             tags.map((tag, idx) => (
@@ -65,7 +65,7 @@ const Item = (props: Props) => {
                 {tag}
               </li>
             ))}
-        </div>
+        </div> */}
       </div>
       <CollectionsPanel
         isOpen={collectionsPanelIsOpen}

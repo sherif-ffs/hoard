@@ -29,8 +29,8 @@ export function deleteItem(id: string) {
 }
 
 // Fetch all Items
-export function fetchAllItems() {
-  return fetch('http://localhost:5000/items/items', {
+export function fetchAllItems(limit: number) {
+  return fetch(`http://localhost:5000/items/items/?limit=${limit}`, {
     method: 'GET',
     credentials: 'include',
     headers: {
