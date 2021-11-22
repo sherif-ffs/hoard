@@ -3,7 +3,7 @@ import { deleteItem } from '../api/ItemApi';
 import { API_URL } from '../../constants/ApiEndpoint';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
 import CollectionsPanel from '../../collections/CollectionsPanel';
-
+import SaveSVG from '../../components/ui/icons/SaveSVG';
 import styles from './ItemCard.module.scss';
 
 type Props = {
@@ -48,8 +48,15 @@ const Item = (props: Props) => {
         <img src={`${API_URL}/items/images/${imageID}`} loading="lazy"></img>
       ) : null}
       <div className={styles.content}>
-        <h1>{name}</h1>
-        <button onClick={() => setCollectionsPanelIsOpen(true)}>Save</button>
+        <div className={styles.actions}>
+          <h1>{name}</h1>
+          <button
+            onClick={() => setCollectionsPanelIsOpen(true)}
+            className={styles.saveButton}
+          >
+            <SaveSVG height={27} width={27} color="#050505" />
+          </button>
+        </div>
         <div className={styles.tags}>
           {tags &&
             !!tags.length &&
@@ -59,7 +66,6 @@ const Item = (props: Props) => {
               </li>
             ))}
         </div>
-        {props.isMyItem && <button onClick={handleDeleteItem}>delete</button>}
       </div>
       <CollectionsPanel
         isOpen={collectionsPanelIsOpen}

@@ -75,7 +75,9 @@ const CollectionsPanelPill = (props: Props) => {
       key={collection._id}
       onClick={() => toggle(collection._id, includes)}
     >
-      {includes && <CheckSVG color="blue" height={'1.5em'} width={'1.5em'} />}
+      {includes && (
+        <CheckSVG color="#2a84ff" height={'1.5em'} width={'1.5em'} />
+      )}
       <span>{collection.title}</span>
     </button>
   );

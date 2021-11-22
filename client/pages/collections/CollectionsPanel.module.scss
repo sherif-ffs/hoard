@@ -59,7 +59,7 @@
     .close {
       margin: 0 1em;
       padding: 0.875em;
-      background: #2737c5;
+      background: darken($color-blue, 15%);
       cursor: pointer;
       border-radius: 50%;
       .closeIcon {
