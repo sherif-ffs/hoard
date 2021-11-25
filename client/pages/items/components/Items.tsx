@@ -4,6 +4,7 @@ import { useAppContext } from '../../components/AppWrapper';
 import useAllItems from '../../hooks/useAllItems';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
 import ItemCard from './ItemCard';
+import ItemPanel from './ItemPanel';
 import styles from './Items.module.scss';
 
 const Items = () => {
@@ -11,6 +12,7 @@ const Items = () => {
   const [limit, setLimit] = useState(8);
   const { data, error, status } = useAllItems(limit);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [itemPanelIsOpen, setItemPanelIsOpen] = useState(false);
   const itemsExist = data && data.data && !!data.data.length;
 
   const handleLoadMore = () => {
@@ -19,9 +21,13 @@ const Items = () => {
   };
 
   const handleSetSelectedItem = (item: ItemInterface) => {
-    console.log('item: ', item);
+    if (!itemPanelIsOpen) {
+      setItemPanelIsOpen(true);
+    }
     setSelectedItem(item);
   };
+
+  const handleCloseItemPanel = () => setItemPanelIsOpen(false);
 
   if (error) {
     return <p>error</p>;
@@ -43,6 +49,12 @@ const Items = () => {
           }
         })}
       <button onClick={handleLoadMore}>Load More</button>
+      {selectedItem && (
+        <ItemPanel
+          item={selectedItem}
+          {...{ itemPanelIsOpen, handleCloseItemPanel }}
+        />
+      )}
     </div>
   );
 };

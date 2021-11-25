@@ -28,10 +28,13 @@
       .saveButton {
         border: none;
         padding: 0.25em 0.5em;
-        border-radius: 0.5em;
+        border-radius: 0.25em;
         background-color: $light-gray;
         transition: background-color 400ms;
         cursor: pointer;
+        svg {
+          display: block;
+        }
         @media(hover: hover) {
           &:hover {
             background-color: darken($light-gray, 5%);
