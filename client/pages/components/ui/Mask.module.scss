@@ -8,4 +8,9 @@
   left: 0;
   right: 0;
   top: 0;
+  visibility: hidden;
+  transition: visibility 600ms;
+  &.open {
+    visibility: visible;
+  }
 }

@@ -1,0 +1,20 @@
+@import "../../../../styles/input.scss";
+@import "../../../../styles/_variables.scss";
+@import "../../../../styles/breakpoints.scss";
+.imageWrapper {
+  margin: 1em 0;
+  img {
+    width: 750px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.5em;
+    box-shadow: $box-shadow;
+    cursor: pointer;
+    transition: box-shadow 400ms;
+    @media(hover: hover) {
+      &:hover {
+        box-shadow: $big-box-shadow;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@import "../../../../styles/input.scss";
+@import "../../../../styles/_variables.scss";
+@import "../../../../styles/breakpoints.scss";
+.wrapper {
+  padding: 1em 0;
+  transform: translateY(100%);
+  width: 100%;
+  background-color: $background-color;
+  color: $dark-gray;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  transition: transform 400ms;
+  font-family: $font-sans-serif;
+  -webkit-box-shadow: inset 0px 0px 0px 6px $light-gray;
+  -moz-box-shadow: inset 0px 0px 0px 6px $light-gray;
+  box-shadow: inset 0px 0px 0px 6px $light-gray;
+  &.open {
+    transform: translateY(0);
+  }
+  .content {
+    display: flex;
+    margin: 1em auto;
+    width: min-content;
+    align-items: center;
+    flex-direction: column;
+    .closeIcon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 1em 2em 0 0;
+      cursor: pointer;
+      transition: opacity 400ms;
+      @media(hover: hover) {
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}

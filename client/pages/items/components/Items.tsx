@@ -4,7 +4,7 @@ import { useAppContext } from '../../components/AppWrapper';
 import useAllItems from '../../hooks/useAllItems';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
 import ItemCard from './ItemCard';
-import ItemPanel from './ItemPanel';
+import ItemPanel from './ItemPanel/ItemPanel';
 import styles from './Items.module.scss';
 
 const Items = () => {
