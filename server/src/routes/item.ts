@@ -82,4 +82,15 @@ router.get('/items', async (req, res) => {
   }
 });
 
+//fetch item by itemId
+router.get('/item', async (req, res) => {
+  try {
+    const id = req.query.id as string;
+    const collection = await Item.find({ _id: new objectId(id) });
+    res.send({ status: 'ok', data: collection });
+  } catch (err) {
+    res.send({ status: 'error', error: err });
+  }
+});
+
 module.exports = router;

@@ -34,14 +34,13 @@ router.get('/collection', async (req, res) => {
 router.get('/collection-by-collection-id', async (req, res) => {
   try {
     const id = req.query.id as string;
-    console.log('id: ', id);
     const collection = await Collection.find({ _id: new objectId(id) });
-    console.log('collection: ', collection);
     res.send({ status: 'ok', data: collection });
   } catch (err) {
     res.send({ status: 'error', error: err });
   }
 });
+
 // fetch all collections
 router.get('/collections', async (req, res) => {
   try {

@@ -10,6 +10,7 @@ type Props = {
   item: ItemInterface;
   isMyItem: boolean;
   openCollectionsPanel: () => void;
+  handleSetSelectedItem: () => void;
 };
 
 const Item = (props: Props) => {
@@ -49,7 +50,9 @@ const Item = (props: Props) => {
       ) : null}
       <div className={styles.content}>
         <div className={styles.actions}>
-          <h1>{name}</h1>
+          <h1 onClick={() => props.handleSetSelectedItem(props.item)}>
+            {name}
+          </h1>
           <button
             onClick={() => setCollectionsPanelIsOpen(true)}
             className={styles.saveButton}

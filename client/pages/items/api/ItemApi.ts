@@ -28,6 +28,18 @@ export function deleteItem(id: string) {
   });
 }
 
+// get item by itemId
+export function fetchItemByID(id: string) {
+  // ?id=${id}
+  return fetch(`http://localhost:5000/items/item/?id=${id}`, {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
 // Fetch all Items
 export function fetchAllItems(limit: number) {
   return fetch(`http://localhost:5000/items/items/?limit=${limit}`, {
