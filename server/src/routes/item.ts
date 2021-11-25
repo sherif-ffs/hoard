@@ -93,4 +93,14 @@ router.get('/item', async (req, res) => {
   }
 });
 
+// fetch items by userId
+router.get('/more-items-by', async (req, res) => {
+  try {
+    const id = req.query.id as string;
+    const items = await Item.find({ userId: id }).limit(4);
+    res.send({ status: 'ok', data: items });
+  } catch (err) {
+    res.send({ status: 'error', error: err });
+  }
+});
 module.exports = router;

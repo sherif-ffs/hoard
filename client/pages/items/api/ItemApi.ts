@@ -50,3 +50,14 @@ export function fetchAllItems(limit: number) {
     },
   });
 }
+
+// load more items by user
+export function fetchMoreItemsByUser(id: string) {
+  return fetch(`http://localhost:5000/items/more-items-by?id=${id}`, {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}

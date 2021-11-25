@@ -4,13 +4,19 @@
 .imageWrapper {
   margin: 1em 0;
   img {
-    width: 750px;
+    width: 950px;
     height: auto;
     object-fit: contain;
     border-radius: 0.5em;
     box-shadow: $box-shadow;
     cursor: pointer;
     transition: box-shadow 400ms;
+    @media all and (max-width: 480px) {
+      width: 300px;
+    }
+    @media all and (min-width: 480px) and (max-width: 768px) {
+      width: 600px;
+    }
     @media(hover: hover) {
       &:hover {
         box-shadow: $big-box-shadow;

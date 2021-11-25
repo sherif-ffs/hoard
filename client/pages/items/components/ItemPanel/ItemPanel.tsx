@@ -11,15 +11,18 @@ import Mask from '../../../components/ui/Mask';
 
 import PanelHeader from './PanelHeader';
 import PanelImage from './PanelImage';
+import MoreByUser from './MoreByUser';
 import styles from './ItemPanel.module.scss';
 
 interface Props {
   item: ItemInterface;
   itemPanelIsOpen: boolean;
   handleCloseItemPanel: () => void;
+  handleSetSelectedItem: () => void;
 }
 const ItemDetailsSheet = (props: Props) => {
-  const { item, itemPanelIsOpen, handleCloseItemPanel } = props;
+  const { item, itemPanelIsOpen, handleCloseItemPanel, handleSetSelectedItem } =
+    props;
   console.log('item: ', item);
 
   const [collectionsPanelIsOpen, setCollectionsPanelIsOpen] = useState(false);
@@ -47,12 +50,15 @@ const ItemDetailsSheet = (props: Props) => {
             {...{ name, url, author, userId, openCollectionsPanel, tags }}
           />
           <PanelImage {...{ imageID, url }} />
+          <MoreByUser
+            {...{ item, handleCloseItemPanel, handleSetSelectedItem }}
+          />
         </div>
-        <CollectionsPanel
+        {/* <CollectionsPanel
           isOpen={collectionsPanelIsOpen}
           item={props.item}
           {...{ closeCollectionsPanel }}
-        />
+        /> */}
       </div>
     </Mask>
   );

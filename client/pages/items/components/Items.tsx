@@ -52,7 +52,7 @@ const Items = () => {
       {selectedItem && (
         <ItemPanel
           item={selectedItem}
-          {...{ itemPanelIsOpen, handleCloseItemPanel }}
+          {...{ itemPanelIsOpen, handleCloseItemPanel, handleSetSelectedItem }}
         />
       )}
     </div>

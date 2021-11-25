@@ -4,6 +4,7 @@
 .wrapper {
   padding: 1em 0;
   transform: translateY(100%);
+  max-height: 95vh;
   width: 100%;
   background-color: $background-color;
   color: $dark-gray;
@@ -11,6 +12,7 @@
   bottom: 0;
   left: 0;
   z-index: 10;
+  overflow-y: scroll;
   transition: transform 400ms;
   font-family: $font-sans-serif;
   -webkit-box-shadow: inset 0px 0px 0px 6px $light-gray;

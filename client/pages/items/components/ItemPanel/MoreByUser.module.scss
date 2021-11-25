@@ -1,0 +1,18 @@
+@import "../../../../styles/input.scss";
+@import "../../../../styles/_variables.scss";
+@import "../../../../styles/breakpoints.scss";
+.wrapper {
+  width: 100%;
+  margin-top: 2em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+  grid-gap: 1rem;
+  img {
+    // width: 350px;
+    width: 100%;
+    object-fit: contain;
+    height: auto;
+    box-shadow: $box-shadow;
+    border-radius: 0.5em;
+  }
+}
