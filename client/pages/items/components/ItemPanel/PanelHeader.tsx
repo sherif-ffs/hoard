@@ -1,20 +1,14 @@
-// import classNames from 'classnames';
 import Link from 'next/link';
 
 import SaveSVG from '../../../components/ui/icons/SaveSVG';
+import { useItemContext } from '../../../contexts/ItemsContext';
 
 import styles from './PanelHeader.module.scss';
 
-interface Props {
-  name: string;
-  userId: string;
-  author: string;
-  url: string;
-  openCollectionsPanel: () => void;
-  tags: string[] | null | undefined;
-}
-const PanelHeader = (props: Props) => {
-  const { name, url, author, userId, tags, openCollectionsPanel } = props;
+const PanelHeader = () => {
+  const { handleSetItemToCollect, selectedItem } = useItemContext();
+  const { name, url, author, userId, tags } = selectedItem;
+
   return (
     <>
       <header className={styles.header}>
@@ -29,7 +23,10 @@ const PanelHeader = (props: Props) => {
           </Link>
         </div>
         <div className={styles.right}>
-          <button className={styles.saveButton} onClick={openCollectionsPanel}>
+          <button
+            className={styles.saveButton}
+            onClick={() => handleSetItemToCollect(selectedItem)}
+          >
             <SaveSVG height={30} width={30} color="#050505" />
           </button>
         </div>
@@ -37,7 +34,7 @@ const PanelHeader = (props: Props) => {
       <ul className={styles.tags}>
         {tags &&
           !!tags.length &&
-          tags.map((tag, i) => (
+          tags.map((tag: string, i: number) => (
             <li key={i} className={styles.tag}>
               {tag}
             </li>

@@ -1,34 +1,29 @@
-import Link from 'next/link';
-
-import { useItemContext } from '../../../contexts/ItemsContext';
-import loadMoreByUserID from '../../hooks/loadMoreByUser';
+import loadItemsByTag from '../../hooks/loadItemsByTag';
 import { API_URL } from '../../../constants/ApiEndpoint';
 import { ItemInterface } from '../../../Interfaces/ItemInterface';
+import { useItemContext } from '../../../contexts/ItemsContext';
+import styles from './RelatedItems.module.scss';
 
-import styles from './MoreByUser.module.scss';
-
-const MoreByUser = () => {
+const RelatedItems = () => {
   const { handleSetSelectedItem, selectedItem } = useItemContext();
-  const { userId, author } = selectedItem;
-  const items = loadMoreByUserID(userId);
+  const { tags } = selectedItem;
 
-  if (items === 'loading') {
-    return <p>loading</p>;
-  }
+  if (!tags || tags.length === 0) return null;
+
+  const items = loadItemsByTag(tags);
+
+  if (items === 'loading') return <p>loading</p>;
 
   const filteredItems = items.filter(
     (i: ItemInterface) => i._id !== selectedItem._id
   );
 
-  if (!(filteredItems.length > 0)) return null;
+  if (!(filteredItems.length >= 1)) return null;
 
   return (
     <div className={styles.wrapper}>
       <header>
-        <h3>More by {author}</h3>
-        <Link href={`/profile/${userId}`}>
-          <h4>View Profile</h4>
-        </Link>
+        <h3>You might also like</h3>
       </header>
       <div className={styles.thumbnails}>
         {filteredItems &&
@@ -44,4 +39,4 @@ const MoreByUser = () => {
   );
 };
 
-export default MoreByUser;
+export default RelatedItems;

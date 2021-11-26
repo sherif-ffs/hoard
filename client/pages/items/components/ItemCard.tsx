@@ -2,37 +2,18 @@ import React, { useState } from 'react';
 import { deleteItem } from '../api/ItemApi';
 import { API_URL } from '../../constants/ApiEndpoint';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
-import CollectionsPanel from '../../collections/CollectionsPanel';
+import { useItemContext } from '../../contexts/ItemsContext';
 import SaveSVG from '../../components/ui/icons/SaveSVG';
 import styles from './ItemCard.module.scss';
 
 type Props = {
   item: ItemInterface;
   isMyItem: boolean;
-  openCollectionsPanel: () => void;
-  handleSetSelectedItem: () => void;
 };
 
 const Item = (props: Props) => {
-  const {
-    author,
-    name,
-    _id,
-    isPrivate,
-    likes,
-    tags,
-    url,
-    collections,
-    imageID,
-    userId,
-  } = props.item;
-
-  const [collectionsPanelIsOpen, setCollectionsPanelIsOpen] = useState(false);
-
-  const closeCollectionsPanel = () => {
-    setCollectionsPanelIsOpen(false);
-  };
-
+  const { name, _id, imageID } = props.item;
+  const { handleSetSelectedItem, handleSetItemToCollect } = useItemContext();
   const handleDeleteItem = async () => {
     const res = await deleteItem(_id);
     const response = await res.json();
@@ -50,22 +31,15 @@ const Item = (props: Props) => {
       ) : null}
       <div className={styles.content}>
         <div className={styles.actions}>
-          <h1 onClick={() => props.handleSetSelectedItem(props.item)}>
-            {name}
-          </h1>
+          <h1 onClick={() => handleSetSelectedItem(props.item)}>{name}</h1>
           <button
-            onClick={() => setCollectionsPanelIsOpen(true)}
+            onClick={() => handleSetItemToCollect(props.item)}
             className={styles.saveButton}
           >
             <SaveSVG height={27} width={27} color="#050505" />
           </button>
         </div>
       </div>
-      <CollectionsPanel
-        isOpen={collectionsPanelIsOpen}
-        item={props.item}
-        {...{ closeCollectionsPanel }}
-      />
     </div>
   );
 };

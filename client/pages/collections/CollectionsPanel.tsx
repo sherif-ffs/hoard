@@ -3,24 +3,23 @@ import classNames from 'classnames';
 
 import CloseSVG from '../components/ui/icons/CloseSVG';
 import CollectionsPanelPill from './CollectionsPanelPill';
-
+import { useItemContext } from '../contexts/ItemsContext';
 import styles from './CollectionsPanel.module.scss';
 
-interface Props {
-  isOpen: boolean;
-  item: any;
-  closeCollectionsPanel: () => void;
-}
-const CollectionsPanel = (props: Props) => {
-  const { isOpen, closeCollectionsPanel, item } = props;
+const CollectionsPanel = () => {
   const { myCollections } = useAppContext();
-
+  const { closeCollectionsPanel, collectionsPanelIsOpen, itemToCollect } =
+    useItemContext();
   if (myCollections === 'loading') {
     return <p>loading</p>;
   }
 
   return (
-    <div className={classNames(styles.panel, { [styles.open]: isOpen })}>
+    <div
+      className={classNames(styles.panel, {
+        [styles.open]: collectionsPanelIsOpen,
+      })}
+    >
       <div className={styles.content}>
         <p className={styles.saveTo}>Save to:</p>
         {myCollections &&
@@ -29,7 +28,8 @@ const CollectionsPanel = (props: Props) => {
             return (
               <CollectionsPanelPill
                 key={collection._id}
-                {...{ item, collection, closeCollectionsPanel }}
+                item={itemToCollect}
+                {...{ collection, closeCollectionsPanel }}
               />
             );
           })}

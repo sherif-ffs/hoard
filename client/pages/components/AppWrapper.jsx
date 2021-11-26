@@ -1,13 +1,13 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { checkUserAuthentication } from '../auth/api/AuthApi';
-import loadAllCollections from '../collections/hooks/loadAllCollections'
+import loadAllCollections from '../collections/hooks/loadAllCollections';
 import loadMyCollections from '../collections/hooks/loadCollectionById';
 
 const AppContext = createContext();
 
 export function useAppContext() {
   return useContext(AppContext);
-};
+}
 
 export function AppWrapper({ children }) {
   const [user, setUser] = useState();
@@ -15,7 +15,7 @@ export function AppWrapper({ children }) {
   const [token, setToken] = useState();
   const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
 
-  const checkAuth = async() => {
+  const checkAuth = async () => {
     const response = await checkUserAuthentication();
     const data = await response.json();
     const userIsAuthenticated = data && data.data && data.data.authenticated;
@@ -34,10 +34,23 @@ export function AppWrapper({ children }) {
 
   const allCollections = loadAllCollections();
 
-  return ( <
-    AppContext.Provider value = {
-      { user, setUser, token, setToken, authenticated, setAuthenticated, createModalIsOpen, setCreateModalIsOpen, myCollections, allCollections }
-    } > { children } <
-    /AppContext.Provider>
+  return (
+    <AppContext.Provider
+      value={{
+        user,
+        setUser,
+        token,
+        setToken,
+        authenticated,
+        setAuthenticated,
+        createModalIsOpen,
+        setCreateModalIsOpen,
+        myCollections,
+        allCollections,
+      }}
+    >
+      {' '}
+      {children}{' '}
+    </AppContext.Provider>
   );
-};
+}

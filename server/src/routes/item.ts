@@ -103,4 +103,15 @@ router.get('/more-items-by', async (req, res) => {
     res.send({ status: 'error', error: err });
   }
 });
+
+// fetch items by tag
+router.post('/items-by-tag', async (req, res) => {
+  try {
+    const tags = req.body.tags as Array<string>;
+    const items = await Item.find({ tags: { $in: tags } }).limit(6);
+    res.send({ status: 'ok', data: items });
+  } catch (err) {
+    res.send({ status: 'error', error: err });
+  }
+});
 module.exports = router;

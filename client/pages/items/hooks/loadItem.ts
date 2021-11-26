@@ -8,7 +8,7 @@ const getItemByID = async (id: string) => {
 
 export default function loadItemByID(id: string) {
   const { data, status, error } = useQuery(
-    ['collectionByCollectionID', id],
+    ['loadItemByItemID', id],
     () => getItemByID(id),
     {
       enabled: !!id,

@@ -61,3 +61,17 @@ export function fetchMoreItemsByUser(id: string) {
     },
   });
 }
+
+// fetch related items by tag
+export function fetchItemsByTag(tags: string[]) {
+  return fetch(`http://localhost:5000/items/items-by-tag`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      tags,
+    }),
+  });
+}

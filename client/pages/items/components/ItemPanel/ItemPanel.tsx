@@ -1,40 +1,41 @@
 import classNames from 'classnames';
-import Link from 'next/link';
-import { useState } from 'react';
 
-import { ItemInterface } from '../../../Interfaces/ItemInterface';
-import { API_URL } from '../../../constants/ApiEndpoint';
-import SaveSVG from '../../../components/ui/icons/SaveSVG';
 import CloseSVG from '../../../components/ui/icons/CloseSVG';
-import CollectionsPanel from '../../../collections/CollectionsPanel';
 import Mask from '../../../components/ui/Mask';
-
+import { useItemContext } from '../../../contexts/ItemsContext';
 import PanelHeader from './PanelHeader';
 import PanelImage from './PanelImage';
 import MoreByUser from './MoreByUser';
+import RelatedItems from './RelatedItems';
 import styles from './ItemPanel.module.scss';
+import { useEffect } from 'react';
 
-interface Props {
-  item: ItemInterface;
-  itemPanelIsOpen: boolean;
-  handleCloseItemPanel: () => void;
-  handleSetSelectedItem: () => void;
-}
-const ItemDetailsSheet = (props: Props) => {
-  const { item, itemPanelIsOpen, handleCloseItemPanel, handleSetSelectedItem } =
-    props;
-  console.log('item: ', item);
+// interface Props {
+//   item: ItemInterface | null;
+//   itemPanelIsOpen: boolean;
+//   handleCloseItemPanel: () => void;
+//   handleSetSelectedItem: (item: ItemInterface) => void;
+//   handleSetItemToCollect: (item: ItemInterface) => void;
+// }
 
-  const [collectionsPanelIsOpen, setCollectionsPanelIsOpen] = useState(false);
+const ItemDetailsSheet = () => {
+  // const {
+  //   // item,
+  //   itemPanelIsOpen,
+  //   // handleCloseItemPanel,
+  //   handleSetSelectedItem,
+  //   handleSetItemToCollect,
+  // } = props;
 
-  const openCollectionsPanel = () => {
-    setCollectionsPanelIsOpen(true);
-  };
-  const closeCollectionsPanel = () => {
-    setCollectionsPanelIsOpen(false);
-  };
+  const { itemPanelIsOpen, handleCloseItemPanel, selectedItem } =
+    useItemContext();
 
-  const { imageID, name, url, userId, author, tags } = item && item;
+  useEffect(() => {
+    return () => handleCloseItemPanel();
+  }, []);
+
+  const { imageID, name, url, userId, author, tags } =
+    selectedItem && selectedItem;
   return (
     <Mask isOpen={itemPanelIsOpen}>
       <div
@@ -46,19 +47,11 @@ const ItemDetailsSheet = (props: Props) => {
           <span className={styles.closeIcon} onClick={handleCloseItemPanel}>
             <CloseSVG height={30} width={30} color="#050505" />
           </span>
-          <PanelHeader
-            {...{ name, url, author, userId, openCollectionsPanel, tags }}
-          />
+          <PanelHeader />
           <PanelImage {...{ imageID, url }} />
-          <MoreByUser
-            {...{ item, handleCloseItemPanel, handleSetSelectedItem }}
-          />
+          <MoreByUser />
+          <RelatedItems />
         </div>
-        {/* <CollectionsPanel
-          isOpen={collectionsPanelIsOpen}
-          item={props.item}
-          {...{ closeCollectionsPanel }}
-        /> */}
       </div>
     </Mask>
   );

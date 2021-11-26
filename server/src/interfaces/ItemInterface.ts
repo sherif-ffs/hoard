@@ -12,7 +12,7 @@ export interface ItemInterface {
   image?: string | null;
   imageID: string | null;
   collections: Array<any> | null;
-  tags?: Array<TagInterface> | null;
+  tags?: Array<string> | null;
   likes: number;
   isPrivate: boolean;
 }

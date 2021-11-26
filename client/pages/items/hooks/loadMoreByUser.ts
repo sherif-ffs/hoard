@@ -8,7 +8,7 @@ const getMoreItemsByUserID = async (id: string) => {
 
 export default function loadMoreByUserID(id: string) {
   const { data, status, error } = useQuery(
-    ['collectionByCollectionID', id],
+    ['itemsByUserID', id],
     () => getMoreItemsByUserID(id),
     {
       enabled: !!id,

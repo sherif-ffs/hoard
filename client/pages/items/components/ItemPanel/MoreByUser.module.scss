@@ -2,10 +2,42 @@
 @import "../../../../styles/_variables.scss";
 @import "../../../../styles/breakpoints.scss";
 .wrapper {
+  &:before {
+    content: '';
+    display: block;
+    background: $medium-gray;
+    height: 1px;
+    margin: 2.5em 0;
+  }
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    h4 {
+      margin: 0;
+      font-weight: $font-weight-bold;
+      color: $color-blue;
+      transition: color 400ms;
+      cursor: pointer;
+      @media(hover: hover) {
+        &:hover {
+          color: darken($color-blue, 5%)
+        }
+      }
+    }
+    h3 {
+      margin: 0;
+      font-size: $font-weight-light;
+    }
+  }
+}
+
+.thumbnails {
   width: 100%;
-  margin-top: 2em;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+  margin-top: 1.5em;
   grid-gap: 1rem;
   img {
     // width: 350px;
@@ -14,5 +46,12 @@
     height: auto;
     box-shadow: $box-shadow;
     border-radius: 0.5em;
+    cursor: pointer;
+    transition: box-shadow 400ms;
+    @media(hover: hover) {
+      &:hover {
+        box-shadow: $big-box-shadow;
+      }
+    }
   }
 }

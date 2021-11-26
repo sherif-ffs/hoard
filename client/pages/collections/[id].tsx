@@ -6,6 +6,8 @@ import { useAppContext } from '../components/AppWrapper';
 import loadCollectionByCollectionID from './hooks/loadCollectionByCollectionID';
 import { Navigation } from '../navigation/components/Navigation';
 import ItemCard from '../items/components/ItemCard';
+import CollectionsPanel from './CollectionsPanel';
+import ItemPanel from '../items/components/ItemPanel/ItemPanel';
 import styles from './Collection.module.scss';
 
 const Collection = () => {
@@ -38,6 +40,8 @@ const Collection = () => {
             return <ItemCard {...{ item }} key={item._id} />;
           })}
       </div>
+      <ItemPanel />
+      <CollectionsPanel />
     </>
   );
 };

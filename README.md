@@ -52,4 +52,9 @@
 - [x] clean up data design for collections
 - [x] style collections panel
 - [x] restyle form
+- [x] make item panel
+- [x] related items
+- [ ] make item panel responsive
+- [x] make add to collections panel work again
+- [ ] add item panel to items in collections view
 - [ ] make design?
