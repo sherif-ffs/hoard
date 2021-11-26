@@ -15,9 +15,11 @@ export function ItemsContextProvider({ children }) {
 
   const handleSetSelectedItem = (item) => {
     console.log('item: ', item);
-    if (!itemPanelIsOpen) {
-      setItemPanelIsOpen(true);
-    }
+    setItemPanelIsOpen(true);
+
+    // if (!itemPanelIsOpen) {
+    //   setItemPanelIsOpen(true);
+    // }
     setSelectedItem(item);
   };
 

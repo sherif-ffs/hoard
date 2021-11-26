@@ -10,26 +10,11 @@ import RelatedItems from './RelatedItems';
 import styles from './ItemPanel.module.scss';
 import { useEffect } from 'react';
 
-// interface Props {
-//   item: ItemInterface | null;
-//   itemPanelIsOpen: boolean;
-//   handleCloseItemPanel: () => void;
-//   handleSetSelectedItem: (item: ItemInterface) => void;
-//   handleSetItemToCollect: (item: ItemInterface) => void;
-// }
-
 const ItemDetailsSheet = () => {
-  // const {
-  //   // item,
-  //   itemPanelIsOpen,
-  //   // handleCloseItemPanel,
-  //   handleSetSelectedItem,
-  //   handleSetItemToCollect,
-  // } = props;
-
   const { itemPanelIsOpen, handleCloseItemPanel, selectedItem } =
     useItemContext();
 
+  if (!selectedItem) return null;
   useEffect(() => {
     return () => handleCloseItemPanel();
   }, []);
