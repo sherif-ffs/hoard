@@ -6,6 +6,7 @@ import loadCollectionByCollectionID from './hooks/loadCollectionByCollectionID';
 import { Navigation } from '../navigation/components/Navigation';
 import ItemCard from '../items/components/ItemCard';
 import CollectionsPanel from './CollectionsPanel';
+import CreateCollectionModal from './CreateCollectionModal';
 import ItemPanel from '../items/components/ItemPanel/ItemPanel';
 import styles from './Collection.module.scss';
 
@@ -40,6 +41,7 @@ const Collection = () => {
       </div>
       <ItemPanel />
       <CollectionsPanel />
+      <CreateCollectionModal />
     </>
   );
 };

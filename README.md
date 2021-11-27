@@ -24,6 +24,7 @@
 - [x] add item to collection from panel
 - [x] remove item from collection from panel
 - [x] scrape title/details of URL
+- [ ] check if item exists in collection from pill component
 
 # Client
 
@@ -44,7 +45,6 @@
 - [x] render images
 - [x] add collections
 - [x] cleanup fetches
-- [ ] collections not refetching on logout
 - [x] create collections from browser
 - [x] read images from S3
 - [x] render view for collections
@@ -57,4 +57,14 @@
 - [ ] make item panel responsive
 - [x] make add to collections panel work again
 - [x] add item panel to items in collections view
-- [ ] make design?
+- [x] move create collections modal to collections view
+- [ ] make navbar
+- [ ] make forms look better
+- [ ] loading states
+- [ ] style collections view
+- [ ] load more on scroll
+- [ ] skeleton components
+- [ ] filtering
+- [ ] style profile page
+- [ ] error handling (404, 500, error boundary)
+- [ ] fix caching/fetch issue?

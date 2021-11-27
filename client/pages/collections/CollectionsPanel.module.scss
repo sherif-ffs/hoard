@@ -70,6 +70,7 @@
       transition: border-color 400ms, background-color 400ms;
       cursor: pointer;
       color: $color-white;
+      white-space: nowrap;
       @media (hover: hover) {
         &:hover {
           background-color: #283cea;

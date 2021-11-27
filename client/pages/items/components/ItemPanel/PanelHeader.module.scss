@@ -8,9 +8,9 @@
   margin: 0;
   width: 100%;
   gap: 2em;
-  .left {
+  justify-content: space-between;
+  .details {
     display: flex;
-    flex: 3;
     flex-direction: column;
     h1 {
       font-size: $heading-3;
@@ -32,28 +32,23 @@
       margin: 0;
     }
   }
-  .right {
-    display: flex;
-    flex: min-content;
-    flex-direction: column;
-    .saveButton {
-      border: none;
-      padding: 0.75em;
-      border-radius: 0.25em;
-      align-items: center;
-      background-color: $light-gray;
-      transition: background-color 400ms, border 400ms;
-      cursor: pointer;
-      color: #050505;
-      border: 1px solid lighten($gray, 35%);
-      svg {
-        display: block;
-      }
-      @media (hover: hover) {
-        &:hover {
-          background-color: darken($light-gray, 5%);
-          border: 1px solid lighten($gray, 15%);
-        }
+  .saveButton {
+    border: none;
+    padding: 0.75em;
+    border-radius: 0.25em;
+    align-items: center;
+    background-color: $light-gray;
+    transition: background-color 400ms, border 400ms;
+    cursor: pointer;
+    color: #050505;
+    border: 1px solid lighten($gray, 35%);
+    svg {
+      display: block;
+    }
+    @media (hover: hover) {
+      &:hover {
+        background-color: darken($light-gray, 5%);
+        border: 1px solid lighten($gray, 15%);
       }
     }
   }

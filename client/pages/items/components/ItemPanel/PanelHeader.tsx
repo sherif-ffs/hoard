@@ -12,7 +12,7 @@ const PanelHeader = () => {
   return (
     <>
       <header className={styles.header}>
-        <div className={styles.left}>
+        <div className={styles.details}>
           <Link href={url}>
             <a target="_blank">
               <h1>{name}</h1>
@@ -22,14 +22,12 @@ const PanelHeader = () => {
             <h3>Uploaded By: {author}</h3>
           </Link>
         </div>
-        <div className={styles.right}>
-          <button
-            className={styles.saveButton}
-            onClick={() => handleSetItemToCollect(selectedItem)}
-          >
-            <SaveSVG height={30} width={30} color="#050505" />
-          </button>
-        </div>
+        <button
+          className={styles.saveButton}
+          onClick={() => handleSetItemToCollect(selectedItem)}
+        >
+          <SaveSVG height={30} width={30} color="#050505" />
+        </button>
       </header>
       <ul className={styles.tags}>
         {tags &&
