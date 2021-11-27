@@ -15,6 +15,7 @@
   overflow: hidden;
   box-shadow: $box-shadow;
   transition: height 400ms;
+  z-index: $modal;
   @media all and (max-width: 480px) {
     width: 90%;
   }

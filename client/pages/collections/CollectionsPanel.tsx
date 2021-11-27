@@ -2,14 +2,19 @@ import { useAppContext } from '../components/AppWrapper';
 import classNames from 'classnames';
 
 import CloseSVG from '../components/ui/icons/CloseSVG';
+import AddSVG from '../components/ui/icons/AddSVG';
 import CollectionsPanelPill from './CollectionsPanelPill';
 import { useItemContext } from '../contexts/ItemsContext';
 import styles from './CollectionsPanel.module.scss';
 
 const CollectionsPanel = () => {
   const { myCollections } = useAppContext();
-  const { closeCollectionsPanel, collectionsPanelIsOpen, itemToCollect } =
-    useItemContext();
+  const {
+    closeCollectionsPanel,
+    collectionsPanelIsOpen,
+    itemToCollect,
+    openCreateCollectionModal,
+  } = useItemContext();
   if (myCollections === 'loading') {
     return <p>loading</p>;
   }
@@ -33,6 +38,13 @@ const CollectionsPanel = () => {
               />
             );
           })}
+        <button
+          className={styles.newCollection}
+          onClick={() => openCreateCollectionModal()}
+        >
+          <AddSVG color="#fff" height={14} width={14} />
+          <span>New Collection</span>
+        </button>
         <button
           onClick={() => closeCollectionsPanel()}
           className={styles.close}

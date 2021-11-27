@@ -3,14 +3,33 @@ import { createCollection } from './api/CollectionsApi';
 import { TagOption, TagOptions } from '../constants/Tags';
 import MultiSelect from '../components/ui/MultiSelect';
 import { useAppContext } from '../components/AppWrapper';
+import { useItemContext } from '../contexts/ItemsContext';
 import Button from '../components/ui/Button';
 import styles from '../items/components/CreateContentForm.module.scss';
-const CreateCollectionForm = () => {
-  const { user } = useAppContext();
+import PanelHeader from '../items/components/ItemPanel/PanelHeader';
+
+interface Props {
+  context: string;
+}
+
+const CreateCollectionForm = (props: Props) => {
+  const { user, setCreateModalIsOpen } = useAppContext();
+  const { closeCreateCollectionModal } = useItemContext();
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [visibility, setVisibility] = useState('public');
   const [tags, setTags] = useState<String[]>([]);
+
+  const { context } = props;
+
+  const generateOnClickEvent = () => {
+    if (context === 'collections-panel') {
+      closeCreateCollectionModal();
+    } else {
+      setCreateModalIsOpen(false);
+    }
+  };
 
   const handleSelectTags = (items: Array<TagOption>) => {
     const itemValues = items.map((item) => item.value);
@@ -99,6 +118,7 @@ const CreateCollectionForm = () => {
         <label>private</label>
       </div>
 
+      <p onClick={() => generateOnClickEvent()}>cancel</p>
       <Button
         buttonCopy={'Create Collection'}
         onClick={(e: any) => handleSubmit(e)}

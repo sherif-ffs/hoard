@@ -13,6 +13,11 @@ export function ItemsContextProvider({ children }) {
   const [itemToCollect, setItemToCollect] = useState(null);
   const [collectionsPanelIsOpen, setCollectionsPanelIsOpen] = useState(false);
 
+  const [createCollectionModalIsOpen, setCollectionModalIsOpen] = useState(false);
+
+  const openCreateCollectionModal = () => setCollectionModalIsOpen(true);
+  const closeCreateCollectionModal = () => setCollectionModalIsOpen(false);
+
   const handleSetSelectedItem = (item) => {
     setItemPanelIsOpen(true);
     setSelectedItem(item);
@@ -34,17 +39,20 @@ export function ItemsContextProvider({ children }) {
     <ItemsContext.Provider
       value={{
         selectedItem,
-        setSelectedItem,
         itemPanelIsOpen,
-        setItemPanelIsOpen,
+        createCollectionModalIsOpen,
         itemToCollect,
-        setItemToCollect,
         collectionsPanelIsOpen,
+        setSelectedItem,
+        setItemPanelIsOpen,
+        setItemToCollect,
         setCollectionsPanelIsOpen,
         handleSetSelectedItem,
         handleSetItemToCollect,
         handleCloseItemPanel,
         closeCollectionsPanel,
+        openCreateCollectionModal,
+        closeCreateCollectionModal
       }}
     >
       {' '}

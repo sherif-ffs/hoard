@@ -14,7 +14,11 @@ const CreateModal = () => {
     <Mask isOpen={createModalIsOpen}>
       <Modal isOpen={createModalIsOpen}>
         <Tabs {...{ activeTab, setActiveTab }} />
-        {activeTab === 1 ? <CreateItemForm /> : <CreateCollectionForm />}
+        {activeTab === 1 ? (
+          <CreateItemForm />
+        ) : (
+          <CreateCollectionForm context="create-modal" />
+        )}
       </Modal>
     </Mask>
   );

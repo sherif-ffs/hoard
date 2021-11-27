@@ -1,9 +1,9 @@
 import styles from './SVG.module.scss';
 
 interface Props {
-  color: string;
-  height?: string;
-  width?: string;
+  color?: string;
+  height?: number;
+  width?: number;
 }
 const CheckSVG = (props: Props) => (
   <svg

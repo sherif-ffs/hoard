@@ -5,35 +5,35 @@
   width: 100%;
   background-color: $color-blue;
   color: $color-white;
+  font-family: avenir;
   overflow: visible;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 50;
   transition: transform 400ms;
+  z-index: 99;
   &.open {
     transform: translateY(0);
   }
   .content {
     display: flex;
-    margin: auto 0 auto 1em;
     flex-direction: row;
     align-items: center;
-    overflow-x: scroll;
+    overflow-x: auto;
+    scrollbar-width: none; // hide horizontal scrollbar on firefox
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
       background: transparent;
       height: 0px;
-      /* Chrome/Safari/Webkit */
       width: 0px;
     }
     .saveTo {
-      opacity: 0.7;
       white-space: nowrap;
-      margin-right: 0.5em;
+      opacity: 0.7;
+      margin: auto 0.5em auto 1.5em;
     }
     .pill {
       margin: 0 0.5em;
@@ -45,11 +45,40 @@
       color: $color-white;
       white-space: nowrap;
       font-weight: 600;
-      border: 1px solid rgba(#fff, 0.5);
+      border: 1px solid rgba($color-white, 0.5);
       border-radius: 2.5em;
+      transition: border-color 400ms;
+      @media (hover: hover) {
+        &:hover {
+          border-color: $color-white;
+        }
+      }
       &.selected {
         background: $color-white;
         color: $color-blue;
+      }
+    }
+    .newCollection {
+      margin: 0 0.5em;
+      background-color: transparent;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      padding: 0.75em 1em;
+      border-radius: 2.5em;
+      border: 1px solid transparent;
+      transition: border-color 400ms, background-color 400ms;
+      cursor: pointer;
+      color: $color-white;
+      @media (hover: hover) {
+        &:hover {
+          background-color: #283cea;
+          border-color: #283cea;
+        }
+      }
+      svg {
+        display: block;
+        margin-right: 0.5em;
       }
     }
     button {
@@ -59,10 +88,17 @@
     .close {
       margin: 0 1em;
       padding: 0.875em;
-      background: darken($color-blue, 15%);
+      background-color: #283cea;
       cursor: pointer;
       border-radius: 50%;
-      .closeIcon {
+      z-index: 2;
+      @media all and (min-width: 480px) {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      svg {
         color: rgba($color-white, 0.7);
         display: block;
       }
