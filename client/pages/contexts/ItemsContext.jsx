@@ -14,12 +14,7 @@ export function ItemsContextProvider({ children }) {
   const [collectionsPanelIsOpen, setCollectionsPanelIsOpen] = useState(false);
 
   const handleSetSelectedItem = (item) => {
-    console.log('item: ', item);
     setItemPanelIsOpen(true);
-
-    // if (!itemPanelIsOpen) {
-    //   setItemPanelIsOpen(true);
-    // }
     setSelectedItem(item);
   };
 

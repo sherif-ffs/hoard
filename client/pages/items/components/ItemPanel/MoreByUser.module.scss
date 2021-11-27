@@ -36,11 +36,13 @@
 .thumbnails {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  // @media all and (max-width: 480px) {
+  //   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  // }
   margin-top: 1.5em;
   grid-gap: 1rem;
   img {
-    // width: 350px;
     width: 100%;
     object-fit: contain;
     height: auto;

@@ -2,9 +2,9 @@
 @import "../../../styles/_variables.scss";
 @import "../../../styles/breakpoints.scss";
 .wrapper {
-  width: 90%;
+  width: 85%;
   margin: 16px auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-gap: 2rem;
 }

@@ -56,5 +56,5 @@
 - [x] related items
 - [ ] make item panel responsive
 - [x] make add to collections panel work again
-- [ ] add item panel to items in collections view
+- [x] add item panel to items in collections view
 - [ ] make design?
