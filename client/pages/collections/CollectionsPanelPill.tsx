@@ -5,7 +5,9 @@ import {
   addItemToCollection as add,
   removeItemFromCollection as remove,
 } from './api/CollectionsApi';
-
+// import { checkIfItemIsInCollection } from './api/CollectionsApi';
+import { useItemContext } from '../contexts/ItemsContext';
+import loadItemStatus from './hooks/loadItemStatus';
 import CheckSVG from '../components/ui/icons/CheckSVG';
 import CloseSVG from '../components/ui/icons/CloseSVG';
 import styles from './CollectionsPanel.module.scss';
@@ -18,17 +20,33 @@ interface Props {
 
 const CollectionsPanelPill = (props: Props) => {
   const { closeCollectionsPanel, item, collection } = props;
-  const [includes, setIncludes] = useState(false);
+  // const [includes, setIncludes] = useState(false);
+  const [refetching, setRefetching] = useState(false);
+  const { itemToCollect } = useItemContext();
+  // console.log('item: ', item);
 
-  useEffect(() => {
-    const itemId = item && item._id;
-    const collectionItemIds =
-      collection && collection.items && collection.items.map((c: any) => c._id);
+  const itemId = itemToCollect && itemToCollect._id;
+  const collectionId = collection && collection._id;
 
-    const includes = collectionItemIds && collectionItemIds.includes(itemId);
+  const includes = loadItemStatus(itemId, collectionId, refetching);
 
-    setIncludes(includes);
-  }, [item, collection]);
+  if (includes === 'loading') {
+    return <p>loading</p>;
+  }
+  // if (itemIsIncluded && !includes) {
+  //   setIncludes(true);
+  // }
+
+  // console.log('test: ', test);
+  // useEffect(() => {
+  //   const itemId = item && item._id;
+  //   const collectionItemIds =
+  //     collection && collection.items && collection.items.map((c: any) => c._id);
+
+  //   const includes = collectionItemIds && collectionItemIds.includes(itemId);
+
+  //   setIncludes(includes);
+  // }, [item, collection]);
 
   const toggle = (collectionId: string, includes: boolean) => {
     includes
@@ -37,11 +55,13 @@ const CollectionsPanelPill = (props: Props) => {
   };
 
   const addItemToCollection = async (collectionId: string) => {
+    setRefetching(true);
     const res = await add(collectionId, item);
     const data = await res.json();
     const { status } = data;
     if (status === 'ok') {
-      setIncludes(true);
+      setRefetching(false);
+      // setIncludes(true);
       setTimeout(() => {
         closeCollectionsPanel();
       }, 400);
@@ -52,11 +72,13 @@ const CollectionsPanelPill = (props: Props) => {
   };
 
   const removeItemFromCollection = async (collectionId: string) => {
+    setRefetching(true);
     const res = await remove(item, collectionId);
     const data = await res.json();
     const { status } = data;
     if (status === 'ok') {
-      setIncludes(false);
+      // setIncludes(false);
+      setRefetching(false);
       setTimeout(() => {
         closeCollectionsPanel();
       }, 400);
