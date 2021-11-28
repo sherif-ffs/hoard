@@ -31,7 +31,7 @@ const Item = (props: Props) => {
           <img src={`${API_URL}/items/images/${imageID}`} loading="lazy"></img>
         </div>
       ) : null}
-      {/* <div className={styles.content}>
+      <div className={styles.content}>
         <div className={styles.actions}>
           <h1 onClick={() => handleSetSelectedItem(props.item)}>{name}</h1>
           <button
@@ -41,7 +41,7 @@ const Item = (props: Props) => {
             <SaveSVG height={27} width={27} color="#050505" />
           </button>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
