@@ -7,6 +7,11 @@
   width: 90%;
   margin: 1em auto 0;
   flex-direction: column;
+  font-family: $font-sans-serif;
+  h1 {
+    font-size: $heading-2;
+    color: $dark-gray;
+  }
   .inputWrapper {
     display: flex;
     flex-direction: column;
@@ -27,6 +32,20 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 1em;
+    margin-top: 1.5em;
+    button {
+      border: none;
+      padding: 1em 0;
+      flex: 1;
+      font-size: 1.1em;
+      border-radius: 0.25em;
+      font-weight: 600;
+      font-family: $font-sans-serif;
+      @media (hover: hover) {
+        cursor: pointer;
+      }
+    }
     @media all and (max-width: 480px) {
       flex-direction: column-reverse;
       .closeButton {
@@ -34,12 +53,55 @@
       }
     }
     .closeButton {
-      text-align: center;
-      margin-top: auto;
-      flex: 1;
-      color: $gray;
+      background-color: transparent;
+      color: lighten($gray, 15%);
+      transition: color 400ms, background-color 400ms;
       @media (hover: hover) {
-        cursor: pointer;
+        &:hover {
+          background-color: $light-gray, ;
+          color: $gray;
+        }
+      }
+    }
+    .submit {
+      background-color: $color-blue;
+      color: $color-white;
+      transition: background-color 400ms;
+      .submitContent {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        line-height: 1;
+        gap: 0.5em;
+        flex-direction: row;
+      }
+      &.success {
+        background-color: $color-green;
+        @media (hover: hover) {
+          &:hover {
+            background-color: darken($color-green, 5%);
+          }
+        }
+      }
+      @media (hover: hover) {
+        &:hover {
+          background-color: darken($color-blue, 10%);
+        }
+      }
+    }
+    .loading {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      // height: 30px;
+      align-items: center;
+      line-height: 1;
+      gap: 0.5em;
+      flex-direction: row;
+      span {
+        padding: 0;
+        height: min-content;
       }
     }
   }

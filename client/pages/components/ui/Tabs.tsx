@@ -13,13 +13,13 @@ const Tabs = (props: Props) => {
     <div className={styles.wrapper}>
       <Tab
         onClick={() => setActiveTab(1)}
-        tabCopy={'Create Item'}
+        tabCopy={'Item'}
         version={'CTA'}
         inactive={activeTab !== 1}
       />
       <Tab
         onClick={() => setActiveTab(2)}
-        tabCopy={'Create Collection'}
+        tabCopy={'Collection'}
         version={'CTA'}
         inactive={activeTab !== 2}
       />

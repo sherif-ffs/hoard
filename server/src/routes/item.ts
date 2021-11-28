@@ -46,7 +46,7 @@ router.post('/create-item', async (req, res) => {
         const collectionIds = collections.map((c) => c.id);
         addItemToCollection(collectionIds, newItem);
       }
-      res.json({ status: 'ok', data: 'item created successfully' });
+      res.json({ status: 'ok', data: newItem });
     } catch (error: any) {
       res.json({ status: 'error', error: error.message });
       throw error;

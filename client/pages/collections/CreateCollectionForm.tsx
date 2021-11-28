@@ -97,7 +97,7 @@ const CreateCollectionForm = (props: Props) => {
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      <div className={styles.radioWrapper}>
+      {/* <div className={styles.radioWrapper}>
         <input
           type="radio"
           className={styles.radio}
@@ -116,13 +116,19 @@ const CreateCollectionForm = (props: Props) => {
           checked={visibility === 'private'}
         />
         <label>private</label>
-      </div>
+      </div> */}
 
-      <p onClick={() => generateOnClickEvent()}>cancel</p>
-      <Button
-        buttonCopy={'Create Collection'}
-        onClick={(e: any) => handleSubmit(e)}
-      />
+      <div className={styles.buttonWrapper}>
+        <button
+          className={styles.closeButton}
+          onClick={() => generateOnClickEvent()}
+        >
+          Cancel
+        </button>
+        <button onClick={(e: any) => handleSubmit(e)} className={styles.submit}>
+          Create
+        </button>
+      </div>
     </form>
   );
 };

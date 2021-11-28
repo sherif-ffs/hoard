@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
 
 import { TagOption, TagOptions } from '../../constants/Tags';
 import MultiSelect from '../../components/ui/MultiSelect';
 import Button from '../../components/ui/Button';
 import { useAppContext } from '../../components/AppWrapper';
+import { useItemContext } from '../../contexts/ItemsContext';
 import { createItem } from '../api/ItemApi';
-
+import Spinner from '../../components/ui/Spinner';
+import CheckSVG from '../../components/ui/icons/CheckSVG';
 import styles from './CreateContentForm.module.scss';
 
 const CreateItemForm = () => {
   const { setCreateModalIsOpen, user, myCollections } = useAppContext();
+  const { handleSetSelectedItem } = useItemContext();
   const { email, name, _id } = !!user && user;
   const [url, setUrl] = useState('');
   const [description, setDescription] = useState('');
@@ -17,6 +21,8 @@ const CreateItemForm = () => {
   const [tags, setTags] = useState<String[]>([]);
   const [collectionOptions, setCollectionOptions] = useState([]);
   const [collectionData, setCollectionData] = useState<Object[]>([]);
+  const [creating, setCreating] = useState(false);
+  const [creationSuccess, setCreationSuccess] = useState(false);
 
   const handleCollectionChange = (
     collections: Array<{ label: string; value: string }>
@@ -49,8 +55,27 @@ const CreateItemForm = () => {
     setVisibility('public');
   };
 
+  const redirectUserToItemPanel = (data: any) => {
+    console.log('data: ', data);
+    handleSetSelectedItem(data);
+  };
+
+  const handleCreationSuccess = (data: any) => {
+    setCreating(false);
+    setCreationSuccess(true);
+    setTimeout(() => {
+      setCreationSuccess(false);
+    }, 2000);
+    resetForm();
+    setTimeout(() => {
+      redirectUserToItemPanel(data);
+      setCreateModalIsOpen(false);
+    }, 2400);
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setCreating(true);
     const item = {
       name: '',
       author: email,
@@ -66,17 +91,17 @@ const CreateItemForm = () => {
     const data = await result.json();
     const { status } = data;
     if (status === 'ok') {
-      alert('Item Created Successfully');
-      resetForm();
+      handleCreationSuccess(data.data);
       return;
     }
 
-    // alert('Something went wrong');
-    console.error('error');
+    setCreating(false);
+    setCreateModalIsOpen(false);
     return;
   };
   return (
     <form className={styles.form}>
+      <h1>Create Item</h1>
       <div className={styles.inputWrapper}>
         <label>Url *</label>
         <input
@@ -103,39 +128,29 @@ const CreateItemForm = () => {
           options={TagOptions}
         />
       </div>
-
-      <div className={styles.radioWrapper}>
-        <input
-          type="radio"
-          className={styles.radio}
-          onChange={() => setVisibility('public')}
-          name="public"
-          checked={visibility === 'public'}
-        />
-        <label>Public</label>
-      </div>
-      <div className={styles.radioWrapper}>
-        <input
-          type="radio"
-          className={styles.radio}
-          onChange={() => setVisibility('private')}
-          name="private"
-          checked={visibility === 'private'}
-        />
-        <label>Private</label>
-      </div>
-
       <div className={styles.buttonWrapper}>
-        <div
+        <button
           className={styles.closeButton}
           onClick={() => setCreateModalIsOpen(false)}
         >
-          <p className={styles.close}>Cancel</p>
-        </div>
-        <Button
-          buttonCopy={'Create Item'}
+          Cancel
+        </button>
+        <button
           onClick={(e: any) => handleSubmit(e)}
-        />
+          className={classNames(styles.submit, {
+            [styles.success]: creationSuccess,
+          })}
+          disabled={creating}
+        >
+          {creating ? (
+            <div className={styles.loading}>
+              {/* <Spinner /> */}
+              <span>Scraping Url...</span>
+            </div>
+          ) : (
+            <span>{creationSuccess ? 'Item Created!' : 'Create'}</span>
+          )}
+        </button>
       </div>
     </form>
   );

@@ -24,7 +24,8 @@
 - [x] add item to collection from panel
 - [x] remove item from collection from panel
 - [x] scrape title/details of URL
-- [ ] check if item exists in collection from pill component
+- [x] check if item exists in collection from pill component
+- [ ] make sure remove item from collection works
 
 # Client
 
@@ -54,14 +55,16 @@
 - [x] restyle form
 - [x] make item panel
 - [x] related items
-- [ ] make item panel responsive
+- [x] make item panel responsive
 - [x] make add to collections panel work again
 - [x] add item panel to items in collections view
 - [x] move create collections modal to collections view
-- [ ] make navbar
-- [ ] make forms look better
+- [x] make navbar
+- [ ] hide stuff behind login wall
+- [x] make forms look better
 - [ ] loading states
 - [ ] style collections view
+- [ ] profile hover menu
 - [ ] load more on scroll
 - [ ] skeleton components
 - [ ] filtering
