@@ -64,13 +64,11 @@ const CreateItemForm = () => {
     setCreating(false);
     setCreationSuccess(true);
     setTimeout(() => {
+      redirectUserToItemPanel(data);
+      setCreateModalIsOpen(false);
       setCreationSuccess(false);
     }, 2000);
     resetForm();
-    setTimeout(() => {
-      redirectUserToItemPanel(data);
-      setCreateModalIsOpen(false);
-    }, 2400);
   };
 
   const handleSubmit = async (e: any) => {
@@ -144,7 +142,6 @@ const CreateItemForm = () => {
         >
           {creating ? (
             <div className={styles.loading}>
-              {/* <Spinner /> */}
               <span>Scraping Url...</span>
             </div>
           ) : (

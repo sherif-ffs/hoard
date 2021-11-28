@@ -73,8 +73,8 @@
       white-space: nowrap;
       @media (hover: hover) {
         &:hover {
-          background-color: #283cea;
-          border-color: #283cea;
+          background-color: darken($color-blue, 15%);
+          border-color: darken($color-blue, 15%);
         }
       }
       svg {
@@ -89,7 +89,7 @@
     .close {
       margin: 0 1em;
       padding: 0.875em;
-      background-color: #283cea;
+      background-color: darken($color-blue, 15%);
       cursor: pointer;
       border-radius: 50%;
       z-index: 2;

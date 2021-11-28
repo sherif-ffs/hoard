@@ -1,12 +1,13 @@
+import classNames from 'classnames';
 import React, { useState } from 'react';
-import { createCollection } from './api/CollectionsApi';
+
 import { TagOption, TagOptions } from '../constants/Tags';
 import MultiSelect from '../components/ui/MultiSelect';
 import { useAppContext } from '../components/AppWrapper';
 import { useItemContext } from '../contexts/ItemsContext';
-import Button from '../components/ui/Button';
+import { createCollection } from './api/CollectionsApi';
+
 import styles from '../items/components/CreateContentForm.module.scss';
-import PanelHeader from '../items/components/ItemPanel/PanelHeader';
 
 interface Props {
   context: string;
@@ -20,6 +21,8 @@ const CreateCollectionForm = (props: Props) => {
   const [description, setDescription] = useState('');
   const [visibility, setVisibility] = useState('public');
   const [tags, setTags] = useState<String[]>([]);
+  const [creating, setCreating] = useState(false);
+  const [creationSuccess, setCreationSuccess] = useState(false);
 
   const { context } = props;
 
@@ -43,6 +46,18 @@ const CreateCollectionForm = (props: Props) => {
     setVisibility('public');
   };
 
+  const handleCreationSuccess = () => {
+    setCreating(false);
+    setCreationSuccess(true);
+    setTimeout(() => {
+      setCreationSuccess(false);
+    }, 2000);
+    resetForm();
+    setTimeout(() => {
+      setCreateModalIsOpen(false);
+    }, 2400);
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const collection = {
@@ -59,10 +74,13 @@ const CreateCollectionForm = (props: Props) => {
     const data = await result.json();
     const { status } = data;
     if (status === 'ok') {
-      alert('collection Created Successfully');
+      handleCreationSuccess();
       resetForm();
       return;
     }
+
+    setCreating(false);
+    setCreateModalIsOpen(false);
     console.error('error');
     return;
   };
@@ -97,36 +115,27 @@ const CreateCollectionForm = (props: Props) => {
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      {/* <div className={styles.radioWrapper}>
-        <input
-          type="radio"
-          className={styles.radio}
-          onChange={() => setVisibility('public')}
-          name="public"
-          checked={visibility === 'public'}
-        />
-        <label>public</label>
-      </div>
-      <div className={styles.radioWrapper}>
-        <input
-          type="radio"
-          className={styles.radio}
-          onChange={() => setVisibility('private')}
-          name="private"
-          checked={visibility === 'private'}
-        />
-        <label>private</label>
-      </div> */}
-
       <div className={styles.buttonWrapper}>
         <button
           className={styles.closeButton}
-          onClick={() => generateOnClickEvent()}
+          onClick={() => setCreateModalIsOpen(false)}
         >
           Cancel
         </button>
-        <button onClick={(e: any) => handleSubmit(e)} className={styles.submit}>
-          Create
+        <button
+          onClick={(e: any) => handleSubmit(e)}
+          className={classNames(styles.submit, {
+            [styles.success]: creationSuccess,
+          })}
+          disabled={creating}
+        >
+          {creating ? (
+            <div className={styles.loading}>
+              <span>Scraping Url...</span>
+            </div>
+          ) : (
+            <span>{creationSuccess ? 'Collection Created!' : 'Create'}</span>
+          )}
         </button>
       </div>
     </form>
