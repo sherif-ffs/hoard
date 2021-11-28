@@ -92,9 +92,6 @@ export function checkIfItemIsInCollection(
   itemId: string,
   collectionId: string
 ) {
-  console.log('from api file');
-  console.log('itemId: ', itemId);
-  console.log('collectionId: ', collectionId);
   return fetch(
     `http://localhost:5000/collections/check-if-item-is-in-collection?itemId=${itemId}&collectionId=${collectionId}`,
     {

@@ -2,8 +2,6 @@ import { useQuery } from 'react-query';
 import { checkIfItemIsInCollection } from '../api/CollectionsApi';
 
 const checkItem = async (itemId: string, collectionId: string) => {
-  console.log('itemId: ', itemId);
-  console.log('collectionId: ', collectionId);
   const res = await checkIfItemIsInCollection(itemId, collectionId);
   return await res.json();
 };

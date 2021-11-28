@@ -80,12 +80,7 @@ router.post('/remove-item-from-collection', async (req, res) => {
 });
 
 // check if item is included in collection
-/**
- * itemId
- * collectionId
- */
 router.get('/check-if-item-is-in-collection', async (req, res) => {
-  //
   const itemId = req.query.itemId as string;
   const collectionId = req.query.collectionId as string;
 
@@ -98,15 +93,9 @@ router.get('/check-if-item-is-in-collection', async (req, res) => {
       collection[0] &&
       collection[0].items &&
       collection[0].items.map((item) => item._id);
-    // console.log('collection: ', collection);
-    // console.log('items: ', items);
 
     const itemIds = items && !!items.length && items.map((id) => id.toString());
-    console.log('itemId: ', itemId);
-    console.log('itemIds: ', itemIds);
     const includes = itemIds && itemIds.includes(itemId);
-    // const includes = items.includes(itemId);
-    console.log('includes: ', includes);
     res.json({ status: 'ok', data: includes });
   } catch (error) {
     return res.json({ status: 'error', error: error });
