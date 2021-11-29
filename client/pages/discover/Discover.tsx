@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import classNames from 'classnames';
 
 import { Navigation } from '../navigation/components/Navigation';
@@ -33,12 +34,14 @@ const Discover = () => {
         >
           Items
         </button>
-        <button
-          onClick={() => setView('collections')}
-          className={classNames(styles.tab, { [styles.active]: !isItems })}
-        >
-          Collections
-        </button>
+        <Link href="/collections/Collections">
+          <button
+            onClick={() => setView('collections')}
+            className={classNames(styles.tab, { [styles.active]: !isItems })}
+          >
+            Collections
+          </button>
+        </Link>
       </div>
 
       {view === 'items' ? <Items /> : <Collections />}

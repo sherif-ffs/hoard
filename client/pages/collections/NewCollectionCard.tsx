@@ -5,6 +5,7 @@ import { API_URL } from '../constants/ApiEndpoint';
 
 import styles from './NewCollectionCard.module.scss';
 import { TagOptions } from '../constants/Tags';
+import { ItemInterface } from '../Interfaces/ItemInterface';
 
 interface Props {
   title: string;
@@ -12,13 +13,13 @@ interface Props {
   id: string;
   author: string;
   tags: string[];
+  handleSetSelectedItem: (item: ItemInterface) => void;
 }
 const NewCollectionCard = (props: Props) => {
-  const { title, items, id, author, tags } = props;
+  const { title, items, id, author, tags, handleSetSelectedItem } = props;
 
   return (
     <>
-      <hr></hr>
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <Link href={`/collections/${id}`}>
@@ -43,12 +44,16 @@ const NewCollectionCard = (props: Props) => {
           {items &&
             !!items.length &&
             items.map((item) => (
-              <div className={styles.thumbnail}>
+              <div
+                className={styles.thumbnail}
+                onClick={() => handleSetSelectedItem(item)}
+              >
                 <img src={`${API_URL}/items/images/${item.imageID}`} />
               </div>
             ))}
         </div>
       </div>
+      <div className={styles.border} />
     </>
   );
 };
