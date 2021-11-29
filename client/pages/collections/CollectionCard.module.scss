@@ -1,10 +1,11 @@
 @import "../../styles/variables";
 .wrapper {
   height: min-content;
-  transition: 400ms;
+  transition: text-decoration 400ms;
+  cursor: pointer;
+  font-family: $font-sans-serif;
   @media(hover: hover) {
     &:hover {
-      cursor: pointer;
       img {
         filter: brightness(0.9);
         transition: text-decoration 400ms;

@@ -62,7 +62,7 @@
 - [x] make navbar
 - [ ] hide stuff behind login wall
 - [x] make forms look better
-- [ ] loading states
+- [x] loading states
 - [ ] style collections view
 - [ ] profile hover menu
 - [ ] load more on scroll

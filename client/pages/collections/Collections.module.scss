@@ -1,7 +1,8 @@
 .collections {
-  width: 85%;
-  margin: 16px auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-gap: 2rem;
+  width: 100%;
+  // margin: 2em auto;
+  margin-top: 2em;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  // grid-gap: 2rem;
 }

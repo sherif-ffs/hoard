@@ -54,14 +54,16 @@
       }
       .saveButton {
         border: none;
-        padding: 0.25em 0.5em;
+        padding: 0.5em 0.5em;
         border-radius: 0.25em;
         background-color: $light-gray;
         transition: background-color 400ms;
         cursor: pointer;
         margin-right: 1em;
+        z-index: 2;
         svg {
           display: block;
+          padding: 0;
         }
         @media(hover: hover) {
           &:hover {

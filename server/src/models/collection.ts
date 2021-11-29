@@ -10,6 +10,10 @@ const collectionSchema = new Schema<CollectionInterface>({
     type: String,
     required: true,
   },
+  author: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: false,

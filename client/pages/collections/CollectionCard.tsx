@@ -16,16 +16,15 @@ const CollectionCard = (props: Props) => {
   const firstImage = items && !!items.length && items[0].imageID;
 
   return (
-    <div className={styles.wrapper}>
-      {firstImage && <img src={`${API_URL}/items/images/${firstImage}`} />}
-      <div className={styles.content}>
-        <Link href={`/collections/${id}`}>
+    <Link href={`/collections/${id}`}>
+      <div className={styles.wrapper}>
+        {firstImage && <img src={`${API_URL}/items/images/${firstImage}`} />}
+        <div className={styles.content}>
           <h1>{title}</h1>
-        </Link>
-        {/* <h1>{title}</h1> */}
-        <h3>{items.length} Items</h3>
+          <h3>{items.length} Items</h3>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

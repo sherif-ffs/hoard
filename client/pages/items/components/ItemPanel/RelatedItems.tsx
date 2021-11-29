@@ -30,6 +30,7 @@ const RelatedItems = () => {
           !!filteredItems.length &&
           filteredItems.map((item: ItemInterface) => (
             <img
+              key={item._id}
               src={`${API_URL}/items/images/${item.imageID}`}
               onClick={() => handleSetSelectedItem(item)}
             ></img>

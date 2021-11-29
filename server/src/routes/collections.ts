@@ -11,9 +11,9 @@ const router = express.Router();
 router.post('/create-collection', async (req, res) => {
   const { collection } = req.body;
   try {
-    const result = await Collection.create(collection);
-    console.log('result; ', result);
-    res.send({ status: 'ok', data: 'collection created successfully ' });
+    const newCollection = await Collection.create(collection);
+    console.log('newCollection; ', newCollection);
+    res.send({ status: 'ok', data: newCollection });
   } catch (err) {
     res.send({ status: 'error', error: err });
   }
@@ -35,6 +35,7 @@ router.get('/collection-by-collection-id', async (req, res) => {
   try {
     const id = req.query.id as string;
     const collection = await Collection.find({ _id: new objectId(id) });
+    console.log('serverside collection: ', collection);
     res.send({ status: 'ok', data: collection });
   } catch (err) {
     res.send({ status: 'error', error: err });

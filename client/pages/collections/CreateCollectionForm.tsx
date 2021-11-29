@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
-
+import Router from 'next/router';
 import { TagOption, TagOptions } from '../constants/Tags';
 import MultiSelect from '../components/ui/MultiSelect';
 import { useAppContext } from '../components/AppWrapper';
@@ -70,12 +70,18 @@ const CreateCollectionForm = (props: Props) => {
       isPrivate: visibility === 'private',
       likes: 0,
     };
+    console.log('collection: ', collection);
     const result = await createCollection(collection);
     const data = await result.json();
     const { status } = data;
     if (status === 'ok') {
       handleCreationSuccess();
       resetForm();
+      if (context !== 'collections-panel') {
+        Router.push(`/collections/${data.data._id}`);
+      }
+      setCreating(false);
+      setCreateModalIsOpen(false);
       return;
     }
 

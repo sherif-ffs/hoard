@@ -30,7 +30,6 @@ export function AppWrapper({ children }) {
 
   const userId = user && user._id;
   const myCollections = loadMyCollections(userId);
-  console.log('myCollections: ', myCollections);
 
   const allCollections = loadAllCollections();
 
