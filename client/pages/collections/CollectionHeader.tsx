@@ -1,5 +1,6 @@
-import styles from './CollectionHeader.module.scss';
 import { useAppContext } from '../components/AppWrapper';
+import styles from './CollectionHeader.module.scss';
+
 interface Props {
   title: string;
   count: number;
@@ -10,8 +11,8 @@ interface Props {
 const CollectionHeader = (props: Props) => {
   const { title, count, description, authorId } = props;
   const { user } = useAppContext();
-  if (!user) return <p>loading</p>;
-  const isMyCollection = authorId === user && user._id;
+
+  const isMyCollection = user && authorId === user._id;
   console.log('isMyCollection: ', isMyCollection);
 
   return (

@@ -19,12 +19,8 @@ const Items = () => {
     !!data.data.items.length &&
     data.data.items;
 
-  console.log('items: ', items);
   const itemCount = data && data.data && data.data.itemCount;
-  /**
-   * call handleLoadMore when items scroller is in view
-   * return number of all items
-   */
+
   const handleLoadMore = (inView: boolean) => {
     if (inView) {
       let newLimit = limit;
