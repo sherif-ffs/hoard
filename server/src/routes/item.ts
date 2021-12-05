@@ -73,10 +73,18 @@ router.get('/items', async (req, res) => {
   const limit = Number(req.query.limit);
   try {
     const items = await Item.find().limit(limit);
+    const itemCount = await Item.count();
+    console.log('itemCount: ', itemCount);
     if (!items) {
       return res.json({ status: 'error', error: 'no items found' });
     }
-    res.json({ status: 'ok', data: items });
+    res.json({
+      status: 'ok',
+      data: {
+        items,
+        itemCount,
+      },
+    });
   } catch (error) {
     return res.json({ status: 'error', error: error });
   }

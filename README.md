@@ -66,8 +66,8 @@
 - [ ] style collections view
 - [ ] profile hover menu
 - [ ] load more on scroll
-- [ ] skeleton components
 - [ ] filtering
+- [ ] skeleton components
 - [ ] style profile page
 - [ ] error handling (404, 500, error boundary)
 - [ ] fix caching/fetch issue?
