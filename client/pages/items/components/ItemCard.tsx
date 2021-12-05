@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+
 import { deleteItem } from '../api/ItemApi';
 import { API_URL } from '../../constants/ApiEndpoint';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
 import { useItemContext } from '../../contexts/ItemsContext';
 import SaveSVG from '../../components/ui/icons/SaveSVG';
+
 import styles from './ItemCard.module.scss';
 
 type Props = {
@@ -14,6 +17,11 @@ type Props = {
 const Item = (props: Props) => {
   const { name, _id, imageID } = props.item;
   const { handleSetSelectedItem, handleSetItemToCollect } = useItemContext();
+
+  const { ref, inView, entry } = useInView({
+    threshold: 0,
+  });
+
   const handleDeleteItem = async () => {
     const res = await deleteItem(_id);
     const response = await res.json();
@@ -25,10 +33,13 @@ const Item = (props: Props) => {
     alert(data);
   };
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={ref}>
       {imageID ? (
         <div onClick={() => handleSetSelectedItem(props.item)}>
-          <img src={`${API_URL}/items/images/${imageID}`} loading="lazy"></img>
+          <img
+            src={inView ? `${API_URL}/items/images/${imageID}` : undefined}
+            loading="lazy"
+          ></img>
         </div>
       ) : null}
       <div className={styles.content}>

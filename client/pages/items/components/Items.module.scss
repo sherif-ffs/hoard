@@ -8,3 +8,19 @@
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-gap: 2rem;
 }
+
+.spinnerWrapper {
+  margin: 3em 0;
+  display: flex;
+  justify-content: center;
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-sans-serif;
+    span {
+      font-weight: 700;
+      color: $gray;
+    }
+  }
+}

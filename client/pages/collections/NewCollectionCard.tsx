@@ -43,8 +43,9 @@ const NewCollectionCard = (props: Props) => {
         <div className={styles.thumbnails}>
           {items &&
             !!items.length &&
-            items.map((item) => (
+            items.map((item, i) => (
               <div
+                key={i}
                 className={styles.thumbnail}
                 onClick={() => handleSetSelectedItem(item)}
               >
