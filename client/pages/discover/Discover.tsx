@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { Navigation } from '../navigation/components/Navigation';
 import Items from '../items/components/Items';
 import Collections from '../collections/Collections';
+
 import styles from './Discover.module.scss';
 
 const Discover = () => {

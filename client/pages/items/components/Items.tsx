@@ -4,8 +4,10 @@ import { InView } from 'react-intersection-observer';
 import { useAppContext } from '../../components/AppWrapper';
 import useAllItems from '../../hooks/useAllItems';
 import ItemCard from './ItemCard';
-import Spinner from '../../components/ui/Spinner';
+// import Spinner from '../../components/ui/Spinner';
 import styles from './Items.module.scss';
+
+import Loading from '../../components/ui/Loading';
 
 const Items = () => {
   const { user } = useAppContext();
@@ -24,7 +26,9 @@ const Items = () => {
   const handleLoadMore = (inView: boolean) => {
     if (inView) {
       let newLimit = limit;
-      setLimit((newLimit += 8));
+      setTimeout(() => {
+        setLimit((newLimit += 8));
+      }, 1000);
     }
   };
 
@@ -32,10 +36,11 @@ const Items = () => {
     return <p>error</p>;
   }
 
-  if (!items) return <p>loading</p>;
+  if (status === 'loading') return <Loading copy={'Loading Items'} />;
 
   const fetchMoreItems = limit < itemCount;
 
+  console.log('items; ', items);
   return (
     <>
       <div className={styles.wrapper}>
@@ -55,14 +60,9 @@ const Items = () => {
           }
         })}
       </div>
-      {fetchMoreItems && (
+      {fetchMoreItems && items && (
         <InView onChange={(inView) => handleLoadMore(inView)}>
-          <div className={styles.spinnerWrapper}>
-            <div>
-              <Spinner />
-              <span>Loading more items</span>
-            </div>
-          </div>
+          <Loading copy={'Loading More Items'} />
         </InView>
       )}
     </>

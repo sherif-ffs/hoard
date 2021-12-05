@@ -10,9 +10,17 @@
       opacity: 1;
     }
   }
-  img {
+  .imgWrapper {
     width: 100%;
+    >div {
+      position: unset !important;
+    }
+  }
+  img {
     object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
     border-radius: 3px;
     box-shadow: $box-shadow;
     border-radius: 0.25em;
