@@ -1,7 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { API_URL } from '../constants/ApiEndpoint';
+import { shimmer, toBase64 } from '../utils';
 
 import styles from './NewCollectionCard.module.scss';
 import { TagOptions } from '../constants/Tags';
@@ -49,6 +51,15 @@ const NewCollectionCard = (props: Props) => {
                 className={styles.thumbnail}
                 onClick={() => handleSetSelectedItem(item)}
               >
+                {/* <Image
+                  src={`${API_URL}/items/images/${item.imageID}`}
+                  placeholder="blur"
+                  layout="fill"
+                  quality={100}
+                  blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                    shimmer(300, 200)
+                  )}`}
+                /> */}
                 <img src={`${API_URL}/items/images/${item.imageID}`} />
               </div>
             ))}

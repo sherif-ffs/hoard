@@ -1,0 +1,14 @@
+@import "../../styles/_variables.scss";
+// @import "../../../styles/breakpoints.scss";
+.wrapper {
+  width: 90%;
+  margin: 1em auto;
+  header {
+    border-bottom: 1px solid $light-gray;
+    margin: 2em 0;
+  }
+}
+
+.tabs {
+  width: 30%;
+}

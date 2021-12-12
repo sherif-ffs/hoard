@@ -17,6 +17,15 @@
   &.open {
     transform: translateY(0);
   }
+  &::after {
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    width: 6em;
+    background-image: linear-gradient(to right, rgba($color-blue, 0), rgba($color-blue, 1) 40%);
+  }
   .content {
     display: flex;
     flex-direction: row;
@@ -25,6 +34,7 @@
     scrollbar-width: none; // hide horizontal scrollbar on firefox
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch;
+    padding-right: 6em;
     &::-webkit-scrollbar {
       background: transparent;
       height: 0px;
@@ -104,5 +114,39 @@
         display: block;
       }
     }
+  }
+}
+
+.updating {
+  position: relative;
+  display: inline-flex;
+  margin-right: 6px;
+  left: -1;
+  gap: 3px;
+  >span {
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    opacity: 0.25;
+    background-color: currentColor;
+    animation-direction: alternate;
+    animation-duration: 800ms;
+    animation-iteration-count: infinite;
+    animation-name: movingDot;
+    animation-timing-function: ease;
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * 200ms;
+      }
+    }
+  }
+}
+
+@keyframes movingDot {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
   }
 }

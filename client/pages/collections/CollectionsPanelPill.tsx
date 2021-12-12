@@ -18,12 +18,14 @@ interface Props {
 const CollectionsPanelPill = (props: Props) => {
   const { closeCollectionsPanel, item, collection } = props;
   const [refetching, setRefetching] = useState(false);
+  const [updating, setUpdating] = useState(false);
+
   const { itemToCollect } = useItemContext();
 
   const itemId = itemToCollect && itemToCollect._id;
   const collectionId = collection && collection._id;
 
-  const includes = loadItemStatus(itemId, collectionId, refetching);
+  let includes = loadItemStatus(itemId, collectionId, refetching);
 
   if (includes === 'loading') {
     return <p>loading</p>;
@@ -36,13 +38,20 @@ const CollectionsPanelPill = (props: Props) => {
   };
 
   const addItemToCollection = async (collectionId: string) => {
-    setRefetching(true);
+    // setRefetching(true);
+    setUpdating(true);
     const res = await add(collectionId, item);
     const data = await res.json();
     const { status } = data;
     if (status === 'ok') {
-      setRefetching(false);
+      includes = true;
+      // setRefetching(false);
+      // // setUpdating(false);
+      // setTimeout(() => {
+      //   setRefetching(false);
+      // }, 400);
       setTimeout(() => {
+        setUpdating(false);
         closeCollectionsPanel();
       }, 400);
       return;
@@ -52,13 +61,20 @@ const CollectionsPanelPill = (props: Props) => {
   };
 
   const removeItemFromCollection = async (collectionId: string) => {
-    setRefetching(true);
+    // setRefetching(true);
+    setUpdating(true);
     const res = await remove(item, collectionId);
     const data = await res.json();
     const { status } = data;
     if (status === 'ok') {
-      setRefetching(false);
+      includes = false;
+      // setRefetching(false);
+      // setTimeout(() => {
+      //   setRefetching(false);
+      // }, 400);
+      // setUpdating(false);
       setTimeout(() => {
+        setUpdating(false);
         closeCollectionsPanel();
       }, 400);
       return;
@@ -76,7 +92,16 @@ const CollectionsPanelPill = (props: Props) => {
       key={collection._id}
       onClick={() => toggle(collection._id, includes)}
     >
-      {includes && <CheckSVG color="#2a84ff" height={24} width={24} />}
+      {updating && (
+        <span className={styles.updating}>
+          <span />
+          <span />
+          <span />
+        </span>
+      )}
+      {includes && !updating && (
+        <CheckSVG color="#2a84ff" height={24} width={24} />
+      )}
       <span>{collection.title}</span>
     </button>
   );

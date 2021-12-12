@@ -7,6 +7,7 @@ import { API_URL } from '../../constants/ApiEndpoint';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
 import { useItemContext } from '../../contexts/ItemsContext';
 import SaveSVG from '../../components/ui/icons/SaveSVG';
+import { shimmer, toBase64 } from '../../utils';
 import PlaceHolderImage from '../../../public/placeholder_image.png';
 import styles from './ItemCard.module.scss';
 
@@ -23,24 +24,24 @@ const Item = (props: Props) => {
     threshold: 0,
   });
 
-  const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <linearGradient id="g">
-      <stop stop-color="#333" offset="20%" />
-      <stop stop-color="#222" offset="50%" />
-      <stop stop-color="#333" offset="70%" />
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="#333" />
-  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
-  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
-</svg>`;
+  //   const shimmer = (w: number, h: number) => `
+  // <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  //   <defs>
+  //     <linearGradient id="g">
+  //       <stop stop-color="#333" offset="20%" />
+  //       <stop stop-color="#222" offset="50%" />
+  //       <stop stop-color="#333" offset="70%" />
+  //     </linearGradient>
+  //   </defs>
+  //   <rect width="${w}" height="${h}" fill="#333" />
+  //   <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  //   <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+  // </svg>`;
 
-  const toBase64 = (str: string) =>
-    typeof window === 'undefined'
-      ? Buffer.from(str).toString('base64')
-      : window.btoa(str);
+  //   const toBase64 = (str: string) =>
+  //     typeof window === 'undefined'
+  //       ? Buffer.from(str).toString('base64')
+  //       : window.btoa(str);
 
   const handleDeleteItem = async () => {
     const res = await deleteItem(_id);
@@ -63,15 +64,11 @@ const Item = (props: Props) => {
             src={`${API_URL}/items/images/${imageID}`}
             placeholder="blur"
             layout="fill"
+            quality={100}
             blurDataURL={`data:image/svg+xml;base64,${toBase64(
-              shimmer(300, 300)
+              shimmer(200, 200)
             )}`}
           />
-          {/* <img
-            // src={`${API_URL}/items/images/${imageID}`}
-            src={inView ? `${API_URL}/items/images/${imageID}` : undefined}
-            loading="lazy"
-          ></img> */}
         </div>
       ) : null}
       <div className={styles.content}>

@@ -10,10 +10,12 @@ import CreateItemForm from './CreateItemForm';
 const CreateModal = () => {
   const { createModalIsOpen } = useAppContext();
   const [activeTab, setActiveTab] = useState(1);
+  const tabCopy = ['Item', 'Collection'];
+
   return (
     <Mask isOpen={createModalIsOpen}>
       <Modal isOpen={createModalIsOpen}>
-        <Tabs {...{ activeTab, setActiveTab }} />
+        <Tabs {...{ activeTab, setActiveTab, tabCopy }} />
         {activeTab === 1 ? (
           <CreateItemForm />
         ) : (

@@ -72,6 +72,31 @@
       height: 0px;
       width: 0px;
     }
+    // .thumbnail {
+    //   // width: 100%;
+    //   display: flex;
+    //   flex: 1;
+    //   // height: 100%;
+    //   >div {
+    //     position: unset !important;
+    //   }
+    // }
+    // img {
+    //   object-fit: contain;
+    //   width: 100% !important;
+    //   position: relative !important;
+    //   // height: unset!important;
+    //   border-radius: 3px;
+    //   box-shadow: $box-shadow;
+    //   border-radius: 0.5em;
+    //   transition: box-shadow 400ms;
+    //   cursor: pointer;
+    //   @media(hover: hover) {
+    //     &:hover {
+    //       border: 1px solid lighten($gray, 15%);
+    //     }
+    //   }
+    // }
     .thumbnail {
       display: flex;
       flex: 1;

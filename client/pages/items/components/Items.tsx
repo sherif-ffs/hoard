@@ -4,8 +4,8 @@ import { InView } from 'react-intersection-observer';
 import { useAppContext } from '../../components/AppWrapper';
 import useAllItems from '../../hooks/useAllItems';
 import ItemCard from './ItemCard';
-// import Spinner from '../../components/ui/Spinner';
 import styles from './Items.module.scss';
+import gridStyles from '../../../styles/_cardGrid.module.scss';
 
 import Loading from '../../components/ui/Loading';
 
@@ -40,25 +40,26 @@ const Items = () => {
 
   const fetchMoreItems = limit < itemCount;
 
-  console.log('items; ', items);
   return (
     <>
-      <div className={styles.wrapper}>
-        {items.map((item: any) => {
-          const isMyItem = user && user._id === item.userId;
-          const isPublic = !item.isPrivate;
-          if (isPublic || isMyItem) {
-            return (
-              <ItemCard
-                {...{
-                  isMyItem,
-                  item,
-                }}
-                key={item._id}
-              />
-            );
-          }
-        })}
+      <div className={gridStyles.cardGrid}>
+        <div className={styles.wrapper}>
+          {items.map((item: any) => {
+            const isMyItem = user && user._id === item.userId;
+            const isPublic = !item.isPrivate;
+            if (isPublic || isMyItem) {
+              return (
+                <ItemCard
+                  {...{
+                    isMyItem,
+                    item,
+                  }}
+                  key={item._id}
+                />
+              );
+            }
+          })}
+        </div>
       </div>
       {fetchMoreItems && items && (
         <InView onChange={(inView) => handleLoadMore(inView)}>
