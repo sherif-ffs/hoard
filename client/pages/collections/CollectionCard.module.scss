@@ -16,12 +16,35 @@
       }
     }
   }
-  img {
+  .imgWrapper {
     width: 100%;
-    object-fit: contain;
-    border: 1px solid lighten($gray, 35%);
-    border-radius: 3px;
+    border: 1px solid $light-gray;
+    >div {
+      position: unset !important;
+    }
   }
+  img {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+    border-radius: 3px;
+    box-shadow: $box-shadow;
+    border-radius: 0.25em;
+    transition: box-shadow 400ms;
+    cursor: pointer;
+    @media(hover: hover) {
+      &:hover {
+        box-shadow: $big-box-shadow;
+      }
+    }
+  }
+  // img {
+  //   width: 100%;
+  //   object-fit: contain;
+  //   border: 1px solid lighten($gray, 35%);
+  //   border-radius: 3px;
+  // }
   .content {
     display: flex;
     flex-direction: column;

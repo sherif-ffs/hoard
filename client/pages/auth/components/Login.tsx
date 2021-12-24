@@ -12,6 +12,7 @@ import styles from './Form.module.scss';
 const Login: NextPage = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [error, setError] = useState(null);
   const { user, setUser, token, setToken, setAuthenticated } = useAppContext();
 
   const handleSubmit = async (e: any) => {
@@ -19,6 +20,13 @@ const Login: NextPage = () => {
 
     const result = await loginUser(email, password);
     const data = await result.json();
+    console.log('data: ', data);
+
+    if (data.error) {
+      setError(data.error);
+      return;
+    }
+
     const { user, token, authenticated } = data.data;
     if (user && token && authenticated) {
       setUser(user);
@@ -33,6 +41,7 @@ const Login: NextPage = () => {
       <div className={styles.formWrapper}>
         <form className={styles.form}>
           <h1>Login</h1>
+          {error && <p>{error}</p>}
           <div className={styles.inputWrapper}>
             <label>Email *</label>
             <input
