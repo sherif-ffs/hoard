@@ -1,21 +1,52 @@
 @import "../../styles/variables";
 .header {
-  width: 85%;
-  margin: 3em auto 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-family: $font-sans-serif;
+  width: 100%;
+  background-color: $light-gray;
+  border-top: 1px solid $medium-gray;
+  border-bottom: 1px solid $medium-gray;
+  .wrapper {
+    width: 85%;
+    padding: 2em 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @media all and (max-width: 480px) {
+      flex-direction: column;
+    }
+  }
   .content {
     h1 {
       font-weight: $font-weight-bold;
       margin: 0;
-      font-size: $heading-1;
     }
     h3 {
-      font-weight: $font-weight-medium;
+      font-weight: 400;
       color: $gray;
       margin: 0;
+      margin-top: 0.5em;
+    }
+  }
+  .delete {
+    background-color: $light-gray;
+    border: 1px solid $medium-gray;
+    border-radius: $border-radius;
+    height: min-content;
+    padding: 0.5em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 400ms;
+    .skull {
+      margin: 0.25em;
+      font-size: 1.25em;
+    }
+    @media all and (max-width: 480px) {
+      margin-top: 1.5em;
+    }
+    @media(hover: hover) {
+      &:hover {
+        background-color: darken($light-gray, 5%);
+      }
     }
   }
 }

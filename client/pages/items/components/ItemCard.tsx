@@ -1,12 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
+import classNames from 'classnames';
 
-import { deleteItem } from '../api/ItemApi';
 import { API_URL } from '../../constants/ApiEndpoint';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
 import { useItemContext } from '../../contexts/ItemsContext';
-import SaveSVG from '../../components/ui/icons/SaveSVG';
-import { shimmer, toBase64 } from '../../utils';
 import styles from './ItemCard.module.scss';
 
 type Props = {
@@ -18,47 +15,29 @@ const Item = (props: Props) => {
   const { name, _id, imageID } = props.item;
   const { handleSetSelectedItem, handleSetItemToCollect } = useItemContext();
 
-  const handleDeleteItem = async () => {
-    const res = await deleteItem(_id);
-    const response = await res.json();
-    const { status, data } = response;
-    if (status === 'ok') {
-      alert('Item deleted successfully');
-      return;
-    }
-    alert(data);
-  };
   return (
-    <div className={styles.wrapper}>
-      {imageID ? (
-        <div
-          onClick={() => handleSetSelectedItem(props.item)}
-          className={styles.imgWrapper}
-        >
-          <img src={`${API_URL}/items/images/${imageID}`} loading="lazy"></img>
-          {/* <Image
-            src={`${API_URL}/items/images/${imageID}`}
-            placeholder="blur"
-            layout="fill"
-            quality={100}
-            blurDataURL={`data:image/svg+xml;base64,${toBase64(
-              shimmer(200, 200)
-            )}`}
-          /> */}
-        </div>
-      ) : null}
-      <div className={styles.content}>
-        <div className={styles.actions}>
-          <h1 onClick={() => handleSetSelectedItem(props.item)}>{name}</h1>
-          <button
-            onClick={() => handleSetItemToCollect(props.item)}
-            className={styles.saveButton}
+    <article>
+      <div className={styles.wrapper}>
+        {imageID ? (
+          <div
+            onClick={() => handleSetSelectedItem(props.item)}
+            className={styles.imgWrapper}
           >
-            <SaveSVG height={27} width={27} color="#050505" />
-          </button>
-        </div>
+            <img
+              src={`${API_URL}/items/images/${imageID}`}
+              loading="lazy"
+            ></img>
+          </div>
+        ) : null}
+        <div className={classNames(styles.background, styles.one)}></div>
+        <div className={classNames(styles.background, styles.two)}></div>
+        <div className={classNames(styles.background, styles.three)}></div>
+        <div className={classNames(styles.background, styles.four)}></div>
       </div>
-    </div>
+      <div className={styles.text}>
+        <h3 onClick={() => handleSetSelectedItem(props.item)}>{name}</h3>
+      </div>
+    </article>
   );
 };
 

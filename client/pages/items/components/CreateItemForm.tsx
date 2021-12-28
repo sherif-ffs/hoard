@@ -3,12 +3,9 @@ import classNames from 'classnames';
 
 import { TagOption, TagOptions } from '../../constants/Tags';
 import MultiSelect from '../../components/ui/MultiSelect';
-import Button from '../../components/ui/Button';
 import { useAppContext } from '../../components/AppWrapper';
 import { useItemContext } from '../../contexts/ItemsContext';
 import { createItem } from '../api/ItemApi';
-import Spinner from '../../components/ui/Spinner';
-import CheckSVG from '../../components/ui/icons/CheckSVG';
 import styles from './CreateContentForm.module.scss';
 
 const CreateItemForm = () => {
@@ -56,7 +53,6 @@ const CreateItemForm = () => {
   };
 
   const redirectUserToItemPanel = (data: any) => {
-    console.log('data: ', data);
     handleSetSelectedItem(data);
   };
 
@@ -99,7 +95,7 @@ const CreateItemForm = () => {
   };
   return (
     <form className={styles.form}>
-      <h1>Create Item</h1>
+      {/* <h1>Create Item</h1> */}
       <div className={styles.inputWrapper}>
         <label>Url *</label>
         <input
@@ -141,11 +137,9 @@ const CreateItemForm = () => {
           disabled={creating}
         >
           {creating ? (
-            <div className={styles.loading}>
-              <span>Scraping Url...</span>
-            </div>
+            <span>Scraping Url...</span>
           ) : (
-            <span>{creationSuccess ? 'Item Created!' : 'Create'}</span>
+            <span>{creationSuccess ? 'Item Created!' : 'Contribute'}</span>
           )}
         </button>
       </div>

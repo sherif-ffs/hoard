@@ -1,0 +1,175 @@
+@import "../../styles/_variables.scss";
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .filterText {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 50%;
+    gap: 5px;
+  }
+  .button {
+    display: flex;
+    margin-top: 2em;
+    height: 35px;
+    line-height: 30px;
+    border-radius: $border-radius;
+    width: 10%;
+    text-align: center;
+    justify-content: center;
+    transition: background-color 400ms, margin 200ms, height 400ms 200ms, width 400ms 400ms, ;
+    background-color: $light-gray;
+    border: 1px solid $medium-gray;
+    cursor: pointer;
+    @media(hover: hover) {
+      &:hover {
+        background-color: darken($light-gray, 5%);
+      }
+    }
+    @media all and (max-width: 480px) {
+      width: 35%;
+    }
+    &.open {
+      margin-top: 0;
+      border-radius: 0;
+      line-height: normal;
+      height: 500px;
+      width: 100%;
+      border-top: 1px solid $medium-gray;
+      border-bottom: 1px solid $medium-gray;
+      border-left: none;
+      border-right: none;
+      @media all and (max-width: 480px) {
+        height: 90vh;
+      }
+      @media(hover: hover) {
+        &:hover {
+          background-color: $light-gray;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.tagsWrapper {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  height: min-content;
+  align-items: center;
+  margin: auto 0;
+  animation: fadein 1.15s;
+  @media all and (max-width: 480px) {
+    width: 95%;
+  }
+  @media all and (min-width: 1024px) and (max-width: 1500px) {
+    width: 75%;
+  }
+  input {
+    width: 85%;
+    padding: 1em;
+    margin: 6px 0 6px;
+    border-radius: 0.5em;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid $medium-gray;
+    transition: border 400ms;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75em;
+  margin: 1em;
+  .tag {
+    padding: 0.75em 1em;
+    border-radius: 2.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.35em 1em;
+    background-color: $light-gray;
+    font-weight: 700;
+    font-family: $font-sans-serif;
+    font-weight: $font-weight-normal;
+    border: 1px solid $medium-gray;
+    cursor: pointer;
+    transition: 400ms;
+    &.selected {
+      background-color: $color-green;
+      color: $color-white;
+      border: 1px solid $color-green;
+      @media(hover: hover) {
+        &:hover {
+          border-color: darken($color-green, 15%);
+          background-color: $color-green;
+        }
+      }
+    }
+    @media (hover: hover) {
+      &:hover {
+        background-color: darken($light-gray, 5%);
+      }
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 1em;
+  width: 25%;
+  margin-top: 1em;
+  @media all and (max-width: 480px) {
+    width: 75%;
+  }
+  button {
+    padding: 0.5em 1em;
+    display: flex;
+    text-align: center;
+    flex: 1;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    white-space: nowrap;
+    font-family: $font-sans-serif;
+    font-size: 1.1em;
+    border-radius: $border-radius;
+    cursor: pointer;
+    @media (hover: hover) {
+      &:hover {
+        background-color: $light-gray;
+      }
+    }
+    &.cta {
+      border: 1px solid $medium-gray;
+      transition: 400ms;
+      @media (hover: hover) {
+        &:hover {
+          background-color: darken($light-gray, 5%);
+        }
+      }
+    }
+  }
+}
+
+.filterCount {
+  font-family: $font-sans-serif;
+  font-weight: 600;
+}

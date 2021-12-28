@@ -41,17 +41,19 @@ export function fetchItemByID(id: string) {
 }
 
 // Fetch all Items
-export function fetchAllItems(limit: number, offset: number) {
-  return fetch(
-    `http://localhost:5000/items/items/?limit=${limit}&offset=${offset}`,
-    {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  );
+export function fetchAllItems(limit: number, offset: number, filterList: []) {
+  return fetch(`http://localhost:5000/items/items`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      limit,
+      offset,
+      filterList,
+    }),
+  });
 }
 
 // fetch items by userId

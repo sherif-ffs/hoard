@@ -3,10 +3,10 @@
   padding: 1em 0;
   transform: translateY(100%);
   width: 100%;
-  background-color: $color-blue;
-  color: $color-white;
-  font-family: avenir;
+  background-color: $light-gray;
+  color: $dark;
   overflow: visible;
+  border-top: 1px solid $medium-gray;
   display: inline-flex;
   align-items: center;
   position: fixed;
@@ -24,7 +24,7 @@
     bottom: 0;
     position: absolute;
     width: 6em;
-    background-image: linear-gradient(to right, rgba($color-blue, 0), rgba($color-blue, 1) 40%);
+    background-image: linear-gradient(to right, rgba($light-gray, 0), rgba($light-gray, 1) 40%);
   }
   .content {
     display: flex;
@@ -52,20 +52,21 @@
       align-items: center;
       padding: 0.75em 1em;
       background: transparent;
-      color: $color-white;
+      color: $dark;
       white-space: nowrap;
       font-weight: 600;
-      border: 1px solid rgba($color-white, 0.5);
+      border: 1px solid $medium-gray;
       border-radius: 2.5em;
-      transition: border-color 400ms;
+      transition: background-color 400ms;
       @media (hover: hover) {
         &:hover {
-          border-color: $color-white;
+          background-color: darken($light-gray, 5%);
         }
       }
       &.selected {
-        background: $color-white;
-        color: $color-blue;
+        background-color: $color-green;
+        border: 1px solid $color-green;
+        color: $light-gray;
       }
     }
     .newCollection {
@@ -79,12 +80,12 @@
       border: 1px solid transparent;
       transition: border-color 400ms, background-color 400ms;
       cursor: pointer;
-      color: $color-white;
+      color: $dark;
       white-space: nowrap;
       @media (hover: hover) {
         &:hover {
-          background-color: darken($color-blue, 15%);
-          border-color: darken($color-blue, 15%);
+          background-color: darken($light-gray, 5%);
+          border-color: darken($medium-gray, 15%);
         }
       }
       svg {
@@ -99,7 +100,7 @@
     .close {
       margin: 0 1em;
       padding: 0.875em;
-      background-color: darken($color-blue, 15%);
+      background-color: $medium-gray;
       cursor: pointer;
       border-radius: 50%;
       z-index: 2;
@@ -110,7 +111,7 @@
         transform: translateY(-50%);
       }
       svg {
-        color: rgba($color-white, 0.7);
+        color: rgba($new-gray, 0.7);
         display: block;
       }
     }

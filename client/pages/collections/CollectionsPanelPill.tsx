@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import classNames from 'classnames';
+
+import { useItemContext } from '../contexts/ItemsContext';
 import {
   addItemToCollection as add,
   removeItemFromCollection as remove,
 } from './api/CollectionsApi';
-import { useItemContext } from '../contexts/ItemsContext';
 import loadItemStatus from './hooks/loadItemStatus';
-import CheckSVG from '../components/ui/icons/CheckSVG';
+
 import styles from './CollectionsPanel.module.scss';
 
 interface Props {
@@ -25,7 +26,7 @@ const CollectionsPanelPill = (props: Props) => {
   const itemId = itemToCollect && itemToCollect._id;
   const collectionId = collection && collection._id;
 
-  let includes = loadItemStatus(itemId, collectionId, refetching);
+  let includes = loadItemStatus(itemId, collectionId, updating);
 
   if (includes === 'loading') {
     return <p>loading</p>;
@@ -38,22 +39,18 @@ const CollectionsPanelPill = (props: Props) => {
   };
 
   const addItemToCollection = async (collectionId: string) => {
-    // setRefetching(true);
     setUpdating(true);
     const res = await add(collectionId, item);
     const data = await res.json();
     const { status } = data;
     if (status === 'ok') {
       includes = true;
-      // setRefetching(false);
-      // // setUpdating(false);
-      // setTimeout(() => {
-      //   setRefetching(false);
-      // }, 400);
       setTimeout(() => {
         setUpdating(false);
-        closeCollectionsPanel();
-      }, 400);
+        setTimeout(() => {
+          closeCollectionsPanel();
+        }, 400);
+      }, 800);
       return;
     } else {
       // handle error
@@ -61,22 +58,18 @@ const CollectionsPanelPill = (props: Props) => {
   };
 
   const removeItemFromCollection = async (collectionId: string) => {
-    // setRefetching(true);
     setUpdating(true);
     const res = await remove(item, collectionId);
     const data = await res.json();
     const { status } = data;
     if (status === 'ok') {
       includes = false;
-      // setRefetching(false);
-      // setTimeout(() => {
-      //   setRefetching(false);
-      // }, 400);
-      // setUpdating(false);
       setTimeout(() => {
         setUpdating(false);
-        closeCollectionsPanel();
-      }, 400);
+        setTimeout(() => {
+          closeCollectionsPanel();
+        }, 400);
+      }, 800);
       return;
     } else {
       console.error('error');
@@ -98,9 +91,6 @@ const CollectionsPanelPill = (props: Props) => {
           <span />
           <span />
         </span>
-      )}
-      {includes && !updating && (
-        <CheckSVG color="#2a84ff" height={24} width={24} />
       )}
       <span>{collection.title}</span>
     </button>

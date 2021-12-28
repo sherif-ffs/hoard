@@ -1,5 +1,4 @@
 @import "../../styles/_variables.scss";
-// @import "../../../styles/breakpoints.scss";
 .wrapper {
   width: 90%;
   margin: 1em auto;
@@ -10,5 +9,9 @@
 }
 
 .tabs {
-  width: 30%;
+  width: 20%;
+  margin-bottom: 20px;
+  @media all and (max-width: 480px) {
+    width: 80%;
+  }
 }

@@ -1,11 +1,30 @@
 @import "../../../styles/_variables.scss";
+@keyframes grow {
+  0% {
+    width: 1px;
+  }
+  100% {
+    width: 30%;
+    @media all and (max-width: 480px) {
+      width: 90%;
+    }
+    @media all and (min-width: 480px) and (max-width: 768px) {
+      width: 60%;
+    }
+    @media all and (min-width: 1024px) and (max-width: 1500px) {
+      width: 37.5%;
+    }
+  }
+}
+
 .modal {
   width: 30%;
+  animation: grow 0.5s;
   height: min-content;
   font-size: 1rem;
   padding-bottom: 2em;
-  background: $color-white;
-  border-radius: 0.5em;
+  background: #fafafa;
+  border-radius: $border-radius;
   margin: auto;
   position: absolute;
   top: 0;
@@ -14,7 +33,7 @@
   left: 0;
   overflow: hidden;
   box-shadow: $box-shadow;
-  transition: height 400ms;
+  transition: 400ms;
   z-index: $modal;
   @media all and (max-width: 480px) {
     width: 90%;

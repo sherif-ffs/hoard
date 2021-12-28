@@ -3,9 +3,20 @@
 @import "../../../styles/breakpoints.scss";
 .wrapper {
   width: 85%;
-  margin: 16px auto;
+  margin: 3em auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-gap: 2rem;
+  grid-gap: 5rem;
   padding-bottom: 4em;
+  @media all and (max-width: 480px) {
+    width: 95%;
+  }
+}
+
+.noItems {
+  display: flex;
+  margin-top: 10em;
+  font-family: $font-sans-serif;
+  color: $new-gray;
+  justify-content: center;
 }

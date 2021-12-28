@@ -17,12 +17,13 @@
     h4 {
       margin: 0;
       font-weight: $font-weight-bold;
-      color: $color-blue;
+      color: $dark;
+      text-decoration: underline;
       transition: color 400ms;
       cursor: pointer;
       @media(hover: hover) {
         &:hover {
-          color: darken($color-blue, 5%)
+          color: darken($dark, 5%)
         }
       }
     }
@@ -37,22 +38,49 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  // @media all and (max-width: 480px) {
-  //   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  // }
   margin-top: 1.5em;
-  grid-gap: 1rem;
-  img {
+  grid-gap: 3rem;
+  .imgWrapper {
     width: 100%;
-    object-fit: contain;
-    height: auto;
-    box-shadow: $box-shadow;
-    border-radius: 0.5em;
-    cursor: pointer;
-    transition: box-shadow 400ms;
+    position: relative;
     @media(hover: hover) {
-      &:hover {
-        box-shadow: $big-box-shadow;
+      &:hover>.background.one {
+        transform: rotate(-3deg) scale(1.0125);
+      }
+      &:hover>.background.two {
+        transform: rotate(3deg) scale(1.0125);
+      }
+    }
+    img {
+      width: 100%;
+      object-fit: contain;
+      height: auto;
+      border-radius: 0.25em;
+      cursor: pointer;
+      z-index: 3;
+      position: relative;
+      transition: 400ms;
+      border: 1px solid $medium-gray;
+    }
+    .background {
+      height: 102%;
+      width: 102%;
+      background-color: $light-gray;
+      border: 1px solid $medium-gray;
+      position: absolute;
+      border-radius: $border-radius;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      transition: 400ms;
+      &.one {
+        z-index: 1;
+        transform: rotate(-2deg);
+      }
+      &.two {
+        z-index: 2;
+        transform: rotate(2deg);
       }
     }
   }

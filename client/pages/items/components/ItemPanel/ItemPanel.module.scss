@@ -14,8 +14,6 @@
   z-index: $panel;
   overflow-y: scroll;
   transition: transform 400ms;
-  font-family: $font-sans-serif;
-  border-top: 12px solid $light-gray;
   &.open {
     transform: translateY(0);
   }

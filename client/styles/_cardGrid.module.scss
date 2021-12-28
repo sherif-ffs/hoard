@@ -1,7 +1,9 @@
 .cardGrid {
   width: 100%;
   display: grid;
+  margin: 3em auto;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-gap: 2rem;
+  grid-gap: 5rem;
+  // margin-top: 3em;
   padding-bottom: 4em;
 }

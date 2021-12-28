@@ -2,27 +2,24 @@
 .wrapper {
   width: 100%;
   margin: 0.5em;
-  background-color: $color-blue;
-  padding: 0.75em;
-  border: none;
+  background-color: $light-gray;
+  border: 1px solid $medium-gray;
+  padding: 0.5em;
   outline: none;
-  font-size: 1.15em;
-  color: $color-white;
+  font-size: 1em;
   font-family: $font-sans-serif;
   font-weight: 500;
   transition: background-color 400ms;
   cursor: pointer;
-  border-radius: 0.5em;
+  border-radius: $border-radius;
+  @media (hover: hover) {
+    &:hover {
+      background-color: darken($light-gray, 5%);
+    }
+  }
   &.inactive {
     background: transparent;
-    color: lighten($dark-gray, 50%);
     transition: 400ms;
-    @media (hover: hover) {
-      &:hover {
-        color: $dark-gray;
-        // background-color: lighten($color-blue, 5%);
-        // color: $color-white;
-      }
-    }
+    border: 1px solid transparent;
   }
 }

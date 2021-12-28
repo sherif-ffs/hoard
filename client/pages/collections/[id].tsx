@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Navigation } from '../navigation/components/Navigation';
 import { useAppContext } from '../components/AppWrapper';
 import ItemCard from '../items/components/ItemCard';
+import { ItemInterface } from '../Interfaces/ItemInterface';
 import loadCollectionByCollectionID from './hooks/loadCollectionByCollectionID';
 import CollectionHeader from './CollectionHeader';
 
@@ -38,6 +39,7 @@ const Collection = () => {
   const authorId = collection && collection.userId;
   const title = collection && collection.title;
   const description = collection && collection.description;
+  const collectionId = collection && collection._id;
   const count =
     collection &&
     collection.items &&
@@ -46,10 +48,12 @@ const Collection = () => {
   return (
     <>
       <Navigation />
-      <CollectionHeader {...{ title, count, description, authorId }} />
+      <CollectionHeader
+        {...{ title, count, description, authorId, collectionId }}
+      />
       <div className={styles.wrapper}>
         {itemsExist ? (
-          collection.items.map((item) => {
+          collection.items.map((item: ItemInterface) => {
             return <ItemCard {...{ item }} key={item._id} />;
           })
         ) : (

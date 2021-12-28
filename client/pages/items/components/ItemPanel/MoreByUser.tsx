@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import Router from 'next/router';
+import classNames from 'classnames';
 
 import { useItemContext } from '../../../contexts/ItemsContext';
 import loadMoreByUserID from '../../hooks/loadMoreByUser';
@@ -8,7 +9,8 @@ import { ItemInterface } from '../../../Interfaces/ItemInterface';
 import styles from './MoreByUser.module.scss';
 
 const MoreByUser = () => {
-  const { handleSetSelectedItem, selectedItem } = useItemContext();
+  const { handleSetSelectedItem, selectedItem, setItemPanelIsOpen } =
+    useItemContext();
   const { userId, author } = selectedItem;
   const items = loadMoreByUserID(userId);
 
@@ -20,25 +22,32 @@ const MoreByUser = () => {
     (i: ItemInterface) => i._id !== selectedItem._id
   );
 
+  const handleRedirectToProfile = () => {
+    setItemPanelIsOpen(false);
+    Router.push(`/profile/${userId}`);
+  };
+
   if (!(filteredItems.length > 0)) return null;
 
   return (
     <div className={styles.wrapper}>
       <header>
         <h3>More by {author}</h3>
-        <Link href={`/profile/${userId}`}>
-          <h4>View Profile</h4>
-        </Link>
+        <h4 onClick={handleRedirectToProfile}>View Profile</h4>
       </header>
       <div className={styles.thumbnails}>
         {filteredItems &&
           !!filteredItems.length &&
           filteredItems.map((item: ItemInterface) => (
-            <img
-              key={item._id}
-              src={`${API_URL}/items/images/${item.imageID}`}
-              onClick={() => handleSetSelectedItem(item)}
-            ></img>
+            <div className={styles.imgWrapper}>
+              <img
+                key={item._id}
+                src={`${API_URL}/items/images/${item.imageID}`}
+                onClick={() => handleSetSelectedItem(item)}
+              ></img>
+              <div className={classNames(styles.background, styles.one)}></div>
+              <div className={classNames(styles.background, styles.two)}></div>
+            </div>
           ))}
       </div>
     </div>

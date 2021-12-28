@@ -2,12 +2,12 @@
 .input {
   padding: 1em;
   margin: 6px 0 6px;
-  border-radius: 0.5em;
+  border-radius: 0.25em;
   outline: none;
   background-color: transparent;
-  border: 1px solid $light-gray;
+  border: 1px solid $medium-gray;
   transition: border 200ms;
   &:focus {
-    border: 1px solid $color-blue;
+    border: 1px solid $dark;
   }
 }

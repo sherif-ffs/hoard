@@ -5,18 +5,53 @@
   position: relative;
   transition: 400ms;
   border: 1px solid $light-gray;
-  border-radius: 0.25em;
+  transition: 400ms;
+  border-radius: $border-radius;
   @media(hover: hover) {
-    &:hover > .content {
-      visibility: visible;
-      opacity: 1;
+    &:hover>.background.one {
+      transform: rotate(-3deg) scale(1.0125);
+    }
+    &:hover>.background.two {
+      transform: rotate(3deg) scale(1.0125);
+    }
+    &:hover>.background.three {
+      transform: rotate(-5deg) scale(1.0125);
+    }
+    &:hover>.background.four {
+      transform: rotate(5deg) scale(1.0125);
     }
   }
   .imgWrapper {
     width: 100%;
-    border-radius: 0.25em;
-    >div {
-      position: unset !important;
+    border-radius: $border-radius;
+  }
+  .background {
+    height: 100%;
+    width: 100%;
+    background-color: $light-gray;
+    border: 1px solid $medium-gray;
+    position: absolute;
+    border-radius: $border-radius;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    transition: 400ms;
+    &.one {
+      z-index: 1;
+      transform: rotate(-2deg);
+    }
+    &.two {
+      z-index: 2;
+      transform: rotate(2deg);
+    }
+    &.three {
+      z-index: 3;
+      transform: rotate(-3deg);
+    }
+    &.four {
+      z-index: 4;
+      transform: rotate(3deg);
     }
   }
   img {
@@ -24,74 +59,30 @@
     width: 100% !important;
     position: relative !important;
     height: unset !important;
-    border-radius: 3px;
-    box-shadow: $box-shadow;
     transition: box-shadow 400ms;
+    border: 1px solid $medium-gray;
     cursor: pointer;
-    @media(hover: hover) {
-      &:hover {
-        box-shadow: $big-box-shadow;
-      }
-    }
+    border-radius: $border-radius;
+    z-index: 5;
   }
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    margin: 0;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 4em 0 1em 0;
-    visibility: hidden;
-    opacity: 0;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+  h3 {
+    font-weight: $font-weight-medium;
+    font-family: $font-sans-serif;
+    color: $dark-gray;
+    font-size: 1.2em;
     cursor: pointer;
-    background-image: linear-gradient(transparent, #222);
     transition: 400ms;
-    .actions {
-      display: flex;
-      flex-direction: row;
-      font-family: $font-sans-serif;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 1vh;
-      h1 {
-        font-size: 1.15em;
-        font-weight: 500;
-        margin: 0 1em;
-        color: white;
+    text-decoration: none;
+    @media (hover: hover) {
+      &:hover {
+        text-decoration: underline;
       }
-      .saveButton {
-        border: none;
-        padding: 0.5em 0.5em;
-        border-radius: 0.25em;
-        background-color: $light-gray;
-        transition: background-color 400ms;
-        cursor: pointer;
-        margin-right: 1em;
-        z-index: 2;
-        svg {
-          display: block;
-          padding: 0;
-        }
-        @media(hover: hover) {
-          &:hover {
-            background-color: darken($light-gray, 5%);
-          }
-        }
-      }
-    }
-  }
-  .tags {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-    .tag {
-      padding: 0.35em 0.75em;
-      border-radius: 1em;
-      background: $light-gray;
     }
   }
 }

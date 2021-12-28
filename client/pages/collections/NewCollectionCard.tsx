@@ -14,11 +14,13 @@ interface Props {
   items: [];
   id: string;
   author: string;
+  userId: string;
   tags: string[];
   handleSetSelectedItem: (item: ItemInterface) => void;
 }
 const NewCollectionCard = (props: Props) => {
-  const { title, items, id, author, tags, handleSetSelectedItem } = props;
+  const { title, items, id, author, tags, handleSetSelectedItem, userId } =
+    props;
 
   return (
     <>
@@ -27,8 +29,12 @@ const NewCollectionCard = (props: Props) => {
           <Link href={`/collections/${id}`}>
             <h1>{title}</h1>
           </Link>
+
           <h3>
-            Created by <span>{author}</span>
+            Curated by{' '}
+            <Link href={`/profile/${userId}`}>
+              <span>{author}</span>
+            </Link>
           </h3>
           <h4>
             <strong>{items.length}</strong> Items
@@ -51,15 +57,6 @@ const NewCollectionCard = (props: Props) => {
                 className={styles.thumbnail}
                 onClick={() => handleSetSelectedItem(item)}
               >
-                {/* <Image
-                  src={`${API_URL}/items/images/${item.imageID}`}
-                  placeholder="blur"
-                  layout="fill"
-                  quality={100}
-                  blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                    shimmer(300, 200)
-                  )}`}
-                /> */}
                 <img src={`${API_URL}/items/images/${item.imageID}`} />
               </div>
             ))}

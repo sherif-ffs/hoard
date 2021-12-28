@@ -7,7 +7,6 @@
   width: 90%;
   margin: 1em auto 0;
   flex-direction: column;
-  font-family: $font-sans-serif;
   h1 {
     font-size: $heading-2;
     color: $dark-gray;
@@ -24,8 +23,9 @@
   }
   label {
     font-size: $heading-5;
-    color: $gray;
-    font-weight: $font-weight-light;
+    color: $dark;
+    text-transform: lowercase;
+    font-weight: 600;
   }
   .buttonWrapper {
     width: 100%;
@@ -36,36 +36,24 @@
     margin-top: 1.5em;
     button {
       border: none;
-      padding: 1em 0;
+      // padding: 1em 0;
       flex: 1;
-      font-size: 1.1em;
-      border-radius: 0.25em;
-      font-weight: 600;
+      font-size: 1em;
+      background-color: $light-gray;
+      border: 1px solid $medium-gray;
+      padding: 0.5em;
+      border-radius: $border-radius;
+      font-weight: 500;
       font-family: $font-sans-serif;
       @media (hover: hover) {
         cursor: pointer;
       }
     }
-    @media all and (max-width: 480px) {
-      flex-direction: column-reverse;
-      .closeButton {
-        margin-top: auto;
-      }
-    }
     .closeButton {
       background-color: transparent;
-      color: lighten($gray, 15%);
-      transition: color 400ms, background-color 400ms;
-      @media (hover: hover) {
-        &:hover {
-          background-color: $light-gray, ;
-          color: $gray;
-        }
-      }
+      border: 1px solid transparent;
     }
     .submit {
-      background-color: $color-blue;
-      color: $color-white;
       transition: background-color 400ms;
       .submitContent {
         display: flex;
@@ -78,6 +66,7 @@
       }
       &.success {
         background-color: $color-green;
+        color: $color-white;
         @media (hover: hover) {
           &:hover {
             background-color: darken($color-green, 5%);
@@ -86,7 +75,8 @@
       }
       @media (hover: hover) {
         &:hover {
-          background-color: darken($color-blue, 10%);
+          background-color: darken($light-gray, 5%);
+          // background-color: darken($color-blue, 10%);
         }
       }
     }
@@ -94,7 +84,6 @@
       display: flex;
       justify-content: center;
       flex-direction: row;
-      // height: 30px;
       align-items: center;
       line-height: 1;
       gap: 0.5em;

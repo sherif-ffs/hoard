@@ -103,3 +103,17 @@ export function checkIfItemIsInCollection(
     }
   );
 }
+
+// delete collection
+export function deleteCollection(id: string) {
+  return fetch('http://localhost:5000/collections/delete-collection', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+    }),
+  });
+}

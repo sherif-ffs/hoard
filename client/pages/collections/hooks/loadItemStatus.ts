@@ -9,10 +9,10 @@ const checkItem = async (itemId: string, collectionId: string) => {
 export default function loadItemStatus(
   itemId: string,
   collectionId: string,
-  refetching: boolean
+  updating: boolean
 ) {
   const { data, status, error } = useQuery(
-    ['loadItemStatus', itemId, collectionId, refetching],
+    ['loadItemStatus', itemId, collectionId, updating],
     () => checkItem(itemId, collectionId)
   );
 

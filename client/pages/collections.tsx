@@ -1,12 +1,12 @@
 import React from 'react';
 import type { NextPage } from 'next';
 
-import { Navigation } from '../navigation/components/Navigation';
-import { useAppContext } from '../components/AppWrapper';
-import { useItemContext } from '../contexts/ItemsContext';
-import NewCollectionCard from './NewCollectionCard';
+import { Navigation } from './navigation/components/Navigation';
+import { useAppContext } from './components/AppWrapper';
+import { useItemContext } from './contexts/ItemsContext';
+import NewCollectionCard from './collections/NewCollectionCard';
 
-import styles from './Collections.module.scss';
+import styles from './collections/Collections.module.scss';
 
 const Collections: NextPage = () => {
   const { allCollections } = useAppContext();
@@ -25,6 +25,7 @@ const Collections: NextPage = () => {
         </header>
         {allCollections &&
           allCollections.map((d: any) => {
+            console.log('d: ', d);
             const hasItems = d.items && !!d.items.length;
             return (
               hasItems && (
@@ -33,6 +34,7 @@ const Collections: NextPage = () => {
                   title={d.title}
                   items={d.items}
                   tags={d.tags}
+                  userId={d.userId}
                   author={d.author ? d.author : 'Sherif Elmetwally'}
                   key={d._id}
                   {...{ handleSetSelectedItem }}

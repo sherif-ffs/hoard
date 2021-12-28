@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import Router from 'next/router';
+import Image from 'next/image';
 
 import { useAppContext } from '../../components/AppWrapper';
 import { logOutUser } from '../../auth/api/AuthApi';
@@ -9,7 +10,7 @@ import styles from './Navigation.module.scss';
 
 export const Navigation = () => {
   const { user, authenticated, setCreateModalIsOpen } = useAppContext();
-
+  console.log('user: ', user);
   const handleLogout = async () => {
     const response = await logOutUser();
     const JSONResponse = await response.json();
@@ -21,7 +22,7 @@ export const Navigation = () => {
     }
 
     if (!error && status === 'ok' && !data.authenticated) {
-      Router.push('/discover/Discover');
+      Router.push('/discover');
     }
   };
 
@@ -30,21 +31,21 @@ export const Navigation = () => {
       return (
         <div className={styles.buttons}>
           <button
-            className={classNames(styles.button, styles.primary)}
+            className={styles.profile}
             onClick={
               authenticated
                 ? () => setCreateModalIsOpen(true)
                 : () => alert('Log in')
             }
           >
-            Create
+            Contribute
           </button>
           <Link href={`/profile/${user._id}`}>
-            <button className={styles.profile}>
-              {user.name.slice(0, 1).toUpperCase()}
-            </button>
+            <button className={styles.profile}>My Stuff</button>
           </Link>
-          <button onClick={handleLogout}>logout</button>
+          <button className={styles.profile} onClick={handleLogout}>
+            Sign Out
+          </button>
         </div>
       );
     } else {
@@ -53,7 +54,7 @@ export const Navigation = () => {
           <button className={classNames(styles.button, styles.secondary)}>
             <Link href={'/auth/components/Login'}>Log In</Link>
           </button>
-          <button className={classNames(styles.button, styles.primary)}>
+          <button className={styles.profile}>
             <Link href={'/auth/components/Signup'}>Sign Up</Link>
           </button>
         </div>
@@ -63,10 +64,30 @@ export const Navigation = () => {
 
   return (
     <nav className={styles.navigation}>
-      <Link href={'/discover/Discover'}>
-        <div className={styles.logo}>LOGO</div>
-      </Link>
-      {renderCTAButton()}
+      <div className={styles.content}>
+        <div className={styles.left}>
+          <Link href={'/discover'}>
+            <div className={styles.logo}>
+              <Image
+                src={'/../public/backpack.png'}
+                height="50px"
+                width="50px"
+              />
+            </div>
+          </Link>
+          <Link href={'/discover'}>
+            <button className={classNames(styles.button, styles.secondary)}>
+              Items
+            </button>
+          </Link>
+          <Link href={'/collections/Collections'}>
+            <button className={classNames(styles.button, styles.secondary)}>
+              Collections
+            </button>
+          </Link>
+        </div>
+        {renderCTAButton()}
+      </div>
     </nav>
   );
 };

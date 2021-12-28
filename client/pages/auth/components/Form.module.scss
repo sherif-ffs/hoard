@@ -14,7 +14,7 @@
   display: flex;
   padding: 2em;
   width: 25%;
-  border-radius: 3px;
+  border-radius: $border-radius;
   flex-direction: column;
   background-color: $foreground-color;
   box-shadow: $box-shadow;
@@ -27,6 +27,9 @@
   }
   @media all and (min-width: 1024px) and (max-width: 1500px) {
     width: 37.5%;
+  }
+  .error {
+    color: #BE6E46;
   }
   .inputWrapper {
     display: flex;
@@ -44,9 +47,9 @@
     width: 100%;
   }
   p {
-    color: $gray;
+    color: $dark;
     a {
-      color: $color-blue;
+      // color: $color-blue;
       font-weight: $font-weight-bold;
     }
   }

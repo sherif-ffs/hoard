@@ -42,14 +42,14 @@ const CollectionsPanel = () => {
           className={styles.newCollection}
           onClick={() => openCreateCollectionModal()}
         >
-          <AddSVG color="#fff" height={14} width={14} />
+          <AddSVG color="#363634" height={14} width={14} />
           <span>New Collection</span>
         </button>
         <button
           onClick={() => closeCollectionsPanel()}
           className={styles.close}
         >
-          <CloseSVG color="#f5f5f5" height={24} width={24} />
+          <CloseSVG color="#151515" height={24} width={24} />
         </button>
       </div>
     </div>

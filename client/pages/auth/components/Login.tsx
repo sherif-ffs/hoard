@@ -32,7 +32,7 @@ const Login: NextPage = () => {
       setUser(user);
       setAuthenticated(authenticated);
       setToken(token);
-      Router.push('/discover/Discover');
+      Router.push('/discover');
     }
   };
 
@@ -41,7 +41,7 @@ const Login: NextPage = () => {
       <div className={styles.formWrapper}>
         <form className={styles.form}>
           <h1>Login</h1>
-          {error && <p>{error}</p>}
+          {error && <span className={styles.error}>{error}</span>}
           <div className={styles.inputWrapper}>
             <label>Email *</label>
             <input

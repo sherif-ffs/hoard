@@ -1,9 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import classNames from 'classnames';
 
 import { API_URL } from '../constants/ApiEndpoint';
-import { shimmer, toBase64 } from '../utils';
 import styles from './CollectionCard.module.scss';
 
 interface Props {
@@ -16,38 +15,28 @@ const CollectionCard = (props: Props) => {
 
   const firstImage = items && !!items.length && items[0].imageID;
 
-  /**
-   <Image
-  src={`${API_URL}/items/images/${imageID}`}
-  placeholder="blur"
-  layout="fill"
-  quality={100}
-  blurDataURL={`data:image/svg+xml;base64,${toBase64(
-    shimmer(200, 200)
-  )}`}
-/>
-   */
   return (
     <Link href={`/collections/${id}`}>
-      <div className={styles.wrapper}>
-        {firstImage && (
-          <div className={styles.imgWrapper}>
-            <Image
-              src={`${API_URL}/items/images/${firstImage}`}
-              placeholder="blur"
-              layout="fill"
-              quality={100}
-              blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                shimmer(200, 200)
-              )}`}
-            />
-          </div>
-        )}
-        <div className={styles.content}>
-          <h1>{title}</h1>
-          <h3>{items.length} Items</h3>
+      <article>
+        <div className={styles.wrapper}>
+          {firstImage ? (
+            <div className={styles.imgWrapper}>
+              <img
+                src={`${API_URL}/items/images/${firstImage}`}
+                loading="lazy"
+              ></img>
+            </div>
+          ) : null}
+          <div className={classNames(styles.background, styles.one)}></div>
+          <div className={classNames(styles.background, styles.two)}></div>
+          <div className={classNames(styles.background, styles.three)}></div>
+          <div className={classNames(styles.background, styles.four)}></div>
         </div>
-      </div>
+        <div className={styles.text}>
+          <h3>{title}</h3>
+          <span>{items.length} items</span>
+        </div>
+      </article>
     </Link>
   );
 };

@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import classNames from 'classnames';
+
 import { API_URL } from '../../../constants/ApiEndpoint';
 
 import styles from './PanelImage.module.scss';
@@ -19,6 +21,10 @@ const PanelImage = (props: Props) => {
               loading="lazy"
               className={styles.image}
             ></img>
+            <div className={classNames(styles.background, styles.one)}></div>
+            <div className={classNames(styles.background, styles.two)}></div>
+            <div className={classNames(styles.background, styles.three)}></div>
+            <div className={classNames(styles.background, styles.four)}></div>
           </a>
         </Link>
       ) : null}

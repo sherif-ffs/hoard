@@ -1,0 +1,21 @@
+@import "../../../styles/_variables.scss";
+.wrapper {
+  width: min-content;
+  display: flex;
+  margin: 2em auto;
+  gap: 10px;
+  button {
+    height: 40px;
+    width: 40px;
+    border-radius: $border-radius;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 400ms;
+    &.active {
+      background-color: $light-gray;
+      border: 1px solid $medium-gray;
+    }
+  }
+}

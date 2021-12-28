@@ -140,7 +140,9 @@ const CreateCollectionForm = (props: Props) => {
               <span>Scraping Url...</span>
             </div>
           ) : (
-            <span>{creationSuccess ? 'Collection Created!' : 'Create'}</span>
+            <span>
+              {creationSuccess ? 'Collection Created!' : 'Contribute'}
+            </span>
           )}
         </button>
       </div>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import classNames from 'classnames';
 
 import CloseSVG from '../../../components/ui/icons/CloseSVG';
@@ -7,8 +8,8 @@ import PanelHeader from './PanelHeader';
 import PanelImage from './PanelImage';
 import MoreByUser from './MoreByUser';
 import RelatedItems from './RelatedItems';
+
 import styles from './ItemPanel.module.scss';
-import { useEffect } from 'react';
 
 const ItemDetailsSheet = () => {
   const { itemPanelIsOpen, handleCloseItemPanel, selectedItem } =

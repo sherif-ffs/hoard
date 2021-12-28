@@ -9,7 +9,8 @@
     outline: none;
     border: none;
     padding: 0.5em 0.75em;
-    border-radius: 0.25em;
+    border-radius: $border-radius;
+    ;
     background-color: transparent;
     cursor: pointer;
     font-weight: $font-weight-normal;

@@ -23,7 +23,6 @@ const MultiSelect = ({ handleChange, options, placeholder }: Props) => (
     options={options}
     onChange={(e: any) => handleChange(e)}
     className={styles.multiSelect}
-    classNamePrefix="sasdasdelect"
   />
 );
 

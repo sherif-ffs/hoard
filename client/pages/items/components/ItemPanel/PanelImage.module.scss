@@ -2,13 +2,30 @@
 @import "../../../../styles/_variables.scss";
 @import "../../../../styles/breakpoints.scss";
 .imageWrapper {
-  margin: 1em 0;
+  margin: 2.5em 0;
+  position: relative;
+  @media(hover: hover) {
+    &:hover .background.one {
+      transform: rotate(-2deg) scale(1.0125);
+    }
+    &:hover .background.two {
+      transform: rotate(2deg) scale(1.0125);
+    }
+    &:hover .background.three {
+      transform: rotate(-3deg) scale(1.0125);
+    }
+    &:hover .background.four {
+      transform: rotate(3deg) scale(1.0125);
+    }
+  }
   img {
     width: 950px;
     height: auto;
     object-fit: contain;
-    border-radius: 0.5em;
-    box-shadow: $box-shadow;
+    border-radius: 0.25em;
+    z-index: 5;
+    position: relative;
+    border: 1px solid $medium-gray;
     cursor: pointer;
     transition: box-shadow 400ms;
     @media all and (max-width: 480px) {
@@ -20,10 +37,34 @@
     @media all and (min-width: 480px) and (max-width: 768px) {
       width: 600px;
     }
-    @media(hover: hover) {
-      &:hover {
-        box-shadow: $big-box-shadow;
-      }
+  }
+  .background {
+    height: 100%;
+    width: 100%;
+    background-color: $light-gray;
+    border: 1px solid $medium-gray;
+    position: absolute;
+    border-radius: $border-radius;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    transition: 400ms;
+    &.one {
+      z-index: 1;
+      transform: rotate(-1deg);
+    }
+    &.two {
+      z-index: 2;
+      transform: rotate(1deg);
+    }
+    &.three {
+      z-index: 3;
+      transform: rotate(-2deg);
+    }
+    &.four {
+      z-index: 4;
+      transform: rotate(2deg);
     }
   }
 }

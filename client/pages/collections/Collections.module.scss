@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@import "../../styles/_variables.scss";
 .collections {
   width: 100%;
   header {
@@ -10,7 +10,7 @@
       font-family: $font-sans-serif;
       font-weight: 900;
       font-size: 2.5em;
-      color: darken($light-gray, 10%);
+      color: $medium-gray;
     }
   }
 }
