@@ -12,7 +12,7 @@
     width: 75%;
     margin: 0 auto;
     justify-content: space-between;
-    scrollbar-width: none; // hide horizontal scrollbar on firefox
+    scrollbar-width: none;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
@@ -53,14 +53,12 @@
       height: 35px;
       padding: 0 1em;
       border-radius: $border-radius;
-      // font-weight: $font-weight-medium;
       font-weight: 500;
       transition: background-color 400ms, border 400ms;
       background-color: $light-gray;
       border: 1px solid $medium-gray;
       cursor: pointer;
       white-space: nowrap;
-      // font-family: $font-sans-serif;
       @media (hover: hover) {
         &:hover {
           background-color: darken($light-gray, 5%);
@@ -73,15 +71,12 @@
 
 .button {
   border: none;
-  // border: 1px solid red;
   outline: none;
   height: 35px;
-  // padding: 0 1em;
   font-size: .9em;
   background: none;
   font-weight: 500;
   border-radius: $border-radius;
   font-weight: 600;
-  // font-family: $font-sans-serif;
   cursor: pointer;
 }

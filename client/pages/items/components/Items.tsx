@@ -15,7 +15,7 @@ const Items = (props: Props) => {
   const [limit] = useState(10);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
-  // add filters here ?
+
   const { data, error, status } = useAllItems(
     limit,
     page * limit,

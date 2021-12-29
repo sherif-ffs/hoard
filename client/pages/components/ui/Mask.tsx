@@ -12,7 +12,6 @@ const Mask = (props: Props) => {
       {props.children}
     </div>
   );
-  // return isOpen ? <div className={styles.mask}>{props.children}</div> : null;
 };
 
 export default Mask;

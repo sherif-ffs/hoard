@@ -53,7 +53,7 @@ const CollectionsPanelPill = (props: Props) => {
       }, 800);
       return;
     } else {
-      // handle error
+      alert('something went wrong :(');
     }
   };
 
@@ -72,8 +72,7 @@ const CollectionsPanelPill = (props: Props) => {
       }, 800);
       return;
     } else {
-      console.error('error');
-      // handle error
+      alert('something went wrong :(');
     }
   };
 

@@ -36,7 +36,6 @@
     margin-top: 1.5em;
     button {
       border: none;
-      // padding: 1em 0;
       flex: 1;
       font-size: 1em;
       background-color: $light-gray;
@@ -44,7 +43,6 @@
       padding: 0.5em;
       border-radius: $border-radius;
       font-weight: 500;
-      // font-family: $font-sans-serif;
       @media (hover: hover) {
         cursor: pointer;
       }

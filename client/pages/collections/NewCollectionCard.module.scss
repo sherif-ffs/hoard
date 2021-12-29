@@ -40,9 +40,7 @@
       cursor: pointer;
       color: $dark;
       span {
-        // color: $color-blue;
         text-decoration: underline;
-        // font-weight: 900;
         transition: color 400ms;
         @media(hover: hover) {
           &:hover {
@@ -77,7 +75,7 @@
     overflow-x: scroll;
     gap: 1em;
     flex: 5;
-    scrollbar-width: none; // hide horizontal scrollbar on firefox
+    scrollbar-width: none;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch;
     @media all and (max-width: 480px) {

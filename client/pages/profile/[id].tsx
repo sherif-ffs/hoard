@@ -30,7 +30,6 @@ const Profile = () => {
     return <h1>loading</h1>;
   }
 
-  // if (collectionsExist) {
   return (
     <section>
       <Navigation />
@@ -50,9 +49,6 @@ const Profile = () => {
       </div>
     </section>
   );
-  // } else {
-  //   return null;
-  // }
 };
 
 export default Profile;
