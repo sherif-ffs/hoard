@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { API_URL } from '../../constants/ApiEndpoint';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
 import { useItemContext } from '../../contexts/ItemsContext';
+
 import styles from './ItemCard.module.scss';
 
 type Props = {
@@ -12,9 +13,11 @@ type Props = {
 };
 
 const Item = (props: Props) => {
-  const { name, _id, imageID } = props.item;
+  const { name, _id, imageID, tags } = props.item;
+  console.log('props.item: ', props.item);
   const { handleSetSelectedItem, handleSetItemToCollect } = useItemContext();
 
+  const tagLength = tags && tags.length - 4;
   return (
     <article>
       <div className={styles.wrapper}>
@@ -36,6 +39,20 @@ const Item = (props: Props) => {
       </div>
       <div className={styles.text}>
         <h3 onClick={() => handleSetSelectedItem(props.item)}>{name}</h3>
+        <div className={styles.tags}>
+          {tags &&
+            tags.slice(0, 4).map((tag, i) => {
+              const lastIndex = tagLength > 4 ? 4 : tags.length - 1;
+              const isLast = i === lastIndex;
+              return (
+                <span key={i}>
+                  {tag}
+                  {!isLast ? ',' : null}
+                </span>
+              );
+            })}
+          {tagLength > 4 && <span>{tagLength}+</span>}
+        </div>
       </div>
     </article>
   );

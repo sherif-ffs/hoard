@@ -60,7 +60,10 @@
   display: flex;
   flex-direction: row;
   list-style-type: none;
+  flex-wrap: wrap;
   gap: 0.5em;
+  width: 60%;
+  border: 1px solid red;
   margin-right: auto;
   padding: 0;
   @media all and (max-width: 480px) {

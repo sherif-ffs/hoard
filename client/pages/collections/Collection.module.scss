@@ -5,6 +5,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-gap: 5rem;
+  &.one {
+    width: 45%;
+    @media all and (max-width: 480px) {
+      width: 95%;
+      margin: 5em 0.5em;
+    }
+  }
   @media all and (max-width: 480px) {
     width: 95%;
   }

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import classNames from 'classnames';
 import Router from 'next/router';
-
+import { useState } from 'react';
 import { deleteItem } from '../../api/ItemApi';
 import { useAppContext } from '../../../components/AppWrapper';
 
@@ -16,6 +16,7 @@ const PanelHeader = () => {
     useItemContext();
   const { user, authenticated } = useAppContext();
   const { name, url, author, userId, tags, _id } = selectedItem;
+  const [limit, setLimit] = useState(5);
   const authorObj = loadUserById(userId);
 
   const handleDeleteItem = async () => {
@@ -39,6 +40,10 @@ const PanelHeader = () => {
   const authorId = user && user._id;
   const isMyItem = authorId && userId && userId === authorId;
 
+  const showAllTags = () => {
+    setLimit(100);
+  };
+  const tagCount = tags && tags.length;
   return (
     <>
       <header className={styles.header}>
@@ -80,11 +85,16 @@ const PanelHeader = () => {
       <ul className={styles.tags}>
         {tags &&
           !!tags.length &&
-          tags.map((tag: string, i: number) => (
+          tags.slice(0, limit).map((tag: string, i: number) => (
             <li key={i} className={styles.tag}>
               {tag}
             </li>
           ))}
+        {tags && tags.length > limit && (
+          <button className={styles.tag} onClick={showAllTags}>
+            {tagCount - 5} More Tags
+          </button>
+        )}
       </ul>
     </>
   );

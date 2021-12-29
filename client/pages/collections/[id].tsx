@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import classNames from 'classnames';
 
 import { Navigation } from '../navigation/components/Navigation';
 import { useAppContext } from '../components/AppWrapper';
@@ -33,6 +34,8 @@ const Collection = () => {
     setId(id);
   }, []);
 
+  console.log('collection: ', collection);
+  const tags = collection && collection.tags;
   const itemsExist =
     collection && collection.items && !!collection.items.length;
 
@@ -45,13 +48,17 @@ const Collection = () => {
     collection.items &&
     !!collection.items.length &&
     collection.items.length;
+
+  const oneItemView = count === 1;
   return (
     <>
       <Navigation />
       <CollectionHeader
-        {...{ title, count, description, authorId, collectionId }}
+        {...{ title, count, description, authorId, collectionId, tags }}
       />
-      <div className={styles.wrapper}>
+      <div
+        className={classNames(styles.wrapper, { [styles.one]: oneItemView })}
+      >
         {itemsExist ? (
           collection.items.map((item: ItemInterface) => {
             return <ItemCard {...{ item }} key={item._id} />;

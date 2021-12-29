@@ -26,6 +26,19 @@
       margin: 0;
       margin-top: 0.5em;
     }
+    .tags {
+      display: flex;
+      margin-top: 0.75em;
+      flex-direction: row;
+      gap: 5px;
+      span {
+        padding: 0.25em;
+        border-radius: $border-radius;
+        background-color: $light-gray;
+        border: 1px solid $medium-gray;
+        font-size: 0.9em;
+      }
+    }
   }
   .delete {
     background-color: $light-gray;

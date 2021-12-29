@@ -12,7 +12,7 @@ interface Props {
 }
 const Items = (props: Props) => {
   const { user } = useAppContext();
-  const [limit] = useState(12);
+  const [limit] = useState(100);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
   // add filters here ?

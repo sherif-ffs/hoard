@@ -8,11 +8,12 @@ interface Props {
   count: number | null;
   description: string | null;
   authorId: string | null;
+  tags: [] | null;
   collectionId: string | null;
 }
 
 const CollectionHeader = (props: Props) => {
-  const { title, count, description, authorId, collectionId } = props;
+  const { title, count, description, authorId, collectionId, tags } = props;
   const { user } = useAppContext();
 
   const isMyCollection = user && authorId === user._id;
@@ -36,6 +37,9 @@ const CollectionHeader = (props: Props) => {
           <h1>{title}</h1>
           <h3>{description}</h3>
           <h3>{count} items</h3>
+          <div className={styles.tags}>
+            {tags && tags.map((tag) => <span>{tag}</span>)}
+          </div>
         </div>
         {isMyCollection && (
           <button className={styles.delete} onClick={handleDelete}>

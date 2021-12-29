@@ -65,18 +65,16 @@
         flex-direction: row;
       }
       &.success {
-        background-color: $color-green;
-        color: $color-white;
+        color: $color-green;
         @media (hover: hover) {
           &:hover {
-            background-color: darken($color-green, 5%);
+            background-color: darken($light-gray, 5%);
           }
         }
       }
       @media (hover: hover) {
         &:hover {
           background-color: darken($light-gray, 5%);
-          // background-color: darken($color-blue, 10%);
         }
       }
     }

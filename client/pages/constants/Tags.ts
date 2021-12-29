@@ -57,4 +57,5 @@ export const TagOptions: TagOption[] = [
   { value: 'Maps', label: 'Maps', icon: null },
   { value: 'Resource', label: 'Resource', icon: null },
   { value: 'Golang', label: 'Golang', icon: null },
+  { value: 'accessibility', label: 'accessibility', icon: null },
 ];

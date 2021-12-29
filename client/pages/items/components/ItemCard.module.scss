@@ -69,8 +69,23 @@
 
 .text {
   display: flex;
+  flex-direction: column;
+  text-align: center;
+  // width: min-content;
+  // white-space: nowrap;
   justify-content: center;
-  margin-top: 1em;
+  // margin-top: 1em;
+  margin: 1em auto;
+  .tags {
+    display: flex;
+    width: min-content;
+    margin: -0.5em auto;
+    white-space: nowrap;
+    gap: 0.5em;
+    span {
+      color: $dark;
+    }
+  }
   h3 {
     font-weight: $font-weight-medium;
     // font-family: $font-sans-serif;
