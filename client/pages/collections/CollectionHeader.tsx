@@ -17,7 +17,6 @@ const CollectionHeader = (props: Props) => {
   const { user } = useAppContext();
 
   const isMyCollection = user && authorId === user._id;
-  console.log('isMyCollection: ', isMyCollection);
 
   const handleDelete = async () => {
     const res = await deleteCollection(collectionId);

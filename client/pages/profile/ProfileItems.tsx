@@ -18,7 +18,6 @@ const ProfileItems = (props: Props) => {
     return <p>loading</p>;
   }
 
-  console.log('items: ', items);
   return (
     <div className={gridStyles.cardGrid}>
       {items.map((item: any) => {

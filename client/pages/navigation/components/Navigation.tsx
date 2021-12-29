@@ -9,7 +9,8 @@ import { logOutUser } from '../../auth/api/AuthApi';
 import styles from './Navigation.module.scss';
 
 export const Navigation = () => {
-  const { user, authenticated, setCreateModalIsOpen } = useAppContext();
+  const { user, authenticated, setCreateModalIsOpen, checkAuth } =
+    useAppContext();
   const handleLogout = async () => {
     const response = await logOutUser();
     const JSONResponse = await response.json();
@@ -21,6 +22,7 @@ export const Navigation = () => {
     }
 
     if (!error && status === 'ok' && !data.authenticated) {
+      checkAuth();
       Router.push('/discover');
     }
   };

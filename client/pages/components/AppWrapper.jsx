@@ -46,6 +46,7 @@ export function AppWrapper({ children }) {
         setCreateModalIsOpen,
         myCollections,
         allCollections,
+        checkAuth
       }}
     >
       {' '}

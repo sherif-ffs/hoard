@@ -23,11 +23,8 @@ const Profile = () => {
     return <p>loading</p>;
   }
 
-  console.log('user: ', user);
   const tabCopy = ['Items', 'Collections'];
   const collectionsExist = c && !!c.length;
-
-  // const { name } = user;
 
   if (user === 'loading') {
     return <h1>loading</h1>;

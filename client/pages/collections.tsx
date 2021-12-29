@@ -25,7 +25,6 @@ const Collections: NextPage = () => {
         </header>
         {allCollections &&
           allCollections.map((d: any) => {
-            console.log('d: ', d);
             const hasItems = d.items && !!d.items.length;
             return (
               hasItems && (

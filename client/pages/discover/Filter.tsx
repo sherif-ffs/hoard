@@ -54,7 +54,6 @@ const Filters = (props: Props) => {
   };
 
   const toggle = () => (isOpen ? setIsOpen(false) : setIsOpen(true));
-  console.log('filterList: ', filterList);
   return (
     <div className={styles.wrapper}>
       <div

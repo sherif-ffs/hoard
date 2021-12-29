@@ -14,7 +14,6 @@ type Props = {
 
 const Item = (props: Props) => {
   const { name, _id, imageID, tags } = props.item;
-  console.log('props.item: ', props.item);
   const { handleSetSelectedItem, handleSetItemToCollect } = useItemContext();
 
   const tagLength = tags && tags.length - 4;

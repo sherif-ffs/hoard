@@ -23,7 +23,6 @@ const Collection = () => {
 
   useEffect(() => {
     if (targetCollection) {
-      console.log(targetCollection);
       setCollection(targetCollection[0]);
     }
   }, [targetCollection]);
@@ -34,7 +33,6 @@ const Collection = () => {
     setId(id);
   }, []);
 
-  console.log('collection: ', collection);
   const tags = collection && collection.tags;
   const itemsExist =
     collection && collection.items && !!collection.items.length;

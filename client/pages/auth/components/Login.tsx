@@ -20,7 +20,6 @@ const Login: NextPage = () => {
 
     const result = await loginUser(email, password);
     const data = await result.json();
-    console.log('data: ', data);
 
     if (data.error) {
       setError(data.error);
