@@ -1,18 +1,22 @@
 import Link from 'next/link';
 import classNames from 'classnames';
+import Router from 'next/router';
+
 import { deleteItem } from '../../api/ItemApi';
 import { useAppContext } from '../../../components/AppWrapper';
 
 import SaveSVG from '../../../components/ui/icons/SaveSVG';
 import { useItemContext } from '../../../contexts/ItemsContext';
+import loadUserById from '../../../auth/hooks/loadUserById';
 
 import styles from './PanelHeader.module.scss';
 
 const PanelHeader = () => {
   const { handleSetItemToCollect, selectedItem, handleCloseItemPanel } =
     useItemContext();
-  const { user } = useAppContext();
+  const { user, authenticated } = useAppContext();
   const { name, url, author, userId, tags, _id } = selectedItem;
+  const authorObj = loadUserById(userId);
 
   const handleDeleteItem = async () => {
     const res = await deleteItem(_id);
@@ -26,6 +30,12 @@ const PanelHeader = () => {
     alert(data);
   };
 
+  const sendToProfile = () => {
+    handleCloseItemPanel();
+    Router.push(`/profile/${userId}`);
+  };
+
+  const authorName = authorObj && authorObj[0] && authorObj[0].name;
   const authorId = user && user._id;
   const isMyItem = authorId && userId && userId === authorId;
 
@@ -39,16 +49,19 @@ const PanelHeader = () => {
             </a>
           </Link>
           <h3>
-            uploaded by:{' '}
-            <Link href={`/profile/${userId}`}>
-              <span>{author}</span>
-            </Link>
+            uploaded by: {/* <Link href={`/profile/${userId}`}> */}
+            <span onClick={sendToProfile}>{authorName}</span>
+            {/* </Link> */}
           </h3>
         </div>
         <div className={styles.buttons}>
           <button
             className={classNames(styles.button, styles.saveButton)}
-            onClick={() => handleSetItemToCollect(selectedItem)}
+            onClick={() =>
+              user && authenticated
+                ? handleSetItemToCollect(selectedItem)
+                : alert('You must login to collect stuff')
+            }
           >
             Collect
           </button>

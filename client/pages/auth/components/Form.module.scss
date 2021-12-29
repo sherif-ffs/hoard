@@ -18,7 +18,7 @@
   flex-direction: column;
   background-color: $foreground-color;
   box-shadow: $box-shadow;
-  font-family: $font-sans-serif;
+  // font-family: $font-sans-serif;
   @media all and (max-width: 480px) {
     width: 90%;
   }

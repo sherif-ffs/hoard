@@ -12,7 +12,7 @@
     width: 75%;
     margin: 0 auto;
     justify-content: space-between;
-    font-family: $font-sans-serif;
+    // font-family: $font-sans-serif;
     @media all and (max-width: 480px) {
       width: 100%;
     }
@@ -39,19 +39,21 @@
   .buttons {
     margin: auto 2em;
     display: flex;
+    font-size: 1em;
     gap: 1em;
     .profile {
       cursor: pointer;
       height: 35px;
       padding: 0 1em;
       border-radius: $border-radius;
-      font-weight: $font-weight-medium;
+      // font-weight: $font-weight-medium;
+      font-weight: 500;
       transition: background-color 400ms, border 400ms;
       background-color: $light-gray;
       border: 1px solid $medium-gray;
       cursor: pointer;
       white-space: nowrap;
-      font-family: $font-sans-serif;
+      // font-family: $font-sans-serif;
       @media (hover: hover) {
         &:hover {
           background-color: darken($light-gray, 5%);
@@ -64,12 +66,15 @@
 
 .button {
   border: none;
+  // border: 1px solid red;
   outline: none;
   height: 35px;
-  padding: 0 1.5em;
+  // padding: 0 1em;
+  font-size: .9em;
   background: none;
   font-weight: 500;
   border-radius: $border-radius;
-  font-family: $font-sans-serif;
+  font-weight: 600;
+  // font-family: $font-sans-serif;
   cursor: pointer;
 }

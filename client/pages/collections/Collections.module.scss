@@ -4,13 +4,16 @@
   header {
     text-align: center;
     padding: 1.5em 0;
-    border-bottom: 1px solid lighten($gray, 35%);
+    background-color: $light-gray;
+    border-top: 1px solid $medium-gray;
+    border-bottom: 1px solid $medium-gray;
+    // border-bottom: 1px solid lighten($gray, 35%);
     h1 {
       margin: auto;
-      font-family: $font-sans-serif;
+      // font-family: $font-sans-serif;
       font-weight: 900;
-      font-size: 2.5em;
-      color: $medium-gray;
+      font-size: 2em;
+      color: $dark;
     }
   }
 }

@@ -10,7 +10,6 @@ import styles from './Navigation.module.scss';
 
 export const Navigation = () => {
   const { user, authenticated, setCreateModalIsOpen } = useAppContext();
-  console.log('user: ', user);
   const handleLogout = async () => {
     const response = await logOutUser();
     const JSONResponse = await response.json();
@@ -80,7 +79,7 @@ export const Navigation = () => {
               Items
             </button>
           </Link>
-          <Link href={'/collections/Collections'}>
+          <Link href={'/collections'}>
             <button className={classNames(styles.button, styles.secondary)}>
               Collections
             </button>

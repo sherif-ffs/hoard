@@ -18,7 +18,7 @@ const Items = (props: Props) => {
   // add filters here ?
   const { data, error, status } = useAllItems(
     limit,
-    page * 8,
+    page * 12,
     props.filterList
   );
 

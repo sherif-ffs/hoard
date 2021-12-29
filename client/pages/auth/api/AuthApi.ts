@@ -61,3 +61,14 @@ export function getAllUsers() {
     },
   });
 }
+
+// get user by ID
+export function fetchUserById(id: string) {
+  return fetch(`http://localhost:5000/auth/user-by-id?id=${id}`, {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}

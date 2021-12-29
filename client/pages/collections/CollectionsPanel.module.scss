@@ -64,9 +64,12 @@
         }
       }
       &.selected {
-        background-color: $color-green;
-        border: 1px solid $color-green;
-        color: $light-gray;
+        // background-color: $color-green;
+        // background-color: darken($light-gray, 5%);
+        // border: 1px solid $color-green;
+        // color: #2D9654;
+        color: $color-green;
+        // color: $light-gray;
       }
     }
     .newCollection {

@@ -1,13 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 import { API_URL } from '../constants/ApiEndpoint';
-import { shimmer, toBase64 } from '../utils';
 
 import styles from './NewCollectionCard.module.scss';
-import { TagOptions } from '../constants/Tags';
 import { ItemInterface } from '../Interfaces/ItemInterface';
+import loadUserById from '../auth/hooks/loadUserById';
 
 interface Props {
   title: string;
@@ -22,6 +20,9 @@ const NewCollectionCard = (props: Props) => {
   const { title, items, id, author, tags, handleSetSelectedItem, userId } =
     props;
 
+  const authorObj = loadUserById(userId);
+  const authorName = authorObj && authorObj[0] && authorObj[0].name;
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -33,7 +34,7 @@ const NewCollectionCard = (props: Props) => {
           <h3>
             Curated by{' '}
             <Link href={`/profile/${userId}`}>
-              <span>{author}</span>
+              <span>{authorName}</span>
             </Link>
           </h3>
           <h4>

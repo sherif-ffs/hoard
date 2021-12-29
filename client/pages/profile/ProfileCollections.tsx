@@ -1,27 +1,32 @@
 import { useAppContext } from '../components/AppWrapper';
 import CollectionCard from '../collections/CollectionCard';
 import { CollectionInterface } from '../Interfaces/CollectionInterface';
+import loadMyCollections from '../collections/hooks/loadCollectionById';
 import gridStyles from '../../styles/_cardGrid.module.scss';
 
-const ProfileCollections = () => {
+interface Props {
+  id: string;
+}
+const ProfileCollections = (props: Props) => {
   const { myCollections, user } = useAppContext();
+  const { id } = props;
+  const collections = loadMyCollections(id);
+  const collectionsExist = collections && !!collections.length;
 
-  const collectionsExist = myCollections && !!myCollections.length;
-
-  const loading = myCollections === 'loading' || !myCollections;
+  const loading = collections === 'loading';
 
   if (loading) {
     return <p>loading</p>;
   }
 
-  if (!collectionsExist) return null;
+  if (!collectionsExist) return <h1>No collections</h1>;
 
   if (collectionsExist) {
     return (
       <div className={gridStyles.cardGrid}>
-        {myCollections &&
-          !!myCollections.length &&
-          myCollections.map((collection: CollectionInterface) => {
+        {collections &&
+          !!collections.length &&
+          collections.map((collection: CollectionInterface) => {
             const { title, items } = collection;
             const id = collection._id;
             return <CollectionCard {...{ title, items, id }} key={id} />;
