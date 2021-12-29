@@ -60,14 +60,16 @@
 - [x] add item panel to items in collections view
 - [x] move create collections modal to collections view
 - [x] make navbar
-- [ ] hide stuff behind login wall
+- [x] hide stuff behind login wall
 - [x] make forms look better
 - [x] loading states
-- [ ] style collections view
-- [ ] profile hover menu
-- [ ] load more on scroll
-- [ ] filtering
-- [ ] skeleton components
-- [ ] style profile page
-- [ ] error handling (404, 500, error boundary)
+- [x] style collections view
+- [x] profile hover menu
+- [x] pagination
+- [x] filtering
+- [x] style profile page
+- [x] error handling (404, 500, error boundary)
+- [x] chagne text to say collect
+- [ ] cleanup
+- [ ] font
 - [ ] fix caching/fetch issue?

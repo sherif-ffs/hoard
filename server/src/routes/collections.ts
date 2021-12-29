@@ -12,7 +12,6 @@ router.post('/create-collection', async (req, res) => {
   const { collection } = req.body;
   try {
     const newCollection = await Collection.create(collection);
-    console.log('newCollection; ', newCollection);
     res.send({ status: 'ok', data: newCollection });
   } catch (err) {
     res.send({ status: 'error', error: err });
@@ -35,7 +34,6 @@ router.get('/collection-by-collection-id', async (req, res) => {
   try {
     const id = req.query.id as string;
     const collection = await Collection.find({ _id: new objectId(id) });
-    console.log('serverside collection: ', collection);
     res.send({ status: 'ok', data: collection });
   } catch (err) {
     res.send({ status: 'error', error: err });
@@ -100,6 +98,18 @@ router.get('/check-if-item-is-in-collection', async (req, res) => {
     res.json({ status: 'ok', data: includes });
   } catch (error) {
     return res.json({ status: 'error', error: error });
+  }
+});
+
+// delete collection
+router.post('/delete-collection', async (req, res) => {
+  const id = req.body.id as string;
+  try {
+    await Collection.deleteOne({ _id: new objectId(id) });
+    res.json({ status: 'ok', data: 'collection deleted successfully' });
+  } catch (error: any) {
+    res.json({ status: 'error', error: error.message });
+    throw error;
   }
 });
 module.exports = router;

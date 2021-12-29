@@ -29,10 +29,8 @@ export const scrapeImageFromUrl = async (url: string) => {
 
   // get page title
   const pageTitle = await page.title();
-  console.log('pageTitle: ', pageTitle);
   // close the browser
   await browser.close();
-  console.log(`✅ - (${url})`);
   return {
     ImageID: ImageID,
     pageTitle: pageTitle,
@@ -52,7 +50,6 @@ export const addItemToCollection = async (
       },
       { $push: { items: item } }
     );
-    console.log('res: ', res);
   });
 };
 
@@ -67,7 +64,6 @@ export const removeItemFromCollection = async (
     },
     { $pull: { items: item } }
   );
-  console.log('res: ', res);
 };
 // remove item for all collections
 export const removeItemFromAllCollections = async (
@@ -84,7 +80,6 @@ export const removeItemFromAllCollections = async (
         },
         { $pull: { items: { _id: new objectId(id) } } }
       );
-      console.log('res: ', res);
     });
   }
 };

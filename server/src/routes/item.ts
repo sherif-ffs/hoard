@@ -69,12 +69,23 @@ router.post('/delete-item', async (req, res) => {
 });
 
 // Fetch all Items
-router.get('/items', async (req, res) => {
-  const limit = Number(req.query.limit);
+router.post('/items', async (req, res) => {
+  const limit = Number(req.body.limit);
+  const offset = Number(req.body.offset);
+  const filterList = req.body.filterList;
   try {
-    const items = await Item.find().limit(limit);
-    const itemCount = await Item.count();
-    console.log('itemCount: ', itemCount);
+    let items;
+    let itemCount;
+    if (filterList && !!filterList.length) {
+      items = await Item.find({ tags: { $in: filterList } })
+        .skip(offset)
+        .limit(limit);
+      itemCount = await Item.find({ tags: { $in: filterList } }).count();
+    } else {
+      items = await Item.find().skip(offset).limit(limit);
+      itemCount = await Item.count();
+    }
+
     if (!items) {
       return res.json({ status: 'error', error: 'no items found' });
     }
@@ -106,6 +117,17 @@ router.get('/more-items-by', async (req, res) => {
   try {
     const id = req.query.id as string;
     const items = await Item.find({ userId: id }).limit(4);
+    res.send({ status: 'ok', data: items });
+  } catch (err) {
+    res.send({ status: 'error', error: err });
+  }
+});
+
+// fetch all of a users' items
+router.get('/items-by', async (req, res) => {
+  try {
+    const id = req.query.id as string;
+    const items = await Item.find({ userId: id });
     res.send({ status: 'ok', data: items });
   } catch (err) {
     res.send({ status: 'error', error: err });

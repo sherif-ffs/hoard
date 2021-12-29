@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import User from '../models/user';
 import jwt from 'jsonwebtoken';
+const objectId = require('mongodb').ObjectID;
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const router = express.Router();
@@ -115,4 +116,14 @@ router.get('/users', async (req, res) => {
   }
 });
 
+// fetch user by id
+router.get('/user-by-id', async (req, res) => {
+  try {
+    const id = req.query.id as string;
+    const user = await User.find({ _id: new objectId(id) });
+    res.send({ status: 'ok', data: user });
+  } catch (err) {
+    res.send({ status: 'error', error: err });
+  }
+});
 module.exports = router;
