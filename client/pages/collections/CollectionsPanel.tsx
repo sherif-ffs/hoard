@@ -1,14 +1,17 @@
-import { useAppContext } from '../components/AppWrapper';
+import { useAuthContext } from '../contexts/AuthContext';
 import classNames from 'classnames';
 
-import CloseSVG from '../components/ui/icons/CloseSVG';
-import AddSVG from '../components/ui/icons/AddSVG';
-import CollectionsPanelPill from './CollectionsPanelPill';
+import CloseSVG from '../ui/icons/CloseSVG';
+import AddSVG from '../ui/icons/AddSVG';
+import loadMyCollections from '../collections/hooks/loadCollectionById';
 import { useItemContext } from '../contexts/ItemsContext';
+import CollectionsPanelPill from './CollectionsPanelPill';
+
 import styles from './CollectionsPanel.module.scss';
 
 const CollectionsPanel = () => {
-  const { myCollections } = useAppContext();
+  const { user } = useAuthContext();
+  const myCollections = user && user._id && loadMyCollections(user._id);
   const {
     closeCollectionsPanel,
     collectionsPanelIsOpen,

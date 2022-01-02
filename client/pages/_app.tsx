@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { ItemsContextProvider } from './contexts/ItemsContext';
-import { AppWrapper } from './components/AppWrapper';
+import { AuthContextProvider } from './contexts/AuthContext';
 import ItemPanel from './items/components/ItemPanel/ItemPanel';
 import CreateCollectionModal from './collections/CreateCollectionModal';
 import CollectionsPanel from './collections/CollectionsPanel';
@@ -14,7 +14,7 @@ const queryClient = new QueryClient();
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <AppWrapper>
+      <AuthContextProvider>
         <ItemsContextProvider>
           <Component {...pageProps} />
           <ItemPanel />
@@ -22,7 +22,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <CreateModal />
           <CreateCollectionModal />
         </ItemsContextProvider>
-      </AppWrapper>
+      </AuthContextProvider>
     </QueryClientProvider>
   );
 };

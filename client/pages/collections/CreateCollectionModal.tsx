@@ -1,7 +1,7 @@
 import { useItemContext } from '../contexts/ItemsContext';
 
-import Mask from '../components/ui/Mask';
-import Modal from '../components/ui/Modal';
+import Mask from '../ui/Mask';
+import Modal from '../ui/Modal';
 import CreateCollectionForm from './CreateCollectionForm';
 
 const CreateCollectionModal = () => {

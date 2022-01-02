@@ -1,4 +1,4 @@
-import { useAppContext } from '../components/AppWrapper';
+import { useAuthContext } from '../contexts/AuthContext';
 import { deleteCollection } from './api/CollectionsApi';
 
 import styles from './CollectionHeader.module.scss';
@@ -14,7 +14,7 @@ interface Props {
 
 const CollectionHeader = (props: Props) => {
   const { title, count, description, authorId, collectionId, tags } = props;
-  const { user } = useAppContext();
+  const { user } = useAuthContext();
 
   const isMyCollection = user && authorId === user._id;
 

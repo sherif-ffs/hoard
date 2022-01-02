@@ -22,7 +22,6 @@ const NewCollectionCard = (props: Props) => {
 
   const authorObj = loadUserById(userId);
   const authorName = authorObj && authorObj[0] && authorObj[0].name;
-
   return (
     <>
       <div className={styles.wrapper}>

@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import { TagOption, TagOptions } from '../../constants/Tags';
-import MultiSelect from '../../components/ui/MultiSelect';
-import { useAppContext } from '../../components/AppWrapper';
+import MultiSelect from '../../ui/MultiSelect';
+import loadMyCollections from '../../collections/hooks/loadCollectionById';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { useItemContext } from '../../contexts/ItemsContext';
 import { createItem } from '../api/ItemApi';
 import styles from './CreateContentForm.module.scss';
 
 const CreateItemForm = () => {
-  const { setCreateModalIsOpen, user, myCollections } = useAppContext();
+  const { setCreateModalIsOpen, user } = useAuthContext();
+  const myCollections = user && user._id && loadMyCollections(user._id);
   const { handleSetSelectedItem } = useItemContext();
   const { email, name, _id } = !!user && user;
   const [url, setUrl] = useState('');

@@ -3,17 +3,17 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import Router from 'next/router';
 
-import { useAppContext } from '../../components/AppWrapper';
-import { loginUser } from '../api/AuthApi';
-import Button from '../../components/ui/Button';
+import { useAuthContext } from './contexts/AuthContext';
+import { loginUser } from './auth/api/AuthApi';
+import Button from './ui/Button';
 
-import styles from './Form.module.scss';
+import styles from './auth/components/Form.module.scss';
 
-const Login: NextPage = () => {
+const login: NextPage = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState(null);
-  const { user, setUser, token, setToken, setAuthenticated } = useAppContext();
+  const { user, setUser, token, setToken, setAuthenticated } = useAuthContext();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -66,8 +66,7 @@ const Login: NextPage = () => {
           />
           <hr />
           <p>
-            Don't have an account?{' '}
-            <Link href="/auth/components/Signup">Sign Up</Link>
+            Don't have an account? <Link href="/signup">Sign Up</Link>
           </p>
         </form>
       </div>
@@ -75,4 +74,4 @@ const Login: NextPage = () => {
   );
 };
 
-export default Login;
+export default login;

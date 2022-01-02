@@ -2,14 +2,15 @@ import React from 'react';
 import type { NextPage } from 'next';
 
 import { Navigation } from './navigation/components/Navigation';
-import { useAppContext } from './components/AppWrapper';
 import { useItemContext } from './contexts/ItemsContext';
+import loadAllCollections from './collections/hooks/loadAllCollections';
 import NewCollectionCard from './collections/NewCollectionCard';
 
 import styles from './collections/Collections.module.scss';
 
 const Collections: NextPage = () => {
-  const { allCollections } = useAppContext();
+  const allCollections = loadAllCollections();
+  console.log('allCollections: ', allCollections);
   const { handleSetSelectedItem } = useItemContext();
 
   if (allCollections === 'loading') {

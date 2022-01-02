@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+
 import { Navigation } from '../navigation/components/Navigation';
-import { useAppContext } from '../components/AppWrapper';
-import Tabs from '../components/ui/Tabs';
+import Tabs from '../ui/Tabs';
 import ProfileItems from './ProfileItems';
 import ProfileCollections from './ProfileCollections';
-import loadMyCollections from '../collections/hooks/loadCollectionById';
 import loadUserById from '../auth/hooks/loadUserById';
+
 import styles from './profile.module.scss';
 
 const Profile = () => {

@@ -26,6 +26,7 @@
 - [x] scrape title/details of URL
 - [x] check if item exists in collection from pill component
 - [ ] make sure remove item from collection works
+- [ ] tests
 
 # Client
 
@@ -70,6 +71,22 @@
 - [x] style profile page
 - [x] error handling (404, 500, error boundary)
 - [x] chagne text to say collect
-- [ ] cleanup
+- [ ] page routes
+- [ ] move appWrapper to contexts
+- [ ] rename components to ui
+- [ ] filtering
 - [ ] font
+- [ ] loading states
+- [ ] test API ?
 - [ ] fix caching/fetch issue?
+- [ ] new collection modal issue
+- [ ] colors
+- [ ] item panel mobile
+- [ ] resolve TS warnings
+- [ ] make footer
+- [ ] create multiselect
+
+# CI/CD
+
+- [ ] choose where to host
+- [ ] set up stuff

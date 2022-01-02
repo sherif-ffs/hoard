@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-import { useAppContext } from '../../components/AppWrapper';
+import { useAuthContext } from '../../contexts/AuthContext';
 import useAllItems from '../../hooks/useAllItems';
 import ItemCard from './ItemCard';
 import styles from './Items.module.scss';
-import Pagination from '../../components/ui/Pagination';
-import Loading from '../../components/ui/Loading';
+import Pagination from '../../ui/Pagination';
+import Loading from '../../ui/Loading';
 
 interface Props {
   filterList: [];
 }
 const Items = (props: Props) => {
-  const { user } = useAppContext();
+  const { user } = useAuthContext();
   const [limit] = useState(10);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);

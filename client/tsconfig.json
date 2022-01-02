@@ -14,6 +14,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/components/AppWrapper.jsx", "pages/contexts/ItemsContext.js", "pages/404.jsx", "pages/404.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/ui/AppWrapper.jsx "pages/contexts/ItemsContext.js", "pages/404.jsx", "pages/404.js"],
   "exclude": ["node_modules"]
 }

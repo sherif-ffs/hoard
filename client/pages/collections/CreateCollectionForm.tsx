@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 import Router from 'next/router';
 import { TagOption, TagOptions } from '../constants/Tags';
-import MultiSelect from '../components/ui/MultiSelect';
-import { useAppContext } from '../components/AppWrapper';
+import MultiSelect from '../ui/MultiSelect';
+import { useAuthContext } from '../contexts/AuthContext';
 import { useItemContext } from '../contexts/ItemsContext';
 import { createCollection } from './api/CollectionsApi';
 
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const CreateCollectionForm = (props: Props) => {
-  const { user, setCreateModalIsOpen } = useAppContext();
+  const { user, setCreateModalIsOpen } = useAuthContext();
   const { closeCreateCollectionModal } = useItemContext();
 
   const [name, setName] = useState('');

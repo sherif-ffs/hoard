@@ -61,6 +61,7 @@ const CollectionsPanelPill = (props: Props) => {
     setUpdating(true);
     const res = await remove(item, collectionId);
     const data = await res.json();
+    console.log('data: ', data);
     const { status } = data;
     if (status === 'ok') {
       includes = false;

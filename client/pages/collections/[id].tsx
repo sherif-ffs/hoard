@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 
 import { Navigation } from '../navigation/components/Navigation';
-import { useAppContext } from '../components/AppWrapper';
+import { useAuthContext } from '../contexts/AuthContext';
 import ItemCard from '../items/components/ItemCard';
 import { ItemInterface } from '../Interfaces/ItemInterface';
 import loadCollectionByCollectionID from './hooks/loadCollectionByCollectionID';
@@ -15,7 +15,7 @@ const Collection = () => {
   const [collection, setCollection] = useState(null);
 
   const targetCollection = loadCollectionByCollectionID(id);
-  const { setCreateModalIsOpen } = useAppContext();
+  const { setCreateModalIsOpen } = useAuthContext();
 
   if (collection === 'loading') {
     return <p>loading</p>;

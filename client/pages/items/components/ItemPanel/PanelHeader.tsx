@@ -3,9 +3,8 @@ import classNames from 'classnames';
 import Router from 'next/router';
 import { useState } from 'react';
 import { deleteItem } from '../../api/ItemApi';
-import { useAppContext } from '../../../components/AppWrapper';
+import { useAuthContext } from '../../../contexts/AuthContext';
 
-import SaveSVG from '../../../components/ui/icons/SaveSVG';
 import { useItemContext } from '../../../contexts/ItemsContext';
 import loadUserById from '../../../auth/hooks/loadUserById';
 
@@ -14,7 +13,7 @@ import styles from './PanelHeader.module.scss';
 const PanelHeader = () => {
   const { handleSetItemToCollect, selectedItem, handleCloseItemPanel } =
     useItemContext();
-  const { user, authenticated } = useAppContext();
+  const { user, authenticated } = useAuthContext();
   const { name, url, author, userId, tags, _id } = selectedItem;
   const [limit, setLimit] = useState(5);
   const authorObj = loadUserById(userId);

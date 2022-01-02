@@ -1,14 +1,13 @@
-import { useAppContext } from '../components/AppWrapper';
 import CollectionCard from '../collections/CollectionCard';
 import { CollectionInterface } from '../Interfaces/CollectionInterface';
 import loadMyCollections from '../collections/hooks/loadCollectionById';
+
 import gridStyles from '../../styles/_cardGrid.module.scss';
 
 interface Props {
   id: string;
 }
 const ProfileCollections = (props: Props) => {
-  const { myCollections, user } = useAppContext();
   const { id } = props;
   const collections = loadMyCollections(id);
   const collectionsExist = collections && !!collections.length;

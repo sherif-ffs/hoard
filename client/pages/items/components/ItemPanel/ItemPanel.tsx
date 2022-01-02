@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import classNames from 'classnames';
 
-import CloseSVG from '../../../components/ui/icons/CloseSVG';
-import Mask from '../../../components/ui/Mask';
+import CloseSVG from '../../../ui/icons/CloseSVG';
+import Mask from '../../../ui/Mask';
 import { useItemContext } from '../../../contexts/ItemsContext';
 import PanelHeader from './PanelHeader';
 import PanelImage from './PanelImage';

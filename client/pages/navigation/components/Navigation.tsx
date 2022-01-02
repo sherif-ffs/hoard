@@ -3,14 +3,15 @@ import Link from 'next/link';
 import Router from 'next/router';
 import Image from 'next/image';
 
-import { useAppContext } from '../../components/AppWrapper';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { logOutUser } from '../../auth/api/AuthApi';
 
 import styles from './Navigation.module.scss';
 
 export const Navigation = () => {
   const { user, authenticated, setCreateModalIsOpen, checkAuth } =
-    useAppContext();
+    useAuthContext();
+
   const handleLogout = async () => {
     const response = await logOutUser();
     const JSONResponse = await response.json();
@@ -53,10 +54,10 @@ export const Navigation = () => {
       return (
         <div className={styles.buttons}>
           <button className={classNames(styles.button, styles.secondary)}>
-            <Link href={'/auth/components/Login'}>Log In</Link>
+            <Link href={'/login'}>Log In</Link>
           </button>
           <button className={styles.profile}>
-            <Link href={'/auth/components/Signup'}>Sign Up</Link>
+            <Link href={'/signup'}>Sign Up</Link>
           </button>
         </div>
       );

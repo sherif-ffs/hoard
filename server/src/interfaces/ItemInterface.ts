@@ -1,5 +1,3 @@
-import { TagInterface } from './TagInterface';
-
 export interface ItemInterface {
   _id: string;
   author: string;

@@ -1,15 +1,13 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { checkUserAuthentication } from '../auth/api/AuthApi';
-import loadAllCollections from '../collections/hooks/loadAllCollections';
-import loadMyCollections from '../collections/hooks/loadCollectionById';
 
-const AppContext = createContext();
+const AuthContext = createContext();
 
-export function useAppContext() {
-  return useContext(AppContext);
+export function useAuthContext() {
+  return useContext(AuthContext);
 }
 
-export function AppWrapper({ children }) {
+export function AuthContextProvider({ children }) {
   const [user, setUser] = useState();
   const [authenticated, setAuthenticated] = useState();
   const [token, setToken] = useState();
@@ -29,12 +27,9 @@ export function AppWrapper({ children }) {
   }, []);
 
   const userId = user && user._id;
-  const myCollections = loadMyCollections(userId);
-
-  const allCollections = loadAllCollections();
 
   return (
-    <AppContext.Provider
+    <AuthContext.Provider
       value={{
         user,
         setUser,
@@ -44,13 +39,11 @@ export function AppWrapper({ children }) {
         setAuthenticated,
         createModalIsOpen,
         setCreateModalIsOpen,
-        myCollections,
-        allCollections,
         checkAuth
       }}
     >
       {' '}
       {children}{' '}
-    </AppContext.Provider>
+    </AuthContext.Provider>
   );
 }
