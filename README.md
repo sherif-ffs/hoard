@@ -1,7 +1,3 @@
-# General
-
-- [] resolve errors
-
 # Server/DB
 
 - [x] signup
@@ -71,9 +67,9 @@
 - [x] style profile page
 - [x] error handling (404, 500, error boundary)
 - [x] chagne text to say collect
-- [ ] page routes
-- [ ] move appWrapper to contexts
-- [ ] rename components to ui
+- [x] page routes
+- [x] move appWrapper to contexts
+- [x] rename components to ui
 - [ ] filtering
 - [ ] font
 - [ ] loading states

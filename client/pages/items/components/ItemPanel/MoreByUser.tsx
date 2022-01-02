@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import classNames from 'classnames';
 
-import { useItemContext } from '../../../contexts/ItemsContext';
+import { useAppContext } from '../../../contexts/AppContext';
 import loadMoreByUserID from '../../hooks/loadMoreByUser';
 import { API_URL } from '../../../constants/ApiEndpoint';
 import { ItemInterface } from '../../../Interfaces/ItemInterface';
@@ -10,7 +10,7 @@ import styles from './MoreByUser.module.scss';
 
 const MoreByUser = () => {
   const { handleSetSelectedItem, selectedItem, setItemPanelIsOpen } =
-    useItemContext();
+    useAppContext();
   const { userId, author } = selectedItem;
   const items = loadMoreByUserID(userId);
 

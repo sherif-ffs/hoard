@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import { ItemsContextProvider } from './contexts/ItemsContext';
+import { AppContextProvider } from './contexts/AppContext';
 import { AuthContextProvider } from './contexts/AuthContext';
 import ItemPanel from './items/components/ItemPanel/ItemPanel';
 import CreateCollectionModal from './collections/CreateCollectionModal';
@@ -15,13 +15,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
-        <ItemsContextProvider>
+        <AppContextProvider>
           <Component {...pageProps} />
           <ItemPanel />
           <CollectionsPanel />
           <CreateModal />
           <CreateCollectionModal />
-        </ItemsContextProvider>
+        </AppContextProvider>
       </AuthContextProvider>
     </QueryClientProvider>
   );

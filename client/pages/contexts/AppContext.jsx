@@ -1,12 +1,12 @@
 import { createContext, useContext, useState } from 'react';
 
-const ItemsContext = createContext();
+const AppContext = createContext();
 
-export function useItemContext() {
-  return useContext(ItemsContext);
+export function useAppContext() {
+  return useContext(AppContext);
 }
 
-export function ItemsContextProvider({ children }) {
+export function AppContextProvider({ children }) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [itemPanelIsOpen, setItemPanelIsOpen] = useState(false);
 
@@ -37,7 +37,7 @@ export function ItemsContextProvider({ children }) {
   const closeCollectionsPanel = () => setCollectionsPanelIsOpen(false);
 
   return (
-    <ItemsContext.Provider
+    <AppContext.Provider
       value={{
         selectedItem,
         itemPanelIsOpen,
@@ -60,6 +60,6 @@ export function ItemsContextProvider({ children }) {
     >
       {' '}
       {children}{' '}
-    </ItemsContext.Provider>
+    </AppContext.Provider>
   );
 }

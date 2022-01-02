@@ -11,7 +11,6 @@ export function AuthContextProvider({ children }) {
   const [user, setUser] = useState();
   const [authenticated, setAuthenticated] = useState();
   const [token, setToken] = useState();
-  const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
 
   const checkAuth = async () => {
     const response = await checkUserAuthentication();
@@ -37,8 +36,6 @@ export function AuthContextProvider({ children }) {
         setToken,
         authenticated,
         setAuthenticated,
-        // createModalIsOpen,
-        // setCreateModalIsOpen,
         checkAuth
       }}
     >

@@ -5,7 +5,7 @@ import Router from 'next/router';
 import { TagOption, TagOptions } from '../constants/Tags';
 import MultiSelect from '../ui/MultiSelect';
 import { useAuthContext } from '../contexts/AuthContext';
-import { useItemContext } from '../contexts/ItemsContext';
+import { useAppContext } from '../contexts/AppContext';
 import { createCollection } from './api/CollectionsApi';
 
 import styles from '../items/components/CreateContentForm.module.scss';
@@ -16,7 +16,7 @@ interface Props {
 
 const CreateCollectionForm = (props: Props) => {
   const { user } = useAuthContext();
-  const { closeCreateCollectionModal, setCreateModalIsOpen } = useItemContext();
+  const { closeCreateCollectionModal, setCreateModalIsOpen } = useAppContext();
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');

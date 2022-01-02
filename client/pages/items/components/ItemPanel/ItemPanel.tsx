@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import CloseSVG from '../../../ui/icons/CloseSVG';
 import Mask from '../../../ui/Mask';
-import { useItemContext } from '../../../contexts/ItemsContext';
+import { useAppContext } from '../../../contexts/AppContext';
 import PanelHeader from './PanelHeader';
 import PanelImage from './PanelImage';
 import MoreByUser from './MoreByUser';
@@ -13,7 +13,7 @@ import styles from './ItemPanel.module.scss';
 
 const ItemDetailsSheet = () => {
   const { itemPanelIsOpen, handleCloseItemPanel, selectedItem } =
-    useItemContext();
+    useAppContext();
 
   if (!selectedItem) return null;
   useEffect(() => {

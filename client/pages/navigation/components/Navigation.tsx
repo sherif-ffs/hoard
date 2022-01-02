@@ -4,7 +4,7 @@ import Router from 'next/router';
 import Image from 'next/image';
 
 import { useAuthContext } from '../../contexts/AuthContext';
-import { useItemContext } from '../../contexts/ItemsContext';
+import { useAppContext } from '../../contexts/AppContext';
 import { logOutUser } from '../../auth/api/AuthApi';
 
 import styles from './Navigation.module.scss';
@@ -12,7 +12,7 @@ import styles from './Navigation.module.scss';
 export const Navigation = () => {
   const { user, authenticated, checkAuth } = useAuthContext();
 
-  const { setCreateModalIsOpen } = useItemContext();
+  const { setCreateModalIsOpen } = useAppContext();
 
   const handleLogout = async () => {
     const response = await logOutUser();

@@ -5,14 +5,14 @@ import { useState } from 'react';
 import { deleteItem } from '../../api/ItemApi';
 import { useAuthContext } from '../../../contexts/AuthContext';
 
-import { useItemContext } from '../../../contexts/ItemsContext';
+import { useAppContext } from '../../../contexts/AppContext';
 import loadUserById from '../../../auth/hooks/loadUserById';
 
 import styles from './PanelHeader.module.scss';
 
 const PanelHeader = () => {
   const { handleSetItemToCollect, selectedItem, handleCloseItemPanel } =
-    useItemContext();
+    useAppContext();
   const { user, authenticated } = useAuthContext();
   const { name, url, author, userId, tags, _id } = selectedItem;
   const [limit, setLimit] = useState(5);

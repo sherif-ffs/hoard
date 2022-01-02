@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { API_URL } from '../../constants/ApiEndpoint';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
-import { useItemContext } from '../../contexts/ItemsContext';
+import { useAppContext } from '../../contexts/AppContext';
 
 import styles from './ItemCard.module.scss';
 
@@ -14,7 +14,7 @@ type Props = {
 
 const Item = (props: Props) => {
   const { name, _id, imageID, tags } = props.item;
-  const { handleSetSelectedItem, handleSetItemToCollect } = useItemContext();
+  const { handleSetSelectedItem, handleSetItemToCollect } = useAppContext();
 
   const tagLength = tags && tags.length - 4;
   return (

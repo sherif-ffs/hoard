@@ -2,13 +2,13 @@ import classNames from 'classnames';
 
 import { API_URL } from '../../../constants/ApiEndpoint';
 import { ItemInterface } from '../../../Interfaces/ItemInterface';
-import { useItemContext } from '../../../contexts/ItemsContext';
+import { useAppContext } from '../../../contexts/AppContext';
 import loadItemsByTag from '../../hooks/loadItemsByTag';
 
 import styles from './RelatedItems.module.scss';
 
 const RelatedItems = () => {
-  const { handleSetSelectedItem, selectedItem } = useItemContext();
+  const { handleSetSelectedItem, selectedItem } = useAppContext();
   const { tags } = selectedItem;
 
   if (!tags || tags.length === 0) return null;

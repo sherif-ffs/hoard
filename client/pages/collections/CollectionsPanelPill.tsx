@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 
-import { useItemContext } from '../contexts/ItemsContext';
+import { useAppContext } from '../contexts/AppContext';
 import {
   addItemToCollection as add,
   removeItemFromCollection as remove,
@@ -21,7 +21,7 @@ const CollectionsPanelPill = (props: Props) => {
   const [refetching, setRefetching] = useState(false);
   const [updating, setUpdating] = useState(false);
 
-  const { itemToCollect } = useItemContext();
+  const { itemToCollect } = useAppContext();
 
   const itemId = itemToCollect && itemToCollect._id;
   const collectionId = collection && collection._id;

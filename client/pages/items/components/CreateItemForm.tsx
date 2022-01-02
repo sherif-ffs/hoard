@@ -5,15 +5,15 @@ import { TagOption, TagOptions } from '../../constants/Tags';
 import MultiSelect from '../../ui/MultiSelect';
 import loadMyCollections from '../../collections/hooks/loadCollectionById';
 import { useAuthContext } from '../../contexts/AuthContext';
-import { useItemContext } from '../../contexts/ItemsContext';
+import { useAppContext } from '../../contexts/AppContext';
 import { createItem } from '../api/ItemApi';
 import styles from './CreateContentForm.module.scss';
 
 const CreateItemForm = () => {
   const { user } = useAuthContext();
-  const { setCreateModalIsOpen } = useItemContext();
+  const { setCreateModalIsOpen } = useAppContext();
   const myCollections = user && user._id && loadMyCollections(user._id);
-  const { handleSetSelectedItem } = useItemContext();
+  const { handleSetSelectedItem } = useAppContext();
   const { email, _id } = !!user && user;
   const [url, setUrl] = useState('');
   const [description, setDescription] = useState('');

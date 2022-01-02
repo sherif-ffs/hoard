@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import CloseSVG from '../ui/icons/CloseSVG';
 import AddSVG from '../ui/icons/AddSVG';
 import loadMyCollections from '../collections/hooks/loadCollectionById';
-import { useItemContext } from '../contexts/ItemsContext';
+import { useAppContext } from '../contexts/AppContext';
 import CollectionsPanelPill from './CollectionsPanelPill';
 
 import styles from './CollectionsPanel.module.scss';
@@ -17,7 +17,7 @@ const CollectionsPanel = () => {
     collectionsPanelIsOpen,
     itemToCollect,
     openCreateCollectionModal,
-  } = useItemContext();
+  } = useAppContext();
   if (myCollections === 'loading') {
     return <p>loading</p>;
   }
