@@ -18,14 +18,14 @@
     font-size: $heading-4;
     transition: color background-color 400ms;
     &.active {
-      color: $dark-gray;
+      color: $new-dark;
       font-weight: $font-weight-medium;
       background-color: #e8e8e8;
       transition: color background-color 400ms;
     }
     @media(hover: hover) {
       &:hover {
-        color: $dark-gray;
+        color: $new-dark;
         transition: color 400ms;
       }
     }

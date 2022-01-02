@@ -39,7 +39,7 @@
     transition: 400ms ease-in-out;
     @media(hover: hover) {
       &:hover {
-        filter: drop-shadow(-55px 0px 0.1px #BE6E46);
+        filter: drop-shadow(-55px 0px 0.1px $color-orange);
       }
     }
   }

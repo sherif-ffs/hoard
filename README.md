@@ -77,10 +77,13 @@
 - [ ] fix caching/fetch issue?
 - [ ] new collection modal issue
 - [ ] colors
-- [ ] item panel mobile
+- [x] item panel mobile
 - [ ] resolve TS warnings
 - [ ] make footer
 - [ ] create multiselect
+- [x] profile header styles
+- [ ] make button component
+- [ ] form validation
 
 # CI/CD
 

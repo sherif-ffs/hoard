@@ -9,7 +9,7 @@ interface Props {
 
 const Pagination = (props: Props) => {
   const { pages, page, paginate } = props;
-
+  console.log('props: ', props);
   if (pages && pages > 1) {
     return (
       <div className={styles.wrapper}>

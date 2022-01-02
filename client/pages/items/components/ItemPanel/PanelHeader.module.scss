@@ -9,6 +9,9 @@
   width: 100%;
   gap: 2em;
   justify-content: space-between;
+  @media all and (max-width: 480px) {
+    flex-direction: column;
+  }
   .details {
     display: flex;
     flex-direction: column;
@@ -67,7 +70,7 @@
   padding: 0;
   @media all and (max-width: 480px) {
     width: 80%;
-    margin-right: 0;
+    margin-right: auto;
     margin-top: 2em;
     flex-wrap: wrap;
   }

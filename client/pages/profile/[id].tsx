@@ -28,17 +28,20 @@ const Profile = () => {
       <Navigation />
       <div className={styles.wrapper}>
         <header>
-          {user && user[0] && user[0].name && <h1>{user[0].name}</h1>}
-          <div className={styles.tabs}>
-            <Tabs {...{ activeTab, setActiveTab, tabCopy }} />
+          <div className={styles.content}>
+            {user && user[0] && user[0].name && <h1>{user[0].name}</h1>}
+            <div className={styles.tabs}>
+              <Tabs {...{ activeTab, setActiveTab, tabCopy }} />
+            </div>
           </div>
         </header>
-
-        {activeTab === 1 ? (
-          <ProfileItems {...{ id }} />
-        ) : (
-          <ProfileCollections {...{ id }} />
-        )}
+        <div className={styles.content}>
+          {activeTab === 1 ? (
+            <ProfileItems {...{ id }} />
+          ) : (
+            <ProfileCollections {...{ id }} />
+          )}
+        </div>
       </div>
     </section>
   );

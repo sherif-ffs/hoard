@@ -1,11 +1,17 @@
 @import "../../styles/_variables.scss";
 .wrapper {
-  width: 90%;
-  margin: 1em auto;
+  width: 100%;
   header {
-    border-bottom: 1px solid $light-gray;
     margin: 2em 0;
+    border-top: 1px solid $medium-gray;
+    border-bottom: 1px solid $medium-gray;
+    background-color: $light-gray;
   }
+}
+
+.content {
+  width: 90%;
+  margin: 0 auto;
 }
 
 .tabs {

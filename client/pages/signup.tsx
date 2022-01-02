@@ -24,7 +24,7 @@ const Signup: NextPage = () => {
 
     if (!error && status === 'ok') {
       alert(data);
-      Router.push('/auth/components/Login');
+      Router.push('/login');
     }
   };
 
@@ -67,8 +67,7 @@ const Signup: NextPage = () => {
           />
           <hr />
           <p>
-            Already have an account?{' '}
-            <Link href="/auth/components/Login">Log In</Link>
+            Already have an account? <Link href="login">Log In</Link>
           </p>
         </form>
       </div>
