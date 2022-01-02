@@ -37,8 +37,8 @@ export function AuthContextProvider({ children }) {
         setToken,
         authenticated,
         setAuthenticated,
-        createModalIsOpen,
-        setCreateModalIsOpen,
+        // createModalIsOpen,
+        // setCreateModalIsOpen,
         checkAuth
       }}
     >

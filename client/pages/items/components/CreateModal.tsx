@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useAuthContext } from '../../contexts/AuthContext';
+import { useItemContext } from '../../contexts/ItemsContext';
 import CreateCollectionForm from '../../collections/CreateCollectionForm';
 import Modal from '../../ui/Modal';
 import Tabs from '../../ui/Tabs';
@@ -9,7 +9,7 @@ import Mask from '../../ui/Mask';
 import CreateItemForm from './CreateItemForm';
 
 const CreateModal = () => {
-  const { createModalIsOpen } = useAuthContext();
+  const { createModalIsOpen } = useItemContext();
   const [activeTab, setActiveTab] = useState(1);
   const tabCopy = ['Item', 'Collection'];
 

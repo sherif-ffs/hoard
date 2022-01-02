@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
 import Router from 'next/router';
+
 import { TagOption, TagOptions } from '../constants/Tags';
 import MultiSelect from '../ui/MultiSelect';
 import { useAuthContext } from '../contexts/AuthContext';
@@ -14,8 +15,8 @@ interface Props {
 }
 
 const CreateCollectionForm = (props: Props) => {
-  const { user, setCreateModalIsOpen } = useAuthContext();
-  const { closeCreateCollectionModal } = useItemContext();
+  const { user } = useAuthContext();
+  const { closeCreateCollectionModal, setCreateModalIsOpen } = useItemContext();
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -85,8 +86,9 @@ const CreateCollectionForm = (props: Props) => {
     }
 
     setCreating(false);
+    closeCreateCollectionModal();
     setCreateModalIsOpen(false);
-    console.error('error');
+    alert('Something went wrong :/');
     return;
   };
 

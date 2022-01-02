@@ -14,6 +14,7 @@ export function ItemsContextProvider({ children }) {
   const [collectionsPanelIsOpen, setCollectionsPanelIsOpen] = useState(false);
 
   const [createCollectionModalIsOpen, setCollectionModalIsOpen] = useState(false);
+  const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
 
   const openCreateCollectionModal = () => setCollectionModalIsOpen(true);
   const closeCreateCollectionModal = () => setCollectionModalIsOpen(false);
@@ -43,6 +44,7 @@ export function ItemsContextProvider({ children }) {
         createCollectionModalIsOpen,
         itemToCollect,
         collectionsPanelIsOpen,
+        createModalIsOpen,
         setSelectedItem,
         setItemPanelIsOpen,
         setItemToCollect,
@@ -52,7 +54,8 @@ export function ItemsContextProvider({ children }) {
         handleCloseItemPanel,
         closeCollectionsPanel,
         openCreateCollectionModal,
-        closeCreateCollectionModal
+        closeCreateCollectionModal,
+        setCreateModalIsOpen,
       }}
     >
       {' '}
