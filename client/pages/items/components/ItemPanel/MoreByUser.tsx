@@ -38,7 +38,7 @@ const MoreByUser = () => {
       <div className={styles.thumbnails}>
         {filteredItems &&
           !!filteredItems.length &&
-          filteredItems.map((item: ItemInterface) => (
+          filteredItems.slice(0, 4).map((item: ItemInterface) => (
             <div className={styles.imgWrapper}>
               <img
                 key={item._id}

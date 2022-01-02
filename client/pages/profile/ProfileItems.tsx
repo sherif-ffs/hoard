@@ -12,29 +12,32 @@ const ProfileItems = (props: Props) => {
 
   const loading = items === 'loading';
 
-  if (!items) return null;
-
   if (loading) {
     return <p>loading</p>;
   }
 
-  return (
-    <div className={gridStyles.cardGrid}>
-      {items.map((item: any) => {
-        const isPublic = !item.isPrivate;
-        if (isPublic) {
-          return (
-            <ItemCard
-              {...{
-                item,
-              }}
-              key={item._id}
-            />
-          );
-        }
-      })}
-    </div>
-  );
+  const itemsExist = items && !!items.length;
+  if (!itemsExist) return <h1>No items</h1>;
+
+  if (itemsExist) {
+    return (
+      <div className={gridStyles.cardGrid}>
+        {items.map((item: any) => {
+          const isPublic = !item.isPrivate;
+          if (isPublic) {
+            return (
+              <ItemCard
+                {...{
+                  item,
+                }}
+                key={item._id}
+              />
+            );
+          }
+        })}
+      </div>
+    );
+  }
 };
 
 export default ProfileItems;

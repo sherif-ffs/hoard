@@ -12,19 +12,12 @@ import styles from './profile.module.scss';
 const Profile = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { myCollections } = useAppContext();
 
   const [activeTab, setActiveTab] = useState(1);
 
-  const c = loadMyCollections(id);
   const user = loadUserById(id);
-  const loading = c === 'loading';
-  if (loading) {
-    return <p>loading</p>;
-  }
 
   const tabCopy = ['Items', 'Collections'];
-  const collectionsExist = c && !!c.length;
 
   if (user === 'loading') {
     return <h1>loading</h1>;

@@ -75,7 +75,7 @@ const Filters = (props: Props) => {
                     key={t}
                     value={t}
                   >
-                    {t}
+                    {t.toLowerCase()}
                   </span>
                 );
               })}
