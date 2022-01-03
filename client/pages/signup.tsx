@@ -28,6 +28,8 @@ const Signup: NextPage = () => {
     }
   };
 
+  const fieldsNotEmpty = password && !!password.trim().length;
+
   return (
     <section>
       <div className={styles.formWrapper}>
@@ -61,7 +63,9 @@ const Signup: NextPage = () => {
             />
           </div>
           <Button
-            onClick={handleSubmit}
+            onClick={(e: any) =>
+              fieldsNotEmpty ? handleSubmit(e) : alert('Must Create Password')
+            }
             buttonCopy={'Sign Up'}
             version={'CTA'}
           />

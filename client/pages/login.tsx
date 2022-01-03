@@ -35,6 +35,9 @@ const login: NextPage = () => {
     }
   };
 
+  const fieldsNotEmpty =
+    password && !!password.trim().length && email && !!email.trim().length;
+
   return (
     <section>
       <div className={styles.formWrapper}>
@@ -60,7 +63,11 @@ const login: NextPage = () => {
             />
           </div>
           <Button
-            onClick={handleSubmit}
+            onClick={(e: any) =>
+              fieldsNotEmpty
+                ? handleSubmit(e)
+                : alert('Please Fill out All Fields')
+            }
             buttonCopy={'Log In'}
             version={'CTA'}
           />

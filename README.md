@@ -21,7 +21,7 @@
 - [x] remove item from collection from panel
 - [x] scrape title/details of URL
 - [x] check if item exists in collection from pill component
-- [ ] make sure remove item from collection works
+- [x] make sure remove item from collection works
 - [ ] tests
 
 # Client
@@ -70,20 +70,20 @@
 - [x] page routes
 - [x] move appWrapper to contexts
 - [x] rename components to ui
+- [x] colors
+- [x] item panel mobile
+- [x] profile header styles
 - [ ] filtering
 - [ ] font
 - [ ] loading states
 - [ ] test API ?
 - [ ] fix caching/fetch issue?
 - [ ] new collection modal issue
-- [ ] colors
-- [x] item panel mobile
 - [ ] resolve TS warnings
 - [ ] make footer
 - [ ] create multiselect
-- [x] profile header styles
 - [ ] make button component
-- [ ] form validation
+- [x] form validation
 
 # CI/CD
 
