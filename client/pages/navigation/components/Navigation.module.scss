@@ -48,24 +48,6 @@
     display: flex;
     font-size: 1em;
     gap: 1em;
-    .profile {
-      cursor: pointer;
-      height: 35px;
-      padding: 0 1em;
-      border-radius: $border-radius;
-      font-weight: 500;
-      transition: background-color 400ms, border 400ms;
-      background-color: $light-gray;
-      border: 1px solid $medium-gray;
-      cursor: pointer;
-      white-space: nowrap;
-      @media (hover: hover) {
-        &:hover {
-          background-color: darken($light-gray, 5%);
-          border: 1px solid lighten($gray, 15%);
-        }
-      }
-    }
   }
 }
 

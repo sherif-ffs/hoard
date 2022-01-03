@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { TagOptions } from '../constants/Tags';
 
 import styles from './Filter.module.scss';
-import { useEffect } from 'react';
 
 interface Props {
   updateFilters: (filters: []) => void;
@@ -13,11 +12,9 @@ interface Props {
 const Filters = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [filterList, setFilterList] = useState<string>([]);
-  const [filterString, setFilterString] = useState('');
   const [filteredTags, setFilteredTags] = useState(
     TagOptions.map((t) => t.value)
   );
-  const tags = TagOptions.map((t) => t.value);
 
   const removeItem = (tag: string) => {
     const existing = [...filterList];

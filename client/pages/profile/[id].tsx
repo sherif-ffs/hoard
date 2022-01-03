@@ -16,7 +16,7 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState(1);
 
   const user = loadUserById(id);
-
+  console.log('user: ', user);
   const tabCopy = ['Items', 'Collections'];
 
   if (user === 'loading') {
@@ -31,7 +31,7 @@ const Profile = () => {
           <div className={styles.content}>
             {user && user[0] && user[0].name && <h1>{user[0].name}</h1>}
             <div className={styles.tabs}>
-              <Tabs {...{ activeTab, setActiveTab, tabCopy }} />
+              <Tabs {...{ activeTab, setActiveTab, tabCopy }} dark />
             </div>
           </div>
         </header>

@@ -8,6 +8,7 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 import { useAppContext } from '../../../contexts/AppContext';
 import loadUserById from '../../../auth/hooks/loadUserById';
 
+import buttonStyles from '../../../../styles/button.module.scss';
 import styles from './PanelHeader.module.scss';
 
 const PanelHeader = () => {
@@ -53,14 +54,12 @@ const PanelHeader = () => {
             </a>
           </Link>
           <h3>
-            uploaded by: {/* <Link href={`/profile/${userId}`}> */}
-            <span onClick={sendToProfile}>{authorName}</span>
-            {/* </Link> */}
+            uploaded by: <span onClick={sendToProfile}>{authorName}</span>
           </h3>
         </div>
         <div className={styles.buttons}>
           <button
-            className={classNames(styles.button, styles.saveButton)}
+            className={buttonStyles.button}
             onClick={() =>
               user && authenticated
                 ? handleSetItemToCollect(selectedItem)
@@ -70,10 +69,7 @@ const PanelHeader = () => {
             Collect
           </button>
           {isMyItem && (
-            <button
-              className={classNames(styles.button, styles.delete)}
-              onClick={handleDeleteItem}
-            >
+            <button className={buttonStyles.button} onClick={handleDeleteItem}>
               <span className={styles.skull}>&#9760;</span>
               Destroy
               <span className={styles.skull}>&#9760;</span>

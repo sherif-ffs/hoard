@@ -7,6 +7,8 @@ import { useAuthContext } from '../../contexts/AuthContext';
 import { useAppContext } from '../../contexts/AppContext';
 import { logOutUser } from '../../auth/api/AuthApi';
 
+import buttonStyles from '../../../styles/button.module.scss';
+
 import styles from './Navigation.module.scss';
 
 export const Navigation = () => {
@@ -35,7 +37,7 @@ export const Navigation = () => {
       return (
         <div className={styles.buttons}>
           <button
-            className={styles.profile}
+            className={buttonStyles.button}
             onClick={
               authenticated
                 ? () => setCreateModalIsOpen(true)
@@ -45,9 +47,9 @@ export const Navigation = () => {
             Contribute
           </button>
           <Link href={`/profile/${user._id}`}>
-            <button className={styles.profile}>My Stuff</button>
+            <button className={buttonStyles.button}>My Stuff</button>
           </Link>
-          <button className={styles.profile} onClick={handleLogout}>
+          <button className={buttonStyles.button} onClick={handleLogout}>
             Sign Out
           </button>
         </div>
@@ -58,7 +60,7 @@ export const Navigation = () => {
           <button className={classNames(styles.button, styles.secondary)}>
             <Link href={'/login'}>Log In</Link>
           </button>
-          <button className={styles.profile}>
+          <button className={buttonStyles.button}>
             <Link href={'/signup'}>Sign Up</Link>
           </button>
         </div>

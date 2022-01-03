@@ -6,10 +6,10 @@ interface Props {
   activeTab: number;
   setActiveTab: any;
   tabCopy: string[];
+  dark: boolean;
 }
 const Tabs = (props: Props) => {
-  const [selectedTab, setSelectedTab] = useState(1);
-  const { setActiveTab, activeTab, tabCopy } = props;
+  const { setActiveTab, activeTab, tabCopy, dark } = props;
   return (
     <div className={styles.wrapper}>
       <Tab
@@ -17,12 +17,14 @@ const Tabs = (props: Props) => {
         tabCopy={tabCopy[0]}
         version={'CTA'}
         inactive={activeTab !== 1}
+        {...{ dark }}
       />
       <Tab
         onClick={() => setActiveTab(2)}
         tabCopy={tabCopy[1]}
         version={'CTA'}
         inactive={activeTab !== 2}
+        {...{ dark }}
       />
     </div>
   );

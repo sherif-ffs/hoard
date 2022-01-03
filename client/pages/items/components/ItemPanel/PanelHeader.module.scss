@@ -38,23 +38,8 @@
     margin: 0.5em 0;
     flex-direction: column;
     gap: 10px;
-    .button {
-      background-color: $light-gray;
-      border: 1px solid $medium-gray;
-      border-radius: $border-radius;
-      height: min-content;
-      padding: 0.5em;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background-color 400ms;
-      @media(hover: hover) {
-        &:hover {
-          background-color: darken($light-gray, 5%);
-        }
-      }
-      .skull {
-        margin: 0.35em;
-      }
+    .skull {
+      margin: 0.35em;
     }
   }
 }

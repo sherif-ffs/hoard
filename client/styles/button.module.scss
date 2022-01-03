@@ -1,0 +1,29 @@
+@import "./variables";
+.button {
+  cursor: pointer;
+  padding: 0.55em;
+  border-radius: $border-radius;
+  font-weight: 500;
+  transition: background-color 400ms, border 400ms;
+  background-color: $light-gray;
+  border: 1px solid $medium-gray;
+  cursor: pointer;
+  white-space: nowrap;
+  height: min-content;
+  &.dark {
+    background-color: darken($light-gray, 15%);
+    border: 1px solid darken($medium-gray, 25%);
+    color: black;
+    font-weight: 500;
+    @media (hover: hover) {
+      &:hover {
+        background-color: darken($light-gray, 20%);
+      }
+    }
+  }
+  @media (hover: hover) {
+    &:hover {
+      background-color: darken($light-gray, 5%);
+    }
+  }
+}

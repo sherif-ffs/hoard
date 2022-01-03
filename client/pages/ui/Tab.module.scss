@@ -11,6 +11,25 @@
   transition: background-color 400ms;
   cursor: pointer;
   border-radius: $border-radius;
+  &.dark {
+    background-color: darken($light-gray, 15%);
+    border: 1px solid darken($medium-gray, 25%);
+    color: black;
+    font-weight: 500;
+    &.inactive {
+      color: black;
+      @media (hover: hover) {
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+    @media (hover: hover) {
+      &:hover {
+        background-color: darken($light-gray, 20%);
+      }
+    }
+  }
   @media (hover: hover) {
     &:hover {
       background-color: darken($light-gray, 5%);

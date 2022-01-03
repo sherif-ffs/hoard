@@ -1,6 +1,9 @@
+import classNames from 'classnames';
+
 import { useAuthContext } from '../contexts/AuthContext';
 import { deleteCollection } from './api/CollectionsApi';
 
+import buttonStyles from '../../styles/button.module.scss';
 import styles from './CollectionHeader.module.scss';
 
 interface Props {
@@ -41,7 +44,10 @@ const CollectionHeader = (props: Props) => {
           </div>
         </div>
         {isMyCollection && (
-          <button className={styles.delete} onClick={handleDelete}>
+          <button
+            className={classNames(buttonStyles.button, buttonStyles.dark)}
+            onClick={handleDelete}
+          >
             <span className={styles.skull}>&#9760;</span>
             Destroy Collection
             <span className={styles.skull}>&#9760;</span>

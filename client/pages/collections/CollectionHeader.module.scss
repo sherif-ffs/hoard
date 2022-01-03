@@ -16,6 +16,9 @@
     }
   }
   .content {
+    @media all and (max-width: 480px) {
+      margin-bottom: 1.5em;
+    }
     h1 {
       font-weight: $font-weight-bold;
       margin: 0;
@@ -40,26 +43,8 @@
       }
     }
   }
-  .delete {
-    background-color: $light-gray;
-    border: 1px solid $medium-gray;
-    border-radius: $border-radius;
-    height: min-content;
-    padding: 0.5em;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 400ms;
-    .skull {
-      margin: 0.25em;
-      font-size: 1.25em;
-    }
-    @media all and (max-width: 480px) {
-      margin-top: 1.5em;
-    }
-    @media(hover: hover) {
-      &:hover {
-        background-color: darken($light-gray, 5%);
-      }
-    }
+  .skull {
+    margin: 0.25em;
+    font-size: 1.25em;
   }
 }

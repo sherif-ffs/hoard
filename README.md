@@ -73,7 +73,7 @@
 - [x] colors
 - [x] item panel mobile
 - [x] profile header styles
-- [ ] filtering
+- [x] filtering
 - [ ] font
 - [ ] loading states
 - [ ] test API ?
@@ -82,8 +82,10 @@
 - [ ] resolve TS warnings
 - [ ] make footer
 - [ ] create multiselect
-- [ ] make button component
+- [x] make button styles
 - [x] form validation
+- [ ] filter collections
+- [ ] add socials to profile
 
 # CI/CD
 
