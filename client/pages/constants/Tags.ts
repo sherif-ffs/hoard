@@ -30,7 +30,6 @@ export const TagOptions: TagOption[] = [
   { value: 'python', label: 'python', icon: null },
   { value: 'HTML', label: 'HTML', icon: null },
   { value: 'backend', label: 'backend', icon: null },
-  { value: 'backend', label: 'backend', icon: null },
   { value: 'tutorial', label: 'tutorial', icon: null },
   { value: 'generative art', label: 'generative art', icon: null },
   { value: 'mobile', label: 'mobile', icon: null },

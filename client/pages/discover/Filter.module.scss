@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: Rubik;
   .filterText {
     margin-top: 1em;
     display: flex;
@@ -106,16 +107,18 @@
     align-items: center;
     padding: 0.35em 1em;
     background-color: $light-gray;
-    font-weight: 700;
-    font-weight: 500;
     border: 1px solid $medium-gray;
     cursor: pointer;
+    font-family: Rubik;
+    font-weight: 400;
     transition: 400ms;
     &.selected {
-      color: $color-green;
+      background-color: $dark;
+      color: $color-orange;
+      border-color: $dark;
       @media(hover: hover) {
         &:hover {
-          background-color: darken($light-gray, 5%);
+          background-color: darken($dark, 15%);
         }
       }
     }
@@ -154,6 +157,7 @@
     }
     &.cta {
       border: 1px solid $medium-gray;
+      // background-color: $color-orange;
       transition: 400ms;
       @media (hover: hover) {
         &:hover {

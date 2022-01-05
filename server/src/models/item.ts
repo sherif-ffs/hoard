@@ -47,6 +47,10 @@ const itemSchema = new Schema<ItemInterface>({
     type: Boolean,
     required: true,
   },
+  datePublished: {
+    type: Date,
+    required: true,
+  },
 });
 
 export default model('Item', itemSchema);

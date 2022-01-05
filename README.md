@@ -22,6 +22,7 @@
 - [x] scrape title/details of URL
 - [x] check if item exists in collection from pill component
 - [x] make sure remove item from collection works
+- [x] add socials
 - [ ] tests
 
 # Client
@@ -74,7 +75,7 @@
 - [x] item panel mobile
 - [x] profile header styles
 - [x] filtering
-- [ ] font
+- [x] font
 - [ ] loading states
 - [ ] test API ?
 - [ ] fix caching/fetch issue?
@@ -85,7 +86,7 @@
 - [x] make button styles
 - [x] form validation
 - [ ] filter collections
-- [ ] add socials to profile
+- [x] add socials to profile
 
 # CI/CD
 

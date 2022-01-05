@@ -10,13 +10,42 @@
   }
 }
 
+.socials {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 1em;
+  a {
+    white-space: nowrap;
+    text-decoration: underline;
+  }
+}
+
 .content {
   width: 90%;
   margin: 0 auto;
 }
 
+.edit {
+  cursor: pointer;
+  margin-left: 0.25em;
+}
+
+.text {
+  width: 25%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    font-size: 1.75em;
+    font-weight: 700;
+    color: $dark;
+  }
+}
+
 .tabs {
-  width: 20%;
+  width: 100%;
   margin-bottom: 20px;
   @media all and (max-width: 480px) {
     width: 80%;

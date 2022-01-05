@@ -104,6 +104,35 @@ router.post('/register', async (req, res) => {
   }
 });
 
+//update socials
+router.post('/socials', async (req, res) => {
+  const { github, twitter, portfolio, role, id } = req.body;
+  console.log('github: ', github);
+  console.log('twitter: ', twitter);
+  console.log('portfolio: ', portfolio);
+  console.log('role: ', role);
+  console.log('id: ', id);
+
+  try {
+    const a = await User.updateOne(
+      { _id: new objectId(id) },
+      {
+        $set: {
+          github: github,
+          twitter: twitter,
+          portfolio: portfolio,
+          role: role,
+        },
+      }
+    );
+    console.log('a: ', a);
+    res.json({ status: 'ok', data: 'success' });
+  } catch (error: any) {
+    res.json({ status: 'error', error: error.message });
+    throw error;
+  }
+});
+
 router.get('/users', async (req, res) => {
   try {
     const allUsers = await User.find();

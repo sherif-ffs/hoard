@@ -4,6 +4,9 @@
 .wrapper {
   align-items: flex-start;
   place-self: start;
+  h3 {
+    font-weight: 500;
+  }
   &:before {
     content: '';
     display: block;

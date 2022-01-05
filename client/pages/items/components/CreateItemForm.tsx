@@ -7,6 +7,7 @@ import loadMyCollections from '../../collections/hooks/loadCollectionById';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useAppContext } from '../../contexts/AppContext';
 import { createItem } from '../api/ItemApi';
+
 import styles from './CreateContentForm.module.scss';
 
 const CreateItemForm = () => {
@@ -83,6 +84,7 @@ const CreateItemForm = () => {
       isPrivate: visibility === 'private',
       likes: 0,
       collections: collectionData,
+      datePublished: new Date(),
     };
     const result = await createItem(item);
     const data = await result.json();

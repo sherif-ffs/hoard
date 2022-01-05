@@ -8,6 +8,8 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 import { useAppContext } from '../../../contexts/AppContext';
 import loadUserById from '../../../auth/hooks/loadUserById';
 
+import UpSVG from '../../../ui/icons/UpSVG';
+import DownSVG from '../../../ui/icons/DownSVG';
 import buttonStyles from '../../../../styles/button.module.scss';
 import styles from './PanelHeader.module.scss';
 
@@ -15,8 +17,9 @@ const PanelHeader = () => {
   const { handleSetItemToCollect, selectedItem, handleCloseItemPanel } =
     useAppContext();
   const { user, authenticated } = useAuthContext();
-  const { name, url, author, userId, tags, _id } = selectedItem;
+  const { name, url, author, userId, tags, _id, likes } = selectedItem;
   const [limit, setLimit] = useState(5);
+
   const authorObj = loadUserById(userId);
 
   const handleDeleteItem = async () => {
@@ -69,7 +72,10 @@ const PanelHeader = () => {
             Collect
           </button>
           {isMyItem && (
-            <button className={buttonStyles.button} onClick={handleDeleteItem}>
+            <button
+              className={classNames(buttonStyles.button, buttonStyles.dark)}
+              onClick={handleDeleteItem}
+            >
               <span className={styles.skull}>&#9760;</span>
               Destroy
               <span className={styles.skull}>&#9760;</span>

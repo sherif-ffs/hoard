@@ -13,4 +13,5 @@ export interface ItemInterface {
   tags?: Array<string> | null;
   likes: number;
   isPrivate: boolean;
+  datePublished: Date;
 }

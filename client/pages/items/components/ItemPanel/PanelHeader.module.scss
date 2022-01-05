@@ -12,6 +12,16 @@
   @media all and (max-width: 480px) {
     flex-direction: column;
   }
+  .likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    svg {
+      path {
+        margin-top: 5px;
+      }
+    }
+  }
   .details {
     display: flex;
     flex-direction: column;

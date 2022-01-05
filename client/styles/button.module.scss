@@ -3,21 +3,23 @@
   cursor: pointer;
   padding: 0.55em;
   border-radius: $border-radius;
-  font-weight: 500;
+  font-weight: 400;
   transition: background-color 400ms, border 400ms;
   background-color: $light-gray;
   border: 1px solid $medium-gray;
   cursor: pointer;
   white-space: nowrap;
   height: min-content;
+  font-family: Rubik;
   &.dark {
-    background-color: darken($light-gray, 15%);
-    border: 1px solid darken($medium-gray, 25%);
-    color: black;
+    // background-color: darken($light-gray, 15%);
+    background-color: $dark;
+    border: 1px solid $dark;
+    color: $color-orange;
     font-weight: 500;
     @media (hover: hover) {
       &:hover {
-        background-color: darken($light-gray, 20%);
+        background-color: darken($dark, 20%);
       }
     }
   }

@@ -64,7 +64,9 @@
         }
       }
       &.selected {
-        color: $color-green;
+        color: $color-orange;
+        background-color: $dark;
+        border-color: $dark;
       }
     }
     .newCollection {

@@ -8,4 +8,5 @@ export interface CollectionInterface {
   items?: Array<ItemInterface> | null;
   likes: number;
   isPrivate: boolean;
+  datePublished: Date;
 }

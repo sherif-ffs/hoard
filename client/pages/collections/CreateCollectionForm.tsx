@@ -70,6 +70,7 @@ const CreateCollectionForm = (props: Props) => {
       items: [],
       isPrivate: visibility === 'private',
       likes: 0,
+      datePublished: new Date(),
     };
     const result = await createCollection(collection);
     const data = await result.json();

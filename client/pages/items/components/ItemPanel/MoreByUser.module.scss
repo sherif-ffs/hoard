@@ -16,20 +16,20 @@
     margin: 0;
     h4 {
       margin: 0;
-      font-weight: $font-weight-bold;
-      color: $dark;
+      font-weight: 500;
+      color: $color-orange;
       text-decoration: underline;
       transition: color 400ms;
       cursor: pointer;
       @media(hover: hover) {
         &:hover {
-          color: darken($dark, 5%)
+          color: darken($color-orange, 15%)
         }
       }
     }
     h3 {
       margin: 0;
-      font-size: $font-weight-light;
+      font-weight: 500;
     }
   }
 }

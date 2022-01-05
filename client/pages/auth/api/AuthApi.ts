@@ -72,3 +72,27 @@ export function fetchUserById(id: string) {
     },
   });
 }
+
+// update socials
+export function handleUpdateSocials(
+  github: string,
+  twitter: string,
+  portfolio: string,
+  role: string,
+  id: string
+) {
+  return fetch('http://localhost:5000/auth/socials', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      github,
+      twitter,
+      portfolio,
+      role,
+      id,
+    }),
+  });
+}

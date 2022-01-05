@@ -34,6 +34,10 @@ const collectionSchema = new Schema<CollectionInterface>({
     type: [],
     required: false,
   },
+  datePublished: {
+    type: Date,
+    required: true,
+  },
 });
 
 export default model('Collection', collectionSchema);

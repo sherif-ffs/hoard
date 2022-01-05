@@ -53,6 +53,7 @@ const Items = (props: Props) => {
     setPage(e.target.value);
   };
 
+  console.log('itemObjects: ', itemObjects);
   return (
     <>
       <div className={styles.wrapper}>

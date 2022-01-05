@@ -72,7 +72,13 @@ const Filters = (props: Props) => {
                     key={t}
                     value={t}
                   >
+                    {selected && (
+                      <span style={{ marginRight: '5px' }}>&#10003;</span>
+                    )}
                     {t.toLowerCase()}
+                    {selected && (
+                      <span style={{ marginLeft: '5px' }}>&#10003;</span>
+                    )}
                   </span>
                 );
               })}
