@@ -41,7 +41,11 @@ export function fetchCollectionByCollectionID(id: string) {
 }
 
 // Fetch all collections
-export function fetchAllCollections(filterList: []) {
+export function fetchAllCollections(
+  limit: number,
+  offset: number,
+  filterList: []
+) {
   return fetch('http://localhost:5000/collections/collections', {
     method: 'POST',
     credentials: 'include',
@@ -49,6 +53,8 @@ export function fetchAllCollections(filterList: []) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+      limit,
+      offset,
       filterList,
     }),
   });

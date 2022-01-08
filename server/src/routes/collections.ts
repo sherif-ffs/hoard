@@ -42,18 +42,33 @@ router.get('/collection-by-collection-id', async (req, res) => {
 
 // fetch all collections
 router.post('/collections', async (req, res) => {
+  const limit = Number(req.body.limit);
+  const offset = Number(req.body.offset);
   const filterList = req.body.filterList;
   try {
     let collections;
+    let collectionsCount;
     if (filterList && !!filterList.length) {
-      collections = await Collection.find({ tags: { $in: filterList } });
+      collections = await Collection.find({ tags: { $in: filterList } })
+        .skip(offset)
+        .limit(limit);
+      collectionsCount = await Collection.find({
+        tags: { $in: filterList },
+      }).count();
     } else {
-      collections = await Collection.find();
+      collections = await Collection.find().skip(offset).limit(limit);
+      collectionsCount = await Collection.find().count();
     }
     if (!collections) {
       return res.json({ status: 'error', error: 'no collections found' });
     }
-    res.json({ status: 'ok', data: collections });
+    res.json({
+      status: 'ok',
+      data: {
+        collections,
+        collectionsCount,
+      },
+    });
   } catch (error) {
     return res.json({ status: 'error', error: error });
   }

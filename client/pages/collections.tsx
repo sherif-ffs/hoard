@@ -1,12 +1,11 @@
-import React from 'react';
-import type { NextPage } from 'next';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Navigation } from './navigation/components/Navigation';
 import { useAppContext } from './contexts/AppContext';
 import loadAllCollections from './collections/hooks/loadAllCollections';
 import NewCollectionCard from './collections/NewCollectionCard';
 import NothingFound from './ui/NothingFound';
+import Pagination from './ui/Pagination';
+
 import styles from './collections/Collections.module.scss';
 
 interface Props {
@@ -15,24 +14,36 @@ interface Props {
 
 const Collections = (props: Props) => {
   const { handleSetSelectedItem } = useAppContext();
+  const [limit] = useState(15);
+  const [pages, setPages] = useState(0);
+  const [page, setPage] = useState(0);
 
   const { filterList } = props;
-  const allCollections = loadAllCollections(filterList);
+  const allCollections = loadAllCollections(limit, page * limit, filterList);
 
-  if (allCollections === 'loading') {
+  const { data, status } = allCollections;
+  if (status === 'loading') {
     return <p>loading</p>;
   }
 
-  const noCollections = allCollections && allCollections.length === 0;
-  console.log('noCollections: ', noCollections);
-  console.log('allCollections: ', allCollections);
+  const itemCount = data && data.collectionsCount;
+
+  useEffect(() => {
+    const p = Math.round(itemCount / limit);
+    setPages(p);
+  }, [itemCount]);
+
+  const paginate = (e: any) => {
+    setPage(e.target.value);
+  };
 
   return (
     <>
       <div className={styles.collections}>
-        {!allCollections && <NothingFound />}
-        {allCollections &&
-          allCollections.map((d: any) => {
+        {data && !data.collections && <NothingFound />}
+        {data &&
+          !!data.collections &&
+          data.collections.map((d: any) => {
             const hasItems = d.items && !!d.items.length;
             return (
               hasItems && (
@@ -49,6 +60,7 @@ const Collections = (props: Props) => {
               )
             );
           })}
+        <Pagination {...{ pages, page, paginate }} />
       </div>
     </>
   );

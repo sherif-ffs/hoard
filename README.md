@@ -82,10 +82,10 @@
 - [ ] new collection modal issue
 - [ ] resolve TS warnings
 - [ ] make footer
-- [ ] create multiselect
+- [x] create multiselect
 - [x] make button styles
 - [x] form validation
-- [ ] filter collections
+- [x] filter collections
 - [x] add socials to profile
 
 # CI/CD
