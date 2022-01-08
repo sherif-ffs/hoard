@@ -15,17 +15,10 @@ export default function loadMoreByUserID(id: string) {
     }
   );
 
-  if (error) {
-    console.error('error: ', error);
-    return error;
-  }
-
-  if (status === 'loading') {
-    return 'loading';
-  }
-
-  const itemExists = data && data.data && !!data.data.length;
-  if (itemExists) {
-    return data.data;
-  }
+  const items = data && data.data;
+  return {
+    items,
+    error,
+    status,
+  };
 }

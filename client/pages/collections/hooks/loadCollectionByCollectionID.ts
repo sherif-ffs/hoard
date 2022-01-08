@@ -15,17 +15,10 @@ export default function loadCollectionByCollectionID(id: string) {
     }
   );
 
-  if (error) {
-    console.error('error: ', error);
-    return error;
-  }
-
-  if (status === 'loading') {
-    return 'loading';
-  }
-
-  const collectionsExist = data && data.data && !!data.data.length;
-  if (collectionsExist) {
-    return data.data;
-  }
+  const collection = data && data.data && data.data[0];
+  return {
+    collection,
+    error,
+    status,
+  };
 }

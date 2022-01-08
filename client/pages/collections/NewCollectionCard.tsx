@@ -2,10 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 
 import { API_URL } from '../constants/ApiEndpoint';
-
-import styles from './NewCollectionCard.module.scss';
 import { ItemInterface } from '../Interfaces/ItemInterface';
 import loadUserById from '../auth/hooks/loadUserById';
+
+import styles from './NewCollectionCard.module.scss';
 
 interface Props {
   title: string;
@@ -17,8 +17,7 @@ interface Props {
   handleSetSelectedItem: (item: ItemInterface) => void;
 }
 const NewCollectionCard = (props: Props) => {
-  const { title, items, id, author, tags, handleSetSelectedItem, userId } =
-    props;
+  const { title, items, id, tags, handleSetSelectedItem, userId } = props;
 
   const authorObj = loadUserById(userId);
   const authorName = authorObj && authorObj[0] && authorObj[0].name;
@@ -51,7 +50,7 @@ const NewCollectionCard = (props: Props) => {
         <div className={styles.thumbnails}>
           {items &&
             !!items.length &&
-            items.map((item, i) => (
+            items.map((item: ItemInterface, i: number) => (
               <div
                 key={i}
                 className={styles.thumbnail}

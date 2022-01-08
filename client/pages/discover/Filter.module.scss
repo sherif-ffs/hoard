@@ -111,6 +111,7 @@
   margin: 1em;
   .tag {
     padding: 0.75em 1em;
+    font-family: Rubik;
     border-radius: 2.5em;
     display: flex;
     justify-content: center;
@@ -121,6 +122,7 @@
     cursor: pointer;
     font-family: Rubik;
     font-weight: 400;
+    font-size: 0.875em;
     transition: 400ms;
     &.selected {
       background-color: $dark;

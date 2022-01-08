@@ -2,39 +2,37 @@ import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 
 import { Navigation } from '../navigation/components/Navigation';
-import { useAuthContext } from '../contexts/AuthContext';
 import ItemCard from '../items/components/ItemCard';
 import { ItemInterface } from '../Interfaces/ItemInterface';
-import loadCollectionByCollectionID from './hooks/loadCollectionByCollectionID';
-import CollectionHeader from './CollectionHeader';
 import NothingFound from '../ui/NothingFound';
 import { useAppContext } from '../contexts/AppContext';
+import CollectionHeader from './CollectionHeader';
+import loadCollectionByCollectionID from './hooks/loadCollectionByCollectionID';
 
 import buttonStyles from '../../styles/button.module.scss';
 import styles from './Collection.module.scss';
 
 const Collection = () => {
   const [id, setId] = useState('');
-  const [collection, setCollection] = useState(null);
 
-  const targetCollection = loadCollectionByCollectionID(id);
   const { setCreateModalIsOpen } = useAppContext();
 
-  if (collection === 'loading') {
-    return <p>loading</p>;
-  }
-
-  useEffect(() => {
-    if (targetCollection) {
-      setCollection(targetCollection[0]);
-    }
-  }, [targetCollection]);
+  const response = loadCollectionByCollectionID(id);
+  const { collection, error, status } = response;
 
   useEffect(() => {
     const url = window.location.href;
     const id = url.toString().slice(-24);
     setId(id);
   }, []);
+
+  if (status === 'loading') {
+    return <p>loading</p>;
+  }
+
+  if (error) {
+    alert(error);
+  }
 
   const tags = collection && collection.tags;
   const itemsExist =
@@ -61,6 +59,8 @@ const Collection = () => {
         className={classNames(styles.wrapper, { [styles.one]: oneItemView })}
       >
         {itemsExist ? (
+          collection &&
+          collection.items &&
           collection.items.map((item: ItemInterface) => {
             return <ItemCard {...{ item }} key={item._id} />;
           })

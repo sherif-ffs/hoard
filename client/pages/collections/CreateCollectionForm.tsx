@@ -27,14 +27,6 @@ const CreateCollectionForm = (props: Props) => {
 
   const { context } = props;
 
-  const generateOnClickEvent = () => {
-    if (context === 'collections-panel') {
-      closeCreateCollectionModal();
-    } else {
-      setCreateModalIsOpen(false);
-    }
-  };
-
   const handleSelectTags = (items: Array<TagOption>) => {
     const itemValues = items.map((item) => item.value);
     setTags(itemValues);

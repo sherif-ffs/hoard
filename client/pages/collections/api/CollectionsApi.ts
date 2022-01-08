@@ -114,7 +114,7 @@ export function checkIfItemIsInCollection(
 }
 
 // delete collection
-export function deleteCollection(id: string) {
+export function deleteCollection(id: string | null) {
   return fetch('http://localhost:5000/collections/delete-collection', {
     method: 'POST',
     credentials: 'include',

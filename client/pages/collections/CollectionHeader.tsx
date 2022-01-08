@@ -8,10 +8,10 @@ import styles from './CollectionHeader.module.scss';
 
 interface Props {
   title: string | null;
-  count: number | null;
+  count: number | false | null;
   description: string | null;
   authorId: string | null;
-  tags: [] | null;
+  tags: String[] | null;
   collectionId: string | null;
 }
 

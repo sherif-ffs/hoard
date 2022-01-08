@@ -15,17 +15,10 @@ export default function loadItemsByTag(tags: string[]) {
     }
   );
 
-  if (error) {
-    console.error('error: ', error);
-    return error;
-  }
-
-  if (status === 'loading') {
-    return 'loading';
-  }
-
-  const items = data && data.data && !!data.data.length;
-  if (items) {
-    return data.data;
-  }
+  const items = data && data.data;
+  return {
+    items,
+    error,
+    status,
+  };
 }

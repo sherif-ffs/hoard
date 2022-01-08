@@ -6,17 +6,15 @@ import { TagOptions } from '../constants/Tags';
 import styles from './Filter.module.scss';
 
 interface Props {
-  updateFilters: (filters: []) => void;
+  updateFilters: (filters: string[]) => void;
 }
 
 const Filters = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [filterList, setFilterList] = useState<string>([]);
+  const [filterList, setFilterList] = useState<string[]>([]);
   const [filteredTags, setFilteredTags] = useState(
     TagOptions.map((t) => t.value)
   );
-
-  console.log('props: ', props);
 
   const removeItem = (tag: string) => {
     const existing = [...filterList];
@@ -66,7 +64,7 @@ const Filters = (props: Props) => {
               {filteredTags.map((t) => {
                 const selected = filterList.includes(t);
                 return (
-                  <span
+                  <button
                     className={classNames(styles.tag, {
                       [styles.selected]: selected,
                     })}
@@ -81,7 +79,7 @@ const Filters = (props: Props) => {
                     {selected && (
                       <span style={{ marginLeft: '5px' }}>&#10003;</span>
                     )}
-                  </span>
+                  </button>
                 );
               })}
             </div>

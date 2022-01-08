@@ -13,9 +13,14 @@ const RelatedItems = () => {
 
   if (!tags || tags.length === 0) return null;
 
-  const items = loadItemsByTag(tags);
+  const response = loadItemsByTag(tags);
+  const { items, error, status } = response;
 
-  if (items === 'loading') return <p>loading</p>;
+  if (status === 'loading') return <p>loading</p>;
+
+  if (error) {
+    alert(error);
+  }
 
   const filteredItems = items.filter(
     (i: ItemInterface) => i._id !== selectedItem._id

@@ -4,12 +4,13 @@ import Link from 'next/link';
 
 import { Navigation } from '../navigation/components/Navigation';
 import Tabs from '../ui/Tabs';
-import ProfileItems from './ProfileItems';
-import ProfileCollections from './ProfileCollections';
 import loadUserById from '../auth/hooks/loadUserById';
-import EditModal from './EditModal';
-import styles from './profile.module.scss';
 import { useAuthContext } from '../contexts/AuthContext';
+import ProfileCollections from './ProfileCollections';
+import EditModal from './EditModal';
+import ProfileItems from './ProfileItems';
+
+import styles from './profile.module.scss';
 
 const Profile = () => {
   const router = useRouter();
@@ -17,7 +18,7 @@ const Profile = () => {
   const { user: loggedInUser } = useAuthContext();
   const [activeTab, setActiveTab] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const user = loadUserById(id);
+  const user = id && loadUserById(id.toString());
   const tabCopy = ['Items', 'Collections'];
 
   if (user === 'loading') {
@@ -42,7 +43,8 @@ const Profile = () => {
     <section>
       <Navigation />
       <EditModal
-        {...{ modalIsOpen, id, toggle, github, twitter, portfolio, role }}
+        {...{ modalIsOpen, toggle, github, twitter, portfolio, role }}
+        id={id && id.toString()}
       />
       <div className={styles.wrapper}>
         <header>

@@ -10,7 +10,7 @@ import styles from './EditModal.module.scss';
 
 interface Props {
   modalIsOpen: boolean;
-  id: string;
+  id: string | undefined;
   toggle: () => void;
   github: string;
   twitter: string;

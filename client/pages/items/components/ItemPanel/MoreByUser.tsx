@@ -12,10 +12,16 @@ const MoreByUser = () => {
   const { handleSetSelectedItem, selectedItem, setItemPanelIsOpen } =
     useAppContext();
   const { userId, author } = selectedItem;
-  const items = loadMoreByUserID(userId);
 
-  if (items === 'loading') {
+  const response = loadMoreByUserID(userId);
+  const { items, error, status } = response;
+
+  if (status === 'loading') {
     return <p>loading</p>;
+  }
+
+  if (error) {
+    alert(error);
   }
 
   const filteredItems =

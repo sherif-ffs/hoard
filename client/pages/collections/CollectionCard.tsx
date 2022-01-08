@@ -3,18 +3,18 @@ import Link from 'next/link';
 import classNames from 'classnames';
 
 import { API_URL } from '../constants/ApiEndpoint';
+import { ItemInterface } from '../Interfaces/ItemInterface';
 import styles from './CollectionCard.module.scss';
 
 interface Props {
   title: string;
-  items: [];
+  items: ItemInterface[];
   id: string;
 }
 const CollectionCard = (props: Props) => {
   const { title, items, id } = props;
 
-  const firstImage = items && !!items.length && items[0].imageID;
-
+  const firstImage = items && items[0] && items[0].imageID;
   return (
     <Link href={`/collections/${id}`}>
       <article>

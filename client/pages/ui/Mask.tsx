@@ -20,7 +20,7 @@ const Mask = (props: Props) => {
     <div
       ref={ref}
       className={classNames(styles.mask, { [styles.open]: isOpen })}
-      onClick={(e: Event) => handleClose(e)}
+      onClick={(e: React.SyntheticEvent<EventTarget>) => handleClose(e)}
     >
       <div onClick={undefined}>{props.children}</div>
     </div>

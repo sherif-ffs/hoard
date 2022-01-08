@@ -9,12 +9,11 @@ import styles from './ItemCard.module.scss';
 
 type Props = {
   item: ItemInterface;
-  isMyItem: boolean;
 };
 
 const Item = (props: Props) => {
-  const { name, _id, imageID, tags } = props.item;
-  const { handleSetSelectedItem, handleSetItemToCollect } = useAppContext();
+  const { name, imageID, tags } = props.item;
+  const { handleSetSelectedItem } = useAppContext();
 
   const tagLength = tags && tags.length - 4;
   return (
@@ -41,7 +40,8 @@ const Item = (props: Props) => {
         <div className={styles.tags}>
           {tags &&
             tags.slice(0, 4).map((tag, i) => {
-              const lastIndex = tagLength > 4 ? 4 : tags.length - 1;
+              const lastIndex =
+                tagLength && tagLength > 4 ? 4 : tags.length - 1;
               const isLast = i === lastIndex;
               return (
                 <span key={i}>
@@ -50,7 +50,7 @@ const Item = (props: Props) => {
                 </span>
               );
             })}
-          {tagLength > 4 && <span>{tagLength}+</span>}
+          {tagLength && tagLength > 4 && <span>{tagLength}+</span>}
         </div>
       </div>
     </article>

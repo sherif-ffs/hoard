@@ -23,7 +23,6 @@ export default function loadAllCollections(
     }
   );
 
-  console.log('data: ', data);
   if (error) {
     return error;
   }
@@ -33,7 +32,6 @@ export default function loadAllCollections(
   }
 
   // const collectionsExist = data && data.data && !!data.data.length;
-  const dataObject = data;
   if (data) {
     return data;
   }

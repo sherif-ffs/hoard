@@ -8,7 +8,6 @@ import { useAppContext } from '../../contexts/AppContext';
 import { logOutUser } from '../../auth/api/AuthApi';
 
 import buttonStyles from '../../../styles/button.module.scss';
-
 import styles from './Navigation.module.scss';
 
 export const Navigation = () => {
