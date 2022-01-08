@@ -8,6 +8,9 @@
   padding: 1em;
   background-color: $light-gray;
   border: 1px solid $medium-gray;
+  @media all and (max-width: 480px) {
+    width: 90%;
+  }
   h1 {
     font-size: 5em;
   }

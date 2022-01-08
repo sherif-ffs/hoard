@@ -1,7 +1,10 @@
+import classNames from 'classnames';
+
 import loadItemsByUserID from '../items/hooks/loadItemsByUser';
-import styles from '../items/components/Items.module.scss';
 import ItemCard from '../items/components/ItemCard';
+
 import gridStyles from '../../styles/_cardGrid.module.scss';
+import styles from '../items/components/Items.module.scss';
 
 interface Props {
   id: string;
@@ -19,9 +22,14 @@ const ProfileItems = (props: Props) => {
   const itemsExist = items && !!items.length;
   if (!itemsExist) return <h1>No items</h1>;
 
+  const oneItemView = items && items.length === 1;
   if (itemsExist) {
     return (
-      <div className={gridStyles.cardGrid}>
+      <div
+        className={classNames(gridStyles.cardGrid, {
+          [gridStyles.oneItem]: oneItemView,
+        })}
+      >
         {items.map((item: any) => {
           const isPublic = !item.isPrivate;
           if (isPublic) {

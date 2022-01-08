@@ -126,7 +126,7 @@ const CreateCollectionForm = (props: Props) => {
       <div className={styles.buttonWrapper}>
         <button
           className={styles.closeButton}
-          onClick={() => setCreateModalIsOpen(false)}
+          onClick={() => closeCreateCollectionModal()}
         >
           Cancel
         </button>

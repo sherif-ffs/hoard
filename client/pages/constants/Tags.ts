@@ -7,6 +7,9 @@ export interface TagOption {
 export const TagOptions: TagOption[] = [
   { value: 'design', label: 'design', icon: null },
   { value: 'typography', label: 'typography', icon: null },
+  { value: 'frontend', label: 'frontend', icon: null },
+  { value: 'the web!', label: 'the web!', icon: null },
+  { value: 'images', label: 'images', icon: null },
   { value: 'css', label: 'css', icon: null },
   { value: 'typescript', label: 'typescript', icon: null },
   { value: 'javascript', label: 'javascript', icon: null },

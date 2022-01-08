@@ -68,28 +68,32 @@ export const Navigation = () => {
     }
   };
 
+  const sendToItems = () => {
+    Router.push('/discover');
+    setDiscoverView('items');
+  };
+
+  const sendToCollections = () => {
+    Router.push('/discover');
+    setDiscoverView('collections');
+  };
+
   return (
     <nav className={styles.navigation}>
       <div className={styles.content}>
         <div className={styles.left}>
-          <Link href={'/discover'}>
-            <div className={styles.logo}>
-              <Image
-                src={'/../public/backpack.png'}
-                height="50px"
-                width="50px"
-              />
-            </div>
-          </Link>
+          <div className={styles.logo} onClick={sendToItems}>
+            <Image src={'/../public/backpack.png'} height="50px" width="50px" />
+          </div>
           <button
             className={classNames(styles.button, styles.secondary)}
-            onClick={() => setDiscoverView('items')}
+            onClick={sendToItems}
           >
             Items
           </button>
           <button
             className={classNames(styles.button, styles.secondary)}
-            onClick={() => setDiscoverView('collections')}
+            onClick={sendToCollections}
           >
             Collections
           </button>

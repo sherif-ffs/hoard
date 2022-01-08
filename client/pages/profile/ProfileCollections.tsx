@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+
 import CollectionCard from '../collections/CollectionCard';
 import { CollectionInterface } from '../Interfaces/CollectionInterface';
 import loadMyCollections from '../collections/hooks/loadCollectionById';
@@ -20,9 +22,16 @@ const ProfileCollections = (props: Props) => {
 
   if (!collectionsExist) return <h1>No collections</h1>;
 
+  const oneCollectionView = collections && collections.length === 1;
+  console.log('oneCollectionView: ', oneCollectionView);
+
   if (collectionsExist) {
     return (
-      <div className={gridStyles.cardGrid}>
+      <div
+        className={classNames(gridStyles.cardGrid, {
+          [gridStyles.oneItem]: oneCollectionView,
+        })}
+      >
         {collections &&
           !!collections.length &&
           collections.map((collection: CollectionInterface) => {

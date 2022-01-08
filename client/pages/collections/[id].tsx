@@ -7,7 +7,10 @@ import ItemCard from '../items/components/ItemCard';
 import { ItemInterface } from '../Interfaces/ItemInterface';
 import loadCollectionByCollectionID from './hooks/loadCollectionByCollectionID';
 import CollectionHeader from './CollectionHeader';
+import NothingFound from '../ui/NothingFound';
+import { useAppContext } from '../contexts/AppContext';
 
+import buttonStyles from '../../styles/button.module.scss';
 import styles from './Collection.module.scss';
 
 const Collection = () => {
@@ -15,7 +18,7 @@ const Collection = () => {
   const [collection, setCollection] = useState(null);
 
   const targetCollection = loadCollectionByCollectionID(id);
-  const { setCreateModalIsOpen } = useAuthContext();
+  const { setCreateModalIsOpen } = useAppContext();
 
   if (collection === 'loading') {
     return <p>loading</p>;
@@ -62,10 +65,17 @@ const Collection = () => {
             return <ItemCard {...{ item }} key={item._id} />;
           })
         ) : (
-          <div className={styles.noItems}>
-            <h1>No Items In Collection</h1>
-            <button onClick={setCreateModalIsOpen}>Create Item</button>
-          </div>
+          <>
+            <div className={styles.noItemsWrapper}>
+              <NothingFound />
+              <button
+                onClick={setCreateModalIsOpen}
+                className={buttonStyles.button}
+              >
+                Create Item
+              </button>
+            </div>
+          </>
         )}
       </div>
     </>
