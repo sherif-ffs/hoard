@@ -7,6 +7,7 @@ export function useAppContext() {
 }
 
 export function AppContextProvider({ children }) {
+  const [discoverView, setDiscoverView] = useState('items')
   const [selectedItem, setSelectedItem] = useState(null);
   const [itemPanelIsOpen, setItemPanelIsOpen] = useState(false);
 
@@ -16,6 +17,7 @@ export function AppContextProvider({ children }) {
   const [createCollectionModalIsOpen, setCollectionModalIsOpen] = useState(false);
   const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
 
+  const closeCreateModal = () => setCreateModalIsOpen(false);
   const openCreateCollectionModal = () => setCollectionModalIsOpen(true);
   const closeCreateCollectionModal = () => setCollectionModalIsOpen(false);
 
@@ -45,6 +47,7 @@ export function AppContextProvider({ children }) {
         itemToCollect,
         collectionsPanelIsOpen,
         createModalIsOpen,
+        discoverView,
         setSelectedItem,
         setItemPanelIsOpen,
         setItemToCollect,
@@ -56,6 +59,8 @@ export function AppContextProvider({ children }) {
         openCreateCollectionModal,
         closeCreateCollectionModal,
         setCreateModalIsOpen,
+        closeCreateModal,
+        setDiscoverView
       }}
     >
       {' '}

@@ -107,11 +107,6 @@ router.post('/register', async (req, res) => {
 //update socials
 router.post('/socials', async (req, res) => {
   const { github, twitter, portfolio, role, id } = req.body;
-  console.log('github: ', github);
-  console.log('twitter: ', twitter);
-  console.log('portfolio: ', portfolio);
-  console.log('role: ', role);
-  console.log('id: ', id);
 
   try {
     const a = await User.updateOne(

@@ -5,9 +5,13 @@ import Modal from '../ui/Modal';
 import CreateCollectionForm from './CreateCollectionForm';
 
 const CreateCollectionModal = () => {
-  const { createCollectionModalIsOpen } = useAppContext();
+  const { createCollectionModalIsOpen, closeCreateCollectionModal } =
+    useAppContext();
   return (
-    <Mask isOpen={createCollectionModalIsOpen}>
+    <Mask
+      isOpen={createCollectionModalIsOpen}
+      close={closeCreateCollectionModal}
+    >
       <Modal isOpen={createCollectionModalIsOpen}>
         <CreateCollectionForm context="collections-panel" />
       </Modal>

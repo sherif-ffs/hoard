@@ -14,6 +14,7 @@
   z-index: $panel;
   overflow-y: scroll;
   transition: transform 400ms;
+  cursor: default;
   border-top: 4px solid $dark;
   &.open {
     transform: translateY(0);

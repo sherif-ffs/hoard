@@ -14,7 +14,7 @@ import styles from './Navigation.module.scss';
 export const Navigation = () => {
   const { user, authenticated, checkAuth } = useAuthContext();
 
-  const { setCreateModalIsOpen } = useAppContext();
+  const { setCreateModalIsOpen, setDiscoverView } = useAppContext();
 
   const handleLogout = async () => {
     const response = await logOutUser();
@@ -81,16 +81,18 @@ export const Navigation = () => {
               />
             </div>
           </Link>
-          <Link href={'/discover'}>
-            <button className={classNames(styles.button, styles.secondary)}>
-              Items
-            </button>
-          </Link>
-          <Link href={'/collections'}>
-            <button className={classNames(styles.button, styles.secondary)}>
-              Collections
-            </button>
-          </Link>
+          <button
+            className={classNames(styles.button, styles.secondary)}
+            onClick={() => setDiscoverView('items')}
+          >
+            Items
+          </button>
+          <button
+            className={classNames(styles.button, styles.secondary)}
+            onClick={() => setDiscoverView('collections')}
+          >
+            Collections
+          </button>
         </div>
         {renderCTAButton()}
       </div>

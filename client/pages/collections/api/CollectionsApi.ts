@@ -41,13 +41,16 @@ export function fetchCollectionByCollectionID(id: string) {
 }
 
 // Fetch all collections
-export function fetchAllCollections() {
+export function fetchAllCollections(filterList: []) {
   return fetch('http://localhost:5000/collections/collections', {
-    method: 'GET',
+    method: 'POST',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify({
+      filterList,
+    }),
   });
 }
 

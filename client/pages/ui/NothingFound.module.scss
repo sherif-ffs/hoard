@@ -1,0 +1,14 @@
+@import "../../styles/_variables.scss";
+.noCollections {
+  width: 50%;
+  text-align: center;
+  margin: 3em auto;
+  font-family: Rubik;
+  color: $dark;
+  padding: 1em;
+  background-color: $light-gray;
+  border: 1px solid $medium-gray;
+  h1 {
+    font-size: 5em;
+  }
+}

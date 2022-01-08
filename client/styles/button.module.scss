@@ -11,10 +11,18 @@
   white-space: nowrap;
   height: min-content;
   font-family: Rubik;
+  &.secondary {
+    background-color: transparent;
+    border-color: transparent;
+    @media (hover: hover) {
+      &:hover {
+        background-color: $light-gray;
+      }
+    }
+  }
   &.dark {
-    // background-color: darken($light-gray, 15%);
     background-color: $dark;
-    border: 1px solid $dark;
+    border: 1px solid black;
     color: $color-orange;
     font-weight: 500;
     @media (hover: hover) {

@@ -13,6 +13,7 @@
   opacity: 0;
   transition: opacity 400ms, visibility 400ms;
   z-index: $mask;
+  cursor: pointer;
   &.open {
     visibility: visible;
     opacity: 1;

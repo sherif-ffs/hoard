@@ -41,9 +41,15 @@ router.get('/collection-by-collection-id', async (req, res) => {
 });
 
 // fetch all collections
-router.get('/collections', async (req, res) => {
+router.post('/collections', async (req, res) => {
+  const filterList = req.body.filterList;
   try {
-    const collections = await Collection.find();
+    let collections;
+    if (filterList && !!filterList.length) {
+      collections = await Collection.find({ tags: { $in: filterList } });
+    } else {
+      collections = await Collection.find();
+    }
     if (!collections) {
       return res.json({ status: 'error', error: 'no collections found' });
     }

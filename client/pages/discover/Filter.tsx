@@ -16,6 +16,8 @@ const Filters = (props: Props) => {
     TagOptions.map((t) => t.value)
   );
 
+  console.log('props: ', props);
+
   const removeItem = (tag: string) => {
     const existing = [...filterList];
     const index = existing.indexOf(tag);
@@ -52,7 +54,7 @@ const Filters = (props: Props) => {
 
   const toggle = () => (isOpen ? setIsOpen(false) : setIsOpen(true));
   return (
-    <div className={styles.wrapper}>
+    <div className={classNames(styles.wrapper, styles.collections)}>
       <div
         className={classNames(styles.button, { [styles.open]: isOpen })}
         onClick={!isOpen ? toggle : undefined}
@@ -98,7 +100,7 @@ const Filters = (props: Props) => {
         ) : (
           <>
             <span onClick={toggle} className={styles.toggleButton}>
-              Filter Items{' '}
+              Filter{' '}
               {filterList.length > 0 && (
                 <span className={styles.filterCount}>
                   ({filterList.length})

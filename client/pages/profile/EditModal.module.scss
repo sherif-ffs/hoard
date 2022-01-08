@@ -1,0 +1,38 @@
+@import "../../styles/input";
+@import "../../styles/_variables.scss";
+.form {
+  display: flex;
+  width: 90%;
+  margin: 1em auto 0;
+  flex-direction: column;
+  h1 {
+    font-size: $heading-2;
+    color: $new-dark;
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.75em;
+  label {
+    font-size: $heading-5;
+    color: $dark;
+    text-transform: lowercase;
+    font-weight: 600;
+  }
+}
+
+.buttons {
+  margin-top: 0.5em;
+  display: flex;
+  font-family: Rubik;
+  justify-content: space-evenly;
+  flex-direction: row;
+  gap: 1em;
+  button {
+    flex: 1;
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+}

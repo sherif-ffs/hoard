@@ -5,6 +5,15 @@
   justify-content: center;
   align-items: center;
   font-family: Rubik;
+  &.collections {
+    border: none;
+    .button {
+      &.open {
+        border-top: 1px solid transparent;
+        // border-bottom: 1px solid transparent;
+      }
+    }
+  }
   .filterText {
     margin-top: 1em;
     display: flex;

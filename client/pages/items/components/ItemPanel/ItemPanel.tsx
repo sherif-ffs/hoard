@@ -23,7 +23,7 @@ const ItemDetailsSheet = () => {
   const { imageID, name, url, userId, author, tags } =
     selectedItem && selectedItem;
   return (
-    <Mask isOpen={itemPanelIsOpen}>
+    <Mask isOpen={itemPanelIsOpen} close={handleCloseItemPanel}>
       <div
         className={classNames(styles.wrapper, {
           [styles.open]: itemPanelIsOpen,

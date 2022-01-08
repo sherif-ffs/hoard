@@ -33,8 +33,6 @@ const Profile = () => {
   };
 
   const showEdit = loggedInUser && loggedInUser._id === id;
-  console.log('showEdit: ', showEdit);
-  console.log('user: ', user);
 
   const github = user && user[0] && user[0].github;
   const twitter = user && user[0] && user[0].twitter;

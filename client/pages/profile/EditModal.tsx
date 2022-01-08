@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import classNames from 'classnames';
 
+import { handleUpdateSocials } from '../auth/api/AuthApi';
 import Modal from '../ui/Modal';
 import Mask from '../ui/Mask';
-import { handleUpdateSocials } from '../auth/api/AuthApi';
-import { useEffect } from 'react';
+
+import buttonStyles from '../../styles/button.module.scss';
+import styles from './EditModal.module.scss';
 
 interface Props {
   modalIsOpen: boolean;
@@ -51,38 +54,64 @@ const EditModal = (props: Props) => {
     }
   };
   return (
-    <Mask isOpen={modalIsOpen}>
+    <Mask isOpen={modalIsOpen} close={toggle}>
       <Modal isOpen={modalIsOpen}>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
           <h1>Add Socials</h1>
-          <div>
+          <div className={styles.inputWrapper}>
             <label>Github</label>
-            <input value={github} onChange={(e) => setGithub(e.target.value)} />
+            <input
+              className={styles.input}
+              value={github}
+              onChange={(e) => setGithub(e.target.value)}
+            />
           </div>
 
-          <div>
+          <div className={styles.inputWrapper}>
             <label>Twitter</label>
             <input
+              className={styles.input}
               value={twitter}
               onChange={(e) => setTwitter(e.target.value)}
             />
           </div>
 
-          <div>
+          <div className={styles.inputWrapper}>
             <label>Portfolio</label>
             <input
+              className={styles.input}
               value={portfolio}
               onChange={(e) => setPortfolio(e.target.value)}
             />
           </div>
 
-          <div>
+          <div className={styles.inputWrapper}>
             <label>Role/Job Title</label>
-            <input value={role} onChange={(e) => setRole(e.target.value)} />
+            <input
+              className={styles.input}
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+            />
           </div>
-          <button type="submit" value="Submit">
-            Submit
-          </button>
+          <div className={styles.buttons}>
+            <button
+              type="button"
+              onClick={toggle}
+              className={classNames(
+                buttonStyles.button,
+                buttonStyles.secondary
+              )}
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              value="Submit"
+              className={buttonStyles.button}
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </Modal>
     </Mask>

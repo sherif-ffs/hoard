@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { useAuthContext } from '../../contexts/AuthContext';
 import useAllItems from '../../hooks/useAllItems';
 import ItemCard from './ItemCard';
-import styles from './Items.module.scss';
 import Pagination from '../../ui/Pagination';
 import Loading from '../../ui/Loading';
+import NothingFound from '../../ui/NothingFound';
+
+import styles from './Items.module.scss';
 
 interface Props {
   filterList: [];
@@ -40,13 +42,6 @@ const Items = (props: Props) => {
     return <p>error</p>;
   }
 
-  if (!itemObjects)
-    return (
-      <div className={styles.noItems}>
-        <h1>No Items Found</h1>
-      </div>
-    );
-
   if (status === 'loading') return <Loading copy={'Loading Items'} />;
 
   const paginate = (e: any) => {
@@ -57,21 +52,24 @@ const Items = (props: Props) => {
   return (
     <>
       <div className={styles.wrapper}>
-        {itemObjects.map((item: any) => {
-          const isMyItem = user && user._id === item.userId;
-          const isPublic = !item.isPrivate;
-          if (isPublic || isMyItem) {
-            return (
-              <ItemCard
-                {...{
-                  isMyItem,
-                  item,
-                }}
-                key={item._id}
-              />
-            );
-          }
-        })}
+        {!itemObjects && <NothingFound />}
+
+        {itemObjects &&
+          itemObjects.map((item: any) => {
+            const isMyItem = user && user._id === item.userId;
+            const isPublic = !item.isPrivate;
+            if (isPublic || isMyItem) {
+              return (
+                <ItemCard
+                  {...{
+                    isMyItem,
+                    item,
+                  }}
+                  key={item._id}
+                />
+              );
+            }
+          })}
       </div>
       <Pagination {...{ pages, page, paginate }} />
     </>
