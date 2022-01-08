@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import CollectionCard from '../collections/CollectionCard';
 import { CollectionInterface } from '../Interfaces/CollectionInterface';
 import loadMyCollections from '../collections/hooks/loadCollectionById';
+import NothingFound from '../ui/NothingFound';
 
 import gridStyles from '../../styles/_cardGrid.module.scss';
 
@@ -20,10 +21,9 @@ const ProfileCollections = (props: Props) => {
     return <p>loading</p>;
   }
 
-  if (!collectionsExist) return <h1>No collections</h1>;
+  if (!collectionsExist) return <NothingFound />;
 
   const oneCollectionView = collections && collections.length === 1;
-  console.log('oneCollectionView: ', oneCollectionView);
 
   if (collectionsExist) {
     return (

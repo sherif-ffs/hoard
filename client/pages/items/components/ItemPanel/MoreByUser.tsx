@@ -18,9 +18,8 @@ const MoreByUser = () => {
     return <p>loading</p>;
   }
 
-  const filteredItems = items.filter(
-    (i: ItemInterface) => i._id !== selectedItem._id
-  );
+  const filteredItems =
+    items && items.filter((i: ItemInterface) => i._id !== selectedItem._id);
 
   const handleRedirectToProfile = () => {
     setItemPanelIsOpen(false);

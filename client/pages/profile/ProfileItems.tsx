@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 import loadItemsByUserID from '../items/hooks/loadItemsByUser';
 import ItemCard from '../items/components/ItemCard';
-
+import NothingFound from '../ui/NothingFound';
 import gridStyles from '../../styles/_cardGrid.module.scss';
 import styles from '../items/components/Items.module.scss';
 
@@ -20,7 +20,7 @@ const ProfileItems = (props: Props) => {
   }
 
   const itemsExist = items && !!items.length;
-  if (!itemsExist) return <h1>No items</h1>;
+  if (!itemsExist) return <NothingFound />;
 
   const oneItemView = items && items.length === 1;
   if (itemsExist) {
