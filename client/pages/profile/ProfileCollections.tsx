@@ -12,16 +12,17 @@ interface Props {
 }
 const ProfileCollections = (props: Props) => {
   const { id } = props;
-  const collections = loadMyCollections(id);
+  const response = loadMyCollections(id);
+  const { collections, status, error } = response;
   const collectionsExist = collections && !!collections.length;
 
-  const loading = collections === 'loading';
-
-  if (loading) {
+  if (status === 'loading') {
     return <p>loading</p>;
   }
 
-  if (!collectionsExist) return <NothingFound />;
+  if (error) {
+    alert(error);
+  }
 
   const oneCollectionView = collections && collections.length === 1;
 
@@ -37,10 +38,14 @@ const ProfileCollections = (props: Props) => {
           collections.map((collection: CollectionInterface) => {
             const { title, items } = collection;
             const id = collection._id;
-            return <CollectionCard {...{ title, items, id }} key={id} />;
+            if (title && id && items) {
+              return <CollectionCard {...{ title, items, id }} key={id} />;
+            }
           })}
       </div>
     );
+  } else {
+    return <NothingFound />;
   }
 };
 

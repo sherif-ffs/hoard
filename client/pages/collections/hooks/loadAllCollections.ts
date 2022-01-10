@@ -23,16 +23,9 @@ export default function loadAllCollections(
     }
   );
 
-  if (error) {
-    return error;
-  }
-
-  if (status === 'loading') {
-    return 'loading';
-  }
-
-  // const collectionsExist = data && data.data && !!data.data.length;
-  if (data) {
-    return data;
-  }
+  return {
+    collectionsData: data && data.data,
+    status,
+    error,
+  };
 }

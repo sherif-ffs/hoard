@@ -1,5 +1,5 @@
 export interface ItemInterface {
-  _id: string;
+  _id?: string;
   author: string;
   userId: string;
   name: string;

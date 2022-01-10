@@ -15,17 +15,9 @@ export default function loadItemsByUserID(id: string) {
     }
   );
 
-  if (error) {
-    console.error('error: ', error);
-    return error;
-  }
-
-  if (status === 'loading') {
-    return 'loading';
-  }
-
-  const itemExists = data && data.data && !!data.data.length;
-  if (itemExists) {
-    return data.data;
-  }
+  return {
+    items: data && data.data,
+    status,
+    error,
+  };
 }

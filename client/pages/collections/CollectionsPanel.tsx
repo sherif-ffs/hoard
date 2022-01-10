@@ -11,15 +11,22 @@ import styles from './CollectionsPanel.module.scss';
 
 const CollectionsPanel = () => {
   const { user } = useAuthContext();
-  const myCollections = user && user._id && loadMyCollections(user._id);
   const {
     closeCollectionsPanel,
     collectionsPanelIsOpen,
     itemToCollect,
     openCreateCollectionModal,
   } = useAppContext();
-  if (myCollections === 'loading') {
+
+  const response = user && user._id && loadMyCollections(user._id);
+  const { collections: myCollections, status, error } = response;
+
+  if (status === 'loading') {
     return <p>loading</p>;
+  }
+
+  if (error) {
+    alert(error);
   }
 
   return (

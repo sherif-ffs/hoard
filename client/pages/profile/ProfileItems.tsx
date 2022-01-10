@@ -3,26 +3,30 @@ import classNames from 'classnames';
 import loadItemsByUserID from '../items/hooks/loadItemsByUser';
 import ItemCard from '../items/components/ItemCard';
 import NothingFound from '../ui/NothingFound';
+
 import gridStyles from '../../styles/_cardGrid.module.scss';
-import styles from '../items/components/Items.module.scss';
 
 interface Props {
   id: string;
 }
+
 const ProfileItems = (props: Props) => {
   const { id } = props;
-  const items = loadItemsByUserID(id);
 
-  const loading = items === 'loading';
+  const response = loadItemsByUserID(id);
+  const { items, status, error } = response;
 
-  if (loading) {
+  if (status === 'loading') {
     return <p>loading</p>;
   }
 
-  const itemsExist = items && !!items.length;
-  if (!itemsExist) return <NothingFound />;
+  if (error) {
+    alert(error);
+  }
 
+  const itemsExist = items && !!items.length;
   const oneItemView = items && items.length === 1;
+
   if (itemsExist) {
     return (
       <div
@@ -45,6 +49,8 @@ const ProfileItems = (props: Props) => {
         })}
       </div>
     );
+  } else {
+    return <NothingFound />;
   }
 };
 

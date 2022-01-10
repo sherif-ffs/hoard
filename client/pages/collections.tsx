@@ -19,15 +19,20 @@ const Collections = (props: Props) => {
   const [page, setPage] = useState(0);
 
   const { filterList } = props;
-  const allCollections = loadAllCollections(limit, page * limit, filterList);
 
-  const { data, status } = allCollections;
+  const response = loadAllCollections(limit, page * limit, filterList);
+  const { collectionsData, status, error } = response;
+
   if (status === 'loading') {
     return <p>loading</p>;
   }
 
-  const itemCount = data && data.collectionsCount;
+  if (error) {
+    alert(error);
+  }
 
+  const itemCount = collectionsData && collectionsData.collectionsCount;
+  const collections = collectionsData && collectionsData.collections;
   useEffect(() => {
     const p = Math.round(itemCount / limit);
     setPages(p);
@@ -40,10 +45,10 @@ const Collections = (props: Props) => {
   return (
     <>
       <div className={styles.collections}>
-        {data && !data.collections && <NothingFound />}
-        {data &&
-          !!data.collections &&
-          data.collections.map((d: any) => {
+        {!collections && <NothingFound />}
+        {collections &&
+          !!collections.length &&
+          collections.map((d: any) => {
             const hasItems = d.items && !!d.items.length;
             return (
               hasItems && (

@@ -13,7 +13,6 @@ import styles from './CreateContentForm.module.scss';
 const CreateItemForm = () => {
   const { user } = useAuthContext();
   const { setCreateModalIsOpen } = useAppContext();
-  const myCollections = user && user._id && loadMyCollections(user._id);
   const { handleSetSelectedItem } = useAppContext();
   const { email, _id } = !!user && user;
   const [url, setUrl] = useState('');
@@ -24,6 +23,17 @@ const CreateItemForm = () => {
   const [collectionData, setCollectionData] = useState<Object[]>([]);
   const [creating, setCreating] = useState(false);
   const [creationSuccess, setCreationSuccess] = useState(false);
+
+  const response = user && user._id && loadMyCollections(user._id);
+  const { collections: myCollections, status, error } = response;
+
+  if (status === 'loading') {
+    return <p>loading</p>;
+  }
+
+  if (error) {
+    alert(error);
+  }
 
   const handleCollectionChange = (
     collections: Array<{ label: string; value: string }>
@@ -100,7 +110,6 @@ const CreateItemForm = () => {
   };
   return (
     <form className={styles.form}>
-      {/* <h1>Create Item</h1> */}
       <div className={styles.inputWrapper}>
         <label>Url *</label>
         <input

@@ -18,7 +18,6 @@ interface Props {
 
 const CollectionsPanelPill = (props: Props) => {
   const { closeCollectionsPanel, item, collection } = props;
-  const [refetching, setRefetching] = useState(false);
   const [updating, setUpdating] = useState(false);
 
   const { itemToCollect } = useAppContext();

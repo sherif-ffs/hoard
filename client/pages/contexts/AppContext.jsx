@@ -11,6 +11,7 @@ export function AppContextProvider({ children }) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [itemPanelIsOpen, setItemPanelIsOpen] = useState(false);
 
+  const [profileId, setProfileId] = useState('')
   const [itemToCollect, setItemToCollect] = useState(null);
   const [collectionsPanelIsOpen, setCollectionsPanelIsOpen] = useState(false);
 
@@ -60,7 +61,7 @@ export function AppContextProvider({ children }) {
         closeCreateCollectionModal,
         setCreateModalIsOpen,
         closeCreateModal,
-        setDiscoverView
+        setDiscoverView,
       }}
     >
       {' '}

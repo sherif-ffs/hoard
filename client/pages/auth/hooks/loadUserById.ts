@@ -15,16 +15,9 @@ export default function loadUserById(id: string) {
     }
   );
 
-  if (error) {
-    return error;
-  }
-
-  if (status === 'loading') {
-    return 'loading';
-  }
-
-  const userExists = data && data.data && !!data.data.length;
-  if (userExists) {
-    return data.data;
-  }
+  return {
+    user: data && data.data,
+    status,
+    error,
+  };
 }

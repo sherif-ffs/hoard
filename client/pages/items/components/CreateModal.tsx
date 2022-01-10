@@ -16,7 +16,7 @@ const CreateModal = () => {
   return (
     <Mask isOpen={createModalIsOpen} close={closeCreateModal}>
       <Modal isOpen={createModalIsOpen}>
-        <Tabs {...{ activeTab, setActiveTab, tabCopy }} />
+        <Tabs {...{ activeTab, setActiveTab, tabCopy }} dark={false} />
         {activeTab === 1 ? (
           <CreateItemForm />
         ) : (

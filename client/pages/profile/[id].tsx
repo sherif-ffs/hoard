@@ -14,15 +14,26 @@ import styles from './profile.module.scss';
 
 const Profile = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const id = router && router.query && router.query.id;
+
+  if (!id) {
+    return <h1>loading</h1>;
+  }
+  console.log('router: ', router);
   const { user: loggedInUser } = useAuthContext();
   const [activeTab, setActiveTab] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const user = id && loadUserById(id.toString());
   const tabCopy = ['Items', 'Collections'];
 
-  if (user === 'loading') {
-    return <h1>loading</h1>;
+  const response = id && loadUserById(id.toString());
+  const { user, status, error }: any = response;
+
+  if (status === 'loading') {
+    return <h1>Loading</h1>;
+  }
+
+  if (error) {
+    alert(error);
   }
 
   const toggle = () => {
@@ -87,9 +98,9 @@ const Profile = () => {
         </header>
         <div className={styles.content}>
           {activeTab === 1 ? (
-            <ProfileItems {...{ id }} />
+            <ProfileItems id={id.toString()} />
           ) : (
-            <ProfileCollections {...{ id }} />
+            <ProfileCollections id={id.toString()} />
           )}
         </div>
       </div>

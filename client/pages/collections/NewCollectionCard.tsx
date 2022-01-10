@@ -19,8 +19,20 @@ interface Props {
 const NewCollectionCard = (props: Props) => {
   const { title, items, id, tags, handleSetSelectedItem, userId } = props;
 
-  const authorObj = loadUserById(userId);
-  const authorName = authorObj && authorObj[0] && authorObj[0].name;
+  const response = loadUserById(userId);
+
+  const { user, status, error } = response;
+
+  if (status === 'loading') {
+    return <h1>Loading</h1>;
+  }
+
+  if (error) {
+    alert(error);
+  }
+
+  const authorName = user && user[0] && user[0].name;
+
   return (
     <>
       <div className={styles.wrapper}>

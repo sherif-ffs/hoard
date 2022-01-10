@@ -16,17 +16,9 @@ export default function loadMyCollections(id: string) {
     }
   );
 
-  if (error) {
-    console.error('error: ', error);
-    return error;
-  }
-
-  if (status === 'loading') {
-    return 'loading';
-  }
-
-  const collectionsExist = data && data.data && !!data.data.length;
-  if (collectionsExist) {
-    return data.data;
-  }
+  return {
+    collections: data && data.data,
+    status,
+    error,
+  };
 }

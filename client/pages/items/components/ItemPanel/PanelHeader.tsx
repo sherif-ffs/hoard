@@ -18,7 +18,17 @@ const PanelHeader = () => {
   const { name, url, userId, tags, _id } = selectedItem;
   const [limit, setLimit] = useState(5);
 
-  const authorObj = loadUserById(userId);
+  const response = loadUserById(userId);
+
+  const { user: author, status, error } = response;
+
+  if (status === 'loading') {
+    return <h1>Loading</h1>;
+  }
+
+  if (error) {
+    alert(error);
+  }
 
   const handleDeleteItem = async () => {
     const res = await deleteItem(_id);
@@ -37,7 +47,7 @@ const PanelHeader = () => {
     Router.push(`/profile/${userId}`);
   };
 
-  const authorName = authorObj && authorObj[0] && authorObj[0].name;
+  const authorName = author && author[0] && author[0].name;
   const authorId = user && user._id;
   const isMyItem = authorId && userId && userId === authorId;
 
