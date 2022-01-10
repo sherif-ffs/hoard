@@ -10,7 +10,7 @@ import NothingFound from '../../ui/NothingFound';
 import styles from './Items.module.scss';
 
 interface Props {
-  filterList: [];
+  filterList: string[];
 }
 const Items = (props: Props) => {
   const { user } = useAuthContext();

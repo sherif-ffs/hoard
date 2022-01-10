@@ -9,7 +9,7 @@ import Pagination from './ui/Pagination';
 import styles from './collections/Collections.module.scss';
 
 interface Props {
-  filterList: [];
+  filterList: string[];
 }
 
 const Collections = (props: Props) => {

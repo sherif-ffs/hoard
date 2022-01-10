@@ -10,7 +10,7 @@ import styles from './collections/Collections.module.scss';
 
 const Discover = () => {
   const [view] = useState('collections');
-  const [filterList, setFilterList] = useState<string>([]);
+  const [filterList, setFilterList] = useState<string[]>([]);
   const { discoverView } = useAppContext();
 
   const updateFilters = (filters: Array<string>) => {

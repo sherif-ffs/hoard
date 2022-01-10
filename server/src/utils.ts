@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import fs from 'fs';
 import puppeteer from 'puppeteer';
+
 import Collection from './models/collection';
+import { ItemInterface } from './interfaces/ItemInterface';
 const objectId = require('mongodb').ObjectID;
 
 export const scrapeImageFromUrl = async (url: string) => {
@@ -41,10 +44,10 @@ export const scrapeImageFromUrl = async (url: string) => {
 // Add Item To Collection
 export const addItemToCollection = async (
   collectionIds: Array<string>,
-  item: any
+  item: ItemInterface
 ) => {
   collectionIds.forEach(async (collectionId) => {
-    const res = await Collection.updateOne(
+    await Collection.updateOne(
       {
         _id: new objectId(collectionId),
       },
@@ -55,11 +58,11 @@ export const addItemToCollection = async (
 
 // remove item from single collection
 export const removeItemFromCollection = async (
-  item: any,
+  item: ItemInterface,
   collectionId: string
 ) => {
   const { _id } = item;
-  const res = await Collection.updateOne(
+  await Collection.updateOne(
     {
       _id: new objectId(collectionId),
     },
@@ -70,13 +73,13 @@ export const removeItemFromCollection = async (
 // remove item for all collections
 export const removeItemFromAllCollections = async (
   itemToDelete: any,
-  id: any
+  id: string
 ) => {
   const { collections } = itemToDelete[0];
   if (collections && !!collections.length) {
     const collectionIds = collections.map((c) => c.id.toString());
     collectionIds.forEach(async (collectionId: string) => {
-      const res = await Collection.updateOne(
+      await Collection.updateOne(
         {
           _id: new objectId(collectionId),
         },

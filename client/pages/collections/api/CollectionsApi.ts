@@ -44,7 +44,7 @@ export function fetchCollectionByCollectionID(id: string) {
 export function fetchAllCollections(
   limit: number,
   offset: number,
-  filterList: []
+  filterList: string[]
 ) {
   return fetch('http://localhost:5000/collections/collections', {
     method: 'POST',

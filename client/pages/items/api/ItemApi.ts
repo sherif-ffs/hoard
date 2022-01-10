@@ -40,7 +40,11 @@ export function fetchItemByID(id: string) {
 }
 
 // Fetch all Items
-export function fetchAllItems(limit: number, offset: number, filterList: []) {
+export function fetchAllItems(
+  limit: number,
+  offset: number,
+  filterList: string[]
+) {
   return fetch(`http://localhost:5000/items/items`, {
     method: 'POST',
     credentials: 'include',

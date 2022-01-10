@@ -43,7 +43,7 @@ router.post('/create-item', async (req, res) => {
 
       const { collections } = newItem;
       if (collections && !!collections.length) {
-        const collectionIds = collections.map((c) => c.id);
+        const collectionIds = collections.map((c) => c._id);
         addItemToCollection(collectionIds, newItem);
       }
       res.json({ status: 'ok', data: newItem });

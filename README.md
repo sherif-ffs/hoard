@@ -87,6 +87,7 @@
 - [x] form validation
 - [x] filter collections
 - [x] add socials to profile
+- [ ] bug on profile refresh
 
 # CI/CD
 

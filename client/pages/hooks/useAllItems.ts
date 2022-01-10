@@ -1,7 +1,12 @@
-import { fetchAllItems } from '../items/api/ItemApi';
 import { useQuery } from 'react-query';
 
-const loadAllItems = async (limit: number, offset: number, filterList: []) => {
+import { fetchAllItems } from '../items/api/ItemApi';
+
+const loadAllItems = async (
+  limit: number,
+  offset: number,
+  filterList: string[]
+) => {
   const res = await fetchAllItems(limit, offset, filterList);
   return await res.json();
 };
@@ -9,7 +14,7 @@ const loadAllItems = async (limit: number, offset: number, filterList: []) => {
 export default function useAllItems(
   limit: number,
   offset: number,
-  filterList: []
+  filterList: string[]
 ) {
   return useQuery(['items', limit, offset, filterList], () =>
     loadAllItems(limit, offset, filterList)

@@ -1,3 +1,5 @@
+import { CollectionInterface } from './CollectionInterface';
+
 export interface ItemInterface {
   _id: string;
   author: string;
@@ -9,7 +11,7 @@ export interface ItemInterface {
   url: string;
   image?: string | null;
   imageID: string | null;
-  collections: Array<any> | null;
+  collections: Array<CollectionInterface> | null;
   tags?: Array<string> | null;
   likes: number;
   isPrivate: boolean;

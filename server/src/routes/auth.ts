@@ -4,6 +4,8 @@ import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import User from '../models/user';
 import jwt from 'jsonwebtoken';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const objectId = require('mongodb').ObjectID;
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -92,7 +94,9 @@ router.post('/register', async (req, res) => {
       portfolio: '',
       collections: [],
     });
-    res.json({ status: 'ok', data: 'user registered successfully' });
+    if (response) {
+      res.json({ status: 'ok', data: 'user registered successfully' });
+    }
   } catch (error: any) {
     if (error.code === 11000) {
       // duplicate key

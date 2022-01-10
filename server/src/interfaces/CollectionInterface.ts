@@ -9,4 +9,5 @@ export interface CollectionInterface {
   likes: number;
   isPrivate: boolean;
   datePublished: Date;
+  _id: string;
 }

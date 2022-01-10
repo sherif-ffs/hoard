@@ -4,7 +4,7 @@ import { fetchAllCollections } from '../api/CollectionsApi';
 const fetchCollections = async (
   limit: number,
   offset: number,
-  filterList: []
+  filterList: string[]
 ) => {
   const res = await fetchAllCollections(limit, offset, filterList);
   return await res.json();
@@ -13,7 +13,7 @@ const fetchCollections = async (
 export default function loadAllCollections(
   limit: number,
   offset: number,
-  filterList: []
+  filterList: string[]
 ) {
   const { data, status, error } = useQuery(
     ['allCollections', limit, offset, filterList],
