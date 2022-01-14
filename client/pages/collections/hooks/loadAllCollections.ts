@@ -17,14 +17,11 @@ export default function loadAllCollections(
 ) {
   const { data, status, error } = useQuery(
     ['allCollections', limit, offset, filterList],
-    () => fetchCollections(limit, offset, filterList),
-    {
-      keepPreviousData: true,
-    }
+    () => fetchCollections(limit, offset, filterList)
   );
 
   return {
-    collectionsData: data && data.data,
+    collectionsData: data && data.data ? data.data : [],
     status,
     error,
   };

@@ -5,6 +5,7 @@ import loadAllCollections from './collections/hooks/loadAllCollections';
 import NewCollectionCard from './collections/NewCollectionCard';
 import NothingFound from './ui/NothingFound';
 import Pagination from './ui/Pagination';
+import Loading from './ui/Loading';
 
 import styles from './collections/Collections.module.scss';
 
@@ -23,16 +24,9 @@ const Collections = (props: Props) => {
   const response = loadAllCollections(limit, page * limit, filterList);
   const { collectionsData, status, error } = response;
 
-  if (status === 'loading') {
-    return <p>loading</p>;
-  }
-
-  if (error) {
-    alert(error);
-  }
-
   const itemCount = collectionsData && collectionsData.collectionsCount;
   const collections = collectionsData && collectionsData.collections;
+
   useEffect(() => {
     const p = Math.round(itemCount / limit);
     setPages(p);
@@ -41,6 +35,14 @@ const Collections = (props: Props) => {
   const paginate = (e: any) => {
     setPage(e.target.value);
   };
+
+  if (status === 'loading') {
+    return <Loading copy={'Loading Collections...'} />;
+  }
+
+  if (error) {
+    alert(error);
+  }
 
   return (
     <>

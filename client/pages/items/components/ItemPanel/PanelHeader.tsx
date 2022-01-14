@@ -7,6 +7,7 @@ import { deleteItem } from '../../api/ItemApi';
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useAppContext } from '../../../contexts/AppContext';
 import loadUserById from '../../../auth/hooks/loadUserById';
+import Loading from '../../../ui/Loading';
 
 import buttonStyles from '../../../../styles/button.module.scss';
 import styles from './PanelHeader.module.scss';
@@ -23,7 +24,7 @@ const PanelHeader = () => {
   const { user: author, status, error } = response;
 
   if (status === 'loading') {
-    return <h1>Loading</h1>;
+    return <Loading copy="Loading" />;
   }
 
   if (error) {

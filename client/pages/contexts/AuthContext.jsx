@@ -21,6 +21,7 @@ export function AuthContextProvider({ children }) {
     setAuthenticated(userIsAuthenticated);
   };
 
+  console.log('user: ', user)
   useEffect(() => {
     checkAuth();
   }, []);

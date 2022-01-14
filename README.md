@@ -88,6 +88,7 @@
 - [x] filter collections
 - [x] add socials to profile
 - [ ] bug on profile refresh
+- [ ] collections panel issue?
 
 # CI/CD
 

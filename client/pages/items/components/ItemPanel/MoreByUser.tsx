@@ -5,6 +5,7 @@ import { useAppContext } from '../../../contexts/AppContext';
 import loadMoreByUserID from '../../hooks/loadMoreByUser';
 import { API_URL } from '../../../constants/ApiEndpoint';
 import { ItemInterface } from '../../../Interfaces/ItemInterface';
+import Loading from '../../../ui/Loading';
 
 import styles from './MoreByUser.module.scss';
 
@@ -17,7 +18,7 @@ const MoreByUser = () => {
   const { items, error, status } = response;
 
   if (status === 'loading') {
-    return <p>loading</p>;
+    return <Loading copy="Loading more items..." />;
   }
 
   if (error) {

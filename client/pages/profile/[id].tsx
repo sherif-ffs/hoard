@@ -9,6 +9,7 @@ import { useAuthContext } from '../contexts/AuthContext';
 import ProfileCollections from './ProfileCollections';
 import EditModal from './EditModal';
 import ProfileItems from './ProfileItems';
+import Loading from '../ui/Loading';
 
 import styles from './profile.module.scss';
 
@@ -29,7 +30,7 @@ const Profile = () => {
   const { user, status, error }: any = response;
 
   if (status === 'loading') {
-    return <h1>Loading</h1>;
+    return <Loading copy="Loading..." />;
   }
 
   if (error) {

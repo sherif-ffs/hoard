@@ -1,5 +1,5 @@
-import { fetchCollectionsById } from '../api/CollectionsApi';
 import { useQuery } from 'react-query';
+import { fetchCollectionsById } from '../api/CollectionsApi';
 
 const getCollectionsById = async (id: string) => {
   const res = await fetchCollectionsById(id);
@@ -7,6 +7,7 @@ const getCollectionsById = async (id: string) => {
 };
 
 export default function loadMyCollections(id: string) {
+  console.log('id: ', id);
   const { data, status, error } = useQuery(
     'myCollections',
     () => getCollectionsById(id),
@@ -16,9 +17,17 @@ export default function loadMyCollections(id: string) {
     }
   );
 
-  return {
-    collections: data && data.data,
-    status,
-    error,
-  };
+  if (data && data.data) {
+    return {
+      collections: data && data.data,
+      status,
+      error,
+    };
+  } else {
+    return {
+      collections: [],
+      status: 'loading',
+      error: null,
+    };
+  }
 }

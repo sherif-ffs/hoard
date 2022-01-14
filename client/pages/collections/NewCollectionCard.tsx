@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { API_URL } from '../constants/ApiEndpoint';
 import { ItemInterface } from '../Interfaces/ItemInterface';
 import loadUserById from '../auth/hooks/loadUserById';
+import Loading from '../ui/Loading';
 
 import styles from './NewCollectionCard.module.scss';
 
@@ -24,7 +25,7 @@ const NewCollectionCard = (props: Props) => {
   const { user, status, error } = response;
 
   if (status === 'loading') {
-    return <h1>Loading</h1>;
+    return <Loading copy={'Loading'} />;
   }
 
   if (error) {

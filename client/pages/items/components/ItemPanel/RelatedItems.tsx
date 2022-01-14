@@ -4,6 +4,7 @@ import { API_URL } from '../../../constants/ApiEndpoint';
 import { ItemInterface } from '../../../Interfaces/ItemInterface';
 import { useAppContext } from '../../../contexts/AppContext';
 import loadItemsByTag from '../../hooks/loadItemsByTag';
+import Loading from '../../../ui/Loading';
 
 import styles from './RelatedItems.module.scss';
 
@@ -16,7 +17,7 @@ const RelatedItems = () => {
   const response = loadItemsByTag(tags);
   const { items, error, status } = response;
 
-  if (status === 'loading') return <p>loading</p>;
+  if (status === 'loading') return <Loading copy="Loading related items..." />;
 
   if (error) {
     alert(error);

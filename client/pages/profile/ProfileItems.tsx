@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import loadItemsByUserID from '../items/hooks/loadItemsByUser';
 import ItemCard from '../items/components/ItemCard';
 import NothingFound from '../ui/NothingFound';
+import Loading from '../ui/Loading';
 
 import gridStyles from '../../styles/_cardGrid.module.scss';
 
@@ -17,7 +18,7 @@ const ProfileItems = (props: Props) => {
   const { items, status, error } = response;
 
   if (status === 'loading') {
-    return <p>loading</p>;
+    return <Loading copy="Loading items..." />;
   }
 
   if (error) {

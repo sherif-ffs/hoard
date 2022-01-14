@@ -6,6 +6,7 @@ import ItemCard from '../items/components/ItemCard';
 import { ItemInterface } from '../Interfaces/ItemInterface';
 import NothingFound from '../ui/NothingFound';
 import { useAppContext } from '../contexts/AppContext';
+import Loading from '../ui/Loading';
 import CollectionHeader from './CollectionHeader';
 import loadCollectionByCollectionID from './hooks/loadCollectionByCollectionID';
 
@@ -27,7 +28,7 @@ const Collection = () => {
   }, []);
 
   if (status === 'loading') {
-    return <p>loading</p>;
+    return <Loading copy={'Loading Collection'} />;
   }
 
   if (error) {

@@ -1,11 +1,12 @@
-import { useAuthContext } from '../contexts/AuthContext';
 import classNames from 'classnames';
 
+import { useAuthContext } from '../contexts/AuthContext';
 import CloseSVG from '../ui/icons/CloseSVG';
 import AddSVG from '../ui/icons/AddSVG';
 import loadMyCollections from '../collections/hooks/loadCollectionById';
 import { useAppContext } from '../contexts/AppContext';
 import CollectionsPanelPill from './CollectionsPanelPill';
+import Loading from '../ui/Loading';
 
 import styles from './CollectionsPanel.module.scss';
 
@@ -18,11 +19,15 @@ const CollectionsPanel = () => {
     openCreateCollectionModal,
   } = useAppContext();
 
-  const response = user && user._id && loadMyCollections(user._id);
-  const { collections: myCollections, status, error } = response;
+  const id = user && user._id;
+  const response = user && user._id && loadMyCollections(id);
+
+  const myCollections = response && response.collections;
+  const status = response && response.status;
+  const error = response && response.error;
 
   if (status === 'loading') {
-    return <p>loading</p>;
+    return <Loading copy={'Loading collections...'} />;
   }
 
   if (error) {

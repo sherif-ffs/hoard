@@ -1,4 +1,5 @@
 import Spinner from './Spinner';
+
 import styles from './Loading.module.scss';
 
 interface Props {

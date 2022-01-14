@@ -4,6 +4,7 @@ import CollectionCard from '../collections/CollectionCard';
 import { CollectionInterface } from '../Interfaces/CollectionInterface';
 import loadMyCollections from '../collections/hooks/loadCollectionById';
 import NothingFound from '../ui/NothingFound';
+import Loading from '../ui/Loading';
 
 import gridStyles from '../../styles/_cardGrid.module.scss';
 
@@ -17,7 +18,7 @@ const ProfileCollections = (props: Props) => {
   const collectionsExist = collections && !!collections.length;
 
   if (status === 'loading') {
-    return <p>loading</p>;
+    return <Loading copy="Loading collections..." />;
   }
 
   if (error) {

@@ -6,6 +6,7 @@ import MultiSelect from '../../ui/MultiSelect';
 import loadMyCollections from '../../collections/hooks/loadCollectionById';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useAppContext } from '../../contexts/AppContext';
+import Loading from '../../ui/Loading';
 import { createItem } from '../api/ItemApi';
 
 import styles from './CreateContentForm.module.scss';
@@ -28,7 +29,7 @@ const CreateItemForm = () => {
   const { collections: myCollections, status, error } = response;
 
   if (status === 'loading') {
-    return <p>loading</p>;
+    return <Loading copy="Loading collections..." />;
   }
 
   if (error) {
