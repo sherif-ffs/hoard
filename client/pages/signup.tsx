@@ -28,7 +28,7 @@ const Signup: NextPage = () => {
     }
   };
 
-  const fieldsNotEmpty = password && !!password.trim().length;
+  const fieldsNotEmpty = password && password.trim().length >= 6;
 
   return (
     <section>
@@ -41,6 +41,7 @@ const Signup: NextPage = () => {
               className={styles.input}
               type="text"
               placeholder="name"
+              required
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -48,23 +49,29 @@ const Signup: NextPage = () => {
             <label>Email *</label>
             <input
               className={styles.input}
-              type="text"
               placeholder="email"
+              type="email"
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className={styles.inputWrapper}>
-            <label>Password *</label>
+            <label>Password * (Minimum 6 characters)</label>
             <input
               className={styles.input}
-              type="password"
+              type="text"
               placeholder="password"
+              required
+              minLength={6}
+              maxLength={100}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <Button
             onClick={(e: any) =>
-              fieldsNotEmpty ? handleSubmit(e) : alert('Must Create Password')
+              fieldsNotEmpty
+                ? handleSubmit(e)
+                : alert('Must Create Valid Password')
             }
             buttonCopy={'Sign Up'}
             version={'CTA'}

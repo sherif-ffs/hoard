@@ -48,7 +48,8 @@ const login: NextPage = () => {
             <label>Email *</label>
             <input
               className={styles.input}
-              type="text"
+              type="email"
+              required
               placeholder="email"
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -58,6 +59,7 @@ const login: NextPage = () => {
             <input
               className={styles.input}
               type="password"
+              required
               placeholder="password"
               onChange={(e) => setPassword(e.target.value)}
             />

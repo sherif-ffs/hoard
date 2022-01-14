@@ -11,4 +11,10 @@
   &:focus {
     border: 1px solid $dark;
   }
+  &:invalid {
+    border: 2px solid $color-orange;
+  }
+  &:valid {
+    border: 2px solid $color-green;
+  }
 }
