@@ -92,6 +92,9 @@ const CreateCollectionForm = (props: Props) => {
         <input
           className={styles.input}
           type="text"
+          minLength={1}
+          required
+          maxLength={30}
           placeholder="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -111,6 +114,8 @@ const CreateCollectionForm = (props: Props) => {
           className={styles.input}
           type="text"
           placeholder="description"
+          minLength={1}
+          maxLength={260}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />

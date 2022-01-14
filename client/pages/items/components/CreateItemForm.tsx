@@ -82,8 +82,29 @@ const CreateItemForm = () => {
     resetForm();
   };
 
+  function isValidHttpUrl(s: string) {
+    let url;
+
+    try {
+      url = new URL(s);
+    } catch (_) {
+      return false;
+    }
+
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  }
+
+  const validate = () => {
+    const t = isValidHttpUrl(url);
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const t = isValidHttpUrl(url);
+    if (!t) {
+      alert('Please enter valid Url');
+      return;
+    }
     setCreating(true);
     const item = {
       name: '',
@@ -116,6 +137,9 @@ const CreateItemForm = () => {
         <input
           className={styles.input}
           type="text"
+          minLength={1}
+          maxLength={1000}
+          required
           placeholder="url"
           value={url}
           onChange={(e) => setUrl(e.target.value)}

@@ -8,13 +8,11 @@
   background-color: transparent;
   border: 1px solid $medium-gray;
   transition: border 200ms;
-  &:focus {
+  &:focus,
+   :valid {
     border: 1px solid $dark;
   }
   &:invalid {
-    border: 2px solid $color-orange;
-  }
-  &:valid {
-    border: 2px solid $color-green;
+    border: 1px solid $color-orange;
   }
 }
