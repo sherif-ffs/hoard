@@ -9,6 +9,7 @@ import { useAppContext } from '../contexts/AppContext';
 import Loading from '../ui/Loading';
 import CollectionHeader from './CollectionHeader';
 import loadCollectionByCollectionID from './hooks/loadCollectionByCollectionID';
+import Error from '../ui/Error';
 
 import buttonStyles from '../../styles/button.module.scss';
 import styles from './Collection.module.scss';
@@ -32,7 +33,7 @@ const Collection = () => {
   }
 
   if (error) {
-    alert(error);
+    return <Error />;
   }
 
   const tags = collection && collection.tags;

@@ -6,6 +6,7 @@ import loadMoreByUserID from '../../hooks/loadMoreByUser';
 import { API_URL } from '../../../constants/ApiEndpoint';
 import { ItemInterface } from '../../../Interfaces/ItemInterface';
 import Loading from '../../../ui/Loading';
+import Error from '../../../ui/Error';
 
 import styles from './MoreByUser.module.scss';
 
@@ -22,7 +23,7 @@ const MoreByUser = () => {
   }
 
   if (error) {
-    alert(error);
+    return <Error />;
   }
 
   const filteredItems =

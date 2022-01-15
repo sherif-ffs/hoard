@@ -8,6 +8,7 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 import { useAppContext } from '../../../contexts/AppContext';
 import loadUserById from '../../../auth/hooks/loadUserById';
 import Loading from '../../../ui/Loading';
+import Error from '../../../ui/Error';
 
 import buttonStyles from '../../../../styles/button.module.scss';
 import styles from './PanelHeader.module.scss';
@@ -28,7 +29,7 @@ const PanelHeader = () => {
   }
 
   if (error) {
-    alert(error);
+    return <Error />;
   }
 
   const handleDeleteItem = async () => {

@@ -4,6 +4,7 @@ import loadItemsByUserID from '../items/hooks/loadItemsByUser';
 import ItemCard from '../items/components/ItemCard';
 import NothingFound from '../ui/NothingFound';
 import Loading from '../ui/Loading';
+import Error from '../ui/Error';
 
 import gridStyles from '../../styles/_cardGrid.module.scss';
 
@@ -22,7 +23,7 @@ const ProfileItems = (props: Props) => {
   }
 
   if (error) {
-    alert(error);
+    return <Error />;
   }
 
   const itemsExist = items && !!items.length;

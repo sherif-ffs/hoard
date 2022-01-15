@@ -15,11 +15,6 @@ export default function loadItemByID(id: string) {
     }
   );
 
-  if (error) {
-    console.error('error: ', error);
-    return error;
-  }
-
   if (status === 'loading') {
     return 'loading';
   }

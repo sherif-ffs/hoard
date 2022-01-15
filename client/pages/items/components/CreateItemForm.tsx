@@ -7,6 +7,7 @@ import loadMyCollections from '../../collections/hooks/loadCollectionById';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useAppContext } from '../../contexts/AppContext';
 import Loading from '../../ui/Loading';
+import Error from '../../ui/Error';
 import { createItem } from '../api/ItemApi';
 
 import styles from './CreateContentForm.module.scss';
@@ -33,7 +34,7 @@ const CreateItemForm = () => {
   }
 
   if (error) {
-    alert(error);
+    return <Error />;
   }
 
   const handleCollectionChange = (

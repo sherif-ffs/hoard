@@ -5,6 +5,7 @@ import { ItemInterface } from '../../../Interfaces/ItemInterface';
 import { useAppContext } from '../../../contexts/AppContext';
 import loadItemsByTag from '../../hooks/loadItemsByTag';
 import Loading from '../../../ui/Loading';
+import Error from '../../../ui/Error';
 
 import styles from './RelatedItems.module.scss';
 
@@ -20,7 +21,7 @@ const RelatedItems = () => {
   if (status === 'loading') return <Loading copy="Loading related items..." />;
 
   if (error) {
-    alert(error);
+    return <Error />;
   }
 
   const filteredItems = items.filter(

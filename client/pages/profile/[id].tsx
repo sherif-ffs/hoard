@@ -10,6 +10,7 @@ import ProfileCollections from './ProfileCollections';
 import EditModal from './EditModal';
 import ProfileItems from './ProfileItems';
 import Loading from '../ui/Loading';
+import Error from '../ui/Error';
 
 import styles from './profile.module.scss';
 
@@ -34,7 +35,7 @@ const Profile = () => {
   }
 
   if (error) {
-    alert(error);
+    return <Error />;
   }
 
   const toggle = () => {

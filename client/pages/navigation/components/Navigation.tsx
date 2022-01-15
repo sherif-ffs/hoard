@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useAppContext } from '../../contexts/AppContext';
 import { logOutUser } from '../../auth/api/AuthApi';
+import Error from '../../ui/Error';
 
 import buttonStyles from '../../../styles/button.module.scss';
 import styles from './Navigation.module.scss';
@@ -21,8 +22,7 @@ export const Navigation = () => {
     const { data, error, status } = JSONResponse;
 
     if (error) {
-      alert(error);
-      return;
+      return <Error />;
     }
 
     if (!error && status === 'ok' && !data.authenticated) {

@@ -5,6 +5,7 @@ import { API_URL } from '../constants/ApiEndpoint';
 import { ItemInterface } from '../Interfaces/ItemInterface';
 import loadUserById from '../auth/hooks/loadUserById';
 import Loading from '../ui/Loading';
+import Error from '../ui/Error';
 
 import styles from './NewCollectionCard.module.scss';
 
@@ -29,7 +30,7 @@ const NewCollectionCard = (props: Props) => {
   }
 
   if (error) {
-    alert(error);
+    return <Error />;
   }
 
   const authorName = user && user[0] && user[0].name;

@@ -6,6 +6,7 @@ import NewCollectionCard from './collections/NewCollectionCard';
 import NothingFound from './ui/NothingFound';
 import Pagination from './ui/Pagination';
 import Loading from './ui/Loading';
+import Error from './ui/Error';
 
 import styles from './collections/Collections.module.scss';
 
@@ -41,7 +42,7 @@ const Collections = (props: Props) => {
   }
 
   if (error) {
-    alert(error);
+    return <Error />;
   }
 
   return (

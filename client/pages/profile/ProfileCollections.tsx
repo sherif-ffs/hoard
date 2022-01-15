@@ -5,6 +5,7 @@ import { CollectionInterface } from '../Interfaces/CollectionInterface';
 import loadMyCollections from '../collections/hooks/loadCollectionById';
 import NothingFound from '../ui/NothingFound';
 import Loading from '../ui/Loading';
+import Error from '../ui/Error';
 
 import gridStyles from '../../styles/_cardGrid.module.scss';
 
@@ -22,7 +23,7 @@ const ProfileCollections = (props: Props) => {
   }
 
   if (error) {
-    alert(error);
+    return <Error />;
   }
 
   const oneCollectionView = collections && collections.length === 1;

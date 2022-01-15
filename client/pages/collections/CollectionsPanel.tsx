@@ -7,6 +7,7 @@ import loadMyCollections from '../collections/hooks/loadCollectionById';
 import { useAppContext } from '../contexts/AppContext';
 import CollectionsPanelPill from './CollectionsPanelPill';
 import Loading from '../ui/Loading';
+import Error from '../ui/Error';
 
 import styles from './CollectionsPanel.module.scss';
 
@@ -31,7 +32,7 @@ const CollectionsPanel = () => {
   }
 
   if (error) {
-    alert(error);
+    return <Error />;
   }
 
   return (

@@ -16,11 +16,6 @@ export default function loadItemStatus(
     () => checkItem(itemId, collectionId)
   );
 
-  if (error) {
-    console.error('error', error);
-    return error;
-  }
-
   if (status === 'loading') {
     return 'loading';
   }
