@@ -13,7 +13,10 @@ const CreateCollectionModal = () => {
       close={closeCreateCollectionModal}
     >
       <Modal isOpen={createCollectionModalIsOpen}>
-        <CreateCollectionForm context="collections-panel" />
+        <CreateCollectionForm
+          context="collections-panel"
+          {...{ closeCreateCollectionModal }}
+        />
       </Modal>
     </Mask>
   );

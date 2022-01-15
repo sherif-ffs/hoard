@@ -17,15 +17,6 @@
   &.open {
     transform: translateY(0);
   }
-  &::after {
-    content: '';
-    top: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    width: 6em;
-    background-image: linear-gradient(to right, rgba($light-gray, 0), rgba($light-gray, 1) 40%);
-  }
   .content {
     display: flex;
     flex-direction: row;

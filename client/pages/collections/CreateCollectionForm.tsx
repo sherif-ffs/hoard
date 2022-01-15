@@ -12,11 +12,12 @@ import styles from '../items/components/CreateContentForm.module.scss';
 
 interface Props {
   context: string;
+  closeCreateCollectionModal: () => void;
 }
 
 const CreateCollectionForm = (props: Props) => {
   const { user } = useAuthContext();
-  const { closeCreateCollectionModal, setCreateModalIsOpen } = useAppContext();
+  const { setCreateModalIsOpen } = useAppContext();
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -25,7 +26,7 @@ const CreateCollectionForm = (props: Props) => {
   const [creating, setCreating] = useState(false);
   const [creationSuccess, setCreationSuccess] = useState(false);
 
-  const { context } = props;
+  const { context, closeCreateCollectionModal } = props;
 
   const handleSelectTags = (items: Array<TagOption>) => {
     const itemValues = items.map((item) => item.value);
@@ -85,6 +86,13 @@ const CreateCollectionForm = (props: Props) => {
     return;
   };
 
+  const close = () => {
+    if (context === 'collections-panel') {
+      closeCreateCollectionModal();
+    } else {
+      setCreateModalIsOpen(false);
+    }
+  };
   return (
     <form className={styles.form}>
       <div className={styles.inputWrapper}>
@@ -121,10 +129,7 @@ const CreateCollectionForm = (props: Props) => {
         />
       </div>
       <div className={styles.buttonWrapper}>
-        <button
-          className={styles.closeButton}
-          onClick={() => closeCreateCollectionModal()}
-        >
+        <button className={styles.closeButton} onClick={close}>
           Cancel
         </button>
         <button
