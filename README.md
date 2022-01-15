@@ -76,19 +76,18 @@
 - [x] profile header styles
 - [x] filtering
 - [x] font
-- [ ] loading states
-- [ ] test API ?
+- [x] loading states
 - [ ] fix caching/fetch issue?
 - [ ] new collection modal issue
-- [ ] resolve TS warnings
+- [x] resolve TS warnings
 - [ ] make footer
 - [x] create multiselect
 - [x] make button styles
 - [x] form validation
 - [x] filter collections
 - [x] add socials to profile
-- [ ] bug on profile refresh
-- [ ] collections panel issue?
+- [x] bug on profile refresh
+- [x] collections panel issue?
 
 # CI/CD
 

@@ -1,0 +1,15 @@
+@import "../../styles/_variables.scss";
+.footer {
+  width: 100vw;
+  margin-top: 10vh;
+  height: 20vh;
+  background-color: $color-orange;
+  border-top: 5px solid $new-dark;
+}
+
+.content {
+  display: flex;
+  width: 90%;
+  height: 100px;
+  margin: auto;
+}
