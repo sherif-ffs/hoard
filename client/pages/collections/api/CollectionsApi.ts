@@ -126,3 +126,14 @@ export function deleteCollection(id: string | null) {
     }),
   });
 }
+
+// return count of all collections
+export function fetchCollectionsCount() {
+  return fetch(`http://localhost:5000/collections/count`, {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}

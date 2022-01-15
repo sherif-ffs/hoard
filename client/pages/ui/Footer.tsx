@@ -1,13 +1,34 @@
 import React from 'react';
+import classNames from 'classnames';
 
+import loadItemCount from '../items/hooks/loadItemCount';
+import loadCollectionsCount from '../collections/hooks/loadCollectionsCount';
 import styles from './Footer.module.scss';
 
 const Footer = () => {
-  return (
-    <footer className={styles.footer}>
-      <div className={styles.content}></div>
-    </footer>
-  );
+  const response = loadItemCount();
+  const secondResponse = loadCollectionsCount();
+  const { count, status, error } = response;
+  const { count: secondCount } = secondResponse;
+
+  if (count && secondCount) {
+    return (
+      <footer className={styles.footer}>
+        <div className={styles.content}>
+          <div className={classNames(styles.box, styles.items)}>
+            <h3>Items contributed</h3>
+            <h1>{count}</h1>
+          </div>
+          <div className={classNames(styles.box, styles.collections)}>
+            <h3>Collections created</h3>
+            <h1>{secondCount}</h1>
+          </div>
+        </div>
+      </footer>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default Footer;

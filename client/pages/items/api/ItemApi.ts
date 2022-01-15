@@ -94,3 +94,14 @@ export function fetchItemsByTag(tags: string[]) {
     }),
   });
 }
+
+// fetch item count
+export function fetchItemCount() {
+  return fetch(`http://localhost:5000/items/count`, {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}

@@ -5,6 +5,7 @@ import { Navigation } from './navigation/components/Navigation';
 import Items from './items/components/Items';
 import Collections from './collections';
 import Filters from './discover/Filter';
+import Footer from './ui/Footer';
 
 import styles from './collections/Collections.module.scss';
 
@@ -30,6 +31,7 @@ const Discover = () => {
       ) : (
         <Collections {...{ filterList }} />
       )}
+      <Footer />
     </>
   );
 };

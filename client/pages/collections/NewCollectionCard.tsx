@@ -64,7 +64,7 @@ const NewCollectionCard = (props: Props) => {
         <div className={styles.thumbnails}>
           {items &&
             !!items.length &&
-            items.map((item: ItemInterface, i: number) => (
+            items.slice(0, 15).map((item: ItemInterface, i: number) => (
               <div
                 key={i}
                 className={styles.thumbnail}

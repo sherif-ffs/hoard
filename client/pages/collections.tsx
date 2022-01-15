@@ -48,7 +48,7 @@ const Collections = (props: Props) => {
   return (
     <>
       <div className={styles.collections}>
-        {!collections && <NothingFound />}
+        {!collections || (itemCount === 0 && <NothingFound />)}
         {collections &&
           !!collections.length &&
           collections.map((d: any) => {
