@@ -21,9 +21,8 @@
 - [x] remove item from collection from panel
 - [x] scrape title/details of URL
 - [x] check if item exists in collection from pill component
-- [x] make sure remove item from collection works
 - [x] add socials
-- [ ] tests
+- [x] make sure remove item from collection works
 
 # Client
 
@@ -77,10 +76,9 @@
 - [x] filtering
 - [x] font
 - [x] loading states
-- [ ] fix caching/fetch issue?
-- [ ] new collection modal issue
+- [x] new collection modal issue
 - [x] resolve TS warnings
-- [ ] make footer
+- [x] make footer
 - [x] create multiselect
 - [x] make button styles
 - [x] form validation
@@ -88,6 +86,8 @@
 - [x] add socials to profile
 - [x] bug on profile refresh
 - [x] collections panel issue?
+- [x] test error pages
+- [x] incorporate toasts for alerts...
 
 # CI/CD
 
