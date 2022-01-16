@@ -28,7 +28,7 @@ const CollectionsPanelPill = (props: Props) => {
   const itemId = itemToCollect && itemToCollect._id;
   const collectionId = collection && collection._id;
 
-  let res = loadItemStatus(itemId, collectionId);
+  let res = loadItemStatus(itemId, collectionId, updating);
 
   useEffect(() => {
     if (res) {
@@ -38,7 +38,6 @@ const CollectionsPanelPill = (props: Props) => {
     }
   }, [res]);
 
-  console.log('includes: ', includes);
   const toggle = (collectionId: string, includes: boolean) => {
     includes
       ? removeItemFromCollection(collectionId)
