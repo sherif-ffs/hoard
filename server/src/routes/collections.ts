@@ -133,4 +133,15 @@ router.post('/delete-collection', async (req, res) => {
     throw error;
   }
 });
+
+// fetch collections count
+router.get('/count', async (req, res) => {
+  try {
+    const count = await Collection.count();
+    res.send({ status: 'ok', data: count });
+  } catch (err) {
+    res.send({ status: 'error', error: err });
+  }
+});
+
 module.exports = router;

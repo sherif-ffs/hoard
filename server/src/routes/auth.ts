@@ -4,7 +4,6 @@ import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import User from '../models/user';
 import jwt from 'jsonwebtoken';
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const objectId = require('mongodb').ObjectID;
 
@@ -124,7 +123,6 @@ router.post('/socials', async (req, res) => {
         },
       }
     );
-    console.log('a: ', a);
     res.json({ status: 'ok', data: 'success' });
   } catch (error: any) {
     res.json({ status: 'error', error: error.message });

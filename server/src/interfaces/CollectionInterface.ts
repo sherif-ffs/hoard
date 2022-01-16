@@ -10,4 +10,5 @@ export interface CollectionInterface {
   isPrivate: boolean;
   datePublished: Date;
   _id: string;
+  id: string;
 }

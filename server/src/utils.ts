@@ -46,13 +46,15 @@ export const addItemToCollection = async (
   collectionIds: Array<string>,
   item: ItemInterface
 ) => {
+  console.log('item: ', item);
   collectionIds.forEach(async (collectionId) => {
-    await Collection.updateOne(
+    const add = await Collection.updateOne(
       {
         _id: new objectId(collectionId),
       },
       { $push: { items: item } }
     );
+    console.log('add; ', add);
   });
 };
 
@@ -62,12 +64,13 @@ export const removeItemFromCollection = async (
   collectionId: string
 ) => {
   const { _id } = item;
-  await Collection.updateOne(
+  const remove = await Collection.updateOne(
     {
       _id: new objectId(collectionId),
     },
-    { $pull: { items: { _id: new objectId(_id) } } }
+    { $pull: { items: item } }
   );
+  console.log('remove: ', remove);
 };
 
 // remove item for all collections

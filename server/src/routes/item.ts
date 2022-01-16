@@ -43,7 +43,7 @@ router.post('/create-item', async (req, res) => {
 
       const { collections } = newItem;
       if (collections && !!collections.length) {
-        const collectionIds = collections.map((c) => c._id);
+        const collectionIds = collections.map((c) => c.id);
         addItemToCollection(collectionIds, newItem);
       }
       res.json({ status: 'ok', data: newItem });
@@ -144,4 +144,15 @@ router.post('/items-by-tag', async (req, res) => {
     res.send({ status: 'error', error: err });
   }
 });
+
+// fetch items count
+router.get('/count', async (req, res) => {
+  try {
+    const count = await Item.count();
+    res.send({ status: 'ok', data: count });
+  } catch (err) {
+    res.send({ status: 'error', error: err });
+  }
+});
+
 module.exports = router;
