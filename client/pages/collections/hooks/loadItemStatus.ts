@@ -12,13 +12,9 @@ export default function loadItemStatus(
   updating: boolean
 ) {
   const { data, status, error } = useQuery(
-    ['loadItemStatus', itemId, collectionId, updating],
+    ['loadItemStatus', itemId, collectionId],
     () => checkItem(itemId, collectionId)
   );
-
-  if (status === 'loading') {
-    return 'loading';
-  }
 
   const dataExists = data && data.data;
   if (dataExists) {

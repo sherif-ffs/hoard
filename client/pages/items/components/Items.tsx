@@ -40,7 +40,7 @@ const Items = (props: Props) => {
   }, [itemCount]);
 
   if (error) {
-    return <Error />;
+    return <h1>Something went wrong</h1>;
   }
 
   if (status === 'loading') return <Loading copy={'Loading Items'} />;
@@ -49,7 +49,6 @@ const Items = (props: Props) => {
     setPage(e.target.value);
   };
 
-  console.log('itemObjects: ', itemObjects);
   return (
     <>
       <div className={styles.wrapper}>

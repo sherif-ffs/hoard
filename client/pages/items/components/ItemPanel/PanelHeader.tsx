@@ -2,6 +2,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import Router from 'next/router';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 import { deleteItem } from '../../api/ItemApi';
 import { useAuthContext } from '../../../contexts/AuthContext';
@@ -37,11 +38,10 @@ const PanelHeader = () => {
     const response = await res.json();
     const { status, data } = response;
     if (status === 'ok') {
-      alert('Item deleted successfully');
       handleCloseItemPanel();
-      return;
+      return toast.success('Item deleted successfully');
     }
-    alert(data);
+    return toast.error('something went wrong');
   };
 
   const sendToProfile = () => {

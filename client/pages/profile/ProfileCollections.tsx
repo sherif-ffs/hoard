@@ -22,29 +22,28 @@ const ProfileCollections = (props: Props) => {
     return <Loading copy="Loading collections..." />;
   }
 
-  if (error) {
-    return <Error />;
-  }
-
   const oneCollectionView = collections && collections.length === 1;
 
   if (collectionsExist) {
     return (
-      <div
-        className={classNames(gridStyles.cardGrid, {
-          [gridStyles.oneItem]: oneCollectionView,
-        })}
-      >
-        {collections &&
-          !!collections.length &&
-          collections.map((collection: CollectionInterface) => {
-            const { title, items } = collection;
-            const id = collection._id;
-            if (title && id && items) {
-              return <CollectionCard {...{ title, items, id }} key={id} />;
-            }
+      <>
+        {error && <Error />}
+        <div
+          className={classNames(gridStyles.cardGrid, {
+            [gridStyles.oneItem]: oneCollectionView,
           })}
-      </div>
+        >
+          {collections &&
+            !!collections.length &&
+            collections.map((collection: CollectionInterface) => {
+              const { title, items } = collection;
+              const id = collection._id;
+              if (title && id && items) {
+                return <CollectionCard {...{ title, items, id }} key={id} />;
+              }
+            })}
+        </div>
+      </>
     );
   } else {
     return <NothingFound />;

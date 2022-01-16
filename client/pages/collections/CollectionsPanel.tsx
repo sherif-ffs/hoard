@@ -31,16 +31,13 @@ const CollectionsPanel = () => {
     return <Loading copy={'Loading collections...'} />;
   }
 
-  if (error) {
-    return <Error />;
-  }
-
   return (
     <div
       className={classNames(styles.panel, {
         [styles.open]: collectionsPanelIsOpen,
       })}
     >
+      {error && <Error />}
       <div className={styles.content}>
         <p className={styles.saveTo}>Save to:</p>
         {myCollections &&

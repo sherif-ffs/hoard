@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Toaster } from 'react-hot-toast';
 
 import { AppContextProvider } from './contexts/AppContext';
 import { AuthContextProvider } from './contexts/AuthContext';
@@ -16,6 +17,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
         <AppContextProvider>
+          <Toaster />
           <Component {...pageProps} />
           <ItemPanel />
           <CollectionsPanel />

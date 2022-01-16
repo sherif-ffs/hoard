@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import classNames from 'classnames';
+import toast from 'react-hot-toast';
 
 import { handleUpdateSocials } from '../auth/api/AuthApi';
 import Modal from '../ui/Modal';
@@ -46,11 +47,11 @@ const EditModal = (props: Props) => {
     const JSONResponse = await response.json();
     const { data, status, error } = JSONResponse;
 
-    if (error) alert(error);
+    if (error) return toast.error('something went wrong');
 
     if (!error && status === 'ok') {
-      alert(data);
       toggle();
+      return toast.success('Details updated successfully');
     }
   };
   return (

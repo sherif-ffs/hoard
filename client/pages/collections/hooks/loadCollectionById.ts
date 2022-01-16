@@ -7,7 +7,6 @@ const getCollectionsById = async (id: string) => {
 };
 
 export default function loadMyCollections(id: string) {
-  console.log('id: ', id);
   const { data, status, error } = useQuery(
     'myCollections',
     () => getCollectionsById(id),

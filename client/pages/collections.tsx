@@ -41,14 +41,11 @@ const Collections = (props: Props) => {
     return <Loading copy={'Loading Collections...'} />;
   }
 
-  if (error) {
-    return <Error />;
-  }
-
   return (
     <>
       <div className={styles.collections}>
         {!collections || (itemCount === 0 && <NothingFound />)}
+        {error && <Error />}
         {collections &&
           !!collections.length &&
           collections.map((d: any) => {

@@ -19,9 +19,8 @@ const Profile = () => {
   const id = router && router.query && router.query.id;
 
   if (!id) {
-    return <h1>loading</h1>;
+    return <Loading copy="Loading..." />;
   }
-  console.log('router: ', router);
   const { user: loggedInUser } = useAuthContext();
   const [activeTab, setActiveTab] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(false);

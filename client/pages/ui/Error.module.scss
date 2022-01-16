@@ -1,24 +1,6 @@
 @import "../../styles/_variables.scss";
-.wrapper {
-  height: 100vh;
-  padding: 0;
-  width: 100vw;
-  background-color: $color-orange;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  h1 {
-    color: $dark;
-    font-size: 4em;
-    font-weight: 800;
-  }
-  h3 {
-    font-weight: 500;
-    font-size: 1.5em;
-  }
-  a {
-    text-decoration: underline;
-    color: darken($color-orange, 30%);
-  }
+.error {
+  color: $color-red;
+  font-weight: 400;
+  margin: auto;
 }

@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import toast from 'react-hot-toast';
 
 import { useAuthContext } from '../contexts/AuthContext';
 import { deleteCollection } from './api/CollectionsApi';
@@ -26,10 +27,8 @@ const CollectionHeader = (props: Props) => {
     const response = await res.json();
     const { status, data } = response;
     if (status === 'ok') {
-      alert('Collection deleted successfully');
-      return;
+      return toast.success('Collection deleted successfully');
     }
-    alert(data);
   };
 
   return (

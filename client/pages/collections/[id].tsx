@@ -32,10 +32,6 @@ const Collection = () => {
     return <Loading copy={'Loading Collection'} />;
   }
 
-  if (error) {
-    return <Error />;
-  }
-
   const tags = collection && collection.tags;
   const itemsExist =
     collection && collection.items && !!collection.items.length;
@@ -57,6 +53,7 @@ const Collection = () => {
       <CollectionHeader
         {...{ title, count, description, authorId, collectionId, tags }}
       />
+      {error && <Error />}
       <div
         className={classNames(styles.wrapper, { [styles.one]: oneItemView })}
       >

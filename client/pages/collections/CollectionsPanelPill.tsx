@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import classNames from 'classnames';
+import toast from 'react-hot-toast';
 
 import { useAppContext } from '../contexts/AppContext';
 import {
@@ -9,6 +10,7 @@ import {
 import loadItemStatus from './hooks/loadItemStatus';
 
 import styles from './CollectionsPanel.module.scss';
+import { useEffect } from 'react';
 
 interface Props {
   closeCollectionsPanel: () => void;
@@ -19,18 +21,24 @@ interface Props {
 const CollectionsPanelPill = (props: Props) => {
   const { closeCollectionsPanel, item, collection } = props;
   const [updating, setUpdating] = useState(false);
+  const [includes, setIncludes] = useState(false);
 
   const { itemToCollect } = useAppContext();
 
   const itemId = itemToCollect && itemToCollect._id;
   const collectionId = collection && collection._id;
 
-  let includes = loadItemStatus(itemId, collectionId, updating);
+  let res = loadItemStatus(itemId, collectionId);
 
-  if (includes === 'loading') {
-    return <p>loading</p>;
-  }
+  useEffect(() => {
+    if (res) {
+      setIncludes(true);
+    } else {
+      setIncludes(false);
+    }
+  }, [res]);
 
+  console.log('includes: ', includes);
   const toggle = (collectionId: string, includes: boolean) => {
     includes
       ? removeItemFromCollection(collectionId)
@@ -42,17 +50,13 @@ const CollectionsPanelPill = (props: Props) => {
     const res = await add(collectionId, item);
     const data = await res.json();
     const { status } = data;
+    console.log('data: ', data);
     if (status === 'ok') {
-      includes = true;
-      setTimeout(() => {
-        setUpdating(false);
-        setTimeout(() => {
-          closeCollectionsPanel();
-        }, 400);
-      }, 800);
-      return;
+      setIncludes(true);
+      setUpdating(false);
+      return toast.success('Saved to collection');
     } else {
-      alert('something went wrong :(');
+      return toast.error('something went wrong');
     }
   };
 
@@ -63,16 +67,11 @@ const CollectionsPanelPill = (props: Props) => {
     console.log('data: ', data);
     const { status } = data;
     if (status === 'ok') {
-      includes = false;
-      setTimeout(() => {
-        setUpdating(false);
-        setTimeout(() => {
-          closeCollectionsPanel();
-        }, 400);
-      }, 800);
-      return;
+      setIncludes(false);
+      setUpdating(false);
+      return toast.success('Removed from collection');
     } else {
-      alert('something went wrong :(');
+      return toast.error('something went wrong');
     }
   };
 

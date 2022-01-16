@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
 import Router from 'next/router';
+import toast from 'react-hot-toast';
 
 import { TagOption, TagOptions } from '../constants/Tags';
 import MultiSelect from '../ui/MultiSelect';
@@ -76,14 +77,13 @@ const CreateCollectionForm = (props: Props) => {
       }
       setCreating(false);
       setCreateModalIsOpen(false);
-      return;
+      return toast.success('Collection Created Successfully');
     }
 
     setCreating(false);
     closeCreateCollectionModal();
     setCreateModalIsOpen(false);
-    alert('Something went wrong :/');
-    return;
+    return toast.error('something went wrong');
   };
 
   const close = () => {

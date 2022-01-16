@@ -21,10 +21,6 @@ export const Navigation = () => {
     const JSONResponse = await response.json();
     const { data, error, status } = JSONResponse;
 
-    if (error) {
-      return <Error />;
-    }
-
     if (!error && status === 'ok' && !data.authenticated) {
       checkAuth();
       Router.push('/discover');

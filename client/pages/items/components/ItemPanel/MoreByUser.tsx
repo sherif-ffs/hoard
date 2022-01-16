@@ -22,10 +22,6 @@ const MoreByUser = () => {
     return <Loading copy="Loading more items..." />;
   }
 
-  if (error) {
-    return <Error />;
-  }
-
   const filteredItems =
     items && items.filter((i: ItemInterface) => i._id !== selectedItem._id);
 
@@ -38,6 +34,7 @@ const MoreByUser = () => {
 
   return (
     <div className={styles.wrapper}>
+      {error && <Error />}
       <header>
         <h3>More by {author}</h3>
         <h4 onClick={handleRedirectToProfile}>View Profile</h4>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import toast from 'react-hot-toast';
 
 import { TagOption, TagOptions } from '../../constants/Tags';
 import MultiSelect from '../../ui/MultiSelect';
@@ -31,10 +32,6 @@ const CreateItemForm = () => {
 
   if (status === 'loading') {
     return <Loading copy="Loading collections..." />;
-  }
-
-  if (error) {
-    return <Error />;
   }
 
   const handleCollectionChange = (
@@ -81,6 +78,7 @@ const CreateItemForm = () => {
       setCreationSuccess(false);
     }, 2000);
     resetForm();
+    return toast.success('Item Created Successfully');
   };
 
   function isValidHttpUrl(s: string) {
@@ -94,10 +92,6 @@ const CreateItemForm = () => {
 
     return url.protocol === 'http:' || url.protocol === 'https:';
   }
-
-  const validate = () => {
-    const t = isValidHttpUrl(url);
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -129,10 +123,11 @@ const CreateItemForm = () => {
 
     setCreating(false);
     setCreateModalIsOpen(false);
-    return;
+    return toast.error('Something went wrong');
   };
   return (
     <form className={styles.form}>
+      {error && <Error />}
       <div className={styles.inputWrapper}>
         <label>Url *</label>
         <input

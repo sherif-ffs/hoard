@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Router from 'next/router';
 import Link from 'next/link';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 import Button from './ui/Button';
 import { registerUser } from './auth/api/AuthApi';
@@ -20,11 +21,11 @@ const Signup: NextPage = () => {
     const JSONResponse = await response.json();
     const { data, status, error } = JSONResponse;
 
-    if (error) alert(error);
+    if (error) return toast.error('something went wrong');
 
     if (!error && status === 'ok') {
-      alert(data);
       Router.push('/login');
+      return toast.success('Account Successfully created!');
     }
   };
 

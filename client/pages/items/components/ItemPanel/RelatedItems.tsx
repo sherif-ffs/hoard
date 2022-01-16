@@ -20,10 +20,6 @@ const RelatedItems = () => {
 
   if (status === 'loading') return <Loading copy="Loading related items..." />;
 
-  if (error) {
-    return <Error />;
-  }
-
   const filteredItems = items.filter(
     (i: ItemInterface) => i._id !== selectedItem._id
   );
@@ -32,6 +28,7 @@ const RelatedItems = () => {
 
   return (
     <div className={styles.wrapper}>
+      {error && <Error />}
       <header>
         <h3>You might also like</h3>
       </header>
