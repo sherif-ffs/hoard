@@ -9,7 +9,8 @@ import Mask from '../../ui/Mask';
 import CreateItemForm from './CreateItemForm';
 
 const CreateModal = () => {
-  const { createModalIsOpen, closeCreateModal } = useAppContext();
+  const { createModalIsOpen, closeCreateModal, closeCreateCollectionModal } =
+    useAppContext();
   const [activeTab, setActiveTab] = useState(1);
   const tabCopy = ['Item', 'Collection'];
 
@@ -20,7 +21,10 @@ const CreateModal = () => {
         {activeTab === 1 ? (
           <CreateItemForm />
         ) : (
-          <CreateCollectionForm context="create-modal" />
+          <CreateCollectionForm
+            context="create-modal"
+            {...{ closeCreateCollectionModal }}
+          />
         )}
       </Modal>
     </Mask>

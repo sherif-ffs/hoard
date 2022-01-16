@@ -79,7 +79,7 @@ export function handleUpdateSocials(
   twitter: string,
   portfolio: string,
   role: string,
-  id: string
+  id: string | undefined
 ) {
   return fetch('http://localhost:5000/auth/socials', {
     method: 'POST',

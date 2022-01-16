@@ -1,5 +1,3 @@
-import { ItemInterface } from '../../Interfaces/ItemInterface';
-
 // Create Item
 export function createItem(item: any) {
   return fetch('http://localhost:5000/items/create-item', {
