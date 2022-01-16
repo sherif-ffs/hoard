@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import classNames from 'classnames';
 
 import styles from './Mask.module.scss';
@@ -10,7 +10,7 @@ interface Props {
 }
 const Mask = (props: Props) => {
   const { isOpen, close } = props;
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
   const handleClose = (e: Event) => {
     if (ref.current === e.target) {
       close();
@@ -20,7 +20,7 @@ const Mask = (props: Props) => {
     <div
       ref={ref}
       className={classNames(styles.mask, { [styles.open]: isOpen })}
-      onClick={(e: React.SyntheticEvent<EventTarget>) => handleClose(e)}
+      onClick={(e: any) => handleClose(e)}
     >
       <div onClick={undefined}>{props.children}</div>
     </div>
