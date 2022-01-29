@@ -169,11 +169,12 @@
     }
     &.cta {
       border: 1px solid $medium-gray;
-      // background-color: $color-orange;
+      background-color: #567b94;
       transition: 400ms;
+      color: $light-gray;
       @media (hover: hover) {
         &:hover {
-          background-color: darken($light-gray, 5%);
+          background-color: darken(#567b94, 10%);
         }
       }
     }
