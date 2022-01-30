@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "postinstall": "tsc",
     "dev": "nodemon --exec ts-node src/index.ts",
-    "start": "nodemon src/index.ts"
+    "start": "node src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -52,5 +53,9 @@
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^1.7.0",
     "nodemon": "^2.0.13"
+  },
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
   }
 }

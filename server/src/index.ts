@@ -1,10 +1,15 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv').config();
-import express = require('express');
-import mongoose, { ConnectOptions } from 'mongoose';
+const express = require('express');
+const mongoose = require('mongoose');
+// import mongoose, { ConnectOptions } from 'mongoose';
 import passport from 'passport';
-import flash from 'express-flash';
-import session from 'express-session';
+// const passport = require('passport');
+
+// import flash from 'express-flash';
+const flash = require('express-flash');
+const session = require('express-session');
+// import session from 'express-session';
 require('./config/passport')(passport);
 
 const cors = require('cors');
@@ -23,7 +28,7 @@ mongoose.connect(
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  } as ConnectOptions
+  }
 );
 
 const db = mongoose.connection;
@@ -54,6 +59,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+
+app.get('/', function (req, res) {
+  res.send('rabbit rabbit!');
+});
 
 // Authentication routes
 app.use('/auth', require('./routes/auth.ts'));
