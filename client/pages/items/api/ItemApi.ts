@@ -1,6 +1,8 @@
+import { API_URL } from '../../constants/ApiEndpoint';
+
 // Create Item
 export function createItem(item: any) {
-  return fetch('http://localhost:5000/items/create-item', {
+  return fetch(`${API_URL}/items/create-item`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -14,7 +16,7 @@ export function createItem(item: any) {
 
 // Delete Item
 export function deleteItem(id: string) {
-  return fetch('http://localhost:5000/items/delete-item', {
+  return fetch(`${API_URL}/items/delete-item`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -28,7 +30,7 @@ export function deleteItem(id: string) {
 
 // get item by itemId
 export function fetchItemByID(id: string) {
-  return fetch(`http://localhost:5000/items/item/?id=${id}`, {
+  return fetch(`${API_URL}/items/item/?id=${id}`, {
     method: 'GET',
     credentials: 'include',
     headers: {
@@ -43,7 +45,7 @@ export function fetchAllItems(
   offset: number,
   filterList: string[]
 ) {
-  return fetch(`http://localhost:5000/items/items`, {
+  return fetch(`${API_URL}/items/items`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -59,7 +61,7 @@ export function fetchAllItems(
 
 // fetch items by userId
 export function fetchItemsByUserID(id: string) {
-  return fetch(`http://localhost:5000/items/items-by?id=${id}`, {
+  return fetch(`${API_URL}/items/items-by?id=${id}`, {
     method: 'GET',
     credentials: 'include',
     headers: {
@@ -70,7 +72,7 @@ export function fetchItemsByUserID(id: string) {
 
 // load more items by user
 export function fetchMoreItemsByUser(id: string) {
-  return fetch(`http://localhost:5000/items/more-items-by?id=${id}`, {
+  return fetch(`${API_URL}/items/more-items-by?id=${id}`, {
     method: 'GET',
     credentials: 'include',
     headers: {
@@ -81,7 +83,7 @@ export function fetchMoreItemsByUser(id: string) {
 
 // fetch related items by tag
 export function fetchItemsByTag(tags: string[]) {
-  return fetch(`http://localhost:5000/items/items-by-tag`, {
+  return fetch(`${API_URL}/items/items-by-tag`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -95,7 +97,7 @@ export function fetchItemsByTag(tags: string[]) {
 
 // fetch item count
 export function fetchItemCount() {
-  return fetch(`http://localhost:5000/items/count`, {
+  return fetch(`${API_URL}/items/count`, {
     method: 'GET',
     credentials: 'include',
     headers: {

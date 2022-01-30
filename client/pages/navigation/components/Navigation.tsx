@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useAppContext } from '../../contexts/AppContext';
 import { logOutUser } from '../../auth/api/AuthApi';
-import Error from '../../ui/Error';
 
 import buttonStyles from '../../../styles/button.module.scss';
 import styles from './Navigation.module.scss';
@@ -42,9 +41,19 @@ export const Navigation = () => {
             Contribute
           </button>
           <Link href={`/profile/${user._id}`}>
-            <button className={buttonStyles.button}>My Stuff</button>
+            <button
+              className={classNames(
+                buttonStyles.button,
+                buttonStyles.secondary
+              )}
+            >
+              My Stuff
+            </button>
           </Link>
-          <button className={buttonStyles.button} onClick={handleLogout}>
+          <button
+            className={classNames(buttonStyles.button, buttonStyles.secondary)}
+            onClick={handleLogout}
+          >
             Sign Out
           </button>
         </div>

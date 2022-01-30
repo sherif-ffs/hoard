@@ -21,7 +21,9 @@ const Signup: NextPage = () => {
     const JSONResponse = await response.json();
     const { data, status, error } = JSONResponse;
 
-    if (error) return toast.error('something went wrong');
+    if (error) {
+      return toast.error(error);
+    }
 
     if (!error && status === 'ok') {
       Router.push('/login');

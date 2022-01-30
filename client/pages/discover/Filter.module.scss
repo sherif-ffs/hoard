@@ -162,18 +162,20 @@
     font-size: 1.1em;
     border-radius: $border-radius;
     cursor: pointer;
+    font-family: Rubik;
     @media (hover: hover) {
       &:hover {
         background-color: $light-gray;
       }
     }
     &.cta {
-      border: 1px solid $medium-gray;
-      // background-color: $color-orange;
+      border: 1px solid darken($new-gray, 15%);
+      background-color: $new-gray;
+      color: $light-gray;
       transition: 400ms;
       @media (hover: hover) {
         &:hover {
-          background-color: darken($light-gray, 5%);
+          background-color: darken($new-gray, 5%);
         }
       }
     }

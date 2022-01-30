@@ -1,6 +1,8 @@
+import { API_URL } from '../../constants/ApiEndpoint';
+
 // Login User
 export function loginUser(email: string, password: string) {
-  return fetch('http://localhost:5000/auth/login', {
+  return fetch(`${API_URL}/auth/login`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -15,7 +17,7 @@ export function loginUser(email: string, password: string) {
 
 // Register User
 export function registerUser(name: string, email: string, password: string) {
-  return fetch('http://localhost:5000/auth/register', {
+  return fetch(`${API_URL}/auth/register`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -31,7 +33,7 @@ export function registerUser(name: string, email: string, password: string) {
 
 // Check if User is authenticated
 export function checkUserAuthentication() {
-  return fetch('http://localhost:5000/auth/checkAuth', {
+  return fetch(`${API_URL}/auth/checkAuth`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -42,7 +44,7 @@ export function checkUserAuthentication() {
 
 // Log out User
 export function logOutUser() {
-  return fetch('http://localhost:5000/auth/logout', {
+  return fetch(`${API_URL}/auth/logout`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -53,7 +55,7 @@ export function logOutUser() {
 
 // FETCH ALL USERS
 export function getAllUsers() {
-  return fetch('http://localhost:5000/auth/users', {
+  return fetch(`${API_URL}/auth/users`, {
     method: 'GET',
     credentials: 'include',
     headers: {
@@ -64,7 +66,7 @@ export function getAllUsers() {
 
 // get user by ID
 export function fetchUserById(id: string) {
-  return fetch(`http://localhost:5000/auth/user-by-id?id=${id}`, {
+  return fetch(`${API_URL}/auth/user-by-id?id=${id}`, {
     method: 'GET',
     credentials: 'include',
     headers: {
@@ -81,7 +83,7 @@ export function handleUpdateSocials(
   role: string,
   id: string | undefined
 ) {
-  return fetch('http://localhost:5000/auth/socials', {
+  return fetch(`${API_URL}/auth/socials`, {
     method: 'POST',
     credentials: 'include',
     headers: {
