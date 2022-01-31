@@ -73,4 +73,5 @@ app.use('/items', require('./routes/item.ts'));
 // Collection Routes
 app.use('/collections', require('./routes/collections.ts'));
 
-app.listen(5000, () => console.log('Server running'));
+const port = process.env.PORT || 5000
+app.listen(port, () => console.log('Server running'));

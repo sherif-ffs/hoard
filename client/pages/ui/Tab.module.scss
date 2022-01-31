@@ -13,10 +13,10 @@
   cursor: pointer;
   border-radius: $border-radius;
   &.dark {
-    background-color: $new-gray;
-    border: 1px solid darken($new-gray, 15%);
+    border: 1px solid darken($medium-gray, 25%);
+    background-color: #567b94;
     color: $light-gray;
-    font-weight: 400;
+    font-weight: 500;
     &.inactive {
       color: black;
       @media (hover: hover) {
@@ -27,7 +27,7 @@
     }
     @media (hover: hover) {
       &:hover {
-        background-color: darken($new-gray, 5%);
+        background-color: darken(#567b94, 5%);
       }
     }
   }
