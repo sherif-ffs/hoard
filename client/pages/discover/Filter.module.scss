@@ -169,12 +169,11 @@
       }
     }
     &.cta {
-      <<<<<<< HEAD border: 1px solid darken($new-gray, 15%);
       background-color: $new-gray;
       color: $light-gray;
-      =======border: 1px solid $medium-gray;
+      border: 1px solid $medium-gray;
       background-color: #567b94;
-      >>>>>>>d4130ae6925b9e8e2c485f82cc3c6a96f5e320a9 transition: 400ms;
+      transition: 400ms;
       color: $light-gray;
       @media (hover: hover) {
         &:hover {
