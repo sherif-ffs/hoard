@@ -90,7 +90,7 @@ const CollectionsPanelPill = (props: Props) => {
         </span>
       )}
       {includes && <span style={{ marginRight: '5px' }}>&#10003;</span>}
-      <span>{collection.title}</span>
+      <span>{collection && collection.title}</span>
       {includes && <span style={{ marginLeft: '5px' }}>&#10003;</span>}
     </button>
   );

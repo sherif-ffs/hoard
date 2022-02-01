@@ -56,7 +56,7 @@ const NewCollectionCard = (props: Props) => {
             {tags.map((tag, i) => (
               <li key={tag}>
                 {tag}
-                {i !== tags.length - 1 ? ',' : null}
+                {i !== (tags && tags.length - 1) ? ',' : null}
               </li>
             ))}
           </ul>

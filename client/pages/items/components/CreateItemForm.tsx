@@ -28,7 +28,9 @@ const CreateItemForm = () => {
   const [creationSuccess, setCreationSuccess] = useState(false);
 
   const response = user && user._id && loadMyCollections(user._id);
-  const { collections: myCollections, status, error } = response;
+  const { status, error } = response;
+
+  const myCollections = response && response.collections;
 
   if (status === 'loading') {
     return <Loading copy="Loading collections..." />;

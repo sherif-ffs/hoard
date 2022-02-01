@@ -34,7 +34,7 @@ const CollectionCard = (props: Props) => {
         </div>
         <div className={styles.text}>
           <h3>{title}</h3>
-          <span>{items.length} items</span>
+          <span>{items && items.length} items</span>
         </div>
       </article>
     </Link>
