@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { fetchUserById } from '../api/AuthApi';
+import { fetchUserById } from '../../../api/AuthApi';
 
 const getUserByID = async (id: string) => {
   const res = await fetchUserById(id);

@@ -1,4 +1,4 @@
-import { API_URL } from '../../../constants/ApiEndpoint';
+import { API_URL } from '../constants/ApiEndpoint';
 
 // Create Item
 export function createItem(item: any) {

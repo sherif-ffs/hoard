@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { fetchItemCount } from '../api/ItemApi';
+import { fetchItemCount } from '../../../api/ItemApi';
 
 const getItemCount = async () => {
   const res = await fetchItemCount();

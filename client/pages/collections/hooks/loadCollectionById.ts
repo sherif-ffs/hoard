@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { fetchCollectionsById } from '../api/CollectionsApi';
+import { fetchCollectionsById } from '../../../api/CollectionsApi';
 
 const getCollectionsById = async (id: string) => {
   const res = await fetchCollectionsById(id);

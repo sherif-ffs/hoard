@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import toast from 'react-hot-toast';
 
-import { handleUpdateSocials } from '../auth/api/AuthApi';
+import { handleUpdateSocials } from '../../api/AuthApi';
 import Modal from '../ui/Modal';
 import Mask from '../ui/Mask';
 

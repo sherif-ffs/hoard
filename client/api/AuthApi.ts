@@ -1,4 +1,4 @@
-import { API_URL } from '../../../constants/ApiEndpoint';
+import { API_URL } from '../constants/ApiEndpoint';
 
 // Login User
 export function loginUser(email: string, password: string) {

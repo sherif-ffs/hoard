@@ -5,7 +5,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 
 import Button from './ui/Button';
-import { registerUser } from './auth/api/AuthApi';
+import { registerUser } from '../api/AuthApi';
 
 import styles from './auth/components/Form.module.scss';
 

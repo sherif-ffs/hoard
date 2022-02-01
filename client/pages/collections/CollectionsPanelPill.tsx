@@ -6,7 +6,7 @@ import { useAppContext } from '../../contexts/AppContext';
 import {
   addItemToCollection as add,
   removeItemFromCollection as remove,
-} from './api/CollectionsApi';
+} from '../../api/CollectionsApi';
 import loadItemStatus from './hooks/loadItemStatus';
 
 import styles from './CollectionsPanel.module.scss';

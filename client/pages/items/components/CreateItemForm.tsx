@@ -9,7 +9,7 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 import { useAppContext } from '../../../contexts/AppContext';
 import Loading from '../../ui/Loading';
 import Error from '../../ui/Error';
-import { createItem } from '../api/ItemApi';
+import { createItem } from '../../../api/ItemApi';
 
 import styles from './CreateContentForm.module.scss';
 

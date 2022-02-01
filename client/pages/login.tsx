@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 
 import { useAuthContext } from '../contexts/AuthContext';
-import { loginUser } from './auth/api/AuthApi';
+import { loginUser } from '../api/AuthApi';
 import Button from './ui/Button';
 
 import styles from './auth/components/Form.module.scss';
