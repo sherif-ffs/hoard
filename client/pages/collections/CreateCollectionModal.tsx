@@ -1,4 +1,4 @@
-import { useAppContext } from '../contexts/AppContext';
+import { useAppContext } from '../../contexts/AppContext';
 
 import Mask from '../ui/Mask';
 import Modal from '../ui/Modal';

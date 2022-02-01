@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 import CollectionCard from '../collections/CollectionCard';
-import { CollectionInterface } from '../Interfaces/CollectionInterface';
+import { CollectionInterface } from '../../Interfaces/CollectionInterface';
 import loadMyCollections from '../collections/hooks/loadCollectionById';
 import NothingFound from '../ui/NothingFound';
 import Loading from '../ui/Loading';

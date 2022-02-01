@@ -1,6 +1,6 @@
-import { CollectionInterface } from '../../Interfaces/CollectionInterface';
-import { ItemInterface } from '../../Interfaces/ItemInterface';
-import { API_URL } from '../../constants/ApiEndpoint';
+import { CollectionInterface } from '../../../Interfaces/CollectionInterface';
+import { ItemInterface } from '../../../Interfaces/ItemInterface';
+import { API_URL } from '../../../constants/ApiEndpoint';
 
 // Create collection
 export function createCollection(collection: CollectionInterface) {

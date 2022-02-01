@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 
-import { API_URL } from '../constants/ApiEndpoint';
-import { ItemInterface } from '../Interfaces/ItemInterface';
+import { API_URL } from '../../constants/ApiEndpoint';
+import { ItemInterface } from '../../Interfaces/ItemInterface';
 import styles from './CollectionCard.module.scss';
 
 interface Props {

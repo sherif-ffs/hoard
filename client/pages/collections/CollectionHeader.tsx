@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import toast from 'react-hot-toast';
 
-import { useAuthContext } from '../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { deleteCollection } from './api/CollectionsApi';
 
 import buttonStyles from '../../styles/button.module.scss';

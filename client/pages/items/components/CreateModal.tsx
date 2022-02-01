@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useAppContext } from '../../contexts/AppContext';
+import { useAppContext } from '../../../contexts/AppContext';
 import CreateCollectionForm from '../../collections/CreateCollectionForm';
 import Modal from '../../ui/Modal';
 import Tabs from '../../ui/Tabs';

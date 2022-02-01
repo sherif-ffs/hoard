@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import { Navigation } from '../navigation/components/Navigation';
+import Navigation from '../navigation/components/Navigation';
 import Tabs from '../ui/Tabs';
 import loadUserById from '../auth/hooks/loadUserById';
-import { useAuthContext } from '../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 import ProfileCollections from './ProfileCollections';
 import EditModal from './EditModal';
 import ProfileItems from './ProfileItems';

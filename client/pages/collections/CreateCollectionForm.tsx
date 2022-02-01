@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import Router from 'next/router';
 import toast from 'react-hot-toast';
 
-import { TagOption, TagOptions } from '../constants/Tags';
+import { TagOption, TagOptions } from '../../constants/Tags';
 import MultiSelect from '../ui/MultiSelect';
-import { useAuthContext } from '../contexts/AuthContext';
-import { useAppContext } from '../contexts/AppContext';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { useAppContext } from '../../contexts/AppContext';
 import { createCollection } from './api/CollectionsApi';
 
 import styles from '../items/components/CreateContentForm.module.scss';

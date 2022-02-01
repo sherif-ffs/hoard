@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { useAppContext } from './contexts/AppContext';
+import { useAppContext } from '../contexts/AppContext';
 import loadAllCollections from './collections/hooks/loadAllCollections';
 import NewCollectionCard from './collections/NewCollectionCard';
 import NothingFound from './ui/NothingFound';

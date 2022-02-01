@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 
-import { Navigation } from '../navigation/components/Navigation';
+import Navigation from '../navigation/components/Navigation';
 import ItemCard from '../items/components/ItemCard';
-import { ItemInterface } from '../Interfaces/ItemInterface';
+import { ItemInterface } from '../../Interfaces/ItemInterface';
 import NothingFound from '../ui/NothingFound';
-import { useAppContext } from '../contexts/AppContext';
+import { useAppContext } from '../../contexts/AppContext';
 import Loading from '../ui/Loading';
 import CollectionHeader from './CollectionHeader';
 import loadCollectionByCollectionID from './hooks/loadCollectionByCollectionID';

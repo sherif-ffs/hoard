@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { useAppContext } from './contexts/AppContext';
-import { Navigation } from './navigation/components/Navigation';
+import { useAppContext } from '../contexts/AppContext';
+import Navigation from './navigation/components/Navigation';
 import Items from './items/components/Items';
 import Collections from './collections';
 import Filters from './discover/Filter';

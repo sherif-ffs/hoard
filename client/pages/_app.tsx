@@ -2,8 +2,8 @@ import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Toaster } from 'react-hot-toast';
 
-import { AppContextProvider } from './contexts/AppContext';
-import { AuthContextProvider } from './contexts/AuthContext';
+import { AppContextProvider } from '../contexts/AppContext';
+import { AuthContextProvider } from '../contexts/AuthContext';
 import ItemPanel from './items/components/ItemPanel/ItemPanel';
 import CreateCollectionModal from './collections/CreateCollectionModal';
 import CollectionsPanel from './collections/CollectionsPanel';

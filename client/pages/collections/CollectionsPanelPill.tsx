@@ -2,7 +2,7 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import toast from 'react-hot-toast';
 
-import { useAppContext } from '../contexts/AppContext';
+import { useAppContext } from '../../contexts/AppContext';
 import {
   addItemToCollection as add,
   removeItemFromCollection as remove,

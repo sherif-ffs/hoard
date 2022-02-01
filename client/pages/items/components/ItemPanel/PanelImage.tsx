@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import classNames from 'classnames';
 
-import { API_URL } from '../../../constants/ApiEndpoint';
+import { API_URL } from '../../../../constants/ApiEndpoint';
 
 import styles from './PanelImage.module.scss';
 

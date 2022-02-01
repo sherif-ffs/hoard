@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import Router from 'next/router';
 
-import { useAuthContext } from './contexts/AuthContext';
+import { useAuthContext } from '../contexts/AuthContext';
 import { loginUser } from './auth/api/AuthApi';
 import Button from './ui/Button';
 

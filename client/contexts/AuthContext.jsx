@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { checkUserAuthentication } from '../auth/api/AuthApi';
+import { checkUserAuthentication } from '../pages/auth/api/AuthApi';
 
 const AuthContext = createContext();
 

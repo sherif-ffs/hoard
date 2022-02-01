@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 
-import { TagOptions } from '../constants/Tags';
+import { TagOptions } from '../../constants/Tags';
 
 import styles from './Filter.module.scss';
 
