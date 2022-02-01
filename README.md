@@ -89,7 +89,7 @@
 - [x] test error pages
 - [x] incorporate toasts for alerts...
 
-# CI/CD
+# Hosting
 
-- [ ] choose where to host
-- [ ] set up stuff
+- [x] Host Server on heroku
+- [x] Host Client on Vercel
