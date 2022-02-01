@@ -18,7 +18,6 @@ const PanelHeader = () => {
   const { handleSetItemToCollect, selectedItem, handleCloseItemPanel } =
     useAppContext();
   const { user, authenticated } = useAuthContext();
-  // const { name, url, userId, tags, _id } = selectedItem && selectedItem;
 
   const name = selectedItem && selectedItem.name;
   const url = selectedItem && selectedItem.url;
@@ -29,8 +28,6 @@ const PanelHeader = () => {
   const [limit, setLimit] = useState(5);
 
   const response = loadUserById(userId);
-
-  // const { user: author, status, error } = response;
 
   const author = response && response.user;
   const status = response && response.status;
@@ -72,7 +69,7 @@ const PanelHeader = () => {
     <>
       <header className={styles.header}>
         <div className={styles.details}>
-          <Link href={url}>
+          <Link href={url ? url : ''}>
             <a target="_blank">
               <h1>{name}</h1>
             </a>
