@@ -13,7 +13,9 @@ import styles from './MoreByUser.module.scss';
 const MoreByUser = () => {
   const { handleSetSelectedItem, selectedItem, setItemPanelIsOpen } =
     useAppContext();
-  const { userId, author } = selectedItem && selectedItem;
+
+  const userId = selectedItem && selectedItem.userId;
+  const author = selectedItem && selectedItem.author;
 
   const response = loadMoreByUserID(userId);
   const { items, error, status } = response;
@@ -30,7 +32,7 @@ const MoreByUser = () => {
     Router.push(`/profile/${userId}`);
   };
 
-  if (!(filteredItems.length > 0)) return null;
+  if (!(filteredItems && filteredItems.length > 0)) return null;
 
   return (
     <div className={styles.wrapper}>

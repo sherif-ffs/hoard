@@ -11,18 +11,21 @@ import styles from './RelatedItems.module.scss';
 
 const RelatedItems = () => {
   const { handleSetSelectedItem, selectedItem } = useAppContext();
-  const { tags } = selectedItem && selectedItem;
+
+  const tags = selectedItem && selectedItem.tags;
 
   if (!tags || tags.length === 0) return null;
 
   const response = loadItemsByTag(tags);
-  const { items, error, status } = response;
+
+  const items = response && response.items;
+  const error = response && response.error;
+  const status = response && response.status;
 
   if (status === 'loading') return <Loading copy="Loading related items..." />;
 
-  const filteredItems = items.filter(
-    (i: ItemInterface) => i._id !== selectedItem._id
-  );
+  const filteredItems =
+    items && items.filter((i: ItemInterface) => i._id !== selectedItem._id);
 
   if (!(filteredItems.length >= 1)) return null;
 

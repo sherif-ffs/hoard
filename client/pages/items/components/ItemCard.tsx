@@ -12,7 +12,11 @@ type Props = {
 };
 
 const Item = (props: Props) => {
-  const { name, imageID, tags } = props && props.item;
+  // const { name, imageID, tags } = props && props.item;
+
+  const name = props && props.item && props.item.name;
+  const imageID = props && props.item && props.item.imageID;
+  const tags = props && props.item && props.item.tags;
 
   const { handleSetSelectedItem } = useAppContext();
 

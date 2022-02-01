@@ -53,12 +53,13 @@ const NewCollectionCard = (props: Props) => {
             <strong>{items && items.length}</strong> Items
           </h4>
           <ul>
-            {tags.map((tag, i) => (
-              <li key={tag}>
-                {tag}
-                {i !== (tags && tags.length - 1) ? ',' : null}
-              </li>
-            ))}
+            {tags &&
+              tags.map((tag, i) => (
+                <li key={tag}>
+                  {tag}
+                  {i !== (tags && tags.length - 1) ? ',' : null}
+                </li>
+              ))}
           </ul>
         </div>
         <div className={styles.thumbnails}>
