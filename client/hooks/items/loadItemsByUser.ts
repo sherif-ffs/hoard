@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { fetchItemsByUserID } from '../../../api/ItemApi';
+import { fetchItemsByUserID } from '../../api/ItemApi';
 
 const getItemsByUser = async (id: string) => {
   const res = await fetchItemsByUserID(id);

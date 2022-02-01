@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import loadItemCount from '../items/hooks/loadItemCount';
-import loadCollectionsCount from '../collections/hooks/loadCollectionsCount';
+import loadItemCount from '../../hooks/items/loadItemCount';
+import loadCollectionsCount from '../../hooks/collections/loadCollectionsCount';
 import styles from './Footer.module.scss';
 
 const Footer = () => {

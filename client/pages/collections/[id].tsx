@@ -8,7 +8,7 @@ import NothingFound from '../ui/NothingFound';
 import { useAppContext } from '../../contexts/AppContext';
 import Loading from '../ui/Loading';
 import CollectionHeader from './CollectionHeader';
-import loadCollectionByCollectionID from './hooks/loadCollectionByCollectionID';
+import loadCollectionByCollectionID from '../../hooks/collections/loadCollectionByCollectionID';
 import Error from '../ui/Error';
 
 import buttonStyles from '../../styles/button.module.scss';

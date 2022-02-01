@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 
-import { fetchAllItems } from '../../api/ItemApi';
+import { fetchAllItems } from '../api/ItemApi';
 
 const loadAllItems = async (
   limit: number,

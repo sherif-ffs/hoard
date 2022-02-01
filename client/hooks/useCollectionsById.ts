@@ -1,4 +1,4 @@
-import { fetchCollectionsById } from '../../api/CollectionsApi';
+import { fetchCollectionsById } from '../api/CollectionsApi';
 import { useQuery } from 'react-query';
 
 const loadMyCollections = async (id: string) => {

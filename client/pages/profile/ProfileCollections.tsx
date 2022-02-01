@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 import CollectionCard from '../collections/CollectionCard';
 import { CollectionInterface } from '../../Interfaces/CollectionInterface';
-import loadMyCollections from '../collections/hooks/loadCollectionById';
+import loadMyCollections from '../../hooks/collections/loadCollectionById';
 import NothingFound from '../ui/NothingFound';
 import Loading from '../ui/Loading';
 import Error from '../ui/Error';

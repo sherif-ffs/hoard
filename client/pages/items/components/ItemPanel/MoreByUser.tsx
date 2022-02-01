@@ -2,7 +2,7 @@ import Router from 'next/router';
 import classNames from 'classnames';
 
 import { useAppContext } from '../../../../contexts/AppContext';
-import loadMoreByUserID from '../../hooks/loadMoreByUser';
+import loadMoreByUserID from '../../../../hooks/items/loadMoreByUser';
 import { API_URL } from '../../../../constants/ApiEndpoint';
 import { ItemInterface } from '../../../../Interfaces/ItemInterface';
 import Loading from '../../../ui/Loading';

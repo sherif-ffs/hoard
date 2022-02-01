@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { useAuthContext } from '../../contexts/AuthContext';
 import CloseSVG from '../ui/icons/CloseSVG';
 import AddSVG from '../ui/icons/AddSVG';
-import loadMyCollections from '../collections/hooks/loadCollectionById';
+import loadMyCollections from '../../hooks/collections/loadCollectionById';
 import { useAppContext } from '../../contexts/AppContext';
 import CollectionsPanelPill from './CollectionsPanelPill';
 import Loading from '../ui/Loading';

@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { checkIfItemIsInCollection } from '../../../api/CollectionsApi';
+import { checkIfItemIsInCollection } from '../../api/CollectionsApi';
 
 const checkItem = async (itemId: string, collectionId: string) => {
   const res = await checkIfItemIsInCollection(itemId, collectionId);

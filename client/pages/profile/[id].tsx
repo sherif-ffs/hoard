@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import Navigation from '../navigation/components/Navigation';
 import Tabs from '../ui/Tabs';
-import loadUserById from '../auth/hooks/loadUserById';
+import loadUserById from '../../hooks/auth/loadUserById';
 import { useAuthContext } from '../../contexts/AuthContext';
 import ProfileCollections from './ProfileCollections';
 import EditModal from './EditModal';

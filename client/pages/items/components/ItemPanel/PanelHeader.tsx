@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import { deleteItem } from '../../../../api/ItemApi';
 import { useAuthContext } from '../../../../contexts/AuthContext';
 import { useAppContext } from '../../../../contexts/AppContext';
-import loadUserById from '../../../auth/hooks/loadUserById';
+import loadUserById from '../../../../hooks/auth/loadUserById';
 import Loading from '../../../ui/Loading';
 import Error from '../../../ui/Error';
 

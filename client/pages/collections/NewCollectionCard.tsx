@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { API_URL } from '../../constants/ApiEndpoint';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
-import loadUserById from '../auth/hooks/loadUserById';
+import loadUserById from '../../hooks/auth/loadUserById';
 import Loading from '../ui/Loading';
 import Error from '../ui/Error';
 

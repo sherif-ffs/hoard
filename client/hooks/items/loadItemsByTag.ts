@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { fetchItemsByTag } from '../../../api/ItemApi';
+import { fetchItemsByTag } from '../../api/ItemApi';
 
 const getItemsByTag = async (tags: string[]) => {
   const res = await fetchItemsByTag(tags);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
-import useAllItems from '../../hooks/useAllItems';
+import useAllItems from '../../../hooks/useAllItems';
 import ItemCard from './ItemCard';
 import Pagination from '../../ui/Pagination';
 import Loading from '../../ui/Loading';
