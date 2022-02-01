@@ -13,7 +13,7 @@ import styles from './MoreByUser.module.scss';
 const MoreByUser = () => {
   const { handleSetSelectedItem, selectedItem, setItemPanelIsOpen } =
     useAppContext();
-  const { userId, author } = selectedItem;
+  const { userId, author } = selectedItem && selectedItem;
 
   const response = loadMoreByUserID(userId);
   const { items, error, status } = response;

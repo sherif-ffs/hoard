@@ -11,7 +11,7 @@ import styles from './RelatedItems.module.scss';
 
 const RelatedItems = () => {
   const { handleSetSelectedItem, selectedItem } = useAppContext();
-  const { tags } = selectedItem;
+  const { tags } = selectedItem && selectedItem;
 
   if (!tags || tags.length === 0) return null;
 

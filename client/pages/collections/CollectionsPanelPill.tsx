@@ -79,7 +79,7 @@ const CollectionsPanelPill = (props: Props) => {
       className={classNames(styles.pill, {
         [styles.selected]: includes,
       })}
-      key={collection._id}
+      key={collection && collection._id}
       onClick={() => toggle(collection._id, includes)}
     >
       {updating && (

@@ -12,7 +12,8 @@ type Props = {
 };
 
 const Item = (props: Props) => {
-  const { name, imageID, tags } = props.item;
+  const { name, imageID, tags } = props && props.item;
+
   const { handleSetSelectedItem } = useAppContext();
 
   const tagLength = tags && tags.length - 4;

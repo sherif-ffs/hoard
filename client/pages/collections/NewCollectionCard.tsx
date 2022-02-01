@@ -50,7 +50,7 @@ const NewCollectionCard = (props: Props) => {
             </Link>
           </h3>
           <h4>
-            <strong>{items.length}</strong> Items
+            <strong>{items && items.length}</strong> Items
           </h4>
           <ul>
             {tags.map((tag, i) => (

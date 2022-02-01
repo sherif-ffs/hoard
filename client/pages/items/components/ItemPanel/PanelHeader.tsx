@@ -18,7 +18,8 @@ const PanelHeader = () => {
   const { handleSetItemToCollect, selectedItem, handleCloseItemPanel } =
     useAppContext();
   const { user, authenticated } = useAuthContext();
-  const { name, url, userId, tags, _id } = selectedItem;
+  const { name, url, userId, tags, _id } = selectedItem && selectedItem;
+
   const [limit, setLimit] = useState(5);
 
   const response = loadUserById(userId);
