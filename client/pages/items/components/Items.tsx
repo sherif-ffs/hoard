@@ -5,7 +5,6 @@ import useAllItems from '../../../hooks/useAllItems';
 import ItemCard from './ItemCard';
 import Pagination from '../../ui/Pagination';
 import Loading from '../../ui/Loading';
-import Error from '../../ui/Error';
 import NothingFound from '../../ui/NothingFound';
 
 import styles from './Items.module.scss';

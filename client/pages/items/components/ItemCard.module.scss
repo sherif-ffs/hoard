@@ -24,6 +24,10 @@
   .imgWrapper {
     width: 100%;
     border-radius: $border-radius;
+    @media all and (max-width: 480px) {
+      height: 92.5%;
+      width: 92.5%;
+    }
   }
   .background {
     height: 100%;
@@ -37,6 +41,10 @@
     right: 0;
     left: 0;
     transition: 400ms;
+    @media all and (max-width: 480px) {
+      height: 92.5%;
+      width: 92.5%;
+    }
     &.one {
       z-index: 1;
       transform: rotate(-2deg);
@@ -73,6 +81,10 @@
   text-align: center;
   justify-content: center;
   margin: 1em auto;
+  @media all and (max-width: 480px) {
+    width: 85%;
+    margin: 0.25em 1em;
+  }
   .tags {
     display: flex;
     width: min-content;
