@@ -35,8 +35,16 @@ const NewCollectionCard = (props: Props) => {
 
   const authorName = user && user[0] && user[0].name;
 
-  const browserWidth = window.innerWidth;
-  const itemsToShow = browserWidth < 500 ? 2 : 4;
+  let itemsToShow;
+
+  if (typeof window !== 'undefined') {
+    // Client-side-only code
+    const browserWidth = window && window.innerWidth;
+    itemsToShow = browserWidth && browserWidth < 500 ? 2 : 4;
+  }
+
+  // const browserWidth = window && window.innerWidth;
+  // const itemsToShow = browserWidth < 500 ? 2 : 4;
 
   const pluralize = (num: number) => {
     if (num > 1) {
@@ -87,7 +95,7 @@ const NewCollectionCard = (props: Props) => {
                   <img src={`${API_URL}/items/images/${item.imageID}`} />
                 </div>
               ))}
-          {items.length > itemsToShow && (
+          {items && itemsToShow && items.length > itemsToShow && (
             <Link href={`/collections/${id}`}>
               <div className={styles.moreItems}>
                 <h1>
