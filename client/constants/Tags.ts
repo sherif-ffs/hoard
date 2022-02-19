@@ -19,6 +19,8 @@ export const TagOptions: TagOption[] = [
   { value: 'packages', label: 'packages', icon: null },
   { value: 'colors', label: 'colors', icon: null },
   { value: 'blogs', label: 'blogs', icon: null },
+  { value: 'web3', label: 'web3', icon: null },
+  { value: 'crypto', label: 'crypto', icon: null },
   { value: 'github repository', label: 'github repository', icon: null },
   { value: 'video', label: 'video', icon: null },
   { value: 'data visualization', label: 'data visualization', icon: null },

@@ -5,18 +5,17 @@ const Custom404 = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.text}>
-        <h1>4</h1>
-        <div className={styles.plane}>
+        {/* <h1>4</h1> */}
+        {/* <div className={styles.plane}> */}
         <Image
-            src={'/../public/plane.png'}
-            height="300px"
-            width="300px"
+            src={'/../public/hoard.jpeg'}
+            height="700px"
+            width="700px"
           />
-        </div>
-
-        <h1>4</h1>
+        {/* </div> */}
+{/*  */}
       </div>
-      <h3>this page must be on vacation this week...</h3>
+      <h1>404</h1>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import Router from 'next/router';
-import Image from 'next/image';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useAppContext } from '../../../contexts/AppContext';
@@ -22,7 +21,7 @@ const Navigation = () => {
 
     if (!error && status === 'ok' && !data.authenticated) {
       checkAuth();
-      Router.push('/discover');
+      Router.push('/');
     }
   };
 
@@ -38,7 +37,7 @@ const Navigation = () => {
                 : () => alert('Log in')
             }
           >
-            Contribute
+            Gather
           </button>
           <Link href={`/profile/${user._id}`}>
             <button
@@ -73,12 +72,12 @@ const Navigation = () => {
   };
 
   const sendToItems = () => {
-    Router.push('/discover');
+    Router.push('/');
     setDiscoverView('items');
   };
 
   const sendToCollections = () => {
-    Router.push('/discover');
+    Router.push('/');
     setDiscoverView('collections');
   };
 
@@ -86,14 +85,14 @@ const Navigation = () => {
     <nav className={styles.navigation}>
       <div className={styles.content}>
         <div className={styles.left}>
-          <div className={styles.logo} onClick={sendToItems}>
-            <Image src={'/../public/backpack.png'} height="50px" width="50px" />
-          </div>
+          <h3 className={styles.logo} onClick={sendToItems}>
+            Hoard
+          </h3>
           <button
             className={classNames(styles.button, styles.secondary)}
             onClick={sendToItems}
           >
-            Items
+            Webpages
           </button>
           <button
             className={classNames(styles.button, styles.secondary)}

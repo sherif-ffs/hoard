@@ -24,7 +24,7 @@ const Profile = () => {
   const { user: loggedInUser } = useAuthContext();
   const [activeTab, setActiveTab] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const tabCopy = ['Items', 'Collections'];
+  const tabCopy = ['Webpages', 'Collections'];
 
   const response = id && loadUserById(id.toString());
   const { user, status, error }: any = response;

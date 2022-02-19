@@ -178,7 +178,7 @@ const CreateItemForm = () => {
           {creating ? (
             <span>Scraping Url...</span>
           ) : (
-            <span>{creationSuccess ? 'Item Created!' : 'Contribute'}</span>
+            <span>{creationSuccess ? 'Item Saved!' : 'Gather'}</span>
           )}
         </button>
       </div>

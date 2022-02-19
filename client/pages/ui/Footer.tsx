@@ -16,11 +16,11 @@ const Footer = () => {
       <footer className={styles.footer}>
         <div className={styles.content}>
           <div className={classNames(styles.box, styles.items)}>
-            <h3>Items contributed</h3>
+            <h3>Items Gathered</h3>
             <h1>{count}</h1>
           </div>
           <div className={classNames(styles.box, styles.collections)}>
-            <h3>Collections created</h3>
+            <h3>Collections Created</h3>
             <h1>{secondCount}</h1>
           </div>
         </div>
