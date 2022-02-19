@@ -37,7 +37,7 @@ const Navigation = () => {
                 : () => alert('Log in')
             }
           >
-            Gather
+            Create
           </button>
           <Link href={`/profile/${user._id}`}>
             <button

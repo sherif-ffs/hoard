@@ -12,7 +12,7 @@ const CreateModal = () => {
   const { createModalIsOpen, closeCreateModal, closeCreateCollectionModal } =
     useAppContext();
   const [activeTab, setActiveTab] = useState(1);
-  const tabCopy = ['Webpage', 'Collection'];
+  const tabCopy = ['Item', 'Collection'];
 
   return (
     <Mask isOpen={createModalIsOpen} close={closeCreateModal}>

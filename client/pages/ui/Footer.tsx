@@ -16,7 +16,7 @@ const Footer = () => {
       <footer className={styles.footer}>
         <div className={styles.content}>
           <div className={classNames(styles.box, styles.items)}>
-            <h3>Items Gathered</h3>
+            <h3>Items Created</h3>
             <h1>{count}</h1>
           </div>
           <div className={classNames(styles.box, styles.collections)}>
