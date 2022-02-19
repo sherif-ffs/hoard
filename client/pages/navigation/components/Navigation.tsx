@@ -92,7 +92,7 @@ const Navigation = () => {
             className={classNames(styles.button, styles.secondary)}
             onClick={sendToItems}
           >
-            Webpages
+            Items
           </button>
           <button
             className={classNames(styles.button, styles.secondary)}

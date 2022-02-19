@@ -69,7 +69,7 @@ const NewCollectionCard = (props: Props) => {
             </Link>
           </h3>
           <h4>
-            <strong>{items && items.length}</strong> Webpages
+            <strong>{items && items.length}</strong> Items
           </h4>
           <ul>
             {tags &&
@@ -99,7 +99,7 @@ const NewCollectionCard = (props: Props) => {
             <Link href={`/collections/${id}`}>
               <div className={styles.moreItems}>
                 <h1>
-                  {items.length - itemsToShow} More Webpages
+                  {items.length - itemsToShow} More Item
                   {pluralize(items.length - itemsToShow)}
                 </h1>
               </div>
