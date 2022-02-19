@@ -8,8 +8,8 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-  height: 175px;
-  padding: 0.5em 0;
+  height: 225px;
+  padding: 0.5em 1em;
   margin: 0.5em 0;
   width: 100%;
   @media all and (max-width: 480px) {
@@ -75,6 +75,7 @@
     overflow-x: scroll;
     gap: 1em;
     flex: 5;
+    overflow: hidden;
     scrollbar-width: none;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch;
@@ -88,10 +89,16 @@
       width: 0px;
     }
     .thumbnail {
-      display: flex;
-      flex: 1;
+      height: 225px;
+      width: 20%;
+      @media all and (max-width: 480px) {
+        height: 250px;
+        width: 40%;
+      }
       img {
-        object-fit: contain;
+        object-fit: cover;
+        height: 90%;
+        width: 100%;
         border: 1px solid $medium-gray;
         border-radius: 0.5em;
         cursor: pointer;
@@ -99,6 +106,25 @@
         @media(hover: hover) {
           &:hover {
             border: 1px solid darken($medium-gray, 10%);
+          }
+        }
+      }
+    }
+    .moreItems {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      margin-left: 2.5%;
+      text-align: center;
+      h1 {
+        font-size: 1.25em;
+        font-weight: 400;
+        @media(hover: hover) {
+          &:hover {
+            text-decoration: underline;
+            transition: 400ms;
+            cursor: pointer;
           }
         }
       }

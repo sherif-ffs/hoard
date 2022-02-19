@@ -16,7 +16,7 @@ interface Props {
 
 const Collections = (props: Props) => {
   const { handleSetSelectedItem } = useAppContext();
-  const [limit] = useState(15);
+  const [limit] = useState(50);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
 

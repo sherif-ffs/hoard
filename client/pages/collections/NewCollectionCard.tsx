@@ -35,6 +35,17 @@ const NewCollectionCard = (props: Props) => {
 
   const authorName = user && user[0] && user[0].name;
 
+  const browserWidth = window.innerWidth;
+  const itemsToShow = browserWidth < 500 ? 2 : 4;
+
+  const pluralize = (num: number) => {
+    if (num > 1) {
+      return 's';
+    }
+
+    return null;
+  };
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -65,15 +76,27 @@ const NewCollectionCard = (props: Props) => {
         <div className={styles.thumbnails}>
           {items &&
             !!items.length &&
-            items.slice(0, 15).map((item: ItemInterface, i: number) => (
-              <div
-                key={i}
-                className={styles.thumbnail}
-                onClick={() => handleSetSelectedItem(item)}
-              >
-                <img src={`${API_URL}/items/images/${item.imageID}`} />
+            items
+              .slice(0, itemsToShow)
+              .map((item: ItemInterface, i: number) => (
+                <div
+                  key={i}
+                  className={styles.thumbnail}
+                  onClick={() => handleSetSelectedItem(item)}
+                >
+                  <img src={`${API_URL}/items/images/${item.imageID}`} />
+                </div>
+              ))}
+          {items.length > itemsToShow && (
+            <Link href={`/collections/${id}`}>
+              <div className={styles.moreItems}>
+                <h1>
+                  {items.length - itemsToShow} More Item
+                  {pluralize(items.length - itemsToShow)}
+                </h1>
               </div>
-            ))}
+            </Link>
+          )}
         </div>
       </div>
       <div className={styles.border} />

@@ -88,6 +88,9 @@
 - [x] collections panel issue?
 - [x] test error pages
 - [x] incorporate toasts for alerts...
+- [ ] fix collections view...
+- [ ] handle / route
+- [ ] load logo/favicon/title
 
 # Hosting
 

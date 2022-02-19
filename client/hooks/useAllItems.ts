@@ -16,7 +16,9 @@ export default function useAllItems(
   offset: number,
   filterList: string[]
 ) {
-  return useQuery(['items', limit, offset, filterList], () =>
-    loadAllItems(limit, offset, filterList)
+  return useQuery(
+    ['items', limit, offset, filterList],
+    () => loadAllItems(limit, offset, filterList),
+    { keepPreviousData: true }
   );
 }

@@ -14,7 +14,7 @@ interface Props {
 }
 const Items = (props: Props) => {
   const { user } = useAuthContext();
-  const [limit] = useState(10);
+  const [limit] = useState(25);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
 
