@@ -10,3 +10,5 @@ tools
 - amazon s3 for images
 - puppeter for scraping
 - mongodb
+
+serverside stuff => https://github.com/sherif-ffs/hoard-backend
