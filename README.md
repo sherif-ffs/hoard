@@ -1,98 +1,12 @@
-# Server/DB
+# Hoard
 
-- [x] signup
-- [x] login
-- [x] authentication
-- [x] logout
-- [x] clean up files
-- [x] update schemas
-- [x] create items
-- [x] load all items
-- [x] delete item
-- [x] add tags
-- [x] scrape image based on url
-- [x] remove item from collection when deleting item
-- [x] add collections
-- [x] create collections from browser
-- [x] upload images to S3
-- [x] read images from S3
-- [x] return all collections
-- [x] add item to collection from panel
-- [x] remove item from collection from panel
-- [x] scrape title/details of URL
-- [x] check if item exists in collection from pill component
-- [x] add socials
-- [x] make sure remove item from collection works
+website to collect(hoard) and share websites I find interesting/cool. 
 
-# Client
-
-- [x] set up eslint
-- [x] set up stylelint
-- [x] organize files
-- [x] move apis to separate folder
-- [x] react query
-- [x] persist global state
-- [x] set up SCSS
-- [x] create items
-- [x] load all items
-- [x] make item component
-- [x] delete item
-- [x] fix auth
-- [x] start user flow
-- [x] add tags
-- [x] render images
-- [x] add collections
-- [x] cleanup fetches
-- [x] create collections from browser
-- [x] read images from S3
-- [x] render view for collections
-- [x] fake like on panel
-- [x] clean up data design for collections
-- [x] style collections panel
-- [x] restyle form
-- [x] make item panel
-- [x] related items
-- [x] make item panel responsive
-- [x] make add to collections panel work again
-- [x] add item panel to items in collections view
-- [x] move create collections modal to collections view
-- [x] make navbar
-- [x] hide stuff behind login wall
-- [x] make forms look better
-- [x] loading states
-- [x] style collections view
-- [x] profile hover menu
-- [x] pagination
-- [x] filtering
-- [x] style profile page
-- [x] error handling (404, 500, error boundary)
-- [x] chagne text to say collect
-- [x] page routes
-- [x] move appWrapper to contexts
-- [x] rename components to ui
-- [x] colors
-- [x] item panel mobile
-- [x] profile header styles
-- [x] filtering
-- [x] font
-- [x] loading states
-- [x] new collection modal issue
-- [x] resolve TS warnings
-- [x] make footer
-- [x] create multiselect
-- [x] make button styles
-- [x] form validation
-- [x] filter collections
-- [x] add socials to profile
-- [x] bug on profile refresh
-- [x] collections panel issue?
-- [x] test error pages
-- [x] incorporate toasts for alerts...
-- [x] fix collections view...
-- [ ] handle / route
-- [ ] load logo/favicon/title
-
-# Hosting
-
-- [x] Host Server on heroku
-- [x] Host Client on Vercel
+tools
+- next.js
+- scss
+- typescript
+- node
+- amazon s3 for images
+- puppeter for scraping
+- mongodb
