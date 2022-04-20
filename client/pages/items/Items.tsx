@@ -16,7 +16,7 @@ const Items = (props: Props) => {
   const { user } = useAuthContext();
   const [limit] = useState(25);
   const [page, setPage] = useState(0);
-  const [itemsToRender, setItemsToRender] = useState([]);
+  const [itemsToRender, setItemsToRender] = useState<any>([]);
   const { ref, inView } = useInView();
 
   const { data, error, status } = useAllItems(
@@ -70,7 +70,7 @@ const Items = (props: Props) => {
         {!itemsToRender && <NothingFound />}
 
         {itemsToRender &&
-          itemsToRender.map((item: any, i) => {
+          itemsToRender.map((item: any, i: number) => {
             const isMyItem = user && user._id === item.userId;
             const isPublic = !item.isPrivate;
             if (isPublic || isMyItem) {
