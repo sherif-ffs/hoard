@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 import loadItemsByUserID from '../../hooks/items/loadItemsByUser';
-import ItemCard from '../items/components/ItemCard';
+import ItemCard from '../items/ItemCard';
 import NothingFound from '../ui/NothingFound';
 import Loading from '../ui/Loading';
 import Error from '../ui/Error';

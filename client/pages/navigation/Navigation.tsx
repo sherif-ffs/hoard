@@ -2,11 +2,11 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import Router from 'next/router';
 
-import { useAuthContext } from '../../../contexts/AuthContext';
-import { useAppContext } from '../../../contexts/AppContext';
-import { logOutUser } from '../../../api/AuthApi';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { useAppContext } from '../../contexts/AppContext';
+import { logOutUser } from '../../api/AuthApi';
 
-import buttonStyles from '../../../styles/button.module.scss';
+import buttonStyles from '../../styles/button.module.scss';
 import styles from './Navigation.module.scss';
 
 const Navigation = () => {
@@ -73,12 +73,10 @@ const Navigation = () => {
 
   const sendToItems = () => {
     Router.push('/');
-    setDiscoverView('items');
   };
 
   const sendToCollections = () => {
-    Router.push('/');
-    setDiscoverView('collections');
+    Router.push('/collections');
   };
 
   return (

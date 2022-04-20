@@ -1,12 +1,12 @@
-@import "../../../styles/input.scss";
-@import "../../../styles/_variables.scss";
-@import "../../../styles/breakpoints.scss";
+@import "../../styles/input.scss";
+@import "../../styles/_variables.scss";
+@import "../../styles/breakpoints.scss";
 .wrapper {
-  width: 85%;
+  width: 95%;
   margin: 3em auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-gap: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.25rem;
   padding-bottom: 4em;
   @media all and (max-width: 480px) {
     margin: 3em auto;

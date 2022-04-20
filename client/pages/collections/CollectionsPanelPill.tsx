@@ -49,7 +49,7 @@ const CollectionsPanelPill = (props: Props) => {
     const res = await add(collectionId, item);
     const data = await res.json();
     const { status } = data;
-    console.log('data: ', data);
+
     if (status === 'ok') {
       setIncludes(true);
       setUpdating(false);
@@ -63,7 +63,7 @@ const CollectionsPanelPill = (props: Props) => {
     setUpdating(true);
     const res = await remove(item, collectionId);
     const data = await res.json();
-    console.log('data: ', data);
+
     const { status } = data;
     if (status === 'ok') {
       setIncludes(false);

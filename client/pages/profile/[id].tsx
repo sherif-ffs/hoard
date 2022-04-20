@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import Navigation from '../navigation/components/Navigation';
+import Navigation from '../navigation/Navigation';
 import Tabs from '../ui/Tabs';
 import loadUserById from '../../hooks/auth/loadUserById';
 import { useAuthContext } from '../../contexts/AuthContext';

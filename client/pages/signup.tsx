@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import Button from './ui/Button';
 import { registerUser } from '../api/AuthApi';
 
-import styles from './auth/components/Form.module.scss';
+import styles from './auth/Form.module.scss';
 
 const Signup: NextPage = () => {
   const [password, setPassword] = useState('');

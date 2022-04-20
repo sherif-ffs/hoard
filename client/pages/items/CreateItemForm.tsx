@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import toast from 'react-hot-toast';
 
-import { TagOption, TagOptions } from '../../../constants/Tags';
-import MultiSelect from '../../ui/MultiSelect';
-import loadMyCollections from '../../../hooks/collections/loadCollectionById';
-import { useAuthContext } from '../../../contexts/AuthContext';
-import { useAppContext } from '../../../contexts/AppContext';
-import Loading from '../../ui/Loading';
-import Error from '../../ui/Error';
-import { createItem } from '../../../api/ItemApi';
+import { TagOption, TagOptions } from '../../constants/Tags';
+import MultiSelect from '../ui/MultiSelect';
+import loadMyCollections from '../../hooks/collections/loadCollectionById';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { useAppContext } from '../../contexts/AppContext';
+import Loading from '../ui/Loading';
+import Error from '../ui/Error';
+import { createItem } from '../../api/ItemApi';
 
 import styles from './CreateContentForm.module.scss';
 

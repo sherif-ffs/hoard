@@ -5,10 +5,10 @@ import Head from 'next/head';
 
 import { AppContextProvider } from '../contexts/AppContext';
 import { AuthContextProvider } from '../contexts/AuthContext';
-import ItemPanel from './items/components/ItemPanel/ItemPanel';
+import ItemPanel from './items/ItemPanel/ItemPanel';
 import CreateCollectionModal from './collections/CreateCollectionModal';
 import CollectionsPanel from './collections/CollectionsPanel';
-import CreateModal from './items/components/CreateModal';
+import CreateModal from './items/CreateModal';
 
 import '../styles/global.css';
 

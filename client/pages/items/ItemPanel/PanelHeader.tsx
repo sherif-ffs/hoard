@@ -4,14 +4,14 @@ import Router from 'next/router';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { deleteItem } from '../../../../api/ItemApi';
-import { useAuthContext } from '../../../../contexts/AuthContext';
-import { useAppContext } from '../../../../contexts/AppContext';
-import loadUserById from '../../../../hooks/auth/loadUserById';
-import Loading from '../../../ui/Loading';
-import Error from '../../../ui/Error';
+import { deleteItem } from '../../../api/ItemApi';
+import { useAuthContext } from '../../../contexts/AuthContext';
+import { useAppContext } from '../../../contexts/AppContext';
+import loadUserById from '../../../hooks/auth/loadUserById';
+import Loading from '../../ui/Loading';
+import Error from '../../ui/Error';
 
-import buttonStyles from '../../../../styles/button.module.scss';
+import buttonStyles from '../../../styles/button.module.scss';
 import styles from './PanelHeader.module.scss';
 
 const PanelHeader = () => {

@@ -7,6 +7,7 @@ import NothingFound from './ui/NothingFound';
 import Pagination from './ui/Pagination';
 import Loading from './ui/Loading';
 import Error from './ui/Error';
+import Navigation from './navigation/Navigation';
 
 import styles from './collections/Collections.module.scss';
 
@@ -16,7 +17,7 @@ interface Props {
 
 const Collections = (props: Props) => {
   const { handleSetSelectedItem } = useAppContext();
-  const [limit] = useState(50);
+  const [limit] = useState(150);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
 
@@ -43,6 +44,10 @@ const Collections = (props: Props) => {
 
   return (
     <>
+      <Navigation />
+      <header className={styles.collectionsHeader}>
+        <h1>Collections</h1>
+      </header>
       <div className={styles.collections}>
         {!collections || (itemCount === 0 && <NothingFound />)}
         {error && <Error />}

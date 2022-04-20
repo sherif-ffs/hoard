@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import classNames from 'classnames';
 
-import CloseSVG from '../../../ui/icons/CloseSVG';
-import Mask from '../../../ui/Mask';
-import { useAppContext } from '../../../../contexts/AppContext';
+import CloseSVG from '../../ui/icons/CloseSVG';
+import Mask from '../../ui/Mask';
+import { useAppContext } from '../../../contexts/AppContext';
 import PanelHeader from './PanelHeader';
 import PanelImage from './PanelImage';
 import MoreByUser from './MoreByUser';

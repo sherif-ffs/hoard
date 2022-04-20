@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 
-import Navigation from '../navigation/components/Navigation';
-import ItemCard from '../items/components/ItemCard';
+import Navigation from '../navigation/Navigation';
+import ItemCard from '../items/ItemCard';
 import { ItemInterface } from '../../Interfaces/ItemInterface';
 import NothingFound from '../ui/NothingFound';
 import { useAppContext } from '../../contexts/AppContext';
@@ -47,6 +47,9 @@ const Collection = () => {
     collection.items.length;
 
   const oneItemView = count === 1;
+
+  const collectionCards = collection && collection.items && collection.items;
+
   return (
     <>
       <Navigation />
@@ -58,9 +61,7 @@ const Collection = () => {
         className={classNames(styles.wrapper, { [styles.one]: oneItemView })}
       >
         {itemsExist ? (
-          collection &&
-          collection.items &&
-          collection.items.map((item: ItemInterface) => {
+          [...collectionCards].reverse().map((item: ItemInterface) => {
             return <ItemCard {...{ item }} key={item._id} />;
           })
         ) : (

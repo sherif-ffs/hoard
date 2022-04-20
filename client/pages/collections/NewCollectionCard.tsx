@@ -86,6 +86,7 @@ const NewCollectionCard = (props: Props) => {
             !!items.length &&
             items
               .slice(0, itemsToShow)
+              .reverse()
               .map((item: ItemInterface, i: number) => (
                 <div
                   key={i}

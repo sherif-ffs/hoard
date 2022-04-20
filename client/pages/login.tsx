@@ -7,7 +7,7 @@ import { useAuthContext } from '../contexts/AuthContext';
 import { loginUser } from '../api/AuthApi';
 import Button from './ui/Button';
 
-import styles from './auth/components/Form.module.scss';
+import styles from './auth/Form.module.scss';
 
 const login: NextPage = () => {
   const [password, setPassword] = useState('');

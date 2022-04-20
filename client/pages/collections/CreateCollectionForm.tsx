@@ -9,7 +9,7 @@ import { useAuthContext } from '../../contexts/AuthContext';
 import { useAppContext } from '../../contexts/AppContext';
 import { createCollection } from '../../api/CollectionsApi';
 
-import styles from '../items/components/CreateContentForm.module.scss';
+import styles from '../items/CreateContentForm.module.scss';
 
 interface Props {
   context: string;

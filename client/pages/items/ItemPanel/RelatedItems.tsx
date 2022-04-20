@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 
-import { API_URL } from '../../../../constants/ApiEndpoint';
-import { ItemInterface } from '../../../../Interfaces/ItemInterface';
-import { useAppContext } from '../../../../contexts/AppContext';
-import loadItemsByTag from '../../../../hooks/items/loadItemsByTag';
-import Loading from '../../../ui/Loading';
-import Error from '../../../ui/Error';
+import { API_URL } from '../../../constants/ApiEndpoint';
+import { ItemInterface } from '../../../Interfaces/ItemInterface';
+import { useAppContext } from '../../../contexts/AppContext';
+import loadItemsByTag from '../../../hooks/items/loadItemsByTag';
+import Loading from '../../ui/Loading';
+import Error from '../../ui/Error';
 
 import styles from './RelatedItems.module.scss';
 
