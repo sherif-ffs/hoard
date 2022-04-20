@@ -35,13 +35,15 @@ const ProfileCollections = (props: Props) => {
         >
           {collections &&
             !!collections.length &&
-            collections.map((collection: CollectionInterface) => {
-              const { title, items } = collection;
-              const id = collection._id;
-              if (title && id && items) {
-                return <CollectionCard {...{ title, items, id }} key={id} />;
-              }
-            })}
+            [...collections]
+              .reverse()
+              .map((collection: CollectionInterface) => {
+                const { title, items } = collection;
+                const id = collection._id;
+                if (title && id && items) {
+                  return <CollectionCard {...{ title, items, id }} key={id} />;
+                }
+              })}
         </div>
       </>
     );

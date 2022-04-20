@@ -18,20 +18,20 @@ const CollectionCard = (props: Props) => {
   return (
     <Link href={`/collections/${id}`}>
       <article>
-        <div className={styles.wrapper}>
-          {firstImage ? (
-            <div className={styles.imgWrapper}>
-              <img
-                src={`${API_URL}/items/images/${firstImage}`}
-                loading="lazy"
-              ></img>
-            </div>
-          ) : null}
-          <div className={classNames(styles.background, styles.one)}></div>
+        {/* <div className={styles.wrapper}> */}
+        {firstImage ? (
+          <div className={styles.imgWrapper}>
+            <img
+              src={`${API_URL}/items/images/${firstImage}`}
+              loading="lazy"
+            ></img>
+          </div>
+        ) : null}
+        {/* <div className={classNames(styles.background, styles.one)}></div>
           <div className={classNames(styles.background, styles.two)}></div>
           <div className={classNames(styles.background, styles.three)}></div>
           <div className={classNames(styles.background, styles.four)}></div>
-        </div>
+        </div> */}
         <div className={styles.text}>
           <h3>{title}</h3>
           <span>{items && items.length} items</span>

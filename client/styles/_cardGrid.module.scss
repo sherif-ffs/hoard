@@ -2,8 +2,8 @@
   width: 100%;
   display: grid;
   margin: 3em auto;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-gap: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 2rem;
   padding-bottom: 4em;
   &.oneItem {
     width: 50%;
