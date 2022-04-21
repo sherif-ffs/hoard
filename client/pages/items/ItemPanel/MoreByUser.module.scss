@@ -37,9 +37,9 @@
 .thumbnails {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   margin-top: 1.5em;
-  grid-gap: 3rem;
+  grid-gap: 1rem;
   .imgWrapper {
     width: 100%;
     position: relative;

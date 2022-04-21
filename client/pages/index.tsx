@@ -17,7 +17,7 @@ const Discover = () => {
   return (
     <>
       <Navigation />
-      <Filters {...{ updateFilters }} />
+      {/* <Filters {...{ updateFilters }} /> */}
       <Items {...{ filterList }} />
       <Footer />
     </>

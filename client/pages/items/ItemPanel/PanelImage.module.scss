@@ -2,24 +2,9 @@
 @import "../../../styles/_variables.scss";
 @import "../../../styles/breakpoints.scss";
 .imageWrapper {
-  margin: 2.5em 0;
-  position: relative;
-  @media(hover: hover) {
-    &:hover .background.one {
-      transform: rotate(-2deg) scale(1.0125);
-    }
-    &:hover .background.two {
-      transform: rotate(2deg) scale(1.0125);
-    }
-    &:hover .background.three {
-      transform: rotate(-3deg) scale(1.0125);
-    }
-    &:hover .background.four {
-      transform: rotate(3deg) scale(1.0125);
-    }
-  }
+  margin: 2.5em auto;
   img {
-    width: 950px;
+    width: 1000px;
     height: auto;
     object-fit: contain;
     border-radius: 0.25em;

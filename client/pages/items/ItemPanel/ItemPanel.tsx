@@ -20,8 +20,7 @@ const ItemDetailsSheet = () => {
     return () => handleCloseItemPanel();
   }, []);
 
-  const { imageID, name, url, userId, author, tags } =
-    selectedItem && selectedItem;
+  const { imageID, url } = selectedItem && selectedItem;
   return (
     <Mask isOpen={itemPanelIsOpen} close={handleCloseItemPanel}>
       <div

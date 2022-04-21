@@ -45,8 +45,8 @@ const RelatedItems = () => {
                 src={`${API_URL}/items/images/${item.imageID}`}
                 onClick={() => handleSetSelectedItem(item)}
               ></img>
-              <div className={classNames(styles.background, styles.one)}></div>
-              <div className={classNames(styles.background, styles.two)}></div>
+              {/* <div className={classNames(styles.background, styles.one)}></div>
+              <div className={classNames(styles.background, styles.two)}></div> */}
             </div>
           ))}
       </div>

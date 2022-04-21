@@ -19,11 +19,9 @@ const Items = (props: Props) => {
   const [itemsToRender, setItemsToRender] = useState<any>([]);
   const { ref, inView } = useInView();
 
-  const { data, error, status } = useAllItems(
-    limit,
-    page * limit,
-    props.filterList
-  );
+  const { filterList } = props;
+
+  const { data, error, status } = useAllItems(limit, page * limit, filterList);
 
   const itemObjects =
     data &&
@@ -34,14 +32,10 @@ const Items = (props: Props) => {
 
   useEffect(() => {
     if (itemObjects) {
-      if (props.filterList && !!props.filterList.length) {
-        setItemsToRender(itemObjects);
-        return;
-      }
       const d = [...itemsToRender, ...itemObjects];
       setItemsToRender(d);
     }
-  }, [itemObjects, props.filterList]);
+  }, [itemObjects]);
 
   const itemCount = data && data.data && data.data.itemCount;
 
@@ -96,13 +90,12 @@ const Items = (props: Props) => {
             margin: 'auto',
             width: 'min-content',
             whiteSpace: 'nowrap',
+            fontWeight: 'normal',
           }}
         >
-          You've seen it all jack!
+          You've seen it all friend!
         </h3>
       )}
-
-      {/* <Pagination {...{ pages, page, paginate }} /> */}
     </>
   );
 };
