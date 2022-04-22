@@ -12,3 +12,10 @@ tools
 - mongodb
 
 serverside stuff => https://github.com/sherif-ffs/hoard-backend
+
+todo
+- [ ] update loader
+- [ ] paginate profile
+- [ ] gallery
+- [ ] issue on mobile
+- [ ] resize grid
