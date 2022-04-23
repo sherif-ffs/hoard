@@ -2,8 +2,10 @@
 .spinner {
   height: 2em;
   width: 2em;
-  background-color: $color-orange;
+  background-color: $light-gray;
+  border: 1px solid $dark;
   animation: sk-rotateplane 2s infinite;
+  border-radius: 0.25em;
 }
 
 @keyframes sk-rotateplane {

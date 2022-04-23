@@ -54,15 +54,11 @@ const Items = (props: Props) => {
   const paginate = (p: number) => {
     setPage(p);
   };
-  // const paginate = (e: any) => {
-  //   setPage(e.target.value);
-  // };
 
   return (
     <>
       <div className={styles.wrapper}>
         {!itemsToRender && <NothingFound />}
-
         {itemsToRender &&
           itemsToRender.map((item: any, i: number) => {
             const isMyItem = user && user._id === item.userId;
