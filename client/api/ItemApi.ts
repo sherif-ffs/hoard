@@ -1,5 +1,5 @@
 import { API_URL } from '../constants/ApiEndpoint';
-
+console.log('API_URL: ', API_URL);
 // Create Item
 export function createItem(item: any) {
   return fetch(`${API_URL}/items/create-item`, {
@@ -60,13 +60,19 @@ export function fetchAllItems(
 }
 
 // fetch items by userId
-export function fetchItemsByUserID(id: string) {
-  return fetch(`${API_URL}/items/items-by?id=${id}`, {
-    method: 'GET',
+export function fetchItemsByUserID(id: string, limit: number, offset: number) {
+  console.log('fires');
+  return fetch(`${API_URL}/items/items-by`, {
+    method: 'POST',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify({
+      id,
+      limit,
+      offset,
+    }),
   });
 }
 

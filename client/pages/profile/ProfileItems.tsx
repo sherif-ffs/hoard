@@ -1,4 +1,6 @@
 import classNames from 'classnames';
+import React, { useState, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import loadItemsByUserID from '../../hooks/items/loadItemsByUser';
 import ItemCard from '../items/ItemCard';
@@ -14,9 +16,36 @@ interface Props {
 
 const ProfileItems = (props: Props) => {
   const { id } = props;
+  const [page, setPage] = useState(0);
+  const [itemsToRender, setItemsToRender] = useState<any>([]);
+  const { ref, inView } = useInView();
 
-  const response = loadItemsByUserID(id);
-  const { items, status, error } = response;
+  const response = loadItemsByUserID(id, 25, page * 25);
+  const { data, status, error } = response;
+
+  const itemObjects =
+    data &&
+    data.data &&
+    data.data.items &&
+    !!data.data.items.length &&
+    data.data.items;
+
+  useEffect(() => {
+    if (itemObjects) {
+      const d = [...itemsToRender, ...itemObjects];
+      setItemsToRender(d);
+    }
+  }, [itemObjects]);
+
+  const paginate = (p: number) => {
+    setPage(p);
+  };
+
+  useEffect(() => {
+    if (inView) {
+      paginate(page + 1);
+    }
+  }, [inView]);
 
   if (status === 'loading') {
     return <Loading copy="Loading items..." />;
@@ -26,30 +55,55 @@ const ProfileItems = (props: Props) => {
     return <Error />;
   }
 
-  const itemsExist = items && !!items.length;
-  const oneItemView = items && items.length === 1;
+  const itemsExist = itemsToRender && !!itemsToRender.length;
+  const oneItemView = itemsToRender && itemsToRender.length === 1;
+  const itemCount = data && data.data && data.data.itemCount;
 
   if (itemsExist) {
     return (
-      <div
-        className={classNames(gridStyles.cardGrid, {
-          [gridStyles.oneItem]: oneItemView,
-        })}
-      >
-        {items.map((item: any) => {
-          const isPublic = !item.isPrivate;
-          if (isPublic) {
-            return (
-              <ItemCard
-                {...{
-                  item,
-                }}
-                key={item._id}
-              />
-            );
-          }
-        })}
-      </div>
+      <>
+        <div
+          className={classNames(gridStyles.cardGrid, {
+            [gridStyles.oneItem]: oneItemView,
+          })}
+        >
+          {itemsToRender.map((item: any) => {
+            const isPublic = !item.isPrivate;
+            if (isPublic) {
+              return (
+                <ItemCard
+                  {...{
+                    item,
+                  }}
+                  key={item._id}
+                />
+              );
+            }
+          })}
+        </div>
+        <div
+          style={{
+            padding: '2em 0',
+          }}
+        >
+          {itemCount > itemsToRender.length ? (
+            <div ref={ref}>
+              <Loading copy="loading more" />
+            </div>
+          ) : (
+            <h3
+              style={{
+                margin: 'auto',
+                width: 'min-content',
+                whiteSpace: 'nowrap',
+                fontWeight: 'normal',
+              }}
+            >
+              You've seen it all friend!
+            </h3>
+          )}
+        </div>
+      </>
     );
   } else {
     return <NothingFound />;
