@@ -4,10 +4,6 @@
 .imgWrapper {
   border-radius: $border-radius;
   cursor: pointer;
-  @media all and (max-width: 480px) {
-    height: 92.5%;
-    width: 92.5%;
-  }
   img {
     object-fit: contain;
     width: 100% !important;
