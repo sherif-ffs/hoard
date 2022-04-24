@@ -1,8 +1,9 @@
 # Hoard
 
-website to collect(hoard) and share websites I find interesting/cool. 
+website to collect(hoard) and share websites I find interesting/cool.
 
 tools
+
 - next.js
 - scss
 - typescript
@@ -12,10 +13,3 @@ tools
 - mongodb
 
 serverside stuff => https://github.com/sherif-ffs/hoard-backend
-
-todo
-- [ ] update loader
-- [ ] paginate profile
-- [ ] gallery
-- [ ] issue on mobile
-- [ ] resize grid
