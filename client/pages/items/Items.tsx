@@ -50,7 +50,7 @@ const Items = (props: Props) => {
   }, [inView]);
 
   useEffect(() => {
-    if (gridSize <= 300) {
+    if (gridSize <= 250) {
       setHideText(true);
       return;
     }
@@ -95,7 +95,7 @@ const Items = (props: Props) => {
         <input
           type="range"
           min="50"
-          max={browserWidth / 3}
+          max={browserWidth >= 500 ? browserWidth / 3 : browserWidth - 20}
           value={gridSize}
           onChange={updateGrid}
         />
