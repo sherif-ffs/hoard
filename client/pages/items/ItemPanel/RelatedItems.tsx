@@ -25,7 +25,9 @@ const RelatedItems = () => {
   if (status === 'loading') return <Loading copy="Loading related items..." />;
 
   const filteredItems =
-    items && items.filter((i: ItemInterface) => i._id !== selectedItem._id);
+    items &&
+    !!items.length &&
+    items.filter((i: ItemInterface) => i._id !== selectedItem._id);
 
   if (!(filteredItems.length >= 1)) return null;
 

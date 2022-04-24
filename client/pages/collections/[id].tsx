@@ -62,7 +62,7 @@ const Collection = () => {
       >
         {itemsExist ? (
           [...collectionCards].reverse().map((item: ItemInterface) => {
-            return <ItemCard {...{ item }} key={item._id} />;
+            return <ItemCard {...{ item }} hideText={false} key={item._id} />;
           })
         ) : (
           <>

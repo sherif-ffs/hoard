@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { useAuthContext } from '../../contexts/AuthContext';
@@ -15,9 +15,13 @@ interface Props {
 const Items = (props: Props) => {
   const { user } = useAuthContext();
   const [limit] = useState(25);
+  const [gridSize, setGridSize] = useState(350);
+  const [hideText, setHideText] = useState(false);
   const [page, setPage] = useState(0);
   const [itemsToRender, setItemsToRender] = useState<any>([]);
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({
+    rootMargin: '200px 0px',
+  });
 
   const { filterList } = props;
 
@@ -45,6 +49,17 @@ const Items = (props: Props) => {
     }
   }, [inView]);
 
+  useEffect(() => {
+    if (gridSize <= 300) {
+      setHideText(true);
+      return;
+    }
+
+    if (hideText) {
+      setHideText(false);
+    }
+  }, [gridSize]);
+
   if (error) {
     return <h1>Something went wrong</h1>;
   }
@@ -55,9 +70,38 @@ const Items = (props: Props) => {
     setPage(p);
   };
 
+  const updateGrid = (e: any) => {
+    const newGridSize = e.target.value;
+    setGridSize(newGridSize);
+  };
+
+  const browserWidth = Math.max(
+    document.body.scrollWidth,
+    document.documentElement.scrollWidth,
+    document.body.offsetWidth,
+    document.documentElement.offsetWidth,
+    document.documentElement.clientWidth
+  );
+
+  const test = {
+    display: 'grid',
+    gridTemplateColumns: `repeat(auto-fit, minmax(${gridSize}px, 1fr))`,
+    gap: '1rem',
+  };
+
   return (
     <>
-      <div className={styles.wrapper}>
+      <div className={styles.inputWrapper}>
+        <input
+          type="range"
+          min="50"
+          max={browserWidth / 3}
+          value={gridSize}
+          onChange={updateGrid}
+        />
+      </div>
+
+      <div className={styles.wrapper} style={test}>
         {!itemsToRender && <NothingFound />}
         {itemsToRender &&
           itemsToRender.map((item: any, i: number) => {
@@ -69,6 +113,7 @@ const Items = (props: Props) => {
                   {...{
                     isMyItem,
                     item,
+                    hideText,
                   }}
                   key={i}
                 />

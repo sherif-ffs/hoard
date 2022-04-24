@@ -25,7 +25,9 @@ const MoreByUser = () => {
   }
 
   const filteredItems =
-    items && items.filter((i: ItemInterface) => i._id !== selectedItem._id);
+    items &&
+    !!items.length &&
+    items.filter((i: ItemInterface) => i._id !== selectedItem._id);
 
   const handleRedirectToProfile = () => {
     setItemPanelIsOpen(false);

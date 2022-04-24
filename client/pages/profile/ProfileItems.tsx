@@ -18,7 +18,9 @@ const ProfileItems = (props: Props) => {
   const { id } = props;
   const [page, setPage] = useState(0);
   const [itemsToRender, setItemsToRender] = useState<any>([]);
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({
+    rootMargin: '200px 0px',
+  });
 
   const response = loadItemsByUserID(id, 25, page * 25);
   const { data, status, error } = response;
@@ -75,34 +77,29 @@ const ProfileItems = (props: Props) => {
                   {...{
                     item,
                   }}
+                  hideText={false}
                   key={item._id}
                 />
               );
             }
           })}
         </div>
-        <div
-          style={{
-            padding: '2em 0',
-          }}
-        >
-          {itemCount > itemsToRender.length ? (
-            <div ref={ref}>
-              <Loading copy="loading more" />
-            </div>
-          ) : (
-            <h3
-              style={{
-                margin: 'auto',
-                width: 'min-content',
-                whiteSpace: 'nowrap',
-                fontWeight: 'normal',
-              }}
-            >
-              You've seen it all friend!
-            </h3>
-          )}
-        </div>
+        {itemCount > itemsToRender.length ? (
+          <div ref={ref}>
+            <Loading copy="loading more" />
+          </div>
+        ) : (
+          <h3
+            style={{
+              margin: 'auto',
+              width: 'min-content',
+              whiteSpace: 'nowrap',
+              fontWeight: 'normal',
+            }}
+          >
+            You've seen it all friend!
+          </h3>
+        )}
       </>
     );
   } else {
