@@ -1,15 +1,15 @@
 # Hoard
 
-website to collect(hoard) and share websites I find interesting/cool.
+website to collect and share websites I find interesting/cool.
 
-tools
+### tools
 
 - next.js
 - scss
 - typescript
 - node
 - amazon s3 for images
-- puppeter for scraping
+- puppeter for scraping urls
 - mongodb
 
-serverside stuff => https://github.com/sherif-ffs/hoard-backend
+backend repo: https://github.com/sherif-ffs/hoard-backend
