@@ -85,7 +85,7 @@ const Profile = () => {
                   </Link>
                 )}
                 {portfolio && (
-                  <Link href={twitter}>
+                  <Link href={portfolio}>
                     <a target="_blank">portfolio</a>
                   </Link>
                 )}
